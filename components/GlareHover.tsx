@@ -44,13 +44,13 @@ const GlareHover: React.FC<GlareHoverProps> = ({
     if (!el) return;
 
     el.style.transition = 'none';
-    el.style.backgroundPosition = '-100% -100%, 0 0';
+    el.style.backgroundPosition = '-100% -100%';
     
     // Use a tiny timeout to allow the browser to process the 'none' transition
     setTimeout(() => {
       if (!el) return;
       el.style.transition = `${transitionDuration}ms ease`;
-      el.style.backgroundPosition = '100% 100%, 0 0';
+      el.style.backgroundPosition = '100% 100%';
     }, 10);
   };
 
@@ -60,10 +60,10 @@ const GlareHover: React.FC<GlareHoverProps> = ({
 
     if (playOnce) {
       el.style.transition = 'none';
-      el.style.backgroundPosition = '-100% -100%, 0 0';
+      el.style.backgroundPosition = '-100% -100%';
     } else {
       el.style.transition = `${transitionDuration}ms ease`;
-      el.style.backgroundPosition = '-100% -100%, 0 0';
+      el.style.backgroundPosition = '-100% -100%';
     }
   };
 
@@ -74,9 +74,9 @@ const GlareHover: React.FC<GlareHoverProps> = ({
         hsla(0,0%,0%,0) 60%,
         ${rgba} 70%,
         hsla(0,0%,0%,0) 100%)`,
-    backgroundSize: `${glareSize}% ${glareSize}%, 100% 100%`,
+    backgroundSize: `${glareSize}% ${glareSize}%`,
     backgroundRepeat: 'no-repeat',
-    backgroundPosition: '-100% -100%, 0 0',
+    backgroundPosition: '-100% -100%',
     pointerEvents: 'none',
     zIndex: 10,
     borderRadius: 'inherit'

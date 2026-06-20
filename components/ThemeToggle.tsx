@@ -31,6 +31,19 @@ export function ThemeToggle() {
     }, 500);
   };
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key.toLowerCase() === 't') {
+        const activeEl = document.activeElement?.tagName.toLowerCase();
+        if (activeEl !== 'input' && activeEl !== 'textarea' && activeEl !== 'select') {
+          toggleTheme();
+        }
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [toggleTheme]);
+
   return (
     <button
       onClick={toggleTheme}
