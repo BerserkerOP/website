@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useSpring, useTransform, useMotionValue, useMotionTemplate } from 'framer-motion';
-import { MouseEvent, ReactNode, useEffect, useRef } from 'react';
+import { MouseEvent, ReactNode, useEffect, useRef, useState } from 'react';
 import GlareHover from './GlareHover';
 
 interface TiltButtonProps {
@@ -28,9 +28,14 @@ export default function TiltButton({ children, href, className = "", innerClassN
   const mouseX = useMotionValue(-1000);
   const mouseY = useMotionValue(-1000);
   const buttonRef = useRef<HTMLAnchorElement>(null);
+  const [isHoverable, setIsHoverable] = useState(true);
 
   useEffect(() => {
-    if (!glow) return;
+    setIsHoverable(window.matchMedia("(hover: hover)").matches);
+  }, []);
+
+  useEffect(() => {
+    if (!glow || !isHoverable) return;
     const updateMousePos = (e: globalThis.MouseEvent) => {
       if (!buttonRef.current) return;
       const rect = buttonRef.current.getBoundingClientRect();
@@ -39,9 +44,10 @@ export default function TiltButton({ children, href, className = "", innerClassN
     };
     window.addEventListener('mousemove', updateMousePos);
     return () => window.removeEventListener('mousemove', updateMousePos);
-  }, [glow, mouseX, mouseY]);
+  }, [glow, isHoverable, mouseX, mouseY]);
 
   function handleMouseMove({ currentTarget, clientX, clientY }: MouseEvent) {
+    if (!isHoverable) return;
     const { left, top, width, height } = currentTarget.getBoundingClientRect();
     xPct.set((clientX - left) / width);
     yPct.set((clientY - top) / height);
@@ -79,7 +85,7 @@ export default function TiltButton({ children, href, className = "", innerClassN
         </span>
         
         {/* Glare Layer (ReactBits) */}
-        <GlareHover className="absolute inset-0 z-20 mix-blend-overlay rounded-inherit" transitionDuration={400} glareOpacity={0.6} />
+        {isHoverable && <GlareHover className="absolute inset-0 z-20 mix-blend-overlay rounded-inherit" transitionDuration={400} glareOpacity={0.6} />}
       </motion.a>
     </div>
   );
