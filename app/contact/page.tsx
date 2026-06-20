@@ -5,21 +5,28 @@ export const metadata = {
 
 import ContactForm from '@/components/ContactForm';
 import LiquidEther from '@/components/Backgrounds/LiquidEther';
+import FadeIn from '@/components/FadeIn';
 
 export default function ContactPage() {
   return (
     <div className="bg-apple-bg min-h-screen pt-32 pb-20 flex items-center justify-center px-4 relative overflow-hidden">
-      <div 
+      <FadeIn 
+        duration={1.5}
         className="absolute inset-0 z-0 pointer-events-none"
-        style={{ 
-          maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
-          WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)'
-        }}
       >
-        <LiquidEther />
-        <div className="absolute inset-0 bg-white/30 dark:bg-black/40 backdrop-blur-[1px]"></div>
-      </div>
-      <div className="bg-apple-card/95 backdrop-blur-3xl rounded-3xl shadow-[0_16px_64px_-12px_rgba(0,0,0,0.3)] dark:shadow-[0_16px_64px_-12px_rgba(255,255,255,0.02)] border border-black/5 dark:border-white/5 w-full max-w-lg flex flex-col relative z-10 transition-transform duration-500 hover:scale-[1.01]">
+        <div 
+          className="absolute inset-0"
+          style={{ 
+            maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)'
+          }}
+        >
+          <LiquidEther />
+          <div className="absolute inset-0 bg-white/30 dark:bg-black/40 backdrop-blur-[1px]"></div>
+        </div>
+      </FadeIn>
+      <FadeIn duration={0.8} delay={0.2} className="w-full max-w-lg flex flex-col relative z-10">
+        <div className="bg-apple-card/95 backdrop-blur-3xl rounded-3xl shadow-[0_16px_64px_-12px_rgba(0,0,0,0.3)] dark:shadow-[0_16px_64px_-12px_rgba(255,255,255,0.02)] border border-black/5 dark:border-white/5 w-full flex flex-col relative transition-transform duration-500 hover:scale-[1.01]">
         {/* Header */}
         <div className="px-6 py-5 border-b border-apple-border text-center">
           <h1 className="text-2xl font-bold text-apple-text tracking-tight">Apply for a Project</h1>
@@ -27,7 +34,8 @@ export default function ContactPage() {
 
         {/* Form Body */}
         <ContactForm />
-      </div>
+        </div>
+      </FadeIn>
     </div>
   );
 }

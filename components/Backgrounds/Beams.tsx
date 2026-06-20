@@ -228,7 +228,7 @@ const Beams: FC<BeamsProps> = ({
     float randomNoise = noise(gl_FragCoord.xy);
     gl_FragColor.rgb -= randomNoise / 15. * uNoiseIntensity;`
         },
-        material: { fog: true },
+        material: { fog: true, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false },
         uniforms: {
           diffuse: new THREE.Color(...hexToNormalizedRGB('#000000')),
           time: { shared: true, mixed: true, linked: true, value: 0 },

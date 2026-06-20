@@ -1,9 +1,18 @@
+"use client";
+
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0a0a0a] text-white py-20 border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6 lg:px-16 grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
+    <footer className="bg-[#0a0a0a] text-white py-20 border-t border-white/5 overflow-hidden">
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="max-w-7xl mx-auto px-6 lg:px-16 grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8"
+      >
         
         {/* Brand / Extra Info Column (Left) */}
         <div className="flex flex-col md:col-span-2 pr-0 md:pr-12">
@@ -39,14 +48,20 @@ export default function Footer() {
             <li><Link href="/contact" className="text-[15px] hover:text-[#a1a1aa] transition-colors">Contact us</Link></li>
           </ul>
         </div>
-      </div>
+      </motion.div>
       
       {/* Copyright Line */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-16 mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between">
+      <motion.div 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.4 }}
+        className="max-w-7xl mx-auto px-6 lg:px-16 mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between"
+      >
         <div className="text-[#a1a1aa] text-sm mb-4 md:mb-0">
           © {new Date().getFullYear()} HalftoneMotion. All rights reserved.
         </div>
-      </div>
+      </motion.div>
     </footer>
   );
 }
