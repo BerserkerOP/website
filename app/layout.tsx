@@ -20,8 +20,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="h-full antialiased" suppressHydrationWarning>
-      <body className={`${inter.className} min-h-full flex flex-col bg-apple-bg text-apple-text selection:bg-apple-blue/20 relative`}>
+    <html lang="en" className="antialiased" suppressHydrationWarning>
+      <body className={`${inter.className} min-h-screen flex flex-col bg-apple-bg text-apple-text selection:bg-apple-blue/20 relative`}>
         {/* Global Dot Grid Background */}
         <div 
           className="fixed inset-0 pointer-events-none -z-10" 
