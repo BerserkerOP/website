@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --apple-blue: #007AFF;
+  --apple-blue-hover: #1E6EF4;
+  --apple-bg: #F8F9FA;
+  --apple-text: #191919;
+  --apple-subtext: #4C4C4D;
+  --apple-border: #E5E5E7;
+  --apple-card: #FFFFFF;
+  --apple-gray: #F2F2F7;
+  --dot-color: rgba(0, 0, 0, 0.07);
+  --spotlight-color: rgba(0, 0, 0, 0.05);
+}
+
+.dark {
+  --apple-blue: #0A84FF;
+  --apple-blue-hover: #409CFF;
+  --apple-bg: #000000;
+  --apple-text: #FFFFFF;
+  --apple-subtext: #8E8E93;
+  --apple-border: #38383A;
+  --apple-card: #1C1C1E;
+  --apple-gray: #2C2C2E;
+  --dot-color: rgba(255, 255, 255, 0.07);
+  --spotlight-color: rgba(10, 132, 255, 0.15); /* Sleek apple-blue glow in dark mode */
+}
+
+.theme-transition,
+.theme-transition *,
+.theme-transition *:before,
+.theme-transition *:after {
+  transition-property: background-color, border-color, color, fill, stroke !important;
+  transition-duration: 500ms !important;
+  transition-timing-function: ease-in !important;
+}
+
+body {
+  color: var(--apple-text);
+  background: var(--apple-bg);
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
