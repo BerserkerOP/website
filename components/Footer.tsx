@@ -3,8 +3,19 @@ import Link from 'next/link';
 export default function Footer() {
   return (
     <footer className="bg-[#0a0a0a] text-white py-20 border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6 lg:px-16 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-24">
-        {/* Pages Column */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-16 grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
+        
+        {/* Brand / Extra Info Column (Left) */}
+        <div className="flex flex-col md:col-span-2 pr-0 md:pr-12">
+           <div className="mb-4">
+             <span className="text-2xl font-bold tracking-tight text-white">HalftoneMotion</span>
+           </div>
+           <p className="text-[#a1a1aa] text-[15px] leading-relaxed max-w-sm">
+             Premium motion graphics for SaaS companies that want to look like they mean business.
+           </p>
+        </div>
+
+        {/* Pages Column (Middle) */}
         <div>
           <h3 className="text-[#a1a1aa] text-sm font-semibold tracking-wider uppercase mb-6">Pages</h3>
           <ul className="space-y-4">
@@ -14,7 +25,7 @@ export default function Footer() {
           </ul>
         </div>
         
-        {/* Socials & Contact Column */}
+        {/* Socials & Contact Column (Right) */}
         <div>
           <h3 className="text-[#a1a1aa] text-sm font-semibold tracking-wider uppercase mb-6">Follow Us</h3>
           <ul className="space-y-4">
@@ -27,13 +38,6 @@ export default function Footer() {
           <ul className="space-y-4">
             <li><Link href="/contact" className="text-[15px] hover:text-[#a1a1aa] transition-colors">Contact us</Link></li>
           </ul>
-        </div>
-
-        {/* Brand / Extra Info Column (Optional, keeping it clean to match image) */}
-        <div className="flex flex-col justify-between">
-           <div className="hidden md:block">
-             <span className="text-2xl font-bold tracking-tight text-white">HalftoneMotion</span>
-           </div>
         </div>
       </div>
       
