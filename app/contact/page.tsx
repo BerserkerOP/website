@@ -19,7 +19,7 @@ export default function ContactPage() {
         <LiquidEther />
         <div className="absolute inset-0 bg-white/30 dark:bg-black/40 backdrop-blur-[1px]"></div>
       </div>
-      <div className="bg-apple-card/95 backdrop-blur-3xl rounded-3xl shadow-[0_16px_64px_-12px_rgba(0,0,0,0.3)] dark:shadow-[0_16px_64px_-12px_rgba(255,255,255,0.05)] border border-apple-border/80 w-full max-w-lg flex flex-col relative z-10 transition-transform duration-500 hover:scale-[1.01]">
+      <div className="bg-apple-card/95 backdrop-blur-3xl rounded-3xl shadow-[0_16px_64px_-12px_rgba(0,0,0,0.3)] dark:shadow-[0_16px_64px_-12px_rgba(255,255,255,0.02)] border border-black/5 dark:border-white/5 w-full max-w-lg flex flex-col relative z-10 transition-transform duration-500 hover:scale-[1.01]">
         {/* Header */}
         <div className="px-6 py-5 border-b border-apple-border text-center">
           <h1 className="text-2xl font-bold text-apple-text tracking-tight">Apply for a Project</h1>
