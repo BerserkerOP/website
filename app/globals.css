@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 :root {
+  color-scheme: light;
   --apple-blue: #007AFF;
   --apple-blue-hover: #1E6EF4;
   --apple-bg: #F8F9FA;
@@ -16,6 +17,7 @@
 }
 
 .dark {
+  color-scheme: dark;
   --apple-blue: #0A84FF;
   --apple-blue-hover: #409CFF;
   --apple-bg: #000000;

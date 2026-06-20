@@ -110,13 +110,13 @@ export default function ContactModal() {
                     defaultValue=""
                     className="w-full px-4 py-3 rounded-xl border border-apple-border focus:border-apple-blue focus:ring-1 focus:ring-apple-blue outline-none transition-all bg-transparent text-apple-text appearance-none"
                   >
-                    <option value="" disabled>Select...</option>
-                    <option value="< $200">&lt; $200</option>
-                    <option value="$200 - $500">$200 - $500</option>
-                    <option value="$500 - $800">$500 - $800</option>
-                    <option value="$800 - $1500">$800 - $1500</option>
-                    <option value="$1500 - $3000">$1500 - $3000</option>
-                    <option value="$3000+">$3000+</option>
+                    <option className="bg-apple-card text-apple-text" value="" disabled>Select...</option>
+                    <option className="bg-apple-card text-apple-text" value="< $200">&lt; $200</option>
+                    <option className="bg-apple-card text-apple-text" value="$200 - $500">$200 - $500</option>
+                    <option className="bg-apple-card text-apple-text" value="$500 - $800">$500 - $800</option>
+                    <option className="bg-apple-card text-apple-text" value="$800 - $1500">$800 - $1500</option>
+                    <option className="bg-apple-card text-apple-text" value="$1500 - $3000">$1500 - $3000</option>
+                    <option className="bg-apple-card text-apple-text" value="$3000+">$3000+</option>
                   </select>
                   
                   <div className="mt-2 text-[13px] text-zinc-500 leading-relaxed space-y-4">
