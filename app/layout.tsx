@@ -26,7 +26,7 @@ export default function RootLayout({
         <div 
           className="fixed inset-0 pointer-events-none -z-10 transform-gpu" 
           style={{ 
-            backgroundImage: 'radial-gradient(circle, var(--dot-color) 1.5px, transparent 1.5px)', 
+            backgroundImage: 'radial-gradient(circle, var(--dot-color) 2px, transparent 2px)', 
             backgroundSize: '24px 24px',
             willChange: 'transform',
             transform: 'translateZ(0)'
