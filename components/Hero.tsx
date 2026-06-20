@@ -57,7 +57,7 @@ export default function Hero() {
             className="text-4xl sm:text-5xl md:text-[64px] font-bold text-apple-text leading-[1.1] tracking-tight max-w-4xl"
           >
             Professional Motion Design that <br/>
-            <span className="text-apple-blue relative block h-[1.2em] w-full overflow-hidden mt-2">
+            <span className="text-apple-blue relative block h-[2.4em] sm:h-[1.2em] w-full overflow-hidden mt-2">
               <AnimatePresence>
                 <motion.span
                   key={index}
@@ -65,7 +65,7 @@ export default function Hero() {
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: "100%", opacity: 0 }}
                   transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                  className="absolute inset-0 flex items-center justify-center whitespace-nowrap"
+                  className="absolute inset-0 flex items-center justify-center text-center px-4"
                 >
                   {phrases[index]}
                 </motion.span>
