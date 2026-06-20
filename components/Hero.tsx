@@ -77,9 +77,9 @@ export default function Hero() {
             <ScrollFloat
               animationDuration={1}
               ease="back.out(2)"
-              scrollStart="top bottom"
-              scrollEnd="bottom center"
+              scrollStart="top 90%"
               stagger={0.02}
+              scrub={false}
               textClassName="text-base sm:text-lg text-apple-subtext"
             >
               We collaborate with brands to deliver premium motion design and video assets, ensuring a seamless and efficient process from concept to final delivery.

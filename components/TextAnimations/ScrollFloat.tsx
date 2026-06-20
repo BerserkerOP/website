@@ -16,6 +16,7 @@ interface ScrollFloatProps {
   scrollStart?: string;
   scrollEnd?: string;
   stagger?: number;
+  scrub?: boolean | number;
 }
 
 const ScrollFloat: React.FC<ScrollFloatProps> = ({
@@ -27,7 +28,8 @@ const ScrollFloat: React.FC<ScrollFloatProps> = ({
   ease = 'back.inOut(2)',
   scrollStart = 'center bottom+=50%',
   scrollEnd = 'bottom bottom-=40%',
-  stagger = 0.03
+  stagger = 0.03,
+  scrub = true
 }) => {
   const containerRef = useRef<HTMLHeadingElement>(null);
 
@@ -71,11 +73,11 @@ const ScrollFloat: React.FC<ScrollFloatProps> = ({
           scroller,
           start: scrollStart,
           end: scrollEnd,
-          scrub: true
+          scrub: scrub
         }
       }
     );
-  }, [scrollContainerRef, animationDuration, ease, scrollStart, scrollEnd, stagger]);
+  }, [scrollContainerRef, animationDuration, ease, scrollStart, scrollEnd, stagger, scrub]);
 
   return (
     <div ref={containerRef} className={`overflow-hidden ${containerClassName}`}>
