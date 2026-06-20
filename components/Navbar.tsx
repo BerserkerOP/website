@@ -17,6 +17,18 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [mobileMenuOpen]);
+
   return (
     <motion.nav 
       initial={{ y: -100 }}
@@ -66,22 +78,57 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Fullscreen Apple-style Mobile Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-apple-card border-b border-apple-border overflow-hidden"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10, transition: { duration: 0.2 } }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute top-full left-0 right-0 h-[100vh] md:hidden bg-white/80 dark:bg-black/80 backdrop-blur-2xl border-t border-apple-border/50 overflow-hidden"
           >
-            <div className="px-6 py-4 flex flex-col space-y-4">
-              <Link href="/" onClick={() => setMobileMenuOpen(false)} className="text-apple-text font-medium py-2">Home</Link>
-              <Link href="/work" onClick={() => setMobileMenuOpen(false)} className="text-apple-text font-medium py-2 border-t border-apple-border/50">Our Work</Link>
-              <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="text-apple-text font-medium py-2 border-t border-apple-border/50">Contact</Link>
-              <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="inline-flex items-center justify-center font-semibold rounded-full backdrop-blur-xl bg-gradient-to-b from-white/60 to-white/20 dark:from-white/10 dark:to-white/5 border border-white/80 dark:border-white/10 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.6)] dark:shadow-[0_4px_24px_-8px_rgba(255,255,255,0.05)] text-apple-text px-5 py-3 text-sm mt-2 w-full active:scale-[0.98] transition-all">
-                Get Started
-              </Link>
+            <div className="px-6 py-8 flex flex-col h-full max-h-[calc(100vh-80px)]">
+              <div className="flex flex-col space-y-6 flex-1">
+                {[
+                  { name: 'Home', path: '/' },
+                  { name: 'Our Work', path: '/work' },
+                  { name: 'Contact', path: '/contact' }
+                ].map((item, i) => (
+                  <motion.div
+                    key={item.name}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -10 }}
+                    transition={{ delay: i * 0.05 + 0.1, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <Link 
+                      href={item.path} 
+                      onClick={() => setMobileMenuOpen(false)} 
+                      className="text-3xl font-semibold text-apple-text block py-2"
+                    >
+                      {item.name}
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ delay: 0.3, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                className="pb-12"
+              >
+                <div className="w-full h-px bg-apple-border/50 mb-8"></div>
+                <Link 
+                  href="/contact" 
+                  onClick={() => setMobileMenuOpen(false)} 
+                  className="flex items-center justify-center font-bold rounded-full bg-apple-blue text-white shadow-lg shadow-apple-blue/20 py-4 text-lg active:scale-[0.98] transition-all w-full"
+                >
+                  Start Your Project
+                </Link>
+              </motion.div>
             </div>
           </motion.div>
         )}
