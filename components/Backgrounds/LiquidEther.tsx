@@ -61,11 +61,11 @@ export default function LiquidEther({
   cursorSize = 100,
   isViscous = false,
   viscous = 30,
-  iterationsViscous = 32,
-  iterationsPoisson = 32,
+  iterationsViscous = 8,
+  iterationsPoisson = 8,
   dt = 0.014,
-  BFECC = true,
-  resolution = 0.5,
+  BFECC = false,
+  resolution = 0.25,
   isBounce = false,
   colors = defaultColors,
   style = {},
@@ -134,9 +134,9 @@ export default function LiquidEther({
       clock: THREE.Clock | null = null;
       init(container: HTMLElement) {
         this.container = container;
-        this.pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+        this.pixelRatio = 1; // Locked to 1 for massive performance gains on high-DPI/low-end devices
         this.resize();
-        this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        this.renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, powerPreference: "high-performance" });
         // Always transparent
         this.renderer.autoClear = false;
         this.renderer.setClearColor(new THREE.Color(0x000000), 0);
@@ -843,16 +843,16 @@ export default function LiquidEther({
       pressure!: Pressure;
       constructor(options?: Partial<SimOptions>) {
         this.options = {
-          iterations_poisson: 32,
-          iterations_viscous: 32,
+          iterations_poisson: 8,
+          iterations_viscous: 8,
           mouse_force: 20,
-          resolution: 0.5,
+          resolution: 0.25,
           cursor_size: 100,
           viscous: 30,
           isBounce: false,
           dt: 0.014,
           isViscous: false,
-          BFECC: true,
+          BFECC: false,
           ...options
         };
         this.init();
