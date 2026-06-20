@@ -107,9 +107,10 @@ export default function ContactModal() {
                     id="budget"
                     name="budget"
                     required
+                    defaultValue=""
                     className="w-full px-4 py-3 rounded-xl border border-apple-border focus:border-apple-blue focus:ring-1 focus:ring-apple-blue outline-none transition-all bg-transparent text-apple-text appearance-none"
                   >
-                    <option value="" disabled selected>Select...</option>
+                    <option value="" disabled>Select...</option>
                     <option value="< $200">&lt; $200</option>
                     <option value="$200 - $500">$200 - $500</option>
                     <option value="$500 - $800">$500 - $800</option>

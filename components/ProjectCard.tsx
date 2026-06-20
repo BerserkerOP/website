@@ -27,6 +27,13 @@ export default function ProjectCard({ title, category, delay = 0, videoUrl, hove
   // Spotlight
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+  const spotlightBackground = useMotionTemplate`
+    radial-gradient(
+      400px circle at ${mouseX}px ${mouseY}px,
+      var(--spotlight-color),
+      transparent 80%
+    )
+  `;
 
   // 3D Tilt
   const xPct = useMotionValue(0.5);
@@ -82,13 +89,7 @@ export default function ProjectCard({ title, category, delay = 0, videoUrl, hove
           <motion.div
             className="pointer-events-none absolute -inset-px rounded-[24px] opacity-0 transition-opacity duration-300 group-hover:opacity-100 z-0"
             style={{
-              background: useMotionTemplate`
-                radial-gradient(
-                  400px circle at ${mouseX}px ${mouseY}px,
-                  var(--spotlight-color),
-                  transparent 80%
-                )
-              `,
+              background: spotlightBackground,
             }}
           />
         )}
