@@ -44,7 +44,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-4 w-full px-4 sm:px-0"
           >
-            <TiltButton href="/contact" className="w-full sm:w-auto font-semibold text-apple-text px-6 py-3.5 sm:px-8 sm:py-4 text-sm sm:text-base rounded-full backdrop-blur-md bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 hover:bg-black/10 dark:hover:bg-white/10 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.2)] dark:shadow-[0_4px_24px_-8px_rgba(255,255,255,0.1)] transition-all">
+            <TiltButton href="/#contact" className="w-full sm:w-auto font-semibold text-apple-text px-6 py-3.5 sm:px-8 sm:py-4 text-sm sm:text-base rounded-full backdrop-blur-md bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 hover:bg-black/10 dark:hover:bg-white/10 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.2)] dark:shadow-[0_4px_24px_-8px_rgba(255,255,255,0.1)] transition-all">
               Start Your Project
             </TiltButton>
             <TiltButton href="/work" glow={true} className="w-full sm:w-auto font-semibold text-apple-text rounded-full shadow-sm text-sm sm:text-base">
