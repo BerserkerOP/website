@@ -5,7 +5,7 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ContactModal from '@/components/ContactModal'
 import { ThemeProvider } from '@/components/ThemeProvider'
-import SmoothScrolling from '@/components/SmoothScrolling'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -34,14 +34,12 @@ export default function RootLayout({
         ></div>
         
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          <SmoothScrolling>
-            <Navbar />
-            <main className="flex-1">
-              {children}
-            </main>
-            <Footer />
-            <ContactModal />
-          </SmoothScrolling>
+          <Navbar />
+          <main className="flex-1">
+            {children}
+          </main>
+          <Footer />
+          <ContactModal />
         </ThemeProvider>
       </body>
     </html>
