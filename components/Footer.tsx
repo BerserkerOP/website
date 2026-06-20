@@ -19,7 +19,7 @@ export default function Footer() {
           <h3 className="text-[#a1a1aa] text-sm font-semibold tracking-wider uppercase mb-6">Follow Us</h3>
           <ul className="space-y-4">
             <li><a href="https://www.instagram.com/atharvf.x/" target="_blank" rel="noopener noreferrer" className="text-[15px] hover:text-[#a1a1aa] transition-colors">Instagram</a></li>
-            <li><a href="#" className="text-[15px] hover:text-[#a1a1aa] transition-colors">TikTok</a></li>
+            <li><a href="https://www.behance.net/gamingandfun1" target="_blank" rel="noopener noreferrer" className="text-[15px] hover:text-[#a1a1aa] transition-colors">Behance</a></li>
             <li><a href="https://www.youtube.com/channel/UCh5P2qR4MUeahOXECT5pm-Q" target="_blank" rel="noopener noreferrer" className="text-[15px] hover:text-[#a1a1aa] transition-colors">YouTube</a></li>
           </ul>
           
