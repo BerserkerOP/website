@@ -12,7 +12,7 @@
   --apple-border: #E5E5E7;
   --apple-card: #FFFFFF;
   --apple-gray: #F2F2F7;
-  --dot-color: rgba(0, 0, 0, 0.15);
+  --dot-color: rgba(0, 0, 0, 0.5);
   --spotlight-color: rgba(0, 122, 255, 0.08);
 }
 
@@ -26,7 +26,7 @@
   --apple-border: #38383A;
   --apple-card: #1C1C1E;
   --apple-gray: #2C2C2E;
-  --dot-color: rgba(255, 255, 255, 0.15);
+  --dot-color: rgba(255, 255, 255, 0.5);
   --spotlight-color: rgba(10, 132, 255, 0.15); /* Sleek apple-blue glow in dark mode */
 }
 
