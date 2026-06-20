@@ -12,13 +12,6 @@ export function ThemeToggle() {
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    return (
-      <button className="p-2 rounded-full text-apple-subtext hover:text-apple-text hover:bg-apple-gray transition-colors duration-200 ml-4 flex items-center justify-center w-9 h-9" aria-label="Toggle Dark Mode" disabled>
-      </button>
-    ); // Placeholder to prevent layout shift and hydration errors
-  }
-
   const isDark = theme === "dark";
 
   const toggleTheme = () => {
@@ -46,6 +39,15 @@ export function ThemeToggle() {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [toggleTheme]);
+
+  if (!mounted) {
+    return (
+      <button className="p-2 rounded-full text-apple-subtext hover:text-apple-text hover:bg-apple-gray transition-colors duration-200 ml-4 flex items-center justify-center w-9 h-9" aria-label="Toggle Dark Mode" disabled>
+      </button>
+    ); // Placeholder to prevent layout shift and hydration errors
+  }
+
+
 
   return (
     <button
