@@ -38,7 +38,7 @@ export default function Navbar() {
           </div>
 
           <div className="hidden md:flex items-center gap-4">
-            <Link href="/contact" className="inline-flex items-center justify-center font-semibold rounded-full transition-all duration-200 backdrop-blur-md bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 hover:bg-black/10 dark:hover:bg-white/10 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.2)] dark:shadow-[0_4px_24px_-8px_rgba(255,255,255,0.1)] text-apple-text px-5 py-2.5 text-sm active:scale-[0.98]">
+            <Link href="/contact" className="inline-flex items-center justify-center font-semibold rounded-full transition-all duration-200 backdrop-blur-xl bg-gradient-to-b from-white/60 to-white/20 dark:from-white/10 dark:to-white/5 border border-white/80 dark:border-white/10 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.6)] dark:shadow-[0_4px_24px_-8px_rgba(255,255,255,0.05)] text-apple-text px-5 py-2.5 text-sm active:scale-[0.98] hover:scale-[1.02]">
               Get Started
             </Link>
             <ThemeToggle />
@@ -79,7 +79,7 @@ export default function Navbar() {
               <Link href="/" onClick={() => setMobileMenuOpen(false)} className="text-apple-text font-medium py-2">Home</Link>
               <Link href="/work" onClick={() => setMobileMenuOpen(false)} className="text-apple-text font-medium py-2 border-t border-apple-border/50">Our Work</Link>
               <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="text-apple-text font-medium py-2 border-t border-apple-border/50">Contact</Link>
-              <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="inline-flex items-center justify-center font-semibold rounded-full backdrop-blur-md bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 hover:bg-black/10 dark:hover:bg-white/10 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.2)] dark:shadow-[0_4px_24px_-8px_rgba(255,255,255,0.1)] text-apple-text px-5 py-3 text-sm mt-2 w-full active:scale-[0.98] transition-all">
+              <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="inline-flex items-center justify-center font-semibold rounded-full backdrop-blur-xl bg-gradient-to-b from-white/60 to-white/20 dark:from-white/10 dark:to-white/5 border border-white/80 dark:border-white/10 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.6)] dark:shadow-[0_4px_24px_-8px_rgba(255,255,255,0.05)] text-apple-text px-5 py-3 text-sm mt-2 w-full active:scale-[0.98] transition-all">
                 Get Started
               </Link>
             </div>

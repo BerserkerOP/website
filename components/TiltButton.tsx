@@ -8,10 +8,11 @@ interface TiltButtonProps {
   children: ReactNode;
   href: string;
   className?: string;
+  innerClassName?: string;
   glow?: boolean;
 }
 
-export default function TiltButton({ children, href, className = "", glow = false }: TiltButtonProps) {
+export default function TiltButton({ children, href, className = "", innerClassName = "", glow = false }: TiltButtonProps) {
   const xPct = useMotionValue(0.5);
   const yPct = useMotionValue(0.5);
   
@@ -51,7 +52,7 @@ export default function TiltButton({ children, href, className = "", glow = fals
         {glow && (
           <span className="absolute inset-[-1000%] z-0 animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,var(--apple-blue)_50%,transparent_100%)]" />
         )}
-        <span className={`relative z-10 flex items-center gap-2 ${glow ? 'w-full h-full bg-apple-bg rounded-inherit justify-center' : ''}`}>
+        <span className={`relative z-10 flex items-center gap-2 ${glow ? 'w-full h-full bg-apple-bg rounded-inherit justify-center' : ''} ${innerClassName}`}>
           {children}
         </span>
         
