@@ -46,10 +46,6 @@ export default function Footer() {
         <div className="text-[#a1a1aa] text-sm mb-4 md:mb-0">
           © {new Date().getFullYear()} HalftoneMotion. All rights reserved.
         </div>
-        <div className="flex items-center gap-6">
-          <Link href="/contact" className="text-[#a1a1aa] text-sm hover:text-white transition-colors">Privacy Policy</Link>
-          <Link href="/contact" className="text-[#a1a1aa] text-sm hover:text-white transition-colors">Terms of Service</Link>
-        </div>
       </div>
     </footer>
   );
