@@ -9,6 +9,7 @@ interface ProjectCardProps {
   category: string;
   delay?: number;
   videoUrl?: string;
+  hoverGradient?: boolean;
 }
 
 function getYouTubeEmbedUrl(url: string | undefined) {
@@ -20,7 +21,7 @@ function getYouTubeEmbedUrl(url: string | undefined) {
     : null;
 }
 
-export default function ProjectCard({ title, category, delay = 0, videoUrl }: ProjectCardProps) {
+export default function ProjectCard({ title, category, delay = 0, videoUrl, hoverGradient = false }: ProjectCardProps) {
   const embedUrl = getYouTubeEmbedUrl(videoUrl);
   
   // Spotlight
@@ -77,18 +78,25 @@ export default function ProjectCard({ title, category, delay = 0, videoUrl }: Pr
         className="relative flex flex-col h-full w-full rounded-[23px] overflow-hidden bg-apple-card shadow-[0_2px_10px_rgba(0,0,0,0.02)] dark:shadow-none"
       >
         {/* Spotlight Hover Glow (Behind Content) */}
-        <motion.div
-          className="pointer-events-none absolute -inset-px rounded-[24px] opacity-0 transition-opacity duration-300 group-hover:opacity-100 z-0"
-          style={{
-            background: useMotionTemplate`
-              radial-gradient(
-                400px circle at ${mouseX}px ${mouseY}px,
-                var(--spotlight-color),
-                transparent 80%
-              )
-            `,
-          }}
-        />
+        {!hoverGradient && (
+          <motion.div
+            className="pointer-events-none absolute -inset-px rounded-[24px] opacity-0 transition-opacity duration-300 group-hover:opacity-100 z-0"
+            style={{
+              background: useMotionTemplate`
+                radial-gradient(
+                  400px circle at ${mouseX}px ${mouseY}px,
+                  var(--spotlight-color),
+                  transparent 80%
+                )
+              `,
+            }}
+          />
+        )}
+
+        {/* Colorful Gradient Hover Glow */}
+        {hoverGradient && (
+          <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        )}
         
         {/* Glare Layer (ReactBits) */}
         <GlareHover className="absolute inset-0 z-50 rounded-[23px] mix-blend-overlay" transitionDuration={600} glareOpacity={0.8} />

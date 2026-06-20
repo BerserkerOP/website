@@ -32,9 +32,9 @@ export default function Navbar() {
           
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-sm font-medium text-apple-subtext hover:text-apple-text transition-colors duration-200">Home</a>
-            <a href="#store" className="text-sm font-medium text-apple-subtext hover:text-apple-text transition-colors duration-200">My Work</a>
-            <a href="#contact" className="text-sm font-medium text-apple-subtext hover:text-apple-text transition-colors duration-200">Contact</a>
+            <Link href="/" className="text-sm font-medium text-apple-subtext hover:text-apple-text transition-colors duration-200">Home</Link>
+            <Link href="/work" className="text-sm font-medium text-apple-subtext hover:text-apple-text transition-colors duration-200">My Work</Link>
+            <a href="/#contact" className="text-sm font-medium text-apple-subtext hover:text-apple-text transition-colors duration-200">Contact</a>
           </div>
 
           <div className="hidden md:flex items-center">
@@ -76,10 +76,10 @@ export default function Navbar() {
             className="md:hidden bg-apple-card border-b border-apple-border overflow-hidden"
           >
             <div className="px-6 py-4 flex flex-col space-y-4">
-              <a href="#" onClick={() => setMobileMenuOpen(false)} className="text-apple-text font-medium py-2">Home</a>
-              <a href="#store" onClick={() => setMobileMenuOpen(false)} className="text-apple-text font-medium py-2 border-t border-apple-border/50">My Work</a>
-              <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="text-apple-text font-medium py-2 border-t border-apple-border/50">Contact</a>
-              <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="inline-flex items-center justify-center font-semibold rounded-full bg-apple-blue text-white px-5 py-3 text-sm mt-2 w-full active:scale-[0.98] transition-transform">
+              <Link href="/" onClick={() => setMobileMenuOpen(false)} className="text-apple-text font-medium py-2">Home</Link>
+              <Link href="/work" onClick={() => setMobileMenuOpen(false)} className="text-apple-text font-medium py-2 border-t border-apple-border/50">My Work</Link>
+              <a href="/#contact" onClick={() => setMobileMenuOpen(false)} className="text-apple-text font-medium py-2 border-t border-apple-border/50">Contact</a>
+              <a href="/#contact" onClick={() => setMobileMenuOpen(false)} className="inline-flex items-center justify-center font-semibold rounded-full bg-apple-blue text-white px-5 py-3 text-sm mt-2 w-full active:scale-[0.98] transition-transform">
                 Get Started
               </a>
             </div>
