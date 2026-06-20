@@ -121,7 +121,6 @@ export default function ProjectCard({ title, category, delay = 0, videoUrl, hove
         style={{
           rotateX,
           rotateY,
-          transformStyle: "preserve-3d",
         }}
         className="relative flex flex-col h-full w-full rounded-[23px] overflow-hidden bg-apple-card shadow-[0_2px_10px_rgba(0,0,0,0.02)] dark:shadow-none"
       >
@@ -151,6 +150,7 @@ export default function ProjectCard({ title, category, delay = 0, videoUrl, hove
               frameBorder="0" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
               allowFullScreen
+              loading="lazy"
             ></iframe>
           ) : (
             <div className="w-full h-full bg-zinc-800/50 flex items-center justify-center">
