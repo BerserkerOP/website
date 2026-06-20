@@ -1,8 +1,9 @@
 "use client";
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import TiltButton from './TiltButton';
+import LightRays from './Backgrounds/LightRays';
 
 const phrases = [
   "Captivates Your Audience",
@@ -14,6 +15,8 @@ const phrases = [
 
 export default function Hero() {
   const [index, setIndex] = useState(0);
+  const { scrollY } = useScroll();
+  const lightRaysOpacity = useTransform(scrollY, [0, 600], [1, 0]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -23,7 +26,10 @@ export default function Hero() {
   }, []);
   return (
     <section className="relative bg-apple-bg overflow-hidden pt-24 pb-16 sm:pt-32 sm:pb-20">
-      <div className="max-w-7xl mx-auto px-6 lg:px-16 w-full py-10">
+      <motion.div style={{ opacity: lightRaysOpacity }} className="absolute inset-0 z-0 pointer-events-none">
+        <LightRays className="opacity-80" />
+      </motion.div>
+      <div className="max-w-7xl mx-auto px-6 lg:px-16 w-full py-10 relative z-10">
         <div className="flex flex-col items-center text-center gap-6">
           <motion.div 
             initial={{ opacity: 0, y: 14 }}
@@ -43,15 +49,15 @@ export default function Hero() {
             className="text-4xl sm:text-5xl md:text-[64px] font-bold text-apple-text leading-[1.1] tracking-tight max-w-4xl"
           >
             Professional Motion Design that <br/>
-            <span className="text-apple-blue inline-flex flex-col h-[1.1em] overflow-hidden relative align-bottom">
-              <AnimatePresence mode="popLayout">
+            <span className="text-apple-blue relative block h-[1.2em] w-full overflow-hidden mt-2">
+              <AnimatePresence>
                 <motion.span
                   key={index}
                   initial={{ y: "-100%", opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: "100%", opacity: 0 }}
-                  transition={{ duration: 0.5, ease: "easeInOut" }}
-                  className="block whitespace-nowrap"
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  className="absolute inset-0 flex items-center justify-center whitespace-nowrap"
                 >
                   {phrases[index]}
                 </motion.span>

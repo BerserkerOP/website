@@ -4,11 +4,15 @@ export const metadata = {
 };
 
 import ContactForm from '@/components/ContactForm';
+import LiquidEther from '@/components/Backgrounds/LiquidEther';
 
 export default function ContactPage() {
   return (
-    <div className="bg-apple-bg min-h-screen pt-32 pb-20 flex items-center justify-center px-4">
-      <div className="bg-apple-card rounded-2xl shadow-xl border border-apple-border w-full max-w-lg flex flex-col">
+    <div className="bg-apple-bg min-h-screen pt-32 pb-20 flex items-center justify-center px-4 relative overflow-hidden">
+      <div className="absolute inset-0 z-0">
+        <LiquidEther />
+      </div>
+      <div className="bg-apple-card/60 backdrop-blur-2xl rounded-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.2)] border border-apple-border/50 w-full max-w-lg flex flex-col relative z-10">
         {/* Header */}
         <div className="px-6 py-5 border-b border-apple-border text-center">
           <h1 className="text-2xl font-bold text-apple-text tracking-tight">Apply for a Project</h1>

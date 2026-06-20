@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useSpring, useTransform, useMotionValue } from 'framer-motion';
-import { MouseEvent, ReactNode } from 'react';
+import { motion, useSpring, useTransform, useMotionValue, useMotionTemplate } from 'framer-motion';
+import { MouseEvent, ReactNode, useEffect, useRef } from 'react';
 import GlareHover from './GlareHover';
 
 interface TiltButtonProps {
@@ -25,6 +25,22 @@ export default function TiltButton({ children, href, className = "", innerClassN
   const glareX = useTransform(xSpring, [0, 1], ["100%", "0%"]);
   const glareY = useTransform(ySpring, [0, 1], ["100%", "0%"]);
 
+  const mouseX = useMotionValue(-1000);
+  const mouseY = useMotionValue(-1000);
+  const buttonRef = useRef<HTMLAnchorElement>(null);
+
+  useEffect(() => {
+    if (!glow) return;
+    const updateMousePos = (e: globalThis.MouseEvent) => {
+      if (!buttonRef.current) return;
+      const rect = buttonRef.current.getBoundingClientRect();
+      mouseX.set(e.clientX - rect.left);
+      mouseY.set(e.clientY - rect.top);
+    };
+    window.addEventListener('mousemove', updateMousePos);
+    return () => window.removeEventListener('mousemove', updateMousePos);
+  }, [glow, mouseX, mouseY]);
+
   function handleMouseMove({ currentTarget, clientX, clientY }: MouseEvent) {
     const { left, top, width, height } = currentTarget.getBoundingClientRect();
     xPct.set((clientX - left) / width);
@@ -39,6 +55,7 @@ export default function TiltButton({ children, href, className = "", innerClassN
   return (
     <div className="relative [perspective:1000px] w-full sm:w-auto group">
       <motion.a
+        ref={buttonRef}
         href={href}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
@@ -47,12 +64,17 @@ export default function TiltButton({ children, href, className = "", innerClassN
           rotateY,
           transformStyle: "preserve-3d",
         }}
-        className={`relative overflow-hidden flex items-center justify-center transition-all duration-200 active:scale-[0.98] ${glow ? 'p-[1px]' : ''} ${className}`}
+        className={`relative overflow-hidden flex items-center justify-center transition-all duration-200 active:scale-[0.98] ${glow ? 'p-[2px]' : ''} ${className}`}
       >
         {glow && (
-          <span className="absolute inset-[-1000%] z-0 animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,var(--apple-blue)_50%,transparent_100%)]" />
+          <motion.div
+            className="absolute inset-0 z-0 pointer-events-none rounded-inherit"
+            style={{
+              background: useMotionTemplate`radial-gradient(120px circle at ${mouseX}px ${mouseY}px, var(--apple-blue), transparent 100%)`,
+            }}
+          />
         )}
-        <span className={`relative z-10 flex items-center gap-2 ${glow ? 'w-full h-full bg-apple-bg rounded-inherit justify-center' : ''} ${innerClassName}`}>
+        <span className={`relative z-10 flex items-center gap-2 ${glow ? 'w-full h-full bg-apple-bg rounded-[inherit] justify-center' : ''} ${innerClassName}`}>
           {children}
         </span>
         
