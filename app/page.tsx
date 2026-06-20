@@ -1,6 +1,5 @@
 import Hero from '@/components/Hero';
 import ProjectCard from '@/components/ProjectCard';
-import Beams from '@/components/Backgrounds/Beams';
 
 export default function Home() {
   const projects = [
@@ -13,23 +12,8 @@ export default function Home() {
     <div className="bg-apple-bg">
       <Hero />
       
-      <section id="store" className="relative py-12 sm:py-16 px-6 lg:px-16 mx-auto overflow-hidden">
-        {/* Background Beams for Our Work section */}
-        <div 
-          className="absolute inset-0 z-0 pointer-events-none"
-          style={{ 
-            maskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)'
-          }}
-        >
-          <Beams 
-            className="opacity-40 dark:opacity-20" 
-            lightColor="#0A84FF"
-          />
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="mb-12 max-w-2xl">
+      <section id="store" className="py-12 sm:py-16 px-6 lg:px-16 max-w-7xl mx-auto">
+        <div className="mb-12 max-w-2xl">
           <p className="text-apple-blue text-sm font-semibold uppercase tracking-widest mb-3">Featured Assets</p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-apple-text leading-tight tracking-tight">Specialized video solutions tailored to your needs</h2>
         </div>
@@ -44,7 +28,6 @@ export default function Home() {
               videoUrl={(project as any).videoUrl}
             />
           ))}
-          </div>
         </div>
       </section>
     </div>
