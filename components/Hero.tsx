@@ -1,8 +1,9 @@
 "use client";
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import TiltButton from './TiltButton';
+import Beams from './Backgrounds/Beams';
 
 const phrases = [
   "Captivates Your Audience",
@@ -14,6 +15,9 @@ const phrases = [
 
 export default function Hero() {
   const [index, setIndex] = useState(0);
+  const { scrollY } = useScroll();
+  // Fade out as the user scrolls down (e.g. from 0 to 600px)
+  const opacity = useTransform(scrollY, [0, 600], [1, 0]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -23,6 +27,12 @@ export default function Hero() {
   }, []);
   return (
     <section className="relative bg-apple-bg overflow-hidden pt-24 pb-16 sm:pt-32 sm:pb-20">
+      <motion.div style={{ opacity }} className="absolute inset-0 z-0 pointer-events-none">
+        <Beams 
+          className="opacity-70 dark:opacity-40" 
+          lightColor="#0A84FF"
+        />
+      </motion.div>
       <div className="max-w-7xl mx-auto px-6 lg:px-16 w-full py-10 relative z-10">
         <div className="flex flex-col items-center text-center gap-6">
           <motion.div 
