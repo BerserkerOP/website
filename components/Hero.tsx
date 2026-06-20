@@ -4,6 +4,7 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { useState, useEffect } from 'react';
 import TiltButton from './TiltButton';
 import LightRays from './Backgrounds/LightRays';
+import ScrollFloat from './TextAnimations/ScrollFloat';
 
 const phrases = [
   "Captivates Your Audience",
@@ -65,14 +66,18 @@ export default function Hero() {
             </span>
           </motion.h1>
 
-          <motion.p 
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-            className="text-base sm:text-lg text-apple-subtext leading-relaxed max-w-2xl"
-          >
-            We collaborate with brands to deliver premium motion design and video assets, ensuring a seamless and efficient process from concept to final delivery.
-          </motion.p>
+          <div className="max-w-2xl mt-4">
+            <ScrollFloat
+              animationDuration={1}
+              ease="back.out(2)"
+              scrollStart="top bottom"
+              scrollEnd="bottom center"
+              stagger={0.02}
+              textClassName="text-base sm:text-lg text-apple-subtext"
+            >
+              We collaborate with brands to deliver premium motion design and video assets, ensuring a seamless and efficient process from concept to final delivery.
+            </ScrollFloat>
+          </div>
 
           <motion.div
             initial={{ opacity: 0, y: 18 }}
