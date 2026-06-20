@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionTemplate, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { MouseEvent } from 'react';
+import { MouseEvent, useEffect, useRef } from 'react';
 import GlareHover from './GlareHover';
 
 interface ProjectCardProps {
@@ -17,12 +17,53 @@ function getYouTubeEmbedUrl(url: string | undefined) {
   const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
   const match = url.match(regExp);
   return (match && match[2].length === 11)
-    ? `https://www.youtube.com/embed/${match[2]}?autoplay=0&rel=0`
+    ? `https://www.youtube.com/embed/${match[2]}?autoplay=0&rel=0&enablejsapi=1`
     : null;
 }
 
 export default function ProjectCard({ title, category, delay = 0, videoUrl, hoverGradient = false }: ProjectCardProps) {
   const embedUrl = getYouTubeEmbedUrl(videoUrl);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  
+  useEffect(() => {
+    const iframe = iframeRef.current;
+    if (!iframe) return;
+
+    const tellListening = () => {
+      iframe.contentWindow?.postMessage(JSON.stringify({ event: 'listening' }), '*');
+    };
+    
+    tellListening();
+    iframe.addEventListener('load', tellListening);
+
+    const handleMessage = (event: MessageEvent) => {
+      if (event.origin !== 'https://www.youtube.com') return;
+      if (event.source !== iframe.contentWindow) return;
+      
+      try {
+        const data = JSON.parse(event.data);
+        if (data.event === 'infoDelivery' && data.info && data.info.playerState === 1) {
+          window.dispatchEvent(new CustomEvent('global-video-play', { detail: { source: iframe } }));
+        }
+      } catch (e) {}
+    };
+
+    window.addEventListener('message', handleMessage);
+
+    const handleGlobalPlay = (e: any) => {
+      if (e.detail.source !== iframe) {
+        iframe.contentWindow?.postMessage(JSON.stringify({ event: 'command', func: 'pauseVideo', args: '' }), '*');
+      }
+    };
+
+    window.addEventListener('global-video-play', handleGlobalPlay);
+
+    return () => {
+      iframe.removeEventListener('load', tellListening);
+      window.removeEventListener('message', handleMessage);
+      window.removeEventListener('global-video-play', handleGlobalPlay);
+    };
+  }, []);
   
   // Spotlight
   const mouseX = useMotionValue(0);
@@ -105,6 +146,7 @@ export default function ProjectCard({ title, category, delay = 0, videoUrl, hove
         <div className="relative z-10 w-full aspect-video bg-zinc-900 overflow-hidden">
           {embedUrl ? (
             <iframe 
+              ref={iframeRef}
               className="w-full h-full"
               src={embedUrl} 
               title={title} 
