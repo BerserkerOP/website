@@ -10,9 +10,9 @@ export default function WorkPage() {
     { title: "SaaS Demo Videos", category: "Cinematic feature walkthroughs", videoUrl: "https://www.youtube.com/watch?v=diH5NhlPvGM" },
     { title: "Explainer Videos", category: "Complex features made instantly clear", videoUrl: "https://youtu.be/L3MB9hYLbBI" },
     { title: "Dynamic Lyric Visualizers", category: "High-energy kinetic typography for artists", videoUrl: "https://www.youtube.com/watch?v=5xiQWsoAHr4" },
-    { title: "Onboarding Sequences", category: "Get users to their aha moment", videoUrl: "https://www.youtube.com/watch?v=diH5NhlPvGM" },
-    { title: "Promo Campaigns", category: "Social ready feature launches", videoUrl: "https://youtu.be/L3MB9hYLbBI" },
-    { title: "Product Teasers", category: "Generate hype before launch", videoUrl: "https://www.youtube.com/watch?v=5xiQWsoAHr4" },
+    { title: "Onboarding Sequences", category: "Get users to their aha moment", videoUrl: "https://youtu.be/NhGNe4KJ1cU" },
+    { title: "Promo Campaigns", category: "Social ready feature launches", videoUrl: "https://youtu.be/N45oL-Qm8AI" },
+    { title: "Product Teasers", category: "Generate hype before launch", videoUrl: "https://youtu.be/-CZpGpWBc9M" },
   ];
 
   return (
