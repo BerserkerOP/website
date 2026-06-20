@@ -16,13 +16,13 @@ export default function WorkPage() {
   ];
 
   return (
-    <div className="bg-apple-bg min-h-screen pt-32 pb-20">
+    <div className="bg-apple-bg min-h-screen pt-24 pb-16 sm:pt-32 sm:pb-20">
       <div className="max-w-7xl mx-auto px-6 lg:px-16 w-full">
         <div className="mb-16">
-          <h1 className="text-4xl sm:text-5xl font-bold text-apple-text tracking-tight mb-4">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-apple-text tracking-tight mb-4">
             Selected Work
           </h1>
-          <p className="text-lg text-apple-subtext max-w-2xl">
+          <p className="text-base sm:text-lg text-apple-subtext max-w-2xl">
             A collection of our recent projects, from SaaS product tours to high-energy visualizers.
           </p>
         </div>

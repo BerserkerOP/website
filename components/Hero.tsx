@@ -5,7 +5,7 @@ import TiltButton from './TiltButton';
 
 export default function Hero() {
   return (
-    <section className="relative bg-apple-bg overflow-hidden pt-32 pb-20">
+    <section className="relative bg-apple-bg overflow-hidden pt-24 pb-16 sm:pt-32 sm:pb-20">
       <div className="max-w-7xl mx-auto px-6 lg:px-16 w-full py-10">
         <div className="flex flex-col items-center text-center gap-6">
           <motion.div 
@@ -23,7 +23,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-            className="text-5xl sm:text-[64px] font-bold text-apple-text leading-[1.1] tracking-tight max-w-4xl"
+            className="text-4xl sm:text-5xl md:text-[64px] font-bold text-apple-text leading-[1.1] tracking-tight max-w-4xl"
           >
             Professional Motion Design that <br/>
             <span className="text-apple-blue">Captivates Your Audience</span>
@@ -33,7 +33,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-            className="text-lg text-apple-subtext leading-relaxed max-w-2xl"
+            className="text-base sm:text-lg text-apple-subtext leading-relaxed max-w-2xl"
           >
             We collaborate with brands to deliver premium motion design and video assets, ensuring a seamless and efficient process from concept to final delivery.
           </motion.p>
@@ -44,10 +44,10 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
             className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-4 w-full px-4 sm:px-0"
           >
-            <TiltButton href="/#contact" className="w-full sm:w-auto font-semibold bg-apple-blue text-white hover:bg-apple-blue-hover px-8 py-4 text-base rounded-2xl shadow-sm">
+            <TiltButton href="/#contact" className="w-full sm:w-auto font-semibold bg-apple-blue text-white hover:bg-apple-blue-hover px-6 py-3.5 sm:px-8 sm:py-4 text-sm sm:text-base rounded-2xl shadow-sm">
               Start Your Project
             </TiltButton>
-            <TiltButton href="/work" className="w-full sm:w-auto font-semibold text-apple-text border border-apple-border rounded-2xl bg-apple-card hover:border-apple-blue hover:text-apple-blue transition-colors px-8 py-4 text-base shadow-sm">
+            <TiltButton href="/work" className="w-full sm:w-auto font-semibold text-apple-text border border-apple-border rounded-2xl bg-apple-card hover:border-apple-blue hover:text-apple-blue transition-colors px-6 py-3.5 sm:px-8 sm:py-4 text-sm sm:text-base shadow-sm">
               View Our Work
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 ml-1">
                 <path fillRule="evenodd" d="M12.97 3.97a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 1 1-1.06-1.06l6.22-6.22H3a.75.75 0 0 1 0-1.5h16.19l-6.22-6.22a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />

@@ -12,10 +12,10 @@ export default function Home() {
     <div className="bg-apple-bg">
       <Hero />
       
-      <section id="store" className="py-16 px-6 lg:px-16 max-w-7xl mx-auto">
+      <section id="store" className="py-12 sm:py-16 px-6 lg:px-16 max-w-7xl mx-auto">
         <div className="mb-12 max-w-2xl">
           <p className="text-apple-blue text-sm font-semibold uppercase tracking-widest mb-3">Featured Assets</p>
-          <h2 className="text-4xl sm:text-5xl font-bold text-apple-text leading-tight tracking-tight">Specialized video solutions tailored to your needs</h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-apple-text leading-tight tracking-tight">Specialized video solutions tailored to your needs</h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
