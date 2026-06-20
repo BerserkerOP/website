@@ -27,7 +27,14 @@ export default function Hero() {
   }, []);
   return (
     <section className="relative bg-apple-bg overflow-hidden pt-24 pb-16 sm:pt-32 sm:pb-20">
-      <motion.div style={{ opacity: lightRaysOpacity }} className="absolute inset-0 z-0 pointer-events-none">
+      <motion.div 
+        style={{ 
+          opacity: lightRaysOpacity,
+          maskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)'
+        }} 
+        className="absolute inset-0 z-0 pointer-events-none"
+      >
         <LightRays className="opacity-80" />
       </motion.div>
       <div className="max-w-7xl mx-auto px-6 lg:px-16 w-full py-10 relative z-10">
