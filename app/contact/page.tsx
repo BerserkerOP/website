@@ -9,7 +9,13 @@ import LiquidEther from '@/components/Backgrounds/LiquidEther';
 export default function ContactPage() {
   return (
     <div className="bg-apple-bg min-h-screen pt-32 pb-20 flex items-center justify-center px-4 relative overflow-hidden">
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      <div 
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{ 
+          maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)'
+        }}
+      >
         <LiquidEther />
         <div className="absolute inset-0 bg-white/30 dark:bg-black/40 backdrop-blur-[1px]"></div>
       </div>
