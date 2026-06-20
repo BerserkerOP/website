@@ -89,7 +89,7 @@ export default function Navbar() {
             className="absolute top-full left-0 right-0 h-[100vh] md:hidden bg-white/80 dark:bg-black/80 backdrop-blur-2xl border-t border-apple-border/50 overflow-hidden"
           >
             <div className="px-6 py-8 flex flex-col h-full max-h-[calc(100vh-80px)]">
-              <div className="flex flex-col space-y-6 flex-1">
+              <div className="flex flex-col space-y-6">
                 {[
                   { name: 'Home', path: '/' },
                   { name: 'Our Work', path: '/work' },
@@ -118,9 +118,8 @@ export default function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
                 transition={{ delay: 0.3, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="pb-12"
+                className="mt-8 pt-8 border-t border-apple-border/50"
               >
-                <div className="w-full h-px bg-apple-border/50 mb-8"></div>
                 <Link 
                   href="/contact" 
                   onClick={() => setMobileMenuOpen(false)} 
