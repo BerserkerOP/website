@@ -228,7 +228,7 @@ const Beams: FC<BeamsProps> = ({
     float randomNoise = noise(gl_FragCoord.xy);
     gl_FragColor.rgb -= randomNoise / 15. * uNoiseIntensity;`
         },
-        material: { fog: true, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false },
+        material: { fog: true },
         uniforms: {
           diffuse: new THREE.Color(...hexToNormalizedRGB('#000000')),
           time: { shared: true, mixed: true, linked: true, value: 0 },
@@ -251,7 +251,8 @@ const Beams: FC<BeamsProps> = ({
           <DirLight color={lightColor} position={[0, 3, 10]} />
         </group>
         <ambientLight intensity={1} />
-        <PerspectiveCamera makeDefault position={[0, 0, 20]} fov={30} />
+        <color attach="background" args={['#000000']} />
+      <PerspectiveCamera makeDefault position={[0, 0, 20]} fov={30} />
       </Canvas>
     </div>
   );

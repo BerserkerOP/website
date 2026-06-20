@@ -29,7 +29,7 @@ export default function Hero() {
     <section className="relative bg-apple-bg overflow-hidden pt-24 pb-16 sm:pt-32 sm:pb-20">
       <motion.div style={{ opacity }} className="absolute inset-0 z-0 pointer-events-none">
         <Beams 
-          className="opacity-70 dark:opacity-40" 
+          className="opacity-70 dark:opacity-40 mix-blend-multiply dark:mix-blend-screen invert hue-rotate-180 dark:invert-0 dark:hue-rotate-0" 
           lightColor="#0A84FF"
         />
       </motion.div>
