@@ -34,13 +34,13 @@ export default function Navbar() {
           <div className="hidden md:flex items-center space-x-8">
             <Link href="/" className="text-sm font-medium text-apple-subtext hover:text-apple-text transition-colors duration-200">Home</Link>
             <Link href="/work" className="text-sm font-medium text-apple-subtext hover:text-apple-text transition-colors duration-200">Our Work</Link>
-            <a href="/#contact" className="text-sm font-medium text-apple-subtext hover:text-apple-text transition-colors duration-200">Contact</a>
+            <Link href="/contact" className="text-sm font-medium text-apple-subtext hover:text-apple-text transition-colors duration-200">Contact</Link>
           </div>
 
-          <div className="hidden md:flex items-center">
-            <a href="#contact" className="inline-flex items-center justify-center font-semibold rounded-full transition-all duration-200 bg-apple-blue text-white hover:bg-apple-blue-hover active:scale-[0.98] px-5 py-2.5 text-sm">
+          <div className="hidden md:flex items-center gap-4">
+            <Link href="/contact" className="inline-flex items-center justify-center font-semibold rounded-full transition-all duration-200 backdrop-blur-md bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 hover:bg-black/10 dark:hover:bg-white/10 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.2)] dark:shadow-[0_4px_24px_-8px_rgba(255,255,255,0.1)] text-apple-text px-5 py-2.5 text-sm active:scale-[0.98]">
               Get Started
-            </a>
+            </Link>
             <ThemeToggle />
           </div>
           
@@ -78,10 +78,10 @@ export default function Navbar() {
             <div className="px-6 py-4 flex flex-col space-y-4">
               <Link href="/" onClick={() => setMobileMenuOpen(false)} className="text-apple-text font-medium py-2">Home</Link>
               <Link href="/work" onClick={() => setMobileMenuOpen(false)} className="text-apple-text font-medium py-2 border-t border-apple-border/50">Our Work</Link>
-              <a href="/#contact" onClick={() => setMobileMenuOpen(false)} className="text-apple-text font-medium py-2 border-t border-apple-border/50">Contact</a>
-              <a href="/#contact" onClick={() => setMobileMenuOpen(false)} className="inline-flex items-center justify-center font-semibold rounded-full bg-apple-blue text-white px-5 py-3 text-sm mt-2 w-full active:scale-[0.98] transition-transform">
+              <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="text-apple-text font-medium py-2 border-t border-apple-border/50">Contact</Link>
+              <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="inline-flex items-center justify-center font-semibold rounded-full backdrop-blur-md bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 hover:bg-black/10 dark:hover:bg-white/10 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.2)] dark:shadow-[0_4px_24px_-8px_rgba(255,255,255,0.1)] text-apple-text px-5 py-3 text-sm mt-2 w-full active:scale-[0.98] transition-all">
                 Get Started
-              </a>
+              </Link>
             </div>
           </motion.div>
         )}

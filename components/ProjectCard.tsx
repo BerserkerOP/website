@@ -126,18 +126,16 @@ export default function ProjectCard({ title, category, delay = 0, videoUrl, hove
         className="relative flex flex-col h-full w-full rounded-[23px] overflow-hidden bg-apple-card shadow-[0_2px_10px_rgba(0,0,0,0.02)] dark:shadow-none"
       >
         {/* Spotlight Hover Glow (Behind Content) */}
-        {!hoverGradient && (
-          <motion.div
-            className="pointer-events-none absolute -inset-px rounded-[24px] opacity-0 transition-opacity duration-300 group-hover:opacity-100 z-0"
-            style={{
-              background: spotlightBackground,
-            }}
-          />
-        )}
+        <motion.div
+          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 z-0"
+          style={{
+            background: spotlightBackground,
+          }}
+        />
 
         {/* Colorful Gradient Hover Glow */}
         {hoverGradient && (
-          <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         )}
         
         {/* Glare Layer (ReactBits) */}
@@ -162,7 +160,7 @@ export default function ProjectCard({ title, category, delay = 0, videoUrl, hove
         </div>
 
         {/* Text Container */}
-        <div className="relative z-10 px-6 py-6 flex flex-col gap-1.5 flex-1 bg-apple-card">
+        <div className="relative z-10 px-6 py-6 flex flex-col gap-1.5 flex-1 bg-transparent">
           <h3 className="text-lg font-bold text-apple-text tracking-tight">{title}</h3>
           <p className="text-sm text-apple-subtext leading-relaxed">
             {category}

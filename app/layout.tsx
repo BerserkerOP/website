@@ -3,7 +3,6 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import ContactModal from '@/components/ContactModal'
 import { ThemeProvider } from '@/components/ThemeProvider'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -30,13 +29,12 @@ export default function RootLayout({
           }}
         ></div>
         
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <Navbar />
           <main className="flex-1">
             {children}
           </main>
           <Footer />
-          <ContactModal />
         </ThemeProvider>
       </body>
     </html>
