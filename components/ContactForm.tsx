@@ -63,7 +63,7 @@ export default function ContactForm() {
     <form 
       action="https://formsubmit.co/atharvasharma1002006@gmail.com" 
       method="POST"
-      className="p-6 flex flex-col gap-6"
+      className="p-5 flex flex-col gap-4 overflow-y-auto"
       noValidate
       onSubmit={handleSubmit}
     >
@@ -83,7 +83,7 @@ export default function ContactForm() {
           required
           placeholder="Your name"
           onChange={handleChange}
-          className={`w-full px-4 py-3 rounded-xl border ${errors.name ? 'border-[#FF3B30] focus:ring-[#FF3B30]/20' : 'border-apple-border focus:border-apple-blue focus:ring-apple-blue'} focus:ring-1 outline-none transition-all placeholder:text-zinc-400 bg-transparent text-apple-text`}
+          className={`w-full px-3.5 py-2.5 rounded-xl border ${errors.name ? 'border-[#FF3B30] focus:ring-[#FF3B30]/20' : 'border-apple-border focus:border-apple-blue focus:ring-apple-blue'} focus:ring-1 outline-none transition-all placeholder:text-zinc-400 bg-transparent text-apple-text text-sm`}
         />
         <ErrorMessage message={errors.name} />
       </div>
@@ -99,22 +99,22 @@ export default function ContactForm() {
           required
           placeholder="you@example.com"
           onChange={handleChange}
-          className={`w-full px-4 py-3 rounded-xl border ${errors.email ? 'border-[#FF3B30] focus:ring-[#FF3B30]/20' : 'border-apple-border focus:border-apple-blue focus:ring-apple-blue'} focus:ring-1 outline-none transition-all placeholder:text-zinc-400 bg-transparent text-apple-text`}
+          className={`w-full px-3.5 py-2.5 rounded-xl border ${errors.email ? 'border-[#FF3B30] focus:ring-[#FF3B30]/20' : 'border-apple-border focus:border-apple-blue focus:ring-apple-blue'} focus:ring-1 outline-none transition-all placeholder:text-zinc-400 bg-transparent text-apple-text text-sm`}
         />
         <ErrorMessage message={errors.email} />
       </div>
 
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-2">
         <label className="text-sm font-bold text-apple-text">
           Budget <span className="text-apple-blue">*</span>
         </label>
         
         {/* Apple UI Inspired Segmented Control Grid */}
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-2">
           {budgets.map(b => (
             <label key={b} className="relative cursor-pointer group">
               <input type="radio" name="budget" value={b} onChange={handleChange} className="peer sr-only" required />
-              <div className={`rounded-xl border ${errors.budget ? 'border-[#FF3B30]/50' : 'border-apple-border'} px-4 py-3 text-center transition-all peer-checked:border-apple-blue peer-checked:bg-apple-blue/10 peer-checked:text-apple-blue group-hover:border-apple-gray text-apple-text text-sm font-medium shadow-sm peer-checked:shadow-apple-blue/20`}>
+              <div className={`rounded-xl border ${errors.budget ? 'border-[#FF3B30]/50' : 'border-apple-border'} px-3 py-2.5 text-center transition-all peer-checked:border-apple-blue peer-checked:bg-apple-blue/10 peer-checked:text-apple-blue group-hover:border-apple-gray text-apple-text text-sm font-medium shadow-sm peer-checked:shadow-apple-blue/20`}>
                 {b}
               </div>
             </label>
@@ -122,14 +122,14 @@ export default function ContactForm() {
         </div>
         <ErrorMessage message={errors.budget} />
         
-        <div className="mt-2 text-[13px] text-zinc-500 leading-relaxed space-y-4">
-          <p>Qualified projects will be directed to our scheduling page. Please use the same email to ensure seamless communication.</p>
+        <div className="mt-1 text-[12px] text-zinc-500 leading-relaxed space-y-4">
+          <p>Qualified projects will be directed to our scheduling page.</p>
         </div>
       </div>
 
       <button 
         type="submit"
-        className="mt-4 w-full bg-apple-blue text-white font-bold py-3.5 rounded-xl hover:bg-apple-blue-hover transition-colors shadow-sm active:scale-[0.98]"
+        className="mt-2 shrink-0 w-full bg-apple-blue text-white font-bold py-3 rounded-xl hover:bg-apple-blue-hover transition-colors shadow-sm active:scale-[0.98] text-sm"
       >
         Apply for a Project
       </button>

@@ -47,11 +47,11 @@ export default function ContactModal() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: "spring", duration: 0.5, bounce: 0.1 }}
-              className="bg-apple-card rounded-2xl shadow-2xl w-full max-w-lg pointer-events-auto overflow-hidden flex flex-col"
+              className="bg-apple-card rounded-2xl shadow-2xl w-full max-w-md pointer-events-auto overflow-hidden flex flex-col max-h-[85vh]"
             >
               {/* Header */}
-              <div className="flex items-center justify-between px-6 py-4 border-b border-apple-border">
-                <h2 className="text-xl font-bold text-apple-text">Apply for a Project</h2>
+              <div className="flex items-center justify-between px-5 py-4 border-b border-apple-border shrink-0">
+                <h2 className="text-lg font-bold text-apple-text">Apply for a Project</h2>
                 <button 
                   onClick={closeModal}
                   className="p-2 -mr-2 text-apple-subtext hover:text-apple-text transition-colors rounded-full hover:bg-apple-gray"
