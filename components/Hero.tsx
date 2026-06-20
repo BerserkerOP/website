@@ -1,9 +1,26 @@
 "use client";
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import TiltButton from './TiltButton';
 
+const phrases = [
+  "Captivates Your Audience",
+  "Elevates Your Brand",
+  "Brings Ideas to Life",
+  "Tells Your Story",
+  "Drives Engagement"
+];
+
 export default function Hero() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % phrases.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
   return (
     <section className="relative bg-apple-bg overflow-hidden pt-24 pb-16 sm:pt-32 sm:pb-20">
       <div className="max-w-7xl mx-auto px-6 lg:px-16 w-full py-10">
@@ -26,7 +43,20 @@ export default function Hero() {
             className="text-4xl sm:text-5xl md:text-[64px] font-bold text-apple-text leading-[1.1] tracking-tight max-w-4xl"
           >
             Professional Motion Design that <br/>
-            <span className="text-apple-blue">Captivates Your Audience</span>
+            <span className="text-apple-blue inline-flex flex-col h-[1.1em] overflow-hidden relative align-bottom">
+              <AnimatePresence mode="popLayout">
+                <motion.span
+                  key={index}
+                  initial={{ y: "-100%", opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: "100%", opacity: 0 }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  className="block whitespace-nowrap"
+                >
+                  {phrases[index]}
+                </motion.span>
+              </AnimatePresence>
+            </span>
           </motion.h1>
 
           <motion.p 
