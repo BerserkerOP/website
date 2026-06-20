@@ -80,7 +80,7 @@ export default function TiltButton({ children, href, className = "", innerClassN
             }}
           />
         )}
-        <span className={`relative z-10 flex items-center gap-2 ${glow ? 'w-full h-full bg-apple-bg rounded-[inherit] justify-center' : ''} ${innerClassName}`}>
+        <span className={`relative z-10 flex items-center gap-2 transition-colors duration-150 group-active:bg-apple-blue group-active:text-white ${glow ? 'w-full h-full bg-apple-bg rounded-[inherit] justify-center' : ''} ${innerClassName}`}>
           {children}
         </span>
         
