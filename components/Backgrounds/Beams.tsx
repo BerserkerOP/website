@@ -226,9 +226,14 @@ const Beams: FC<BeamsProps> = ({
         fragment: {
           '#include <dithering_fragment>': `
     float randomNoise = noise(gl_FragCoord.xy);
-    gl_FragColor.rgb -= randomNoise / 15. * uNoiseIntensity;`
+    gl_FragColor.rgb -= randomNoise / 15. * uNoiseIntensity;
+    
+    // Make black areas transparent and colored areas opaque
+    float brightness = max(gl_FragColor.r, max(gl_FragColor.g, gl_FragColor.b));
+    gl_FragColor.a = smoothstep(0.0, 0.2, brightness);
+    `
         },
-        material: { fog: true },
+        material: { fog: true, transparent: true, depthWrite: false },
         uniforms: {
           diffuse: new THREE.Color(...hexToNormalizedRGB('#000000')),
           time: { shared: true, mixed: true, linked: true, value: 0 },
@@ -251,8 +256,7 @@ const Beams: FC<BeamsProps> = ({
           <DirLight color={lightColor} position={[0, 3, 10]} />
         </group>
         <ambientLight intensity={1} />
-        <color attach="background" args={['#000000']} />
-      <PerspectiveCamera makeDefault position={[0, 0, 20]} fov={30} />
+        <PerspectiveCamera makeDefault position={[0, 0, 20]} fov={30} />
       </Canvas>
     </div>
   );
