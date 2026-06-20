@@ -1,13 +1,71 @@
 "use client";
 
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
 export default function ContactForm() {
   const budgets = ["$200 - $500", "$500 - $800", "$800 - $1500", "$1500 - $3000", "$3000+"];
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get('name') as string;
+    const email = formData.get('email') as string;
+    const budget = formData.get('budget') as string;
+
+    const newErrors: { [key: string]: string } = {};
+
+    if (!name || name.trim() === '') {
+      newErrors.name = 'Please enter your full name.';
+    }
+    if (!email || email.trim() === '') {
+      newErrors.email = 'Please enter your email address.';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      newErrors.email = 'Please enter a valid email address.';
+    }
+    if (!budget) {
+      newErrors.budget = 'Please select an estimated budget.';
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      e.preventDefault();
+      setErrors(newErrors);
+    } else {
+      setErrors({});
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (errors[e.target.name]) {
+      setErrors(prev => ({ ...prev, [e.target.name]: '' }));
+    }
+  };
+
+  const ErrorMessage = ({ message }: { message: string }) => (
+    <AnimatePresence>
+      {message && (
+        <motion.p 
+          initial={{ opacity: 0, height: 0, y: -5 }}
+          animate={{ opacity: 1, height: 'auto', y: 0 }}
+          exit={{ opacity: 0, height: 0, y: -5 }}
+          className="text-[#FF3B30] text-[13px] font-medium flex items-center gap-1.5 mt-1.5 ml-1 overflow-hidden"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 shrink-0">
+            <path fillRule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-8-5a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-1.5 0v-4.5A.75.75 0 0 1 10 5Zm0 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clipRule="evenodd" />
+          </svg>
+          {message}
+        </motion.p>
+      )}
+    </AnimatePresence>
+  );
 
   return (
     <form 
       action="https://formsubmit.co/atharvasharma1002006@gmail.com" 
       method="POST"
       className="p-6 flex flex-col gap-6"
+      noValidate
+      onSubmit={handleSubmit}
     >
       {/* FormSubmit Config */}
       <input type="hidden" name="_subject" value="New Project Application!" />
@@ -24,8 +82,10 @@ export default function ContactForm() {
           name="name"
           required
           placeholder="Your name"
-          className="w-full px-4 py-3 rounded-xl border border-apple-border focus:border-apple-blue focus:ring-1 focus:ring-apple-blue outline-none transition-all placeholder:text-zinc-400 bg-transparent text-apple-text"
+          onChange={handleChange}
+          className={`w-full px-4 py-3 rounded-xl border ${errors.name ? 'border-[#FF3B30] focus:ring-[#FF3B30]/20' : 'border-apple-border focus:border-apple-blue focus:ring-apple-blue'} focus:ring-1 outline-none transition-all placeholder:text-zinc-400 bg-transparent text-apple-text`}
         />
+        <ErrorMessage message={errors.name} />
       </div>
 
       <div className="flex flex-col gap-2">
@@ -38,8 +98,10 @@ export default function ContactForm() {
           name="email"
           required
           placeholder="you@example.com"
-          className="w-full px-4 py-3 rounded-xl border border-apple-border focus:border-apple-blue focus:ring-1 focus:ring-apple-blue outline-none transition-all placeholder:text-zinc-400 bg-transparent text-apple-text"
+          onChange={handleChange}
+          className={`w-full px-4 py-3 rounded-xl border ${errors.email ? 'border-[#FF3B30] focus:ring-[#FF3B30]/20' : 'border-apple-border focus:border-apple-blue focus:ring-apple-blue'} focus:ring-1 outline-none transition-all placeholder:text-zinc-400 bg-transparent text-apple-text`}
         />
+        <ErrorMessage message={errors.email} />
       </div>
 
       <div className="flex flex-col gap-3">
@@ -51,13 +113,14 @@ export default function ContactForm() {
         <div className="grid grid-cols-2 gap-3">
           {budgets.map(b => (
             <label key={b} className="relative cursor-pointer group">
-              <input type="radio" name="budget" value={b} className="peer sr-only" required />
-              <div className="rounded-xl border border-apple-border px-4 py-3 text-center transition-all peer-checked:border-apple-blue peer-checked:bg-apple-blue/10 peer-checked:text-apple-blue group-hover:border-apple-gray text-apple-text text-sm font-medium shadow-sm peer-checked:shadow-apple-blue/20">
+              <input type="radio" name="budget" value={b} onChange={handleChange} className="peer sr-only" required />
+              <div className={`rounded-xl border ${errors.budget ? 'border-[#FF3B30]/50' : 'border-apple-border'} px-4 py-3 text-center transition-all peer-checked:border-apple-blue peer-checked:bg-apple-blue/10 peer-checked:text-apple-blue group-hover:border-apple-gray text-apple-text text-sm font-medium shadow-sm peer-checked:shadow-apple-blue/20`}>
                 {b}
               </div>
             </label>
           ))}
         </div>
+        <ErrorMessage message={errors.budget} />
         
         <div className="mt-2 text-[13px] text-zinc-500 leading-relaxed space-y-4">
           <p>Qualified projects will be directed to our scheduling page. Please use the same email to ensure seamless communication.</p>
