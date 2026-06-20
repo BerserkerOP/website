@@ -24,10 +24,12 @@ export default function RootLayout({
       <body className={`${inter.className} min-h-screen flex flex-col bg-apple-bg text-apple-text selection:bg-apple-blue/20 relative`}>
         {/* Global Dot Grid Background */}
         <div 
-          className="fixed inset-0 pointer-events-none -z-10" 
+          className="fixed inset-0 pointer-events-none -z-10 transform-gpu" 
           style={{ 
             backgroundImage: 'radial-gradient(circle, var(--dot-color) 1.5px, transparent 1.5px)', 
-            backgroundSize: '24px 24px' 
+            backgroundSize: '24px 24px',
+            willChange: 'transform',
+            transform: 'translateZ(0)'
           }}
         ></div>
         
