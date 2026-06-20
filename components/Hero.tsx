@@ -35,7 +35,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
             className="text-lg text-apple-subtext leading-relaxed max-w-2xl"
           >
-            I collaborate with brands to deliver premium motion design and video assets, ensuring a seamless and efficient process from concept to final delivery.
+            We collaborate with brands to deliver premium motion design and video assets, ensuring a seamless and efficient process from concept to final delivery.
           </motion.p>
 
           <motion.div
@@ -48,7 +48,7 @@ export default function Hero() {
               Start Your Project
             </TiltButton>
             <TiltButton href="/work" className="w-full sm:w-auto font-semibold text-apple-text border border-apple-border rounded-2xl bg-apple-card hover:border-apple-blue hover:text-apple-blue transition-colors px-8 py-4 text-base shadow-sm">
-              View My Work
+              View Our Work
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 ml-1">
                 <path fillRule="evenodd" d="M12.97 3.97a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 1 1-1.06-1.06l6.22-6.22H3a.75.75 0 0 1 0-1.5h16.19l-6.22-6.22a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
               </svg>

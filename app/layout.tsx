@@ -9,7 +9,7 @@ import { ThemeProvider } from '@/components/ThemeProvider'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'atharvf.x',
+  title: 'HalftoneMotion',
   description: 'Next-Level Motion Design Portfolio',
 }
 
@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="h-full antialiased">
+    <html lang="en" className="h-full antialiased" suppressHydrationWarning>
       <body className={`${inter.className} min-h-full flex flex-col bg-apple-bg text-apple-text selection:bg-apple-blue/20 relative`}>
         {/* Global Dot Grid Background */}
         <div 

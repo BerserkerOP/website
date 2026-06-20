@@ -27,13 +27,13 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 lg:px-16">
         <div className="flex items-center justify-between h-12">
           <Link href="/" className="flex items-center space-x-2 group">
-            <span className="text-xl font-bold tracking-tight text-apple-text">atharvf.x</span>
+            <span className="text-xl font-bold tracking-tight text-apple-text">HalftoneMotion</span>
           </Link>
           
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8">
             <Link href="/" className="text-sm font-medium text-apple-subtext hover:text-apple-text transition-colors duration-200">Home</Link>
-            <Link href="/work" className="text-sm font-medium text-apple-subtext hover:text-apple-text transition-colors duration-200">My Work</Link>
+            <Link href="/work" className="text-sm font-medium text-apple-subtext hover:text-apple-text transition-colors duration-200">Our Work</Link>
             <a href="/#contact" className="text-sm font-medium text-apple-subtext hover:text-apple-text transition-colors duration-200">Contact</a>
           </div>
 
@@ -77,7 +77,7 @@ export default function Navbar() {
           >
             <div className="px-6 py-4 flex flex-col space-y-4">
               <Link href="/" onClick={() => setMobileMenuOpen(false)} className="text-apple-text font-medium py-2">Home</Link>
-              <Link href="/work" onClick={() => setMobileMenuOpen(false)} className="text-apple-text font-medium py-2 border-t border-apple-border/50">My Work</Link>
+              <Link href="/work" onClick={() => setMobileMenuOpen(false)} className="text-apple-text font-medium py-2 border-t border-apple-border/50">Our Work</Link>
               <a href="/#contact" onClick={() => setMobileMenuOpen(false)} className="text-apple-text font-medium py-2 border-t border-apple-border/50">Contact</a>
               <a href="/#contact" onClick={() => setMobileMenuOpen(false)} className="inline-flex items-center justify-center font-semibold rounded-full bg-apple-blue text-white px-5 py-3 text-sm mt-2 w-full active:scale-[0.98] transition-transform">
                 Get Started

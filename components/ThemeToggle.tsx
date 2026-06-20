@@ -13,7 +13,10 @@ export function ThemeToggle() {
   }, []);
 
   if (!mounted) {
-    return <div className="w-9 h-9 rounded-full" />; // Placeholder to prevent layout shift
+    return (
+      <button className="p-2 rounded-full text-apple-subtext hover:text-apple-text hover:bg-apple-gray transition-colors duration-200 ml-4 flex items-center justify-center w-9 h-9" aria-label="Toggle Dark Mode" disabled>
+      </button>
+    ); // Placeholder to prevent layout shift and hydration errors
   }
 
   const isDark = theme === "dark";

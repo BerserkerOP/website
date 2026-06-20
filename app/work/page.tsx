@@ -1,8 +1,8 @@
 import ProjectCard from '@/components/ProjectCard';
 
 export const metadata = {
-  title: 'My Work | atharvf.x',
-  description: 'A showcase of my recent motion design and video projects.',
+  title: 'Our Work | HalftoneMotion',
+  description: 'A showcase of our recent motion design and video projects.',
 };
 
 export default function WorkPage() {
@@ -23,7 +23,7 @@ export default function WorkPage() {
             Selected Work
           </h1>
           <p className="text-lg text-apple-subtext max-w-2xl">
-            A collection of my recent projects, from SaaS product tours to high-energy visualizers.
+            A collection of our recent projects, from SaaS product tours to high-energy visualizers.
           </p>
         </div>
 
