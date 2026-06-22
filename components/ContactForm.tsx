@@ -61,7 +61,7 @@ export default function ContactForm() {
 
   return (
     <form 
-      action="https://formsubmit.co/hafltonemotion@gmail.com" 
+      action="https://formsubmit.co/halftonemotion@gmail.com" 
       method="POST"
       className="p-5 flex flex-col gap-4 overflow-y-auto"
       noValidate
