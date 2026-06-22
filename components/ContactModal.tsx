@@ -71,7 +71,7 @@ export default function ContactModal() {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.2, duration: 0.4 }}
-                    className="flex flex-col items-center justify-center text-center p-6 w-full h-full relative"
+                    className="flex flex-col items-center justify-center text-center p-6 w-full h-full relative shadow-[0_20px_80px_-15px_rgba(52,199,89,0.5)]"
                   >
                     <button 
                       onClick={closeModal}
