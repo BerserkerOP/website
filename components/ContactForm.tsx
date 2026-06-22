@@ -6,12 +6,8 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function ContactForm() {
   const budgets = ["$200 - $500", "$500 - $800", "$800 - $1500", "$1500 - $3000", "$3000+"];
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     const formData = new FormData(e.currentTarget);
     const name = formData.get('name') as string;
     const email = formData.get('email') as string;
@@ -32,47 +28,16 @@ export default function ContactForm() {
     }
 
     if (Object.keys(newErrors).length > 0) {
+      e.preventDefault();
       setErrors(newErrors);
-      return;
-    }
-
-    setErrors({});
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
-
-    try {
-      const response = await fetch("https://formsubmit.co/ajax/halftonemotion@gmail.com", {
-        method: "POST",
-        headers: { 
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-            name,
-            email,
-            budget,
-            _subject: "New Project Application!"
-        })
-      });
-
-      if (response.ok) {
-        setSubmitStatus('success');
-      } else {
-        setSubmitStatus('error');
-      }
-    } catch (error) {
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
+    } else {
+      setErrors({});
     }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (errors[e.target.name]) {
       setErrors(prev => ({ ...prev, [e.target.name]: '' }));
-    }
-    if (submitStatus !== 'idle') {
-      setSubmitStatus('idle');
     }
   };
 
@@ -96,6 +61,8 @@ export default function ContactForm() {
 
   return (
     <form 
+      action="https://formsubmit.co/halftonemotion@gmail.com" 
+      method="POST"
       className="p-5 flex flex-col gap-4 overflow-y-auto"
       noValidate
       onSubmit={handleSubmit}
@@ -160,24 +127,11 @@ export default function ContactForm() {
         </div>
       </div>
 
-      {submitStatus === 'success' && (
-        <div className="p-4 rounded-xl bg-green-500/10 border border-green-500/20 text-green-600 dark:text-green-400 text-sm font-medium text-center">
-          Success! We've received your application. (Please check your halftonemotion@gmail.com inbox to activate FormSubmit if this is your first time!)
-        </div>
-      )}
-
-      {submitStatus === 'error' && (
-        <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400 text-sm font-medium text-center">
-          Oops! Something went wrong submitting the form.
-        </div>
-      )}
-
       <button 
         type="submit"
-        disabled={isSubmitting || submitStatus === 'success'}
-        className="mt-2 shrink-0 w-full bg-apple-blue text-white font-bold py-3 rounded-xl hover:bg-apple-blue-hover transition-colors shadow-sm active:scale-[0.98] text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+        className="mt-2 shrink-0 w-full bg-apple-blue text-white font-bold py-3 rounded-xl hover:bg-apple-blue-hover transition-colors shadow-sm active:scale-[0.98] text-sm"
       >
-        {isSubmitting ? 'Sending...' : submitStatus === 'success' ? 'Application Sent!' : 'Apply for a Project'}
+        Apply for a Project
       </button>
     </form>
   );
