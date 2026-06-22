@@ -21,7 +21,7 @@ export default function ContactPage() {
   }, [isSuccess, router]);
 
   return (
-    <div className="bg-apple-bg min-h-[120vh] pt-32 pb-32 flex flex-col items-center justify-start px-4 relative overflow-hidden">
+    <div className="bg-apple-bg min-h-[100dvh] pt-24 pb-12 flex flex-col items-center justify-center px-4 relative overflow-hidden">
       <FadeIn 
         duration={1.5}
         className="absolute inset-0 z-0 pointer-events-none"
@@ -29,15 +29,15 @@ export default function ContactPage() {
         <div 
           className="absolute inset-0"
           style={{ 
-            maskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)'
+            maskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)'
           }}
         >
           <LiquidEther />
           <div className="absolute inset-0 bg-white/30 dark:bg-black/40 backdrop-blur-[1px]"></div>
         </div>
       </FadeIn>
-      <FadeIn duration={0.8} delay={0.2} className="flex flex-col relative z-10 w-full max-w-lg items-center mt-[10vh]">
+      <FadeIn duration={0.8} delay={0.2} className="flex flex-col relative z-10 w-full max-w-lg items-center w-full">
         <motion.div 
           layout
           className={`backdrop-blur-3xl border border-black/5 dark:border-white/5 flex flex-col relative transition-transform duration-500 hover:scale-[1.01] overflow-hidden ${isSuccess ? 'bg-[#34C759] rounded-3xl w-64 h-64 text-white items-center justify-center shadow-[0_20px_80px_-15px_rgba(52,199,89,0.5)]' : 'bg-apple-card/95 rounded-3xl w-full shadow-[0_16px_64px_-12px_rgba(0,0,0,0.3)] dark:shadow-[0_16px_64px_-12px_rgba(255,255,255,0.02)]'}`}
