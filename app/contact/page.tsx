@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import ContactForm from '@/components/ContactForm';
 import LiquidEther from '@/components/Backgrounds/LiquidEther';
 import FadeIn from '@/components/FadeIn';
@@ -8,6 +9,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 export default function ContactPage() {
   const [isSuccess, setIsSuccess] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isSuccess) {
+      const timer = setTimeout(() => {
+        router.push('/');
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [isSuccess, router]);
 
   return (
     <div className="bg-apple-bg min-h-screen pt-32 pb-20 flex items-center justify-center px-4 relative overflow-hidden">

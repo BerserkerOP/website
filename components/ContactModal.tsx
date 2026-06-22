@@ -9,6 +9,18 @@ export default function ContactModal() {
   const [isSuccess, setIsSuccess] = useState(false);
 
   useEffect(() => {
+    if (isSuccess) {
+      const timer = setTimeout(() => {
+        // Close modal automatically
+        window.history.pushState(null, '', window.location.pathname + window.location.search);
+        setIsOpen(false);
+        setTimeout(() => setIsSuccess(false), 500);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [isSuccess]);
+
+  useEffect(() => {
     // Check hash on mount and when it changes
     const checkHash = () => {
       if (window.location.hash === '#contact') {
