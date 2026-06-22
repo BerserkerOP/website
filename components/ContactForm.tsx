@@ -3,11 +3,15 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function ContactForm() {
+export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
   const budgets = ["$200 - $500", "$500 - $800", "$800 - $1500", "$1500 - $3000", "$3000+"];
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
     const formData = new FormData(e.currentTarget);
     const name = formData.get('name') as string;
     const email = formData.get('email') as string;
@@ -28,10 +32,38 @@ export default function ContactForm() {
     }
 
     if (Object.keys(newErrors).length > 0) {
-      e.preventDefault();
       setErrors(newErrors);
-    } else {
-      setErrors({});
+      return;
+    }
+
+    setErrors({});
+    setIsSubmitting(true);
+    setSubmitError(false);
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/halftonemotion@gmail.com", {
+        method: "POST",
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            name,
+            email,
+            budget,
+            _subject: "New Project Application!"
+        })
+      });
+
+      if (response.ok) {
+        if (onSuccess) onSuccess();
+      } else {
+        setSubmitError(true);
+      }
+    } catch (error) {
+      setSubmitError(true);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -39,6 +71,7 @@ export default function ContactForm() {
     if (errors[e.target.name]) {
       setErrors(prev => ({ ...prev, [e.target.name]: '' }));
     }
+    setSubmitError(false);
   };
 
   const ErrorMessage = ({ message }: { message: string }) => (
@@ -61,8 +94,6 @@ export default function ContactForm() {
 
   return (
     <form 
-      action="https://formsubmit.co/halftonemotion@gmail.com" 
-      method="POST"
       className="p-5 flex flex-col gap-4 overflow-y-auto"
       noValidate
       onSubmit={handleSubmit}
@@ -127,11 +158,26 @@ export default function ContactForm() {
         </div>
       </div>
 
+      {submitError && (
+        <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400 text-[13px] font-medium text-center">
+          Oops! Something went wrong submitting the form.
+        </div>
+      )}
+
       <button 
         type="submit"
-        className="mt-2 shrink-0 w-full bg-apple-blue text-white font-bold py-3 rounded-xl hover:bg-apple-blue-hover transition-colors shadow-sm active:scale-[0.98] text-sm"
+        disabled={isSubmitting}
+        className="mt-2 shrink-0 w-full bg-apple-blue text-white font-bold py-3 rounded-xl hover:bg-apple-blue-hover transition-colors shadow-sm active:scale-[0.98] text-sm flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        Apply for a Project
+        {isSubmitting ? (
+          <>
+            <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            Sending...
+          </>
+        ) : 'Apply for a Project'}
       </button>
     </form>
   );
