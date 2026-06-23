@@ -96,6 +96,7 @@ export default function ProjectCard({ title, category, delay = 0, videoUrl, hove
   const glareY = useTransform(ySpring, [0, 1], ["100%", "0%"]);
 
   function handleMouseMove({ currentTarget, clientX, clientY }: MouseEvent) {
+    if (isPlaying) return;
     const { left, top, width, height } = currentTarget.getBoundingClientRect();
     const mx = clientX - left;
     const my = clientY - top;
@@ -148,9 +149,13 @@ export default function ProjectCard({ title, category, delay = 0, videoUrl, hove
         <GlareHover className="absolute inset-0 z-50 rounded-[23px] mix-blend-overlay" transitionDuration={600} glareOpacity={0.8} />
 
         <div 
-          className="relative z-10 w-full aspect-video bg-zinc-900 overflow-hidden cursor-pointer group/video"
+          className="relative z-10 w-full aspect-video bg-zinc-900 overflow-hidden cursor-pointer group/video rounded-t-[23px] isolate"
           onClick={() => {
-            if (!isPlaying) setIsPlaying(true);
+            if (!isPlaying) {
+              setIsPlaying(true);
+              xPct.set(0.5);
+              yPct.set(0.5);
+            }
           }}
         >
           {!isPlaying && imageUrl ? (
