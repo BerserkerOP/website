@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionTemplate, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { MouseEvent, useEffect, useRef } from 'react';
+import { MouseEvent, useEffect, useRef, useState } from 'react';
 import GlareHover from './GlareHover';
 
 interface ProjectCardProps {
@@ -10,6 +10,7 @@ interface ProjectCardProps {
   delay?: number;
   videoUrl?: string;
   hoverGradient?: boolean;
+  thumbnailUrl?: string;
 }
 
 function getYouTubeEmbedUrl(url: string | undefined) {
@@ -21,8 +22,13 @@ function getYouTubeEmbedUrl(url: string | undefined) {
     : null;
 }
 
-export default function ProjectCard({ title, category, delay = 0, videoUrl, hoverGradient = false }: ProjectCardProps) {
-  const embedUrl = getYouTubeEmbedUrl(videoUrl);
+export default function ProjectCard({ title, category, delay = 0, videoUrl, hoverGradient = false, thumbnailUrl }: ProjectCardProps) {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const videoIdMatch = videoUrl?.match(/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|shorts\/)([^#&?]*).*/);
+  const videoId = (videoIdMatch && videoIdMatch[2].length === 11) ? videoIdMatch[2] : null;
+  const embedUrl = videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&enablejsapi=1` : null;
+  const imageUrl = thumbnailUrl || (videoId ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg` : null);
+  
   const iframeRef = useRef<HTMLIFrameElement>(null);
   
   useEffect(() => {
@@ -53,6 +59,7 @@ export default function ProjectCard({ title, category, delay = 0, videoUrl, hove
     const handleGlobalPlay = (e: any) => {
       if (e.detail.source !== iframe) {
         iframe.contentWindow?.postMessage(JSON.stringify({ event: 'command', func: 'pauseVideo', args: '' }), '*');
+        setIsPlaying(false);
       }
     };
 
@@ -140,8 +147,28 @@ export default function ProjectCard({ title, category, delay = 0, videoUrl, hove
         {/* Glare Layer (ReactBits) */}
         <GlareHover className="absolute inset-0 z-50 rounded-[23px] mix-blend-overlay" transitionDuration={600} glareOpacity={0.8} />
 
-        <div className="relative z-10 w-full aspect-video bg-zinc-900 overflow-hidden">
-          {embedUrl ? (
+        <div 
+          className="relative z-10 w-full aspect-video bg-zinc-900 overflow-hidden cursor-pointer group/video"
+          onClick={() => {
+            if (!isPlaying) setIsPlaying(true);
+          }}
+        >
+          {!isPlaying && imageUrl ? (
+            <div className="relative w-full h-full">
+              <img 
+                src={imageUrl} 
+                alt={title} 
+                className="w-full h-full object-cover transition-transform duration-700 group-hover/video:scale-105" 
+              />
+              <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover/video:bg-black/10 transition-colors">
+                <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.3)] transform transition-transform group-hover/video:scale-110">
+                  <svg className="w-6 h-6 text-white ml-1 drop-shadow-md" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          ) : embedUrl ? (
             <iframe 
               ref={iframeRef}
               className="w-full h-full"
@@ -150,7 +177,6 @@ export default function ProjectCard({ title, category, delay = 0, videoUrl, hove
               frameBorder="0" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
               allowFullScreen
-              loading="lazy"
             ></iframe>
           ) : (
             <div className="w-full h-full bg-zinc-800/50 flex items-center justify-center">
