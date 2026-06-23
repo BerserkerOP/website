@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const steps = [
   {
@@ -26,6 +27,7 @@ const steps = [
 ];
 
 export default function HowItWorks() {
+  const [activeStep, setActiveStep] = useState(0);
   return (
     <section className="py-20 sm:py-32 px-6 lg:px-16 max-w-7xl mx-auto border-t border-apple-border/50 relative overflow-hidden">
       
@@ -49,37 +51,76 @@ export default function HowItWorks() {
         </motion.h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
-        {steps.map((step, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.7, delay: index * 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
-            className="group relative bg-apple-card/60 backdrop-blur-2xl rounded-[32px] p-10 border border-black/5 dark:border-white/5 overflow-hidden transition-all duration-500 hover:bg-apple-card/80 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:hover:shadow-[0_8px_30px_rgba(255,255,255,0.02)]"
-          >
-            {/* Massive Background Number */}
-            <div className="absolute -bottom-10 -right-6 text-[180px] font-bold leading-none text-black/[0.02] dark:text-white/[0.02] pointer-events-none select-none transition-transform duration-700 group-hover:scale-110 group-hover:-translate-y-4">
-              {step.num}
-            </div>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 relative z-10 items-start">
+        
+        {/* Left Column: Interactive List */}
+        <div className="lg:col-span-5 flex flex-col gap-3">
+          {steps.map((step, index) => {
+            const isActive = activeStep === index;
+            return (
+              <button
+                key={index}
+                onClick={() => setActiveStep(index)}
+                className={`w-full text-left rounded-2xl px-6 py-5 transition-all duration-300 focus:outline-none flex items-center gap-4 border ${
+                  isActive 
+                    ? 'bg-apple-blue shadow-lg shadow-apple-blue/20 border-apple-blue/50' 
+                    : 'bg-apple-card/40 backdrop-blur-sm border-black/5 dark:border-white/5 hover:bg-apple-card/80 hover:border-black/10 dark:hover:border-white/10'
+                }`}
+              >
+                <span 
+                  className={`w-10 h-10 rounded-[10px] flex items-center justify-center text-sm font-bold shrink-0 transition-colors duration-300 ${
+                    isActive 
+                      ? 'bg-white/20 text-white shadow-inner' 
+                      : 'bg-apple-blue/10 text-apple-blue dark:bg-white/5 dark:text-white/60'
+                  }`}
+                >
+                  {step.num}
+                </span>
+                <h3 
+                  className={`text-lg font-semibold transition-colors duration-300 ${
+                    isActive ? 'text-white' : 'text-apple-text'
+                  }`}
+                >
+                  {step.title}
+                </h3>
+              </button>
+            );
+          })}
+        </div>
 
-            {/* Glowing Accent */}
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-apple-blue/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            
-            <div className="relative z-10">
-              <div className="w-12 h-12 rounded-2xl bg-black/5 dark:bg-white/5 flex items-center justify-center mb-8 border border-black/5 dark:border-white/5">
-                <span className="text-apple-text font-bold text-lg">{step.num}</span>
+        {/* Right Column: Active Card Display */}
+        <div className="lg:col-span-7 relative h-full min-h-[300px] lg:min-h-[400px]">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeStep}
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.95 }}
+              transition={{ duration: 0.4, ease: [0.21, 0.47, 0.32, 0.98] }}
+              className="absolute inset-0 w-full h-fit bg-apple-card/80 backdrop-blur-2xl rounded-[32px] p-10 lg:p-14 border border-black/5 dark:border-white/5 overflow-hidden shadow-[0_8px_40px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_40px_rgba(255,255,255,0.02)]"
+            >
+              {/* Massive Background Number */}
+              <div className="absolute -bottom-10 -right-6 text-[220px] font-bold leading-none text-black/[0.03] dark:text-white/[0.03] pointer-events-none select-none">
+                {steps[activeStep].num}
               </div>
-              <h3 className="text-2xl font-bold text-apple-text mb-4 tracking-tight group-hover:text-apple-blue transition-colors duration-300">
-                {step.title}
-              </h3>
-              <p className="text-apple-subtext text-base leading-relaxed max-w-sm">
-                {step.desc}
-              </p>
-            </div>
-          </motion.div>
-        ))}
+              
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="w-16 h-16 rounded-[14px] bg-apple-blue/10 dark:bg-apple-blue/20 flex items-center justify-center mb-8 border border-apple-blue/20">
+                  <span className="text-apple-blue font-bold text-2xl">{steps[activeStep].num}</span>
+                </div>
+                
+                <h3 className="text-3xl lg:text-4xl font-bold text-apple-blue mb-6 tracking-tight">
+                  {steps[activeStep].title}
+                </h3>
+                
+                <p className="text-apple-text text-lg leading-relaxed font-medium max-w-xl">
+                  {steps[activeStep].desc}
+                </p>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
       </div>
       
       {/* Background Ambient Glow */}
