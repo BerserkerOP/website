@@ -5,14 +5,14 @@ import { motion } from 'framer-motion';
 const reviews = [
   {
     headline: "Fast turnaround & great quality",
-    text: "I needed a promo video for my app and Atharv delivered it with great video quality in just a few days at a reasonable price.",
+    text: "I needed a promo video for my app and halftonemotion delivered it with great video quality in just a few days at a reasonable price.",
     name: "Akil Gurram",
     role: "Founder of WTM",
     image: "/reviews/akil.jpg"
   },
   {
     headline: "Reliable and highly skilled",
-    text: "It has been a pleasure working with Atharva. He is highly responsive, communicates well, and takes genuine ownership of his work. I can confidently recommend him to anyone looking for reliable and skilled motion design and video editing support.",
+    text: "It has been a pleasure working with halftonemotion. They are highly responsive, communicate well, and take genuine ownership of their work. I can confidently recommend them to anyone looking for reliable and skilled motion design and video editing support.",
     name: "Rhythm Shandlya",
     role: "Founder of Vionna",
     image: "/reviews/rhythm.jpg"
