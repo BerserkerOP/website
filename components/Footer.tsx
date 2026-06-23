@@ -30,9 +30,9 @@ export default function Footer() {
       </div>
 
       {/* Giant Faded Text */}
-      <div className="w-full mt-10 md:mt-0 flex justify-center items-end overflow-hidden pointer-events-none select-none px-4">
+      <div className="w-full mt-10 md:mt-0 flex justify-center items-end pointer-events-none select-none px-4 pb-4 md:pb-8">
         <h1 
-          className="text-[25vw] md:text-[22vw] font-bold leading-[0.75] tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-black/10 to-transparent dark:from-white/10 dark:to-transparent"
+          className="text-[25vw] md:text-[22vw] font-bold leading-[0.85] tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-black/10 to-transparent dark:from-white/10 dark:to-transparent"
         >
           Halftone
         </h1>
