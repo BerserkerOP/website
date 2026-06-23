@@ -11,10 +11,11 @@ const reviews = [
     image: "/reviews/akil.jpg"
   },
   {
-    headline: "Perfect for our SaaS",
-    text: "Our product demo finally makes sense to our users. HalftoneMotion nailed the cinematic vibe we were looking for. The conversion rates on our landing page have skyrocketed since we added the video.",
-    name: "John Smith",
-    role: "Founder & CEO"
+    headline: "Reliable and highly skilled",
+    text: "It has been a pleasure working with Atharva. He is highly responsive, communicates well, and takes genuine ownership of his work. I can confidently recommend him to anyone looking for reliable and skilled motion design and video editing support.",
+    name: "Rhythm Shandlya",
+    role: "Founder of Vionna",
+    image: "/reviews/rhythm.jpg"
   },
   {
     headline: "Incredible attention to detail",
