@@ -3,7 +3,6 @@
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import TiltButton from './TiltButton';
-import MacbookScroll from './MacbookScroll';
 
 
 const phrases = [
@@ -27,11 +26,9 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, []);
   return (
-    <section className="relative bg-apple-bg overflow-x-hidden h-[120vh] sm:h-[130vh]">
-      {/* 3D Interactive Macbook Scroll as Background */}
-      <MacbookScroll />
+    <section className="relative bg-apple-bg overflow-hidden pt-24 pb-16 sm:pt-32 sm:pb-20">
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-16 w-full pt-24 sm:pt-32 relative z-10 pointer-events-none">
+      <div className="max-w-7xl mx-auto px-6 lg:px-16 w-full py-10 relative z-10">
         <div className="flex flex-col items-center text-center gap-6">
           <motion.div 
             initial={{ opacity: 0, y: 14 }}
@@ -82,7 +79,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-4 w-full px-4 sm:px-0 pointer-events-auto"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-4 w-full px-4 sm:px-0"
           >
             <TiltButton href="/#contact" className="w-full sm:w-auto font-semibold text-apple-text px-6 py-3.5 sm:px-8 sm:py-4 text-sm sm:text-base rounded-full backdrop-blur-xl bg-gradient-to-b from-white/60 to-white/20 dark:from-white/10 dark:to-white/5 border border-white/80 dark:border-white/10 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.6)] dark:shadow-[0_4px_24px_-8px_rgba(255,255,255,0.05)] transition-all hover:scale-[1.02]">
               Start Your Project
