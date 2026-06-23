@@ -6,23 +6,28 @@ import { motion, AnimatePresence } from 'framer-motion';
 const steps = [
   {
     num: "01",
-    title: "Discovery & Intake",
-    desc: "Share your brief, brand assets, and UI references through our structured intake form. If you have a script, great. If not, we'll write it together."
+    title: "Discovery & Strategy",
+    desc: "We begin with a deep dive into your brand, audience, and goals. Whether you have a script ready or need us to write one from scratch, we establish the core narrative before moving forward."
   },
   {
     num: "02",
-    title: "Storyboard Approval",
-    desc: "We build a full storyboard and walk you through it on a short call. You approve every frame before we even start animating. No surprises."
+    title: "Storyboarding",
+    desc: "We craft a comprehensive frame-by-frame storyboard. This allows you to visualize the flow, pacing, and visual direction, ensuring we are perfectly aligned before any design work begins."
   },
   {
     num: "03",
-    title: "Animation & Revisions",
-    desc: "We bring your project to life. You get one consolidated round of feedback via timestamped comments to keep things perfectly streamlined."
+    title: "Design & Asset Creation",
+    desc: "Our designers build out the custom illustrations, UI mockups, and typography that will define your video. You approve the final visual style, guaranteeing it matches your brand identity perfectly."
   },
   {
     num: "04",
+    title: "Animation & Motion",
+    desc: "This is where the magic happens. We bring the approved assets to life with buttery-smooth motion design and sound effects. You get consolidated feedback rounds via timestamped comments."
+  },
+  {
+    num: "05",
     title: "Final Delivery",
-    desc: "Your premium motion graphics video is delivered in under 2 weeks, ready to convert browsers into buyers and elevate your brand."
+    desc: "After final polishing and quality assurance, your premium motion graphics video is rendered and delivered in multiple formats, ready to captivate your audience and elevate your brand."
   }
 ];
 
