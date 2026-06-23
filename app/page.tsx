@@ -1,5 +1,6 @@
 import Hero from '@/components/Hero';
 import ProjectCard from '@/components/ProjectCard';
+import ReviewsSection from '@/components/ReviewsSection';
 
 export default function Home() {
   const projects = [
@@ -30,6 +31,8 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      <ReviewsSection />
     </div>
   );
 }
