@@ -3,6 +3,7 @@
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import TiltButton from './TiltButton';
+import MacbookScroll from './MacbookScroll';
 
 
 const phrases = [
@@ -26,7 +27,7 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, []);
   return (
-    <section className="relative bg-apple-bg overflow-hidden pt-24 pb-16 sm:pt-32 sm:pb-20">
+    <section className="relative bg-apple-bg overflow-x-hidden pt-24 pb-0 sm:pt-32">
 
       <div className="max-w-7xl mx-auto px-6 lg:px-16 w-full py-10 relative z-10">
         <div className="flex flex-col items-center text-center gap-6">
@@ -94,6 +95,8 @@ export default function Hero() {
         </div>
       </div>
       
+      {/* 3D Interactive Macbook Scroll */}
+      <MacbookScroll />
     </section>
   );
 }
