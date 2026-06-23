@@ -27,7 +27,7 @@ export default function ProjectCard({ title, category, delay = 0, videoUrl, hove
   const videoIdMatch = videoUrl?.match(/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|shorts\/)([^#&?]*).*/);
   const videoId = (videoIdMatch && videoIdMatch[2].length === 11) ? videoIdMatch[2] : null;
   const embedUrl = videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&enablejsapi=1` : null;
-  const imageUrl = thumbnailUrl || null;
+  const imageUrl = thumbnailUrl || (videoId ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg` : null);
   
   const iframeRef = useRef<HTMLIFrameElement>(null);
   
@@ -153,17 +153,15 @@ export default function ProjectCard({ title, category, delay = 0, videoUrl, hove
             if (!isPlaying) setIsPlaying(true);
           }}
         >
-          {!isPlaying ? (
-            <div className="relative w-full h-full bg-[#DEDEDE]">
-              {imageUrl && (
-                <img 
-                  src={imageUrl} 
-                  alt={title} 
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/video:scale-105" 
-                />
-              )}
-              <div className="absolute inset-0 flex items-center justify-center bg-black/5 group-hover/video:bg-black/10 transition-colors">
-                <div className="w-20 h-20 rounded-full bg-white/40 backdrop-blur-md flex items-center justify-center border border-white/50 shadow-[0_8px_32px_rgba(0,0,0,0.2)] transform transition-transform group-hover/video:scale-110">
+          {!isPlaying && imageUrl ? (
+            <div className="relative w-full h-full">
+              <img 
+                src={imageUrl} 
+                alt={title} 
+                className="w-full h-full object-cover transition-transform duration-700 group-hover/video:scale-105" 
+              />
+              <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover/video:bg-black/10 transition-colors">
+                <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.3)] transform transition-transform group-hover/video:scale-110">
                   <svg className="w-10 h-10 text-white drop-shadow-md" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M8 5v14l11-7z" />
                   </svg>
