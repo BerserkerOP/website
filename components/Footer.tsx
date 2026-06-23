@@ -14,7 +14,7 @@ export default function Footer() {
         </div>
 
         {/* Right Side: Navigation Links */}
-        <div className="flex gap-16 mt-12 md:mt-0 text-sm font-medium text-apple-subtext">
+        <div className="grid grid-cols-2 w-full md:w-auto md:flex gap-4 md:gap-16 mt-12 md:mt-0 text-sm font-medium text-apple-subtext">
           <div className="flex flex-col gap-4">
             <Link href="/" className="hover:text-apple-text transition-colors">Home</Link>
             <Link href="/work" className="hover:text-apple-text transition-colors">Our Work</Link>
