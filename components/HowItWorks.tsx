@@ -63,7 +63,7 @@ export default function HowItWorks() {
                 onClick={() => setActiveStep(index)}
                 className={`w-full text-left rounded-2xl px-6 py-5 transition-all duration-300 focus:outline-none flex items-center gap-4 border ${
                   isActive 
-                    ? 'bg-apple-blue shadow-lg shadow-apple-blue/20 border-apple-blue/50' 
+                    ? 'bg-apple-blue shadow-lg shadow-apple-blue/20 border-transparent' 
                     : 'bg-apple-card/40 backdrop-blur-sm border-black/5 dark:border-white/5 hover:bg-apple-card/80 hover:border-black/10 dark:hover:border-white/10'
                 }`}
               >
@@ -100,12 +100,12 @@ export default function HowItWorks() {
               className="absolute inset-0 w-full h-fit bg-apple-card/80 backdrop-blur-2xl rounded-[32px] p-10 lg:p-14 border border-black/5 dark:border-white/5 overflow-hidden shadow-[0_8px_40px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_40px_rgba(255,255,255,0.02)]"
             >
               {/* Massive Background Number */}
-              <div className="absolute -bottom-10 -right-6 text-[220px] font-bold leading-none text-black/[0.03] dark:text-white/[0.03] pointer-events-none select-none">
+              <div className="absolute -bottom-10 -right-6 text-[220px] font-bold leading-none text-black/[0.08] dark:text-white/[0.04] pointer-events-none select-none opacity-10 dark:opacity-100">
                 {steps[activeStep].num}
               </div>
               
               <div className="relative z-10 flex flex-col h-full">
-                <div className="w-16 h-16 rounded-[14px] bg-apple-blue/10 dark:bg-apple-blue/20 flex items-center justify-center mb-8 border border-apple-blue/20">
+                <div className="w-16 h-16 rounded-[14px] bg-apple-blue/10 dark:bg-apple-blue/20 flex items-center justify-center mb-8">
                   <span className="text-apple-blue font-bold text-2xl">{steps[activeStep].num}</span>
                 </div>
                 
