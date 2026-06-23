@@ -13,13 +13,13 @@ export default function MacbookScroll() {
 
   // Calculate rotations and scales
   // As user scrolls, the laptop lid tilts back slightly, and the whole unit scales down
-  const scale = useTransform(scrollYProgress, [0, 1], [1.1, 0.6]);
-  const rotateX = useTransform(scrollYProgress, [0, 1], [15, 0]);
-  const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1.2, 0.8]);
+  const rotateX = useTransform(scrollYProgress, [0, 1], [40, 10]);
+  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
 
   return (
-    <div ref={containerRef} className="h-[200vh] w-full relative -mt-32 z-10 hidden md:block">
-      <div className="sticky top-0 h-screen flex flex-col items-center justify-center [perspective:800px] overflow-hidden">
+    <div ref={containerRef} className="absolute inset-0 w-full h-full z-0 hidden md:block pointer-events-none">
+      <div className="sticky top-0 h-screen flex flex-col items-center justify-center [perspective:1000px] overflow-hidden opacity-60 dark:opacity-30">
         
         <motion.div
           style={{
@@ -28,7 +28,7 @@ export default function MacbookScroll() {
             y,
             transformStyle: "preserve-3d",
           }}
-          className="relative origin-bottom max-w-[1200px] w-[90vw] flex flex-col items-center justify-center pt-24"
+          className="relative origin-bottom max-w-[1400px] w-[95vw] flex flex-col items-center justify-center mt-[10vh]"
         >
           {/* Lid (Screen) */}
           <div className="relative w-full aspect-[16/10] bg-[#1a1a1a] rounded-t-[32px] rounded-b-md border-[6px] border-[#222] shadow-2xl flex flex-col overflow-hidden z-20">
