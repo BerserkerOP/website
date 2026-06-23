@@ -4,10 +4,11 @@ import { motion } from 'framer-motion';
 
 const reviews = [
   {
-    headline: "Game-changing quality",
-    text: "The dynamic lyric visualizer completely transformed my new single's release. The energy is unmatched and the team is incredibly professional. I've never seen my music brought to life this way.",
-    name: "Jane Doe",
-    role: "Indie Artist"
+    headline: "Fast turnaround & great quality",
+    text: "I needed a promo video for my app and Atharv delivered it with great video quality in just a few days at a reasonable price.",
+    name: "Akil Gurram",
+    role: "Founder of WTM",
+    image: "/reviews/akil.jpg"
   },
   {
     headline: "Perfect for our SaaS",
@@ -56,18 +57,26 @@ export default function ReviewsSection() {
             {/* Subtle Gradient Glow inside the card */}
             <div className="absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 rounded-full bg-apple-blue/10 blur-3xl group-hover:bg-apple-blue/20 transition-colors duration-500 pointer-events-none" />
             
-            <StarRating />
+            <div className="relative z-10 flex-1 flex flex-col">
+              <StarRating />
+              
+              <h3 className="text-lg font-bold text-apple-text mb-3 tracking-tight">"{review.headline}"</h3>
+              
+              <p className="text-[15px] leading-relaxed text-apple-subtext mb-8 flex-1">
+                {review.text}
+              </p>
+            </div>
             
-            <h3 className="text-lg font-bold text-apple-text mb-3 tracking-tight">"{review.headline}"</h3>
-            
-            <p className="text-[15px] leading-relaxed text-apple-subtext mb-8 flex-1">
-              {review.text}
-            </p>
-            
-            <div className="flex items-center gap-3 mt-auto">
-              <div className="w-10 h-10 rounded-full bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center text-zinc-500 font-bold text-sm shrink-0">
-                {review.name.charAt(0)}
-              </div>
+            <div className="flex items-center gap-3 mt-auto relative z-10">
+              {review.image ? (
+                <div className="w-10 h-10 rounded-full shrink-0 overflow-hidden relative border border-black/10 dark:border-white/10">
+                  <img src={review.image} alt={review.name} className="w-full h-full object-cover" />
+                </div>
+              ) : (
+                <div className="w-10 h-10 rounded-full bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center text-zinc-500 font-bold text-sm shrink-0 border border-black/5 dark:border-white/5">
+                  {review.name.charAt(0)}
+                </div>
+              )}
               <div className="flex flex-col">
                 <span className="text-sm font-bold text-apple-text">{review.name}</span>
                 <span className="text-xs text-apple-subtext font-medium">{review.role}</span>
