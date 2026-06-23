@@ -8,8 +8,7 @@ export default function Home() {
     {
       title: "SaaS Demo Videos",
       category: "Cinematic feature walkthroughs",
-      videoUrl: "https://www.youtube.com/watch?v=diH5NhlPvGM",
-      thumbnailUrl: "/discord-thumb.jpg"
+      videoUrl: "https://www.youtube.com/watch?v=diH5NhlPvGM"
     },
     { title: "Explainer Videos", category: "Complex features made instantly clear", videoUrl: "https://youtu.be/L3MB9hYLbBI" },
     { title: "ChatGPT Animation", category: "High-energy kinetic typography for artists", videoUrl: "https://youtube.com/shorts/altZ7ZOHWNo?feature=share" },
