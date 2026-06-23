@@ -100,7 +100,7 @@ export default function HowItWorks() {
               className="absolute inset-0 w-full h-fit bg-apple-card/80 backdrop-blur-2xl rounded-[32px] p-10 lg:p-14 border border-black/5 dark:border-white/5 overflow-hidden shadow-[0_8px_40px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_40px_rgba(255,255,255,0.02)]"
             >
               {/* Massive Background Number */}
-              <div className="absolute -bottom-10 -right-6 text-[220px] font-bold leading-none text-black/[0.08] dark:text-white/[0.04] pointer-events-none select-none opacity-10 dark:opacity-100">
+              <div className="absolute -bottom-10 -right-6 text-[220px] font-bold leading-none bg-gradient-to-br from-black/10 to-transparent dark:from-white/10 dark:to-transparent bg-clip-text text-transparent pointer-events-none select-none">
                 {steps[activeStep].num}
               </div>
               
