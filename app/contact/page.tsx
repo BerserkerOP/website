@@ -21,7 +21,7 @@ export default function ContactPage() {
   }, [isSuccess, router]);
 
   return (
-    <div className="bg-apple-bg min-h-[100dvh] pt-24 pb-12 flex flex-col items-center justify-center px-4 relative overflow-hidden">
+    <div className="bg-apple-bg h-[100dvh] w-full flex flex-col items-center justify-center px-4 relative overflow-hidden">
       <FadeIn 
         duration={1.5}
         className="absolute inset-0 z-0 pointer-events-none"

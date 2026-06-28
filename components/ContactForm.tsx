@@ -94,7 +94,7 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
 
   return (
     <form 
-      className="p-5 flex flex-col gap-4 overflow-y-auto"
+      className="p-4 flex flex-col gap-3 overflow-y-auto"
       noValidate
       onSubmit={handleSubmit}
     >
@@ -103,8 +103,8 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
       <input type="hidden" name="_captcha" value="false" />
       <input type="hidden" name="_next" value="https://halftonemotion.vercel.app/" />
 
-      <div className="flex flex-col gap-2">
-        <label htmlFor="name" className="text-sm font-bold text-apple-text">
+      <div className="flex flex-col gap-1.5">
+        <label htmlFor="name" className="text-[13px] font-bold text-apple-text dark:text-white">
           Full Name <span className="text-apple-blue">*</span>
         </label>
         <input 
@@ -114,13 +114,13 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
           required
           placeholder="Your name"
           onChange={handleChange}
-          className={`w-full px-3.5 py-2.5 rounded-xl border ${errors.name ? 'border-[#FF3B30] focus:ring-[#FF3B30]/20' : 'border-apple-border focus:border-apple-blue focus:ring-apple-blue'} focus:ring-1 outline-none transition-all placeholder:text-zinc-400 bg-transparent text-apple-text text-sm`}
+          className={`w-full px-3 py-2 rounded-xl border ${errors.name ? 'border-[#FF3B30] focus:ring-[#FF3B30]/20' : 'border-apple-border dark:border-white/10 focus:border-apple-blue focus:ring-apple-blue'} focus:ring-1 outline-none transition-all placeholder:text-zinc-400 dark:placeholder:text-zinc-600 bg-transparent text-apple-text dark:text-white text-[13px]`}
         />
         <ErrorMessage message={errors.name} />
       </div>
 
-      <div className="flex flex-col gap-2">
-        <label htmlFor="email" className="text-sm font-bold text-apple-text">
+      <div className="flex flex-col gap-1.5">
+        <label htmlFor="email" className="text-[13px] font-bold text-apple-text dark:text-white">
           Email <span className="text-apple-blue">*</span>
         </label>
         <input 
@@ -130,13 +130,13 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
           required
           placeholder="you@example.com"
           onChange={handleChange}
-          className={`w-full px-3.5 py-2.5 rounded-xl border ${errors.email ? 'border-[#FF3B30] focus:ring-[#FF3B30]/20' : 'border-apple-border focus:border-apple-blue focus:ring-apple-blue'} focus:ring-1 outline-none transition-all placeholder:text-zinc-400 bg-transparent text-apple-text text-sm`}
+          className={`w-full px-3 py-2 rounded-xl border ${errors.email ? 'border-[#FF3B30] focus:ring-[#FF3B30]/20' : 'border-apple-border dark:border-white/10 focus:border-apple-blue focus:ring-apple-blue'} focus:ring-1 outline-none transition-all placeholder:text-zinc-400 dark:placeholder:text-zinc-600 bg-transparent text-apple-text dark:text-white text-[13px]`}
         />
         <ErrorMessage message={errors.email} />
       </div>
 
-      <div className="flex flex-col gap-2">
-        <label className="text-sm font-bold text-apple-text">
+      <div className="flex flex-col gap-1.5">
+        <label className="text-[13px] font-bold text-apple-text dark:text-white">
           Budget <span className="text-apple-blue">*</span>
         </label>
         
@@ -145,17 +145,28 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
           {budgets.map(b => (
             <label key={b} className="relative cursor-pointer group">
               <input type="radio" name="budget" value={b} onChange={handleChange} className="peer sr-only" required />
-              <div className={`rounded-xl border ${errors.budget ? 'border-[#FF3B30]/50' : 'border-apple-border'} px-3 py-2.5 text-center transition-all peer-checked:border-apple-blue peer-checked:bg-apple-blue/10 peer-checked:text-apple-blue group-hover:border-apple-gray text-apple-text text-sm font-medium shadow-sm peer-checked:shadow-apple-blue/20`}>
+              <div className={`rounded-xl border ${errors.budget ? 'border-[#FF3B30]/50' : 'border-apple-border dark:border-white/10'} px-2 py-2 text-center transition-all peer-checked:border-apple-blue peer-checked:bg-apple-blue peer-checked:text-white group-hover:border-apple-gray dark:group-hover:border-white/20 text-apple-text dark:text-white text-[13px] font-medium shadow-sm peer-checked:shadow-apple-blue/30`}>
                 {b}
               </div>
             </label>
           ))}
         </div>
         <ErrorMessage message={errors.budget} />
-        
-        <div className="mt-1 text-[12px] text-zinc-500 leading-relaxed space-y-4">
-          <p>Qualified projects will be directed to our scheduling page.</p>
-        </div>
+      </div>
+
+      <div className="flex flex-col gap-1.5">
+        <label htmlFor="description" className="text-[13px] font-bold text-apple-text dark:text-white flex justify-between items-center">
+          <span>Project Description</span>
+          <span className="text-apple-subtext font-normal text-[11px] uppercase tracking-wider">Optional</span>
+        </label>
+        <textarea 
+          id="description"
+          name="description"
+          placeholder="Topic name and what the project is about..."
+          rows={2}
+          onChange={handleChange}
+          className={`w-full px-3 py-2 rounded-xl border border-apple-border dark:border-white/10 focus:border-apple-blue focus:ring-apple-blue focus:ring-1 outline-none transition-all placeholder:text-zinc-400 dark:placeholder:text-zinc-600 bg-transparent text-apple-text dark:text-white text-[13px] resize-none`}
+        />
       </div>
 
       {submitError && (
@@ -167,7 +178,7 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
       <button 
         type="submit"
         disabled={isSubmitting}
-        className="mt-2 shrink-0 w-full bg-apple-blue text-white font-bold py-3 rounded-xl hover:bg-apple-blue-hover transition-colors shadow-sm active:scale-[0.98] text-sm flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="mt-1 shrink-0 w-full bg-apple-blue text-white font-bold py-2.5 rounded-xl hover:bg-apple-blue-hover transition-colors shadow-sm active:scale-[0.98] text-[13px] flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {isSubmitting ? (
           <>

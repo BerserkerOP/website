@@ -105,11 +105,11 @@ export default function ContactModal() {
                 ) : (
                   <motion.div key="form" exit={{ opacity: 0, transition: { duration: 0.1 } }} className="flex flex-col w-full">
                     {/* Header */}
-                    <div className="flex items-center justify-between px-5 py-4 border-b border-apple-border shrink-0">
-                      <h2 className="text-lg font-bold text-apple-text">Apply for a Project</h2>
+                    <div className="flex items-center justify-between px-5 py-3 border-b border-apple-border dark:border-white/10 shrink-0">
+                      <h2 className="text-lg font-bold text-apple-text dark:text-white">Apply for a Project</h2>
                       <button 
                         onClick={closeModal}
-                        className="p-2 -mr-2 text-apple-subtext hover:text-apple-text transition-colors rounded-full hover:bg-apple-gray"
+                        className="p-1.5 -mr-1.5 text-apple-subtext hover:text-apple-text dark:hover:text-white transition-colors rounded-full hover:bg-apple-gray dark:hover:bg-white/10"
                       >
                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
