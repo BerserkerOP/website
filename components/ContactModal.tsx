@@ -62,7 +62,7 @@ export default function ContactModal() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: "spring", duration: 0.5, bounce: 0.1 }}
-              className={`shadow-2xl pointer-events-auto overflow-hidden flex flex-col ${isSuccess ? 'bg-[#34C759] rounded-3xl w-64 h-64 text-white items-center justify-center' : 'bg-apple-card rounded-2xl w-full max-w-md max-h-[85vh]'}`}
+              className={`shadow-2xl pointer-events-auto overflow-hidden flex flex-col ${isSuccess ? 'bg-[#34C759] rounded-3xl w-64 h-64 text-white items-center justify-center' : 'bg-white dark:bg-[#1C1C1E] rounded-2xl w-full max-w-md max-h-[85vh]'}`}
             >
               <AnimatePresence mode="wait">
                 {isSuccess ? (

@@ -40,7 +40,7 @@ export default function ContactPage() {
       <FadeIn duration={0.8} delay={0.2} className="flex flex-col relative z-10 w-full max-w-lg items-center w-full">
         <motion.div 
           layout
-          className={`backdrop-blur-3xl border border-black/5 dark:border-white/5 flex flex-col relative transition-transform duration-500 hover:scale-[1.01] overflow-hidden ${isSuccess ? 'bg-[#34C759] rounded-3xl w-64 h-64 text-white items-center justify-center shadow-[0_20px_80px_-15px_rgba(52,199,89,0.5)]' : 'bg-apple-card/95 rounded-3xl w-full shadow-[0_16px_64px_-12px_rgba(0,0,0,0.3)] dark:shadow-[0_16px_64px_-12px_rgba(255,255,255,0.02)]'}`}
+          className={`backdrop-blur-3xl border border-black/5 dark:border-white/5 flex flex-col relative transition-transform duration-500 hover:scale-[1.01] overflow-hidden ${isSuccess ? 'bg-[#34C759] rounded-3xl w-64 h-64 text-white items-center justify-center shadow-[0_20px_80px_-15px_rgba(52,199,89,0.5)]' : 'bg-white/95 dark:bg-[#1C1C1E]/95 rounded-3xl w-full shadow-[0_16px_64px_-12px_rgba(0,0,0,0.3)] dark:shadow-[0_16px_64px_-12px_rgba(255,255,255,0.02)]'}`}
         >
           <AnimatePresence mode="wait">
             {isSuccess ? (

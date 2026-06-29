@@ -114,7 +114,7 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
           required
           placeholder="Your name"
           onChange={handleChange}
-          className={`w-full px-3 py-2 rounded-xl border ${errors.name ? 'border-[#FF3B30] focus:ring-[#FF3B30]/20' : 'border-apple-border dark:border-white/10 focus:border-apple-blue focus:ring-apple-blue'} focus:ring-1 outline-none transition-all placeholder:text-zinc-400 dark:placeholder:text-zinc-600 bg-transparent text-apple-text dark:text-white text-[13px]`}
+          className={`w-full px-3 py-2 rounded-xl border ${errors.name ? 'border-[#FF3B30] focus:ring-[#FF3B30]/20 bg-white dark:bg-[#1C1C1E]' : 'border-black/10 dark:border-white/10 focus:border-apple-blue focus:ring-apple-blue bg-white/70 dark:bg-black/40'} focus:ring-1 outline-none transition-all placeholder:text-zinc-500 dark:placeholder:text-zinc-400 text-apple-text dark:text-white text-[13px] backdrop-blur-md`}
         />
         <ErrorMessage message={errors.name} />
       </div>
@@ -130,7 +130,7 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
           required
           placeholder="you@example.com"
           onChange={handleChange}
-          className={`w-full px-3 py-2 rounded-xl border ${errors.email ? 'border-[#FF3B30] focus:ring-[#FF3B30]/20' : 'border-apple-border dark:border-white/10 focus:border-apple-blue focus:ring-apple-blue'} focus:ring-1 outline-none transition-all placeholder:text-zinc-400 dark:placeholder:text-zinc-600 bg-transparent text-apple-text dark:text-white text-[13px]`}
+          className={`w-full px-3 py-2 rounded-xl border ${errors.email ? 'border-[#FF3B30] focus:ring-[#FF3B30]/20 bg-white dark:bg-[#1C1C1E]' : 'border-black/10 dark:border-white/10 focus:border-apple-blue focus:ring-apple-blue bg-white/70 dark:bg-black/40'} focus:ring-1 outline-none transition-all placeholder:text-zinc-500 dark:placeholder:text-zinc-400 text-apple-text dark:text-white text-[13px] backdrop-blur-md`}
         />
         <ErrorMessage message={errors.email} />
       </div>
@@ -145,7 +145,7 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
           {budgets.map(b => (
             <label key={b} className="relative cursor-pointer group">
               <input type="radio" name="budget" value={b} onChange={handleChange} className="peer sr-only" required />
-              <div className={`rounded-xl border ${errors.budget ? 'border-[#FF3B30]/50' : 'border-apple-border dark:border-white/10'} px-2 py-2 text-center transition-all peer-checked:border-apple-blue peer-checked:bg-apple-blue peer-checked:text-white group-hover:border-apple-gray dark:group-hover:border-white/20 text-apple-text dark:text-white text-[13px] font-medium shadow-sm peer-checked:shadow-apple-blue/30`}>
+              <div className={`rounded-xl border ${errors.budget ? 'border-[#FF3B30]/50 bg-white dark:bg-[#1C1C1E]' : 'border-black/10 dark:border-white/10 bg-white/70 dark:bg-black/40'} px-2 py-2 text-center transition-all peer-checked:border-apple-blue peer-checked:bg-apple-blue peer-checked:text-white group-hover:border-black/30 dark:group-hover:border-white/30 text-apple-text dark:text-white text-[13px] font-medium shadow-sm peer-checked:shadow-apple-blue/30 backdrop-blur-md`}>
                 {b}
               </div>
             </label>
@@ -165,7 +165,7 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
           placeholder="Topic name and what the project is about..."
           rows={2}
           onChange={handleChange}
-          className={`w-full px-3 py-2 rounded-xl border border-apple-border dark:border-white/10 focus:border-apple-blue focus:ring-apple-blue focus:ring-1 outline-none transition-all placeholder:text-zinc-400 dark:placeholder:text-zinc-600 bg-transparent text-apple-text dark:text-white text-[13px] resize-none`}
+          className={`w-full px-3 py-2 rounded-xl border border-black/10 dark:border-white/10 focus:border-apple-blue focus:ring-apple-blue focus:ring-1 outline-none transition-all placeholder:text-zinc-500 dark:placeholder:text-zinc-400 bg-white/70 dark:bg-black/40 text-apple-text dark:text-white text-[13px] resize-none backdrop-blur-md`}
         />
       </div>
 
