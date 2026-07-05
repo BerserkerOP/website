@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
-  const budgets = ["$200 - $500", "$500 - $800", "$800 - $1500", "$1500 - $3000", "$3000+"];
+  const budgets = ["$350 - $500", "$500 - $800", "$800 - $1500", "$1500 - $3000", "$3000+"];
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState(false);
@@ -16,6 +16,7 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
     const name = formData.get('name') as string;
     const email = formData.get('email') as string;
     const budget = formData.get('budget') as string;
+    const description = formData.get('description') as string;
 
     const newErrors: { [key: string]: string } = {};
 
@@ -51,6 +52,7 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
             name,
             email,
             budget,
+            description,
             _subject: "New Project Application!"
         })
       });
