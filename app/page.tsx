@@ -2,6 +2,7 @@ import Hero from '@/components/Hero';
 import ProjectCard from '@/components/ProjectCard';
 import ReviewsSection from '@/components/ReviewsSection';
 import HowItWorks from '@/components/HowItWorks';
+import ContactSection from '@/components/ContactSection';
 
 export default function Home() {
   const projects = [
@@ -10,7 +11,7 @@ export default function Home() {
       category: "Cinematic feature walkthroughs",
       videoUrl: "https://youtu.be/WtwCp9cqKa8"
     },
-    { title: "Explainer Videos", category: "Complex features made instantly clear", videoUrl: "https://youtu.be/L3MB9hYLbBI" },
+    { title: "Explainer Videos", category: "Complex features made instantly clear", videoUrl: "https://youtu.be/L3MB9hYLbBI", thumbnailUrl: "https://img.youtube.com/vi/L3MB9hYLbBI/hqdefault.jpg" },
     { title: "ChatGPT Animation", category: "High-energy kinetic typography for artists", videoUrl: "https://youtube.com/shorts/altZ7ZOHWNo?feature=share" },
     { title: "Onboarding Sequences", category: "Get users to their aha moment", videoUrl: "https://youtu.be/NhGNe4KJ1cU" },
   ];
@@ -35,6 +36,7 @@ export default function Home() {
               category={project.category}
               delay={index * 0.1}
               videoUrl={(project as any).videoUrl}
+              thumbnailUrl={(project as any).thumbnailUrl}
             />
           ))}
         </div>
@@ -42,6 +44,7 @@ export default function Home() {
 
       <HowItWorks />
       <ReviewsSection />
+      <ContactSection />
     </div>
   );
 }

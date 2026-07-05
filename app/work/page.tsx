@@ -9,7 +9,7 @@ export default function WorkPage() {
   const projects = [
     { title: "SaaS Demo Videos", category: "Cinematic feature walkthroughs", videoUrl: "https://youtu.be/WtwCp9cqKa8" },
     { title: "Discord Animation", category: "Community platform walkthroughs", videoUrl: "https://www.youtube.com/watch?v=diH5NhlPvGM" },
-    { title: "Explainer Videos", category: "Complex features made instantly clear", videoUrl: "https://youtu.be/L3MB9hYLbBI" },
+    { title: "Explainer Videos", category: "Complex features made instantly clear", videoUrl: "https://youtu.be/L3MB9hYLbBI", thumbnailUrl: "https://img.youtube.com/vi/L3MB9hYLbBI/hqdefault.jpg" },
     { title: "ChatGPT Animation", category: "High-energy kinetic typography for artists", videoUrl: "https://youtube.com/shorts/altZ7ZOHWNo?feature=share" },
     { title: "Onboarding Sequences", category: "Get users to their aha moment", videoUrl: "https://youtu.be/NhGNe4KJ1cU" },
     { title: "Promo Campaigns", category: "Social ready feature launches", videoUrl: "https://youtu.be/N45oL-Qm8AI" },
@@ -35,7 +35,8 @@ export default function WorkPage() {
               title={project.title}
               category={project.category}
               delay={index * 0.1}
-              videoUrl={project.videoUrl}
+              videoUrl={(project as any).videoUrl}
+              thumbnailUrl={(project as any).thumbnailUrl}
               hoverGradient={true}
             />
           ))}

@@ -34,7 +34,6 @@ export default function ContactPage() {
           }}
         >
           <LiquidEther />
-          <div className="absolute inset-0 bg-white/30 dark:bg-black/40 backdrop-blur-[1px]"></div>
         </div>
       </FadeIn>
       <FadeIn duration={0.8} delay={0.2} className="flex flex-col relative z-10 w-full max-w-lg items-center w-full">

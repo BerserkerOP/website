@@ -1,16 +1,25 @@
 "use client";
 
 import Link from 'next/link';
+import { useState } from 'react';
+import GetInTouchModal from './GetInTouchModal';
 
 export default function Footer() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <footer className="relative bg-apple-bg pt-20 pb-0 border-t border-black/5 dark:border-white/5 overflow-hidden flex flex-col">
       <div className="w-full max-w-7xl mx-auto px-6 lg:px-16 flex flex-col md:flex-row md:justify-between items-start z-10">
         
         {/* Left Side: Copyright and Location */}
-        <div className="flex flex-col gap-2 text-apple-subtext text-sm font-medium">
-          <span>Crafted with precision</span>
-          <span>© {new Date().getFullYear()} HalftoneMotion</span>
+        <div className="flex flex-col gap-4 text-apple-subtext text-sm font-medium">
+          <p className="text-base text-apple-text">
+            Still have questions? <button onClick={() => setIsModalOpen(true)} className="text-[#007AFF] hover:underline transition-all">Get in touch.</button>
+          </p>
+          <div className="flex flex-col gap-1 mt-4">
+            <span>Crafted with precision</span>
+            <span>© {new Date().getFullYear()} HalftoneMotion</span>
+          </div>
         </div>
 
         {/* Right Side: Navigation Links */}
@@ -37,6 +46,8 @@ export default function Footer() {
           Halftone
         </h1>
       </div>
+
+      <GetInTouchModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </footer>
   );
 }
