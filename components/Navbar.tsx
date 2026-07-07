@@ -41,10 +41,11 @@ export default function Navbar() {
 
   return (
     <motion.nav 
+      layoutRoot
       initial={{ y: -100, x: "-50%" }}
       animate={{ y: 0, x: "-50%" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-4 md:top-6 left-1/2 z-50 transition-all duration-300 flex items-center justify-between p-1.5 rounded-[32px] bg-[#2A2A2C]/80 backdrop-blur-3xl shadow-[0_8px_32px_rgba(0,0,0,0.15),inset_0_1px_1px_rgba(255,255,255,0.15)] border border-white/10 gap-8 md:gap-16 w-[95%] sm:w-auto max-w-4xl`}
+      className={`fixed top-4 md:top-6 left-1/2 z-50 flex items-center justify-between p-1.5 rounded-[32px] bg-[#2A2A2C]/80 backdrop-blur-3xl shadow-[0_8px_32px_rgba(0,0,0,0.15),inset_0_1px_1px_rgba(255,255,255,0.15)] border border-white/10 gap-8 md:gap-16 w-[95%] sm:w-auto max-w-4xl`}
     >
       {/* Left Profile Picture */}
       <Link href="/" className="w-[42px] h-[42px] ml-1 rounded-full bg-white flex items-center justify-center shadow-[0_0_15px_rgba(0,122,255,0.5)] border border-[#007AFF] shrink-0 overflow-hidden relative group">
