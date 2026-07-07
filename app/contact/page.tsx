@@ -17,7 +17,12 @@ export default function ContactPage() {
     <div className="bg-apple-bg min-h-screen w-full pt-32 pb-20 px-6 lg:px-16 flex justify-center">
       <div className="max-w-6xl w-full">
         {/* Header Section */}
-        <div className="mb-16 max-w-2xl">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-16 max-w-2xl"
+        >
           <p className="text-apple-blue text-xs font-bold uppercase tracking-[0.2em] mb-4">
             Get in touch
           </p>
@@ -27,11 +32,16 @@ export default function ContactPage() {
           <p className="text-apple-subtext text-lg leading-relaxed font-medium">
             Question about a product, something not working, or just want to say hi, we'll get back to you within 48 hours.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
           {/* Left Column: Form */}
-          <div className="lg:col-span-7">
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-7"
+          >
             {isSuccess ? (
               <motion.div 
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -99,14 +109,19 @@ export default function ContactPage() {
                 </div>
               </form>
             )}
-          </div>
+          </motion.div>
 
-          {/* Right Column: Info Boxes */}
           <div className="lg:col-span-5 flex flex-col gap-5">
             {/* Box 1: Response Time */}
             <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
               whileHover={{ y: -5, scale: 1.02 }} 
-              transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+              transition={{ 
+                x: { duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] },
+                opacity: { duration: 0.8, delay: 0.3 },
+                type: 'spring', stiffness: 400, damping: 25 
+              }}
               className="bg-white/50 dark:bg-white/5 border border-black/10 dark:border-white/10 backdrop-blur-2xl rounded-3xl p-8 flex flex-col items-start justify-center shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgba(255,255,255,0.02)] cursor-default"
             >
               <div className="flex items-center gap-2 mb-3">
@@ -120,9 +135,15 @@ export default function ContactPage() {
             {/* Box 2: Email */}
             <motion.a 
               href="mailto:halftonemotion@gmail.com"
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
               whileHover={{ y: -3, x: 1, scale: 1.01, boxShadow: "0 12px 24px -10px rgba(0, 122, 255, 0.3)", borderColor: "rgba(0, 122, 255, 0.4)" }} 
               whileTap={{ x: 6, y: -2, scale: 0.98 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+              transition={{ 
+                x: { duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] },
+                opacity: { duration: 0.8, delay: 0.4 },
+                type: 'spring', stiffness: 400, damping: 25 
+              }}
               className="bg-white/50 dark:bg-white/5 border border-black/10 dark:border-white/10 backdrop-blur-2xl rounded-3xl p-6 flex items-center gap-5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgba(255,255,255,0.02)] cursor-pointer block"
             >
               <div className="w-14 h-14 rounded-2xl bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/10 flex items-center justify-center shrink-0 group-hover:text-apple-blue transition-colors">
@@ -141,9 +162,15 @@ export default function ContactPage() {
               href="https://instagram.com/atharvf.x"
               target="_blank"
               rel="noopener noreferrer"
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
               whileHover={{ y: -3, x: 1, scale: 1.01, boxShadow: "0 12px 24px -10px rgba(0, 122, 255, 0.3)", borderColor: "rgba(0, 122, 255, 0.4)" }} 
               whileTap={{ x: 6, y: -2, scale: 0.98 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+              transition={{ 
+                x: { duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] },
+                opacity: { duration: 0.8, delay: 0.5 },
+                type: 'spring', stiffness: 400, damping: 25 
+              }}
               className="bg-white/50 dark:bg-white/5 border border-black/10 dark:border-white/10 backdrop-blur-2xl rounded-3xl p-6 flex items-center gap-5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgba(255,255,255,0.02)] cursor-pointer block"
             >
               <div className="w-14 h-14 rounded-2xl bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/10 flex items-center justify-center shrink-0">
