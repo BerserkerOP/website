@@ -164,7 +164,10 @@ const MeetCallMockup = () => (
   </div>
 );
 
-const RevisionCommentsMockup = () => (
+const RevisionCommentsMockup = () => {
+  const [showReply, setShowReply] = useState(false);
+
+  return (
   <div className="w-full h-full bg-white dark:bg-[#1C1C1E] rounded-2xl overflow-hidden shadow-2xl border border-black/10 dark:border-white/10 flex flex-col font-sans max-h-[350px]">
     <div className="px-5 py-4 border-b border-black/10 dark:border-white/10 flex justify-between items-center shrink-0">
       <span className="font-bold text-apple-text dark:text-white text-sm">Revision Comments</span>
@@ -187,7 +190,30 @@ const RevisionCommentsMockup = () => (
             <span className="text-xs font-bold text-apple-blue">0:15</span>
           </div>
           <p className="text-sm text-apple-text/80 dark:text-white/80 leading-relaxed font-medium">Can we nudge the logo slightly to the left here?</p>
-          <span className="text-[10px] font-bold text-apple-text/40 dark:text-white/40 mt-1 uppercase tracking-wider">1 reply</span>
+          
+          <AnimatePresence mode="wait">
+            {showReply ? (
+              <motion.div initial={{ opacity: 0, height: 0, marginTop: 0 }} animate={{ opacity: 1, height: 'auto', marginTop: 12 }} className="flex gap-3 border-l-2 border-black/10 dark:border-white/10 pl-3">
+                <div className="w-7 h-7 rounded-full bg-[#007AFF] flex items-center justify-center shrink-0 shadow-md">
+                  <span className="font-bold text-[10px] text-white">H</span>
+                </div>
+                <div className="flex flex-col gap-0.5">
+                  <span className="font-bold text-xs text-apple-text dark:text-white">HalftoneMotion</span>
+                  <p className="text-xs text-apple-text/70 dark:text-white/70 font-medium">Absolutely! We'll shift it left by 10 pixels in the next render.</p>
+                </div>
+              </motion.div>
+            ) : (
+              <motion.span 
+                key="reply-btn"
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                onClick={() => setShowReply(true)} 
+                className="text-[10px] font-bold text-apple-text/40 dark:text-white/40 mt-1 uppercase tracking-wider cursor-pointer hover:text-apple-blue transition-colors w-fit"
+              >
+                1 reply
+              </motion.span>
+            )}
+          </AnimatePresence>
+
         </div>
       </div>
       
@@ -205,7 +231,8 @@ const RevisionCommentsMockup = () => (
       </div>
     </div>
   </div>
-);
+  );
+};
 
 const VideoPlayerMockup = () => (
   <div className="w-full h-full bg-[#1C1C1E] rounded-xl overflow-hidden shadow-2xl border border-white/10 flex flex-col font-sans max-h-[350px]">
