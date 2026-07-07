@@ -8,12 +8,64 @@ export default function ContactPage() {
   const [isSuccess, setIsSuccess] = useState(false);
   const budgets = ["$350 - $500", "$500 - $800", "$800 - $1500", "$1500 - $3000", "$3000+"];
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedBudget, setSelectedBudget] = useState("");
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get('name') as string;
+    const email = formData.get('email') as string;
+    const budget = formData.get('budget') as string;
+    const message = formData.get('message') as string;
+
+    const newErrors: { [key: string]: string } = {};
+
+    if (!name || name.trim() === '') {
+      newErrors.name = 'Please enter your name.';
+    }
+    if (!email || email.trim() === '') {
+      newErrors.email = 'Please enter your email address.';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      newErrors.email = 'Please enter a valid email address.';
+    }
+    if (!budget) {
+      newErrors.budget = 'Please select a budget range.';
+    }
+    if (!message || message.trim() === '') {
+      newErrors.message = 'Please tell us what you need help with.';
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    setErrors({});
     setIsSuccess(true);
     // Add real form submission logic here if needed
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    if (errors[e.target.name]) {
+      setErrors(prev => ({ ...prev, [e.target.name]: '' }));
+    }
+  };
+
+  const ErrorMessage = ({ message }: { message: string }) => {
+    if (!message) return null;
+    return (
+      <motion.p 
+        initial={{ opacity: 0, y: -5 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="text-[#FF3B30] text-xs font-bold mt-1.5 ml-1 flex items-center gap-1.5"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5">
+          <path fillRule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-8-5a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-1.5 0v-4.5A.75.75 0 0 1 10 5Zm0 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clipRule="evenodd" />
+        </svg>
+        {message}
+      </motion.p>
+    );
   };
 
   return (
@@ -60,27 +112,31 @@ export default function ContactPage() {
                 <p className="text-apple-subtext text-lg">We'll get back to you within 48 hours.</p>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+              <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   {/* Name */}
                   <div className="flex flex-col gap-2">
                     <label className="text-[11px] font-bold text-apple-text/60 dark:text-white/50 uppercase tracking-[0.15em]">Your Name</label>
                     <input 
                       type="text" 
-                      required
+                      name="name"
                       placeholder="e.g. Alex" 
-                      className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-2xl px-5 py-4 text-apple-text dark:text-white placeholder-black/30 dark:placeholder-white/30 focus:outline-none focus:border-apple-blue transition-all backdrop-blur-md shadow-inner"
+                      onChange={handleChange}
+                      className={`w-full bg-black/5 dark:bg-white/5 border ${errors.name ? 'border-[#FF3B30] focus:border-[#FF3B30]' : 'border-black/10 dark:border-white/10 focus:border-apple-blue'} rounded-2xl px-5 py-4 text-apple-text dark:text-white placeholder-black/30 dark:placeholder-white/30 focus:outline-none transition-all backdrop-blur-md shadow-inner`}
                     />
+                    <ErrorMessage message={errors.name} />
                   </div>
                   {/* Email */}
                   <div className="flex flex-col gap-2">
                     <label className="text-[11px] font-bold text-apple-text/60 dark:text-white/50 uppercase tracking-[0.15em]">Email</label>
                     <input 
                       type="email" 
-                      required
+                      name="email"
                       placeholder="you@email.com" 
-                      className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-2xl px-5 py-4 text-apple-text dark:text-white placeholder-black/30 dark:placeholder-white/30 focus:outline-none focus:border-apple-blue transition-all backdrop-blur-md shadow-inner"
+                      onChange={handleChange}
+                      className={`w-full bg-black/5 dark:bg-white/5 border ${errors.email ? 'border-[#FF3B30] focus:border-[#FF3B30]' : 'border-black/10 dark:border-white/10 focus:border-apple-blue'} rounded-2xl px-5 py-4 text-apple-text dark:text-white placeholder-black/30 dark:placeholder-white/30 focus:outline-none transition-all backdrop-blur-md shadow-inner`}
                     />
+                    <ErrorMessage message={errors.email} />
                   </div>
                 </div>
 
@@ -88,10 +144,13 @@ export default function ContactPage() {
                 <div className="flex flex-col gap-2">
                   <label className="text-[11px] font-bold text-apple-text/60 dark:text-white/50 uppercase tracking-[0.15em]">Budget</label>
                   <div className="relative">
-                    <input type="hidden" name="budget" value={selectedBudget} required />
+                    <input type="hidden" name="budget" value={selectedBudget} />
                     <div 
-                      onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                      className={`w-full px-5 py-4 pr-12 rounded-2xl border ${isDropdownOpen ? 'border-apple-blue' : 'border-black/10 dark:border-white/10'} bg-black/5 dark:bg-white/5 transition-all text-apple-text dark:text-white backdrop-blur-md shadow-inner cursor-pointer flex items-center justify-between`}
+                      onClick={() => {
+                        setIsDropdownOpen(!isDropdownOpen);
+                        if (errors.budget) setErrors(prev => ({ ...prev, budget: '' }));
+                      }}
+                      className={`w-full px-5 py-4 pr-12 rounded-2xl border ${errors.budget ? 'border-[#FF3B30]' : isDropdownOpen ? 'border-apple-blue' : 'border-black/10 dark:border-white/10'} bg-black/5 dark:bg-white/5 transition-all text-apple-text dark:text-white backdrop-blur-md shadow-inner cursor-pointer flex items-center justify-between`}
                       tabIndex={0}
                       onBlur={(e) => {
                         if (!e.currentTarget.contains(e.relatedTarget)) {
@@ -121,6 +180,7 @@ export default function ContactPage() {
                             onClick={() => {
                               setSelectedBudget(b);
                               setIsDropdownOpen(false);
+                              if (errors.budget) setErrors(prev => ({ ...prev, budget: '' }));
                             }}
                             className={`px-5 py-3 cursor-pointer transition-colors ${selectedBudget === b ? 'bg-apple-blue/10 text-apple-blue font-bold' : 'text-apple-text dark:text-white hover:bg-black/5 dark:hover:bg-white/10'} mx-2 rounded-xl my-1 flex items-center justify-between`}
                           >
@@ -135,17 +195,20 @@ export default function ContactPage() {
                       </motion.div>
                     )}
                   </div>
+                  <ErrorMessage message={errors.budget} />
                 </div>
 
                 {/* Message */}
                 <div className="flex flex-col gap-2">
                   <label className="text-[11px] font-bold text-apple-text/60 dark:text-white/50 uppercase tracking-[0.15em]">Message</label>
                   <textarea 
-                    required
+                    name="message"
                     placeholder="Tell me what's up..." 
                     rows={6}
-                    className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-2xl px-5 py-4 text-apple-text dark:text-white placeholder-black/30 dark:placeholder-white/30 focus:outline-none focus:border-apple-blue transition-all backdrop-blur-md shadow-inner resize-none"
+                    onChange={handleChange}
+                    className={`w-full bg-black/5 dark:bg-white/5 border ${errors.message ? 'border-[#FF3B30] focus:border-[#FF3B30]' : 'border-black/10 dark:border-white/10 focus:border-apple-blue'} rounded-2xl px-5 py-4 text-apple-text dark:text-white placeholder-black/30 dark:placeholder-white/30 focus:outline-none transition-all backdrop-blur-md shadow-inner resize-none`}
                   ></textarea>
+                  <ErrorMessage message={errors.message} />
                 </div>
 
                 {/* Submit */}
