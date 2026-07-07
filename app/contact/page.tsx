@@ -6,6 +6,9 @@ import SpotlightButton from '@/components/SpotlightButton';
 
 export default function ContactPage() {
   const [isSuccess, setIsSuccess] = useState(false);
+  const budgets = ["$350 - $500", "$500 - $800", "$800 - $1500", "$1500 - $3000", "$3000+"];
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [selectedBudget, setSelectedBudget] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -84,11 +87,54 @@ export default function ContactPage() {
                 {/* Budget */}
                 <div className="flex flex-col gap-2">
                   <label className="text-[11px] font-bold text-apple-text/60 dark:text-white/50 uppercase tracking-[0.15em]">Budget</label>
-                  <input 
-                    type="text" 
-                    placeholder="e.g. $1,000 - $5,000" 
-                    className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-2xl px-5 py-4 text-apple-text dark:text-white placeholder-black/30 dark:placeholder-white/30 focus:outline-none focus:border-apple-blue transition-all backdrop-blur-md shadow-inner"
-                  />
+                  <div className="relative">
+                    <input type="hidden" name="budget" value={selectedBudget} required />
+                    <div 
+                      onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                      className={`w-full px-5 py-4 pr-12 rounded-2xl border ${isDropdownOpen ? 'border-apple-blue' : 'border-black/10 dark:border-white/10'} bg-black/5 dark:bg-white/5 transition-all text-apple-text dark:text-white backdrop-blur-md shadow-inner cursor-pointer flex items-center justify-between`}
+                      tabIndex={0}
+                      onBlur={(e) => {
+                        if (!e.currentTarget.contains(e.relatedTarget)) {
+                          setIsDropdownOpen(false);
+                        }
+                      }}
+                    >
+                      <span className={selectedBudget ? 'text-apple-text dark:text-white' : 'text-black/30 dark:text-white/30'}>
+                        {selectedBudget || 'e.g. $1,000 - $5,000'}
+                      </span>
+                      <motion.div animate={{ rotate: isDropdownOpen ? 180 : 0 }} transition={{ duration: 0.3, ease: "easeInOut" }}>
+                        <svg className="w-5 h-5 text-black/40 dark:text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                      </motion.div>
+                    </div>
+                    
+                    {isDropdownOpen && (
+                      <motion.div 
+                        initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute top-[calc(100%+8px)] left-0 right-0 z-50 bg-white/95 dark:bg-[#2A2A2E]/95 backdrop-blur-xl border border-black/10 dark:border-white/10 rounded-2xl py-2 shadow-2xl overflow-hidden"
+                      >
+                        {budgets.map(b => (
+                          <div 
+                            key={b}
+                            onClick={() => {
+                              setSelectedBudget(b);
+                              setIsDropdownOpen(false);
+                            }}
+                            className={`px-5 py-3 cursor-pointer transition-colors ${selectedBudget === b ? 'bg-apple-blue/10 text-apple-blue font-bold' : 'text-apple-text dark:text-white hover:bg-black/5 dark:hover:bg-white/10'} mx-2 rounded-xl my-1 flex items-center justify-between`}
+                          >
+                            {b}
+                            {selectedBudget === b && (
+                              <motion.svg initial={{ scale: 0 }} animate={{ scale: 1 }} className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                              </motion.svg>
+                            )}
+                          </div>
+                        ))}
+                      </motion.div>
+                    )}
+                  </div>
                 </div>
 
                 {/* Message */}

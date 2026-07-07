@@ -9,6 +9,9 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState(false);
 
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [selectedBudget, setSelectedBudget] = useState("");
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
@@ -144,21 +147,55 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
         
         {/* Styled Dropdown Menu */}
         <div className="relative">
-          <select 
-            name="budget"
-            onChange={handleChange}
-            defaultValue=""
-            required
-            className={`w-full px-3 py-2 pr-10 appearance-none rounded-xl border ${errors.budget ? 'border-[#FF3B30] focus:ring-[#FF3B30]/20 bg-white dark:bg-[#1C1C1E]' : 'border-black/10 dark:border-white/10 focus:border-apple-blue focus:ring-apple-blue bg-white/70 dark:bg-black/40'} focus:ring-1 outline-none transition-all text-apple-text dark:text-white text-[13px] backdrop-blur-md cursor-pointer`}
+          <input type="hidden" name="budget" value={selectedBudget} />
+          <div 
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            className={`w-full px-3 py-2 pr-10 rounded-xl border ${errors.budget ? 'border-[#FF3B30] bg-white dark:bg-[#1C1C1E]' : 'border-black/10 dark:border-white/10 bg-white/70 dark:bg-black/40'} ${isDropdownOpen ? 'border-apple-blue ring-1 ring-apple-blue' : 'focus:border-apple-blue focus:ring-apple-blue focus:ring-1'} outline-none transition-all text-[13px] backdrop-blur-md cursor-pointer flex items-center justify-between`}
+            tabIndex={0}
+            onBlur={(e) => {
+              if (!e.currentTarget.contains(e.relatedTarget)) {
+                setIsDropdownOpen(false);
+              }
+            }}
           >
-            <option value="" disabled hidden>Select your budget</option>
-            {budgets.map(b => (
-              <option key={b} value={b} className="text-apple-text">{b}</option>
-            ))}
-          </select>
-          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-apple-text/50 dark:text-white/50">
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+            <span className={selectedBudget ? 'text-apple-text dark:text-white' : 'text-zinc-500 dark:text-zinc-400'}>
+              {selectedBudget || 'Select your budget'}
+            </span>
+            <motion.div animate={{ rotate: isDropdownOpen ? 180 : 0 }} transition={{ duration: 0.3, ease: "easeInOut" }}>
+              <svg className="w-4 h-4 text-apple-text/50 dark:text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+            </motion.div>
           </div>
+          
+          <AnimatePresence>
+            {isDropdownOpen && (
+              <motion.div 
+                initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+                className="absolute top-[calc(100%+8px)] left-0 right-0 z-50 bg-white/90 dark:bg-[#2A2A2E]/90 backdrop-blur-xl border border-black/10 dark:border-white/10 rounded-xl py-1.5 shadow-2xl overflow-hidden"
+              >
+                {budgets.map(b => (
+                  <div 
+                    key={b}
+                    onClick={() => {
+                      setSelectedBudget(b);
+                      setIsDropdownOpen(false);
+                      if (errors.budget) setErrors(prev => ({ ...prev, budget: '' }));
+                    }}
+                    className={`px-4 py-2 text-[13px] cursor-pointer transition-colors ${selectedBudget === b ? 'bg-apple-blue/10 text-apple-blue font-bold' : 'text-apple-text dark:text-white hover:bg-black/5 dark:hover:bg-white/10'} mx-1.5 rounded-lg my-0.5 flex items-center justify-between`}
+                  >
+                    {b}
+                    {selectedBudget === b && (
+                      <motion.svg initial={{ scale: 0 }} animate={{ scale: 1 }} className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                      </motion.svg>
+                    )}
+                  </div>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
         <ErrorMessage message={errors.budget} />
       </div>
