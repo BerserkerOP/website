@@ -180,7 +180,7 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
       <button 
         type="submit"
         disabled={isSubmitting}
-        className="mt-1 shrink-0 w-full bg-apple-blue text-white font-bold py-2.5 rounded-xl hover:bg-apple-blue-hover transition-colors shadow-sm active:scale-[0.98] text-[13px] flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="mt-1 shrink-0 w-full bg-apple-blue text-white font-bold py-2.5 rounded-xl hover:bg-[#007AFF]/90 hover:shadow-[0_8px_25px_-5px_rgba(0,122,255,0.6)] hover:-translate-y-0.5 transition-all active:scale-[0.98] text-[13px] flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none disabled:hover:translate-y-0"
       >
         {isSubmitting ? (
           <>

@@ -81,7 +81,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-4 w-full px-4 sm:px-0"
           >
-            <TiltButton href="/#contact" className="w-full sm:w-auto font-semibold text-apple-text px-6 py-3.5 sm:px-8 sm:py-4 text-sm sm:text-base rounded-full backdrop-blur-xl bg-gradient-to-b from-white/60 to-white/20 dark:from-white/10 dark:to-white/5 border border-white/80 dark:border-white/10 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.6)] dark:shadow-[0_4px_24px_-8px_rgba(255,255,255,0.05)] transition-all hover:scale-[1.02]">
+            <TiltButton href="/#contact" className="w-full sm:w-auto font-bold bg-[#007AFF] text-white hover:bg-[#007AFF]/90 hover:shadow-[0_8px_25px_-5px_rgba(0,122,255,0.6)] hover:-translate-y-0.5 transition-all px-6 py-3.5 sm:px-8 sm:py-4 text-sm sm:text-base rounded-full">
               Start Your Project
             </TiltButton>
             <TiltButton href="/work" glow={true} className="w-full sm:w-auto font-semibold text-apple-text rounded-full shadow-sm text-sm sm:text-base" innerClassName="px-6 py-3.5 sm:px-8 sm:py-4">
