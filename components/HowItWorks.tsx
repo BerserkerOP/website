@@ -275,38 +275,61 @@ export default function HowItWorks() {
           {steps.map((step, index) => {
             const isActive = activeStep === index;
             return (
-              <button
-                key={index}
-                onClick={() => setActiveStep(index)}
-                className={`w-full text-left rounded-2xl px-6 py-5 transition-all duration-300 focus:outline-none flex items-center gap-4 border ${
-                  isActive 
-                    ? 'bg-apple-blue shadow-lg shadow-apple-blue/20 border-transparent' 
-                    : 'bg-apple-card/40 backdrop-blur-sm border-black/5 dark:border-white/5 hover:bg-apple-card/80 hover:border-black/10 dark:hover:border-white/10'
-                }`}
-              >
-                <span 
-                  className={`w-10 h-10 rounded-[10px] flex items-center justify-center text-sm font-bold shrink-0 transition-colors duration-300 ${
+              <div key={index} className="flex flex-col gap-2">
+                <button
+                  onClick={() => setActiveStep(index)}
+                  className={`w-full text-left rounded-2xl px-6 py-5 transition-all duration-300 focus:outline-none flex items-center gap-4 border ${
                     isActive 
-                      ? 'bg-white/20 text-white shadow-inner' 
-                      : 'bg-apple-blue/10 text-apple-blue dark:bg-white/5 dark:text-white/60'
+                      ? 'bg-apple-blue shadow-lg shadow-apple-blue/20 border-transparent' 
+                      : 'bg-apple-card/40 backdrop-blur-sm border-black/5 dark:border-white/5 hover:bg-apple-card/80 hover:border-black/10 dark:hover:border-white/10'
                   }`}
                 >
-                  {step.num}
-                </span>
-                <h3 
-                  className={`text-lg font-semibold transition-colors duration-300 ${
-                    isActive ? 'text-white' : 'text-apple-text'
-                  }`}
-                >
-                  {step.title}
-                </h3>
-              </button>
+                  <span 
+                    className={`w-10 h-10 rounded-[10px] flex items-center justify-center text-sm font-bold shrink-0 transition-colors duration-300 ${
+                      isActive 
+                        ? 'bg-white/20 text-white shadow-inner' 
+                        : 'bg-apple-blue/10 text-apple-blue dark:bg-white/5 dark:text-white/60'
+                    }`}
+                  >
+                    {step.num}
+                  </span>
+                  <h3 
+                    className={`text-lg font-semibold transition-colors duration-300 ${
+                      isActive ? 'text-white' : 'text-apple-text'
+                    }`}
+                  >
+                    {step.title}
+                  </h3>
+                </button>
+
+                {/* Mobile Accordion Content */}
+                <AnimatePresence>
+                  {isActive && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="lg:hidden overflow-hidden"
+                    >
+                      <div className="bg-apple-card/60 dark:bg-apple-card/40 backdrop-blur-xl rounded-[24px] p-5 border border-black/5 dark:border-white/5 shadow-sm mt-1 mb-2 flex flex-col gap-5">
+                        <p className="text-apple-text/80 text-sm leading-relaxed font-medium">
+                          {step.desc}
+                        </p>
+                        <div className="w-full flex items-center justify-center">
+                          {mockups[index]}
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             );
           })}
         </div>
 
-        {/* Right Column: Active Card Display with Visual Mockups */}
-        <div className="lg:col-span-7 relative h-full min-h-[400px]">
+        {/* Right Column: Active Card Display with Visual Mockups (Desktop Only) */}
+        <div className="hidden lg:block lg:col-span-7 relative h-full min-h-[400px]">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeStep}
