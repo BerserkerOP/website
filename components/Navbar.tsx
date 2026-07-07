@@ -56,7 +56,7 @@ export default function Navbar() {
       animate={{ y: 0, x: "-50%" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       onMouseMove={handleMouseMove}
-      className={`group fixed top-4 md:top-6 left-1/2 z-50 flex items-center justify-between p-1.5 rounded-[32px] bg-black/[0.11] dark:bg-white/[0.11] backdrop-blur-[24px] shadow-[0_8px_32px_rgba(0,0,0,0.15),inset_0_1px_1px_rgba(255,255,255,0.4)] border border-white/30 dark:border-white/20 gap-8 md:gap-16 w-[95%] sm:w-auto max-w-4xl`}
+      className={`group fixed top-4 md:top-6 left-1/2 z-50 flex items-center justify-between p-1.5 rounded-[32px] bg-white/90 dark:bg-[#2A2A2A] backdrop-blur-[24px] shadow-[0_8px_32px_rgba(0,122,255,0.1),inset_0_1px_1px_rgba(255,255,255,0.4)] border border-black/5 dark:border-[#007AFF]/30 gap-8 md:gap-16 w-[95%] sm:w-auto max-w-4xl dark:shadow-[0_0_20px_rgba(0,122,255,0.15)]`}
     >
       {/* Spotlight Overlay */}
       <motion.div
@@ -99,13 +99,13 @@ export default function Navbar() {
                 key={link.path}
                 href={link.path} 
                 onMouseEnter={() => setHoveredPath(link.path)}
-                className={`relative px-4 py-2 transition-all duration-300 font-bold tracking-[0.15em] text-[11px] uppercase drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)] ${isActive ? 'text-white' : 'text-white/95 hover:text-white'}`}
+                className={`relative px-4 py-2 transition-all duration-300 font-bold tracking-[0.15em] text-[11px] uppercase ${isActive ? 'text-[#007AFF] drop-shadow-[0_0_8px_rgba(0,122,255,0.4)]' : 'text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white'}`}
               >
                 {link.name}
                 {isActive && (
                   <motion.div
                     layoutId="navbar-indicator"
-                    className="absolute bottom-0 inset-x-0 mx-auto w-4 h-[3px] rounded-full bg-[#007AFF] shadow-[0_0_10px_rgba(0,122,255,0.8)]"
+                    className="absolute -bottom-1 inset-x-0 mx-auto w-1.5 h-1.5 rounded-full bg-[#007AFF] shadow-[0_0_8px_rgba(0,122,255,0.9)]"
                     transition={{ type: "spring", stiffness: 350, damping: 30 }}
                   />
                 )}
