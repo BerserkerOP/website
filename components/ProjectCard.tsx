@@ -130,72 +130,78 @@ export default function ProjectCard({ title, category, delay = 0, videoUrl, hove
           rotateX,
           rotateY,
         }}
-        className="relative flex flex-col h-full w-full rounded-[23px] overflow-hidden bg-apple-card shadow-[0_2px_10px_rgba(0,0,0,0.02)] dark:shadow-none"
+        className="relative flex flex-col h-full w-full rounded-[24px] shadow-[0_2px_10px_rgba(0,0,0,0.02)] dark:shadow-none"
       >
-        {/* Spotlight Hover Glow (Behind Content) */}
-        <motion.div
-          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 z-0"
-          style={{
-            background: spotlightBackground,
-          }}
-        />
+        {/* Apple Blue Gradient Border & Glow on hover/active */}
+        <div className="absolute -inset-[2px] rounded-[26px] bg-gradient-to-br from-[#007AFF] via-[#5AC8FA] to-[#007AFF] opacity-0 group-hover:opacity-100 group-active:opacity-100 blur-[1px] transition-all duration-500 group-active:duration-100 group-active:scale-[0.98]" />
+        <div className="absolute -inset-[2px] rounded-[26px] bg-gradient-to-br from-[#007AFF] via-[#5AC8FA] to-[#007AFF] opacity-0 group-hover:opacity-40 group-active:opacity-80 blur-xl transition-all duration-500 group-active:duration-100 group-active:scale-[0.98]" />
 
-        {/* Colorful Gradient Hover Glow */}
-        {hoverGradient && (
-          <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-        )}
-        
-        {/* Glare Layer (ReactBits) */}
-        <GlareHover className="absolute inset-0 z-50 rounded-[23px] mix-blend-overlay" transitionDuration={600} glareOpacity={0.8} />
+        <div className="relative flex flex-col h-full w-full rounded-[24px] overflow-hidden bg-apple-card z-10 transition-transform duration-200 group-active:scale-[0.98]">
+          {/* Spotlight Hover Glow (Behind Content) */}
+          <motion.div
+            className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 z-0"
+            style={{
+              background: spotlightBackground,
+            }}
+          />
 
-        <div 
-          className="relative z-10 w-full aspect-video bg-zinc-900 overflow-hidden cursor-pointer group/video rounded-t-[23px] isolate"
-          onClick={() => {
-            if (!isPlaying) {
-              setIsPlaying(true);
-              xPct.set(0.5);
-              yPct.set(0.5);
-            }
-          }}
-        >
-          {!isPlaying && imageUrl ? (
-            <div className="relative w-full h-full">
-              <img 
-                src={imageUrl} 
-                alt={title} 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover/video:scale-105" 
-              />
-              <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover/video:bg-black/10 transition-colors">
-                <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.3)] transform transition-transform group-hover/video:scale-110">
-                  <svg className="w-10 h-10 text-white drop-shadow-md" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
+          {/* Colorful Gradient Hover Glow */}
+          {hoverGradient && (
+            <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          )}
+          
+          {/* Glare Layer (ReactBits) */}
+          <GlareHover className="absolute inset-0 z-50 rounded-[24px] mix-blend-overlay" transitionDuration={600} glareOpacity={0.8} />
+
+          <div 
+            className="relative z-10 w-full aspect-video bg-zinc-900 overflow-hidden cursor-pointer group/video rounded-t-[24px] isolate"
+            onClick={() => {
+              if (!isPlaying) {
+                setIsPlaying(true);
+                xPct.set(0.5);
+                yPct.set(0.5);
+              }
+            }}
+          >
+            {!isPlaying && imageUrl ? (
+              <div className="relative w-full h-full">
+                <img 
+                  src={imageUrl} 
+                  alt={title} 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover/video:scale-105" 
+                />
+                <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover/video:bg-black/10 transition-colors">
+                  <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.3)] transform transition-transform group-hover/video:scale-110">
+                    <svg className="w-10 h-10 text-white drop-shadow-md" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
                 </div>
               </div>
-            </div>
-          ) : embedUrl ? (
-            <iframe 
-              ref={iframeRef}
-              className="w-full h-full"
-              src={embedUrl} 
-              title={title} 
-              frameBorder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowFullScreen
-            ></iframe>
-          ) : (
-            <div className="w-full h-full bg-zinc-800/50 flex items-center justify-center">
-              <span className="text-zinc-500 text-[10px] uppercase tracking-[0.2em]">[ VIDEO PLACEHOLDER ]</span>
-            </div>
-          )}
-        </div>
+            ) : embedUrl ? (
+              <iframe 
+                ref={iframeRef}
+                className="w-full h-full"
+                src={embedUrl} 
+                title={title} 
+                frameBorder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowFullScreen
+              ></iframe>
+            ) : (
+              <div className="w-full h-full bg-zinc-800/50 flex items-center justify-center">
+                <span className="text-zinc-500 text-[10px] uppercase tracking-[0.2em]">[ VIDEO PLACEHOLDER ]</span>
+              </div>
+            )}
+          </div>
 
-        {/* Text Container */}
-        <div className="relative z-10 px-6 py-6 flex flex-col gap-1.5 flex-1 bg-transparent">
-          <h3 className="text-lg font-bold text-apple-text tracking-tight">{title}</h3>
-          <p className="text-sm text-apple-subtext leading-relaxed">
-            {category}
-          </p>
+          {/* Text Container */}
+          <div className="relative z-10 px-6 py-6 flex flex-col gap-1.5 flex-1 bg-transparent">
+            <h3 className="text-lg font-bold text-apple-text tracking-tight">{title}</h3>
+            <p className="text-sm text-apple-subtext leading-relaxed">
+              {category}
+            </p>
+          </div>
         </div>
       </motion.div>
     </motion.div>
