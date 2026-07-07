@@ -10,6 +10,7 @@ import Image from 'next/image';
 const NAV_LINKS = [
   { name: 'Home', path: '/' },
   { name: 'Our Work', path: '/work' },
+  { name: 'Process', path: '/process' },
   { name: 'Contact', path: '/contact' }
 ];
 
