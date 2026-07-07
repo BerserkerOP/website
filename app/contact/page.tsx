@@ -116,7 +116,7 @@ export default function ContactPage() {
             <motion.div 
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
-              whileHover={{ y: -5, scale: 1.02 }} 
+              whileHover={{ y: -3, x: 1, scale: 1.01, boxShadow: "0 12px 24px -10px rgba(0, 122, 255, 0.3)", borderColor: "rgba(0, 122, 255, 0.4)" }} 
               transition={{ 
                 x: { duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] },
                 opacity: { duration: 0.8, delay: 0.3 },
