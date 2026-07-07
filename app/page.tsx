@@ -13,8 +13,6 @@ export default function Home() {
       videoUrl: "https://youtu.be/ixG3a8z213k"
     },
     { title: "Explainer Videos", category: "Complex features made instantly clear", videoUrl: "https://youtu.be/L3MB9hYLbBI", thumbnailUrl: "https://img.youtube.com/vi/L3MB9hYLbBI/hqdefault.jpg" },
-    { title: "ChatGPT Animation", category: "High-energy kinetic typography for artists", videoUrl: "https://youtube.com/shorts/altZ7ZOHWNo?feature=share" },
-    { title: "Onboarding Sequences", category: "Get users to their aha moment", videoUrl: "https://youtu.be/NhGNe4KJ1cU" },
   ];
 
   return (
