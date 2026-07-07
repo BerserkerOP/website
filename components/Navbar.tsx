@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -57,26 +57,28 @@ export default function Navbar() {
         className="hidden md:flex items-center justify-center space-x-2 relative"
         onMouseLeave={() => setHoveredPath(null)}
       >
-        {NAV_LINKS.map((link) => {
-          const isActive = hoveredPath === link.path || (!hoveredPath && pathname === link.path);
-          return (
-            <Link 
-              key={link.path}
-              href={link.path} 
-              onMouseEnter={() => setHoveredPath(link.path)}
-              className={`relative px-4 py-2 transition-colors duration-300 font-semibold tracking-[0.15em] text-[11px] uppercase ${isActive ? 'text-[#007AFF]' : 'text-white/70'}`}
-            >
-              {link.name}
-              {isActive && (
-                <motion.div
-                  layoutId="navbar-indicator"
-                  className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-[3px] rounded-full bg-[#007AFF] shadow-[0_0_10px_rgba(0,122,255,0.8)]"
-                  transition={{ type: "spring", stiffness: 350, damping: 30 }}
-                />
-              )}
-            </Link>
-          );
-        })}
+        <LayoutGroup>
+          {NAV_LINKS.map((link) => {
+            const isActive = hoveredPath === link.path || (!hoveredPath && pathname === link.path);
+            return (
+              <Link 
+                key={link.path}
+                href={link.path} 
+                onMouseEnter={() => setHoveredPath(link.path)}
+                className={`relative px-4 py-2 transition-colors duration-300 font-semibold tracking-[0.15em] text-[11px] uppercase ${isActive ? 'text-[#007AFF]' : 'text-white/70'}`}
+              >
+                {link.name}
+                {isActive && (
+                  <motion.div
+                    layoutId="navbar-indicator"
+                    className="absolute bottom-0 inset-x-0 mx-auto w-4 h-[3px] rounded-full bg-[#007AFF] shadow-[0_0_10px_rgba(0,122,255,0.8)]"
+                    transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                  />
+                )}
+              </Link>
+            );
+          })}
+        </LayoutGroup>
       </div>
 
       <div className="flex items-center gap-4">
