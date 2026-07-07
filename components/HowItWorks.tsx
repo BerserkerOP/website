@@ -246,7 +246,7 @@ const mockups = [
 export default function HowItWorks() {
   const [activeStep, setActiveStep] = useState(0);
   return (
-    <section className="py-20 sm:py-32 px-6 lg:px-16 max-w-7xl mx-auto border-t border-apple-border/50 relative overflow-hidden">
+    <section className="py-20 sm:py-32 px-6 lg:px-16 max-w-7xl mx-auto relative overflow-hidden">
       
       <div className="mb-16 text-center max-w-2xl mx-auto relative z-10">
         <motion.p 
