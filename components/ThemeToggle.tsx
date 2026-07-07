@@ -3,7 +3,7 @@
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
-export function ThemeToggle() {
+export function ThemeToggle({ className }: { className?: string }) {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
@@ -42,17 +42,15 @@ export function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <button className="p-2 rounded-full text-apple-subtext hover:text-apple-text hover:bg-apple-gray transition-colors duration-200 ml-4 flex items-center justify-center w-9 h-9" aria-label="Toggle Dark Mode" disabled>
+      <button className={className || "p-2 rounded-full text-apple-subtext hover:text-apple-text hover:bg-apple-gray transition-colors duration-200 ml-4 flex items-center justify-center w-9 h-9"} aria-label="Toggle Dark Mode" disabled>
       </button>
     ); // Placeholder to prevent layout shift and hydration errors
   }
 
-
-
   return (
     <button
       onClick={toggleTheme}
-      className="p-2 rounded-full text-apple-subtext hover:text-apple-text hover:bg-apple-gray transition-colors duration-200 ml-4 flex items-center justify-center"
+      className={className || "p-2 rounded-full text-apple-subtext hover:text-apple-text hover:bg-apple-gray transition-colors duration-200 ml-4 flex items-center justify-center"}
       aria-label="Toggle Dark Mode"
     >
       {isDark ? (
