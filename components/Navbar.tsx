@@ -105,11 +105,16 @@ export default function Navbar() {
                 {isActive && (
                   <motion.div
                     layoutId="navbar-indicator"
-                    initial={{ scaleX: 1, borderRadius: "50%" }}
-                    animate={{ scaleX: [1, 3.5, 1], borderRadius: ["50%", "20%", "50%"] }}
-                    transition={{ duration: 0.4, ease: "easeInOut" }}
-                    className="absolute -bottom-1 inset-x-0 mx-auto w-1.5 h-1.5 bg-[#007AFF] shadow-[0_0_8px_rgba(0,122,255,0.9)] origin-center"
-                  />
+                    className="absolute -bottom-1 inset-x-0 mx-auto w-1.5 h-1.5 flex items-center justify-center pointer-events-none"
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  >
+                    <motion.div
+                      initial={{ width: "6px" }}
+                      animate={{ width: ["6px", "28px", "6px"] }}
+                      transition={{ duration: 0.35, ease: "easeInOut" }}
+                      className="absolute h-1.5 rounded-full bg-[#007AFF] shadow-[0_0_8px_rgba(0,122,255,0.9)]"
+                    />
+                  </motion.div>
                 )}
               </Link>
             );
