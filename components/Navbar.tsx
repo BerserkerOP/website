@@ -106,12 +106,12 @@ export default function Navbar() {
                   <motion.div
                     layoutId="navbar-indicator"
                     className="absolute -bottom-1 inset-x-0 mx-auto w-1.5 h-1.5 flex items-center justify-center pointer-events-none"
-                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                    transition={{ type: "tween", ease: [0.4, 0, 0.2, 1], duration: 0.4 }}
                   >
                     <motion.div
                       initial={{ width: "6px" }}
-                      animate={{ width: ["6px", "28px", "6px"] }}
-                      transition={{ duration: 0.35, ease: "easeInOut" }}
+                      animate={{ width: ["6px", "32px", "6px"] }}
+                      transition={{ type: "tween", ease: [0.4, 0, 0.2, 1], duration: 0.4 }}
                       className="absolute h-1.5 rounded-full bg-[#007AFF] shadow-[0_0_8px_rgba(0,122,255,0.9)]"
                     />
                   </motion.div>
