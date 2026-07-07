@@ -6,28 +6,28 @@ import { motion, AnimatePresence } from 'framer-motion';
 const steps = [
   {
     num: "01",
-    title: "Discovery & Strategy",
-    desc: "We begin with a deep dive into your brand, audience, and goals. Whether you have a script ready or need us to write one from scratch, we establish the core narrative before moving forward."
+    title: "Project Kickoff",
+    desc: "We start by understanding your brand and goals through our intake form. Whether you have a script ready or need one from scratch, we lock in the core narrative first."
   },
   {
     num: "02",
     title: "Storyboarding",
-    desc: "We craft a comprehensive frame-by-frame storyboard. This allows you to visualize the flow, pacing, and visual direction, ensuring we are perfectly aligned before any design work begins."
+    desc: "We sketch a frame-by-frame storyboard. This helps you visualize the flow, pacing, and visual direction, ensuring we're perfectly aligned before any design begins."
   },
   {
     num: "03",
-    title: "Design & Asset Creation",
-    desc: "Our designers build out the custom illustrations, UI mockups, and typography that will define your video. You approve the final visual style, guaranteeing it matches your brand identity perfectly."
+    title: "Style Approval",
+    desc: "Our designers build custom illustrations and UI mockups. We then jump on a quick call where you approve the exact visual style and guarantee it matches your brand."
   },
   {
     num: "04",
-    title: "Animation & Motion",
-    desc: "This is where the magic happens. We bring the approved assets to life with buttery-smooth motion design and sound effects. You get consolidated feedback rounds via timestamped comments."
+    title: "Animation & Sound",
+    desc: "The magic happens here. We bring the approved assets to life with buttery-smooth motion design, perfectly timed voiceovers, and premium sound effects."
   },
   {
     num: "05",
-    title: "Final Delivery",
-    desc: "After final polishing and quality assurance, your premium motion graphics video is rendered and delivered in multiple formats, ready to captivate your audience and elevate your brand."
+    title: "Revisions & Delivery",
+    desc: "You review the video and leave consolidated feedback via timestamped comments. After final tweaks, your premium video is rendered and delivered in 4K."
   }
 ];
 
@@ -37,27 +37,27 @@ const IntakeFormMockup = () => (
     <div className="bg-[#007AFF] px-6 py-4 flex items-center shadow-md z-10">
       <span className="text-white font-bold tracking-[0.1em] text-xs uppercase">Project Intake Form</span>
     </div>
-    <div className="p-6 flex flex-col gap-4 flex-grow bg-zinc-50 dark:bg-black/20">
+    <div className="p-4 flex flex-col gap-3 flex-grow bg-zinc-50 dark:bg-black/20">
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-1.5">
           <div className="w-16 h-2 bg-black/10 dark:bg-white/10 rounded-full"></div>
-          <div className="h-8 w-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 rounded-lg"></div>
+          <div className="h-7 w-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 rounded-lg"></div>
         </div>
         <div className="space-y-1.5">
           <div className="w-16 h-2 bg-black/10 dark:bg-white/10 rounded-full"></div>
-          <div className="h-8 w-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 rounded-lg"></div>
+          <div className="h-7 w-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 rounded-lg"></div>
         </div>
       </div>
-      <div className="space-y-1.5 mt-1">
+      <div className="space-y-1.5">
         <div className="w-20 h-2 bg-black/10 dark:bg-white/10 rounded-full"></div>
-        <div className="h-8 w-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 rounded-lg"></div>
+        <div className="h-7 w-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 rounded-lg"></div>
       </div>
-      <div className="space-y-1.5 mt-1">
+      <div className="space-y-1.5">
         <div className="w-24 h-2 bg-black/10 dark:bg-white/10 rounded-full"></div>
-        <div className="h-20 w-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 rounded-lg"></div>
+        <div className="h-16 w-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 rounded-lg"></div>
       </div>
-      <div className="mt-auto pt-2 flex justify-start">
-        <div className="w-full max-w-[120px] h-10 bg-[#007AFF] hover:bg-[#005bb5] transition-colors cursor-pointer rounded-lg flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-blue-500/30">
+      <div className="mt-auto pt-1 flex justify-start shrink-0">
+        <div className="w-full max-w-[120px] h-9 bg-[#007AFF] hover:bg-[#005bb5] transition-colors cursor-pointer rounded-lg flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-blue-500/30">
           Submit
         </div>
       </div>
@@ -111,22 +111,22 @@ const MeetCallMockup = () => (
     </div>
     
     <div className="px-4 pb-4 flex-grow grid grid-cols-3 gap-3 h-full">
-      <div className="bg-[#3C4043] rounded-xl relative flex flex-col items-center justify-center border-2 border-[#8AB4F8] shadow-[0_0_15px_rgba(138,180,248,0.2)]">
-        <div className="w-12 h-12 rounded-full bg-[#5F6368] flex items-center justify-center text-white text-xl font-medium mb-2 shadow-inner">A</div>
-        <span className="text-white text-[10px] font-medium tracking-wide">Atharv</span>
+      <div className="bg-[#3C4043] rounded-xl relative flex flex-col items-center justify-center border-2 border-[#8AB4F8] shadow-[0_0_15px_rgba(138,180,248,0.2)] py-2">
+        <div className="w-10 h-10 rounded-full bg-[#5F6368] flex items-center justify-center text-white text-lg font-medium mb-1.5 shadow-inner shrink-0">A</div>
+        <span className="text-white text-[9px] font-medium tracking-wide">Atharv</span>
       </div>
       
-      <div className="bg-[#3C4043] rounded-xl relative flex flex-col items-center justify-center border border-white/5">
-        <div className="absolute top-2 right-2 w-5 h-5 rounded-full bg-[#EA4335] flex items-center justify-center shadow-lg">
-          <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/><line x1="4" y1="4" x2="20" y2="20" stroke="white" strokeWidth="2.5" strokeLinecap="round"/></svg>
+      <div className="bg-[#3C4043] rounded-xl relative flex flex-col items-center justify-center border border-white/5 py-2">
+        <div className="absolute top-2 right-2 w-4 h-4 rounded-full bg-[#EA4335] flex items-center justify-center shadow-lg">
+          <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/><line x1="4" y1="4" x2="20" y2="20" stroke="white" strokeWidth="2.5" strokeLinecap="round"/></svg>
         </div>
-        <div className="w-12 h-12 rounded-full bg-[#5F6368] flex items-center justify-center text-white text-xl font-medium mb-2 shadow-inner">U</div>
-        <span className="text-white text-[10px] font-medium tracking-wide">Udayjot</span>
+        <div className="w-10 h-10 rounded-full bg-[#5F6368] flex items-center justify-center text-white text-lg font-medium mb-1.5 shadow-inner shrink-0">U</div>
+        <span className="text-white text-[9px] font-medium tracking-wide">Udayjot</span>
       </div>
 
-      <div className="bg-[#3C4043] rounded-xl relative flex flex-col items-center justify-center border border-white/5">
-        <div className="w-12 h-12 rounded-full bg-[#5F6368] flex items-center justify-center text-white text-xl font-medium mb-2 shadow-inner">R</div>
-        <span className="text-white text-[10px] font-medium tracking-wide">Rhythm</span>
+      <div className="bg-[#3C4043] rounded-xl relative flex flex-col items-center justify-center border border-white/5 py-2">
+        <div className="w-10 h-10 rounded-full bg-[#5F6368] flex items-center justify-center text-white text-lg font-medium mb-1.5 shadow-inner shrink-0">R</div>
+        <span className="text-white text-[9px] font-medium tracking-wide">Rhythm</span>
       </div>
     </div>
 
