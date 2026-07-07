@@ -82,7 +82,7 @@ export default function Navbar() {
           {/* Sphere reflection effects */}
           <div className="absolute inset-0 rounded-full shadow-[inset_0_-5px_15px_rgba(0,0,0,0.8),inset_0_4px_10px_rgba(255,255,255,0.5)] z-20 pointer-events-none transition-all duration-300 group-hover/logo:shadow-[inset_0_-3px_15px_rgba(0,122,255,0.7),inset_0_5px_12px_rgba(255,255,255,0.8)]" />
           <div className="absolute inset-0 bg-gradient-to-tr from-[#007AFF]/40 via-transparent to-white/20 z-10 pointer-events-none mix-blend-overlay rounded-full opacity-0 group-hover/logo:opacity-100 transition-opacity duration-300" />
-          <Image src="/icon.png" alt="HalftoneMotion" fill className="object-cover rounded-full" />
+          <Image src="/profile.jpg" alt="HalftoneMotion" fill className="object-cover rounded-full" />
         </Link>
       </motion.div>
       

@@ -13,9 +13,9 @@ export const metadata: Metadata = {
   title: 'HalftoneMotion',
   description: 'Next-Level Motion Design Portfolio',
   icons: {
-    icon: '/icon.png',
-    shortcut: '/icon.png',
-    apple: '/icon.png',
+    icon: '/profile.jpg',
+    shortcut: '/profile.jpg',
+    apple: '/profile.jpg',
   },
   openGraph: {
     title: 'HalftoneMotion',
