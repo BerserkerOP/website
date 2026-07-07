@@ -118,12 +118,14 @@ export default function ContactPage() {
             </motion.div>
 
             {/* Box 2: Email */}
-            <motion.div 
-              whileHover={{ y: -5, scale: 1.02 }} 
+            <motion.a 
+              href="mailto:halftonemotion@gmail.com"
+              whileHover={{ y: -5, x: 2, scale: 1.02, boxShadow: "0 15px 35px rgba(0, 122, 255, 0.25)", borderColor: "rgba(0, 122, 255, 0.3)" }} 
+              whileTap={{ x: 6, y: -2, scale: 0.98 }}
               transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-              className="bg-white/50 dark:bg-white/5 border border-black/10 dark:border-white/10 backdrop-blur-2xl rounded-3xl p-6 flex items-center gap-5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgba(255,255,255,0.02)] cursor-default"
+              className="bg-white/50 dark:bg-white/5 border border-black/10 dark:border-white/10 backdrop-blur-2xl rounded-3xl p-6 flex items-center gap-5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgba(255,255,255,0.02)] cursor-pointer block"
             >
-              <div className="w-14 h-14 rounded-2xl bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/10 flex items-center justify-center shrink-0">
+              <div className="w-14 h-14 rounded-2xl bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/10 flex items-center justify-center shrink-0 group-hover:text-apple-blue transition-colors">
                 <svg className="w-6 h-6 text-apple-text/70 dark:text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
@@ -132,13 +134,17 @@ export default function ContactPage() {
                 <span className="text-[11px] font-bold text-apple-blue uppercase tracking-[0.2em]">Email</span>
                 <span className="text-sm font-bold text-apple-text dark:text-white tracking-wide">halftonemotion@gmail.com</span>
               </div>
-            </motion.div>
+            </motion.a>
 
             {/* Box 3: Instagram */}
-            <motion.div 
-              whileHover={{ y: -5, scale: 1.02 }} 
+            <motion.a 
+              href="https://instagram.com/atharvf.x"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ y: -5, x: 2, scale: 1.02, boxShadow: "0 15px 35px rgba(0, 122, 255, 0.25)", borderColor: "rgba(0, 122, 255, 0.3)" }} 
+              whileTap={{ x: 6, y: -2, scale: 0.98 }}
               transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-              className="bg-white/50 dark:bg-white/5 border border-black/10 dark:border-white/10 backdrop-blur-2xl rounded-3xl p-6 flex items-center gap-5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgba(255,255,255,0.02)] cursor-pointer"
+              className="bg-white/50 dark:bg-white/5 border border-black/10 dark:border-white/10 backdrop-blur-2xl rounded-3xl p-6 flex items-center gap-5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgba(255,255,255,0.02)] cursor-pointer block"
             >
               <div className="w-14 h-14 rounded-2xl bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/10 flex items-center justify-center shrink-0">
                 <svg className="w-6 h-6 text-apple-text/70 dark:text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -149,7 +155,7 @@ export default function ContactPage() {
                 <span className="text-[11px] font-bold text-apple-blue uppercase tracking-[0.2em]">Instagram</span>
                 <span className="text-sm font-bold text-apple-text dark:text-white tracking-wide">@atharvf.x</span>
               </div>
-            </motion.div>
+            </motion.a>
           </div>
         </div>
       </div>
