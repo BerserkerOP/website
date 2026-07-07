@@ -120,7 +120,7 @@ export default function ContactPage() {
             {/* Box 2: Email */}
             <motion.a 
               href="mailto:halftonemotion@gmail.com"
-              whileHover={{ y: -5, x: 2, scale: 1.02, boxShadow: "0 15px 35px rgba(0, 122, 255, 0.25)", borderColor: "rgba(0, 122, 255, 0.3)" }} 
+              whileHover={{ y: -3, x: 1, scale: 1.01, boxShadow: "0 12px 24px -10px rgba(0, 122, 255, 0.3)", borderColor: "rgba(0, 122, 255, 0.4)" }} 
               whileTap={{ x: 6, y: -2, scale: 0.98 }}
               transition={{ type: 'spring', stiffness: 400, damping: 25 }}
               className="bg-white/50 dark:bg-white/5 border border-black/10 dark:border-white/10 backdrop-blur-2xl rounded-3xl p-6 flex items-center gap-5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgba(255,255,255,0.02)] cursor-pointer block"
@@ -141,7 +141,7 @@ export default function ContactPage() {
               href="https://instagram.com/atharvf.x"
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ y: -5, x: 2, scale: 1.02, boxShadow: "0 15px 35px rgba(0, 122, 255, 0.25)", borderColor: "rgba(0, 122, 255, 0.3)" }} 
+              whileHover={{ y: -3, x: 1, scale: 1.01, boxShadow: "0 12px 24px -10px rgba(0, 122, 255, 0.3)", borderColor: "rgba(0, 122, 255, 0.4)" }} 
               whileTap={{ x: 6, y: -2, scale: 0.98 }}
               transition={{ type: 'spring', stiffness: 400, damping: 25 }}
               className="bg-white/50 dark:bg-white/5 border border-black/10 dark:border-white/10 backdrop-blur-2xl rounded-3xl p-6 flex items-center gap-5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgba(255,255,255,0.02)] cursor-pointer block"

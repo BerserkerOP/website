@@ -151,11 +151,7 @@ export default function Navbar() {
           >
             <div className="px-6 py-6 flex flex-col max-h-[80vh] overflow-y-auto">
               <div className="flex flex-col space-y-4">
-                {[
-                  { name: 'HOME', path: '/' },
-                  { name: 'OUR WORK', path: '/work' },
-                  { name: 'CONTACT', path: '/contact' }
-                ].map((item, i) => (
+                {NAV_LINKS.map((item, i) => (
                   <motion.div
                     key={item.name}
                     initial={{ opacity: 0, x: -20 }}
@@ -166,7 +162,7 @@ export default function Navbar() {
                     <Link 
                       href={item.path} 
                       onClick={() => setMobileMenuOpen(false)} 
-                      className="text-2xl font-bold tracking-wide text-white block py-2"
+                      className="text-2xl font-bold tracking-wide uppercase text-white block py-2"
                     >
                       {item.name}
                     </Link>
