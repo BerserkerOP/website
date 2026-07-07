@@ -239,8 +239,8 @@ const mockups = [
   <IntakeFormMockup key="step0" />,
   <StoryboardMockup key="step1" />,
   <MeetCallMockup key="step2" />,
-  <RevisionCommentsMockup key="step3" />,
-  <VideoPlayerMockup key="step4" />
+  <VideoPlayerMockup key="step3" />,
+  <RevisionCommentsMockup key="step4" />
 ];
 
 export default function HowItWorks() {
