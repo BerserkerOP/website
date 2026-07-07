@@ -1,9 +1,9 @@
 "use client";
 
-import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
+import { motion, AnimatePresence, LayoutGroup, useMotionValue, useMotionTemplate } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, MouseEvent } from 'react';
 import { ThemeToggle } from './ThemeToggle';
 import Image from 'next/image';
 
@@ -18,6 +18,15 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const [hoveredPath, setHoveredPath] = useState<string | null>(null);
+
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  function handleMouseMove({ currentTarget, clientX, clientY }: MouseEvent) {
+    const { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,17 +54,32 @@ export default function Navbar() {
       initial={{ y: -100, x: "-50%" }}
       animate={{ y: 0, x: "-50%" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-4 md:top-6 left-1/2 z-50 flex items-center justify-between p-1.5 rounded-[32px] bg-[#2A2A2C]/80 backdrop-blur-3xl shadow-[0_8px_32px_rgba(0,0,0,0.15),inset_0_1px_1px_rgba(255,255,255,0.15)] border border-white/10 gap-8 md:gap-16 w-[95%] sm:w-auto max-w-4xl`}
+      onMouseMove={handleMouseMove}
+      className={`group fixed top-4 md:top-6 left-1/2 z-50 flex items-center justify-between p-1.5 rounded-[32px] bg-black/20 dark:bg-black/30 backdrop-blur-3xl shadow-[0_8px_32px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.2)] border border-white/20 gap-8 md:gap-16 w-[95%] sm:w-auto max-w-4xl`}
     >
+      {/* Spotlight Overlay */}
+      <motion.div
+        className="pointer-events-none absolute inset-0 rounded-[32px] opacity-0 transition-opacity duration-500 group-hover:opacity-100 z-0 overflow-hidden"
+        style={{
+          background: useMotionTemplate`
+            radial-gradient(
+              150px circle at ${mouseX}px ${mouseY}px,
+              rgba(255, 255, 255, 0.15),
+              transparent 80%
+            )
+          `,
+        }}
+      />
+
       {/* Left Profile Picture */}
-      <Link href="/" className="w-[42px] h-[42px] ml-1 rounded-full bg-white flex items-center justify-center shadow-[0_0_15px_rgba(0,122,255,0.5)] border border-[#007AFF] shrink-0 overflow-hidden relative group">
-        <div className="absolute inset-0 bg-[#007AFF] mix-blend-overlay opacity-0 group-hover:opacity-20 transition-opacity z-10" />
+      <Link href="/" className="w-[42px] h-[42px] ml-1 rounded-full bg-white flex items-center justify-center shadow-[0_0_20px_rgba(255,255,255,0.6)] border border-white/60 shrink-0 overflow-hidden relative group/logo z-10">
+        <div className="absolute inset-0 bg-white mix-blend-overlay opacity-0 group-hover/logo:opacity-40 transition-opacity z-10" />
         <Image src="/icon.png" alt="HalftoneMotion" fill className="object-cover p-[3px] rounded-full" />
       </Link>
       
       {/* Desktop Nav */}
       <div 
-        className="hidden md:flex items-center justify-center space-x-2 relative"
+        className="hidden md:flex items-center justify-center space-x-2 relative z-10"
         onMouseLeave={() => setHoveredPath(null)}
       >
         <LayoutGroup>
@@ -66,7 +90,7 @@ export default function Navbar() {
                 key={link.path}
                 href={link.path} 
                 onMouseEnter={() => setHoveredPath(link.path)}
-                className={`relative px-4 py-2 transition-colors duration-300 font-semibold tracking-[0.15em] text-[11px] uppercase ${isActive ? 'text-[#007AFF]' : 'text-white/70'}`}
+                className={`relative px-4 py-2 transition-colors duration-300 font-semibold tracking-[0.15em] text-[11px] uppercase ${isActive ? 'text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'text-white/70 hover:text-white/90'}`}
               >
                 {link.name}
                 {isActive && (
@@ -82,15 +106,15 @@ export default function Navbar() {
         </LayoutGroup>
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 z-10">
         {/* Theme Switcher as Cart Button */}
-        <ThemeToggle className="w-[42px] h-[42px] mr-1 rounded-full bg-[#007AFF] flex items-center justify-center shadow-[0_0_15px_rgba(0,122,255,0.5)] shrink-0 hover:scale-105 transition-transform text-white group" />
+        <ThemeToggle className="w-[42px] h-[42px] mr-1 rounded-full bg-[#007AFF] flex items-center justify-center shadow-[0_0_15px_rgba(0,122,255,0.5)] shrink-0 hover:scale-105 transition-transform text-white group/theme" />
         
         {/* Mobile Nav Toggle */}
         <div className="flex items-center md:hidden gap-1 pl-1">
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="w-12 h-12 rounded-full flex items-center justify-center text-white bg-black/20 hover:bg-black/40 transition-colors" 
+            className="w-12 h-12 rounded-full flex items-center justify-center text-white bg-black/40 border border-white/10 hover:bg-black/60 transition-colors" 
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? (
@@ -114,7 +138,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95, transition: { duration: 0.2 } }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute top-[calc(100%+12px)] left-0 right-0 md:hidden bg-zinc-800/95 backdrop-blur-2xl border border-white/10 overflow-hidden rounded-[32px] shadow-2xl"
+            className="absolute top-[calc(100%+12px)] left-0 right-0 md:hidden bg-zinc-900/95 backdrop-blur-3xl border border-white/20 overflow-hidden rounded-[32px] shadow-[0_20px_60px_rgba(0,0,0,0.5)]"
           >
             <div className="px-6 py-6 flex flex-col max-h-[80vh] overflow-y-auto">
               <div className="flex flex-col space-y-4">
