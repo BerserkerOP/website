@@ -323,7 +323,13 @@ export default function HowItWorks() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 relative z-10 items-start">
         
         {/* Left Column: Interactive List */}
-        <div className="lg:col-span-5 flex flex-col gap-3">
+        <motion.div 
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-5 flex flex-col gap-3"
+        >
           {steps.map((step, index) => {
             const isActive = activeStep === index;
             return (
@@ -378,10 +384,16 @@ export default function HowItWorks() {
               </div>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* Right Column: Active Card Display with Visual Mockups (Desktop Only) */}
-        <div className="hidden lg:block lg:col-span-7 relative h-full min-h-[400px]">
+        <motion.div 
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className="hidden lg:block lg:col-span-7 relative h-full min-h-[400px]"
+        >
           <AnimatePresence mode="wait">
             <motion.div
               key={activeStep}
@@ -413,7 +425,7 @@ export default function HowItWorks() {
               </div>
             </motion.div>
           </AnimatePresence>
-        </div>
+        </motion.div>
 
       </div>
       
