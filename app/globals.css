@@ -34,8 +34,8 @@
 .theme-transition *,
 .theme-transition *:before,
 .theme-transition *:after {
-  transition-property: background-color, border-color, color, fill, stroke !important;
-  transition-duration: 500ms !important;
+  transition-property: background-color, border-color, color, fill, stroke, box-shadow, opacity, filter !important;
+  transition-duration: 700ms !important;
   transition-timing-function: ease-in !important;
 }
 

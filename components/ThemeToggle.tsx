@@ -21,10 +21,10 @@ export function ThemeToggle({ className }: { className?: string }) {
     // Switch theme
     setTheme(isDark ? "light" : "dark");
     
-    // Remove class after transition completes (500ms match css)
+    // Remove class after transition completes (700ms match css)
     setTimeout(() => {
       document.documentElement.classList.remove('theme-transition');
-    }, 500);
+    }, 700);
   };
 
   useEffect(() => {
