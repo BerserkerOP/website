@@ -316,7 +316,7 @@ export default function HowItWorks() {
                         <p className="text-apple-text/80 text-sm leading-relaxed font-medium">
                           {step.desc}
                         </p>
-                        <div className="w-full flex items-center justify-center">
+                        <div className="w-full h-[320px] sm:h-[350px] flex items-center justify-center">
                           {mockups[index]}
                         </div>
                       </div>

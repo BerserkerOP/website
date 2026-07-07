@@ -56,7 +56,7 @@ export default function Navbar() {
       animate={{ y: 0, x: "-50%" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       onMouseMove={handleMouseMove}
-      className={`group fixed top-4 md:top-6 left-1/2 z-50 flex items-center justify-between p-1.5 rounded-[32px] bg-white/90 dark:bg-[#2A2A2A] backdrop-blur-[24px] shadow-[0_8px_32px_rgba(0,122,255,0.1),inset_0_1px_1px_rgba(255,255,255,0.4)] border border-black/5 dark:border-[#007AFF]/30 gap-8 md:gap-16 w-[95%] sm:w-auto max-w-4xl dark:shadow-[0_0_20px_rgba(0,122,255,0.15)]`}
+      className={`group fixed top-4 md:top-6 left-1/2 z-50 flex items-center justify-between p-1.5 rounded-[32px] bg-white/90 dark:bg-[#2A2A2A] backdrop-blur-[24px] shadow-[0_8px_32px_rgba(0,122,255,0.1),inset_0_1px_1px_rgba(255,255,255,0.4)] border border-black/5 dark:border-[#007AFF]/30 gap-6 md:gap-16 w-auto max-w-4xl dark:shadow-[0_0_20px_rgba(0,122,255,0.15)]`}
     >
       {/* Spotlight Overlay */}
       <motion.div
