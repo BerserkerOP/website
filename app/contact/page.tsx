@@ -66,7 +66,7 @@ export default function ContactPage() {
                       type="text" 
                       required
                       placeholder="e.g. Alex" 
-                      className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-2xl px-5 py-4 text-apple-text dark:text-white placeholder-black/30 dark:placeholder-white/30 focus:outline-none focus:border-apple-blue focus:bg-transparent dark:focus:bg-transparent transition-all backdrop-blur-md shadow-inner"
+                      className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-2xl px-5 py-4 text-apple-text dark:text-white placeholder-black/30 dark:placeholder-white/30 focus:outline-none focus:border-apple-blue transition-all backdrop-blur-md shadow-inner"
                     />
                   </div>
                   {/* Email */}
@@ -76,7 +76,7 @@ export default function ContactPage() {
                       type="email" 
                       required
                       placeholder="you@email.com" 
-                      className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-2xl px-5 py-4 text-apple-text dark:text-white placeholder-black/30 dark:placeholder-white/30 focus:outline-none focus:border-apple-blue focus:bg-transparent dark:focus:bg-transparent transition-all backdrop-blur-md shadow-inner"
+                      className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-2xl px-5 py-4 text-apple-text dark:text-white placeholder-black/30 dark:placeholder-white/30 focus:outline-none focus:border-apple-blue transition-all backdrop-blur-md shadow-inner"
                     />
                   </div>
                 </div>
@@ -87,7 +87,7 @@ export default function ContactPage() {
                   <input 
                     type="text" 
                     placeholder="e.g. $1,000 - $5,000" 
-                    className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-2xl px-5 py-4 text-apple-text dark:text-white placeholder-black/30 dark:placeholder-white/30 focus:outline-none focus:border-apple-blue focus:bg-transparent dark:focus:bg-transparent transition-all backdrop-blur-md shadow-inner"
+                    className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-2xl px-5 py-4 text-apple-text dark:text-white placeholder-black/30 dark:placeholder-white/30 focus:outline-none focus:border-apple-blue transition-all backdrop-blur-md shadow-inner"
                   />
                 </div>
 
@@ -98,7 +98,7 @@ export default function ContactPage() {
                     required
                     placeholder="Tell me what's up..." 
                     rows={6}
-                    className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-2xl px-5 py-4 text-apple-text dark:text-white placeholder-black/30 dark:placeholder-white/30 focus:outline-none focus:border-apple-blue focus:bg-transparent dark:focus:bg-transparent transition-all backdrop-blur-md shadow-inner resize-none"
+                    className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-2xl px-5 py-4 text-apple-text dark:text-white placeholder-black/30 dark:placeholder-white/30 focus:outline-none focus:border-apple-blue transition-all backdrop-blur-md shadow-inner resize-none"
                   ></textarea>
                 </div>
 
