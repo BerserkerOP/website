@@ -56,7 +56,7 @@ export default function Navbar() {
       animate={{ y: 0, x: "-50%" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       onMouseMove={handleMouseMove}
-      className={`group fixed top-4 md:top-6 left-1/2 z-50 flex items-center justify-between p-1.5 rounded-[32px] bg-black/20 dark:bg-black/30 backdrop-blur-3xl shadow-[0_8px_32px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.2)] border border-white/20 gap-8 md:gap-16 w-[95%] sm:w-auto max-w-4xl`}
+      className={`group fixed top-4 md:top-6 left-1/2 z-50 flex items-center justify-between p-1.5 rounded-[32px] bg-black/[0.11] dark:bg-white/[0.11] backdrop-blur-[24px] shadow-[0_8px_32px_rgba(0,0,0,0.15),inset_0_1px_1px_rgba(255,255,255,0.4)] border border-white/30 dark:border-white/20 gap-8 md:gap-16 w-[95%] sm:w-auto max-w-4xl`}
     >
       {/* Spotlight Overlay */}
       <motion.div
@@ -65,7 +65,7 @@ export default function Navbar() {
           background: useMotionTemplate`
             radial-gradient(
               150px circle at ${mouseX}px ${mouseY}px,
-              rgba(255, 255, 255, 0.15),
+              rgba(255, 255, 255, 0.2),
               transparent 80%
             )
           `,
@@ -73,7 +73,7 @@ export default function Navbar() {
       />
 
       {/* Left Profile Picture */}
-      <Link href="/" className="w-[42px] h-[42px] ml-1 rounded-full bg-white flex items-center justify-center shadow-[0_0_20px_rgba(255,255,255,0.6)] border border-white/60 shrink-0 overflow-hidden relative group/logo z-10">
+      <Link href="/" className="w-[42px] h-[42px] ml-1 rounded-full bg-white flex items-center justify-center shadow-[0_0_20px_rgba(255,255,255,0.8)] border border-white shrink-0 overflow-hidden relative group/logo z-10">
         <div className="absolute inset-0 bg-white mix-blend-overlay opacity-0 group-hover/logo:opacity-40 transition-opacity z-10" />
         <Image src="/icon.png" alt="HalftoneMotion" fill className="object-cover p-[3px] rounded-full" />
       </Link>
@@ -91,7 +91,7 @@ export default function Navbar() {
                 key={link.path}
                 href={link.path} 
                 onMouseEnter={() => setHoveredPath(link.path)}
-                className={`relative px-4 py-2 transition-colors duration-300 font-semibold tracking-[0.15em] text-[11px] uppercase ${isActive ? 'text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'text-white/70 hover:text-white/90'}`}
+                className={`relative px-4 py-2 transition-all duration-300 font-bold tracking-[0.15em] text-[11px] uppercase drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)] ${isActive ? 'text-white' : 'text-white/95 hover:text-white'}`}
               >
                 {link.name}
                 {isActive && (
