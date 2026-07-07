@@ -121,7 +121,7 @@ export default function ProjectCard({ title, category, delay = 0, videoUrl, hove
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5, delay: delay }}
-      className="relative [perspective:1000px] flex flex-col group rounded-[24px] border border-transparent hover:border-apple-border/30 transition-colors duration-500"
+      className="relative [perspective:1000px] flex flex-col group rounded-[24px] border border-transparent hover:border-transparent transition-all duration-500 hover:-translate-y-3"
     >
       <motion.div
         onMouseMove={handleMouseMove}
@@ -130,11 +130,11 @@ export default function ProjectCard({ title, category, delay = 0, videoUrl, hove
           rotateX,
           rotateY,
         }}
-        className="relative flex flex-col h-full w-full rounded-[24px] shadow-[0_2px_10px_rgba(0,0,0,0.02)] dark:shadow-none"
+        className="relative flex flex-col h-full w-full rounded-[24px] shadow-[0_2px_10px_rgba(0,0,0,0.02)] group-hover:shadow-[0_15px_40px_rgba(0,0,0,0.2)] dark:shadow-none dark:group-hover:shadow-[0_15px_40px_rgba(0,0,0,0.5)] transition-shadow duration-500"
       >
         {/* Apple Blue Gradient Border & Glow on hover/active */}
         <div className="absolute -inset-[2px] rounded-[26px] bg-gradient-to-br from-[#007AFF] via-[#5AC8FA] to-[#007AFF] opacity-0 group-hover:opacity-100 group-active:opacity-100 blur-[1px] transition-all duration-500 group-active:duration-100 group-active:scale-[0.98]" />
-        <div className="absolute -inset-[2px] rounded-[26px] bg-gradient-to-br from-[#007AFF] via-[#5AC8FA] to-[#007AFF] opacity-0 group-hover:opacity-40 group-active:opacity-80 blur-xl transition-all duration-500 group-active:duration-100 group-active:scale-[0.98]" />
+        <div className="absolute -inset-[2px] rounded-[26px] bg-gradient-to-br from-[#007AFF] via-[#5AC8FA] to-[#007AFF] opacity-0 group-hover:opacity-80 group-active:opacity-100 blur-2xl transition-all duration-500 group-active:duration-100 group-active:scale-[0.98]" />
 
         <div className="relative flex flex-col h-full w-full rounded-[24px] overflow-hidden bg-apple-card z-10 transition-transform duration-200 group-active:scale-[0.98]">
           {/* Spotlight Hover Glow (Behind Content) */}
