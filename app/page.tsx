@@ -3,6 +3,7 @@ import ProjectCard from '@/components/ProjectCard';
 import ReviewsSection from '@/components/ReviewsSection';
 import HowItWorks from '@/components/HowItWorks';
 import ContactSection from '@/components/ContactSection';
+import SpotlightButton from '@/components/SpotlightButton';
 
 export default function Home() {
   const projects = [
@@ -28,7 +29,7 @@ export default function Home() {
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-apple-text leading-[1.1] tracking-tight">Specialized video solutions<br className="hidden sm:block" /> tailored to your needs</h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 mb-16">
           {projects.map((project, index) => (
             <ProjectCard 
               key={index}
@@ -39,6 +40,10 @@ export default function Home() {
               thumbnailUrl={(project as any).thumbnailUrl}
             />
           ))}
+        </div>
+
+        <div className="flex justify-center">
+          <SpotlightButton href="/work" text="EXPLORE ALL OUR WORK" />
         </div>
       </section>
 
