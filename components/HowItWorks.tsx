@@ -35,6 +35,14 @@ const steps = [
 const IntakeFormMockup = () => {
   const [clicked, setClicked] = useState(false);
   
+  const handleEasterEggClick = () => {
+    if (clicked) return;
+    setClicked(true);
+    setTimeout(() => {
+      setClicked(false);
+    }, 2000);
+  };
+
   return (
   <div className="w-full h-full bg-white dark:bg-[#1C1C1E] rounded-2xl overflow-hidden shadow-2xl border border-black/5 dark:border-white/10 flex flex-col font-sans max-h-[350px]">
     <div className="bg-[#007AFF] px-6 py-4 flex items-center shadow-md z-10">
@@ -61,13 +69,13 @@ const IntakeFormMockup = () => {
       </div>
       <div className="mt-auto pt-1 flex justify-start shrink-0">
         <motion.div 
-          onClick={() => setClicked(true)}
+          onClick={handleEasterEggClick}
           className={`w-full h-9 ${clicked ? 'bg-[#FF3B30] max-w-[180px]' : 'bg-[#007AFF] hover:bg-[#005bb5] max-w-[120px]'} transition-all duration-300 cursor-pointer rounded-lg flex items-center justify-center text-white font-bold text-[13px] shadow-lg ${clicked ? 'shadow-red-500/30' : 'shadow-blue-500/30'}`}
         >
           <AnimatePresence mode="wait">
             {clicked ? (
               <motion.span key="clicked" initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} className="flex items-center gap-1.5 whitespace-nowrap">
-                Stop clicking me 😡
+                Don't click me 😡
               </motion.span>
             ) : (
               <motion.span key="submit" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, y: -5 }}>
