@@ -33,7 +33,7 @@ export default function ContactPage() {
             Let's <span className="text-apple-blue drop-shadow-[0_0_15px_rgba(0,122,255,0.4)]">Talk</span>
           </h1>
           <p className="text-apple-subtext text-lg leading-relaxed font-medium">
-            Question about a product, something not working, or just want to say hi, we'll get back to you within 48 hours.
+            Request a project, inquire about how we work, or just say hi. We'll get back to you within 48 hours.
           </p>
         </motion.div>
 
