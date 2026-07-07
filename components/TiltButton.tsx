@@ -6,13 +6,14 @@ import GlareHover from './GlareHover';
 
 interface TiltButtonProps {
   children: ReactNode;
-  href: string;
+  href?: string;
+  onClick?: () => void;
   className?: string;
   innerClassName?: string;
   glow?: boolean;
 }
 
-export default function TiltButton({ children, href, className = "", innerClassName = "", glow = false }: TiltButtonProps) {
+export default function TiltButton({ children, href, onClick, className = "", innerClassName = "", glow = false }: TiltButtonProps) {
   const xPct = useMotionValue(0.5);
   const yPct = useMotionValue(0.5);
   
@@ -27,7 +28,7 @@ export default function TiltButton({ children, href, className = "", innerClassN
 
   const mouseX = useMotionValue(-1000);
   const mouseY = useMotionValue(-1000);
-  const buttonRef = useRef<HTMLAnchorElement>(null);
+  const buttonRef = useRef<HTMLElement>(null);
   const [isHoverable, setIsHoverable] = useState(true);
 
   useEffect(() => {
@@ -58,11 +59,13 @@ export default function TiltButton({ children, href, className = "", innerClassN
     yPct.set(0.5);
   }
 
+  const Component = href ? motion.a : motion.button;
+
   return (
     <div className="relative [perspective:1000px] w-full sm:w-auto group">
-      <motion.a
-        ref={buttonRef}
-        href={href}
+      <Component
+        ref={buttonRef as any}
+        {...(href ? { href } : { onClick })}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         style={{
@@ -86,7 +89,7 @@ export default function TiltButton({ children, href, className = "", innerClassN
         
         {/* Glare Layer (ReactBits) */}
         {isHoverable && <GlareHover className="absolute inset-0 z-20 mix-blend-overlay rounded-inherit" transitionDuration={400} glareOpacity={0.6} />}
-      </motion.a>
+      </Component>
     </div>
   );
 }

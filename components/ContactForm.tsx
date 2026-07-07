@@ -69,7 +69,7 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     if (errors[e.target.name]) {
       setErrors(prev => ({ ...prev, [e.target.name]: '' }));
     }
@@ -142,16 +142,23 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
           Budget <span className="text-apple-blue">*</span>
         </label>
         
-        {/* Apple UI Inspired Segmented Control Grid */}
-        <div className="grid grid-cols-2 gap-2">
-          {budgets.map(b => (
-            <label key={b} className="relative cursor-pointer group">
-              <input type="radio" name="budget" value={b} onChange={handleChange} className="peer sr-only" required />
-              <div className={`rounded-xl border ${errors.budget ? 'border-[#FF3B30]/50 bg-white dark:bg-[#1C1C1E]' : 'border-black/10 dark:border-white/10 bg-white/70 dark:bg-black/40'} px-2 py-2 text-center transition-all peer-checked:border-apple-blue peer-checked:bg-apple-blue peer-checked:text-white group-hover:border-black/30 dark:group-hover:border-white/30 text-apple-text dark:text-white text-[13px] font-medium shadow-sm peer-checked:shadow-apple-blue/30 backdrop-blur-md`}>
-                {b}
-              </div>
-            </label>
-          ))}
+        {/* Styled Dropdown Menu */}
+        <div className="relative">
+          <select 
+            name="budget"
+            onChange={handleChange}
+            defaultValue=""
+            required
+            className={`w-full px-3 py-2 pr-10 appearance-none rounded-xl border ${errors.budget ? 'border-[#FF3B30] focus:ring-[#FF3B30]/20 bg-white dark:bg-[#1C1C1E]' : 'border-black/10 dark:border-white/10 focus:border-apple-blue focus:ring-apple-blue bg-white/70 dark:bg-black/40'} focus:ring-1 outline-none transition-all text-apple-text dark:text-white text-[13px] backdrop-blur-md cursor-pointer`}
+          >
+            <option value="" disabled hidden>Select your budget</option>
+            {budgets.map(b => (
+              <option key={b} value={b} className="text-apple-text">{b}</option>
+            ))}
+          </select>
+          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-apple-text/50 dark:text-white/50">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+          </div>
         </div>
         <ErrorMessage message={errors.budget} />
       </div>
