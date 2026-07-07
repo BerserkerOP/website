@@ -234,7 +234,7 @@ const RevisionCommentsMockup = () => {
             <span className="font-bold text-sm text-apple-text dark:text-white tracking-tight">Rhythm</span>
             <span className="text-xs font-bold text-apple-blue">0:42</span>
           </div>
-          <p className="text-sm text-apple-text/80 dark:text-white/80 leading-relaxed font-medium">Love this transition — keep exactly as is.</p>
+          <p className="text-sm text-apple-text/80 dark:text-white/80 leading-relaxed font-medium">Love this transition, keep exactly as is.</p>
         </div>
       </div>
     </div>
