@@ -10,13 +10,13 @@ export default function ContactSection() {
         {/* Left Column: Text & Stats */}
         <div className="flex flex-col">
           <p className="text-apple-blue text-sm font-bold uppercase tracking-widest mb-4">
-            Apply to work with us
+            Project Inquiry
           </p>
           <h2 className="text-4xl sm:text-5xl font-extrabold text-apple-text leading-[1.1] tracking-tight mb-6">
-            Let's talk about your project.
+            Let's discuss your project.
           </h2>
           <p className="text-lg text-apple-subtext mb-12 max-w-lg">
-            Fill out a quick form and book a time directly. We will walk through your goals, the type of video you need, and what the process looks like from there.
+            Complete the brief form below to schedule a consultation. We'll discuss your goals, determine the right video solution, and outline the next steps.
           </p>
           
           {/* Stats Grid */}

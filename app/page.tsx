@@ -9,7 +9,7 @@ export default function Home() {
     {
       title: "SaaS Demo Videos",
       category: "Cinematic feature walkthroughs",
-      videoUrl: "https://youtu.be/WtwCp9cqKa8"
+      videoUrl: "https://youtu.be/ixG3a8z213k"
     },
     { title: "Explainer Videos", category: "Complex features made instantly clear", videoUrl: "https://youtu.be/L3MB9hYLbBI", thumbnailUrl: "https://img.youtube.com/vi/L3MB9hYLbBI/hqdefault.jpg" },
     { title: "ChatGPT Animation", category: "High-energy kinetic typography for artists", videoUrl: "https://youtube.com/shorts/altZ7ZOHWNo?feature=share" },
