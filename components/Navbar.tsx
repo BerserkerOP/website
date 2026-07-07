@@ -35,24 +35,24 @@ export default function Navbar() {
       initial={{ y: -100, x: "-50%" }}
       animate={{ y: 0, x: "-50%" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-4 md:top-6 left-1/2 z-50 transition-all duration-300 flex items-center justify-between p-2 rounded-[32px] bg-[#7a7a7a]/90 backdrop-blur-md shadow-[0_0_20px_rgba(0,0,0,0.1)] border border-white/10 gap-8 md:gap-16 w-[95%] sm:w-auto max-w-4xl`}
+      className={`fixed top-4 md:top-6 left-1/2 z-50 transition-all duration-300 flex items-center justify-between p-1.5 rounded-[32px] bg-[#2A2A2C]/80 backdrop-blur-3xl shadow-[0_8px_32px_rgba(0,0,0,0.15),inset_0_1px_1px_rgba(255,255,255,0.15)] border border-white/10 gap-8 md:gap-16 w-[95%] sm:w-auto max-w-4xl`}
     >
       {/* Left Profile Picture */}
-      <Link href="/" className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-[0_0_15px_rgba(0,122,255,0.5)] border border-[#007AFF] shrink-0 overflow-hidden relative group">
+      <Link href="/" className="w-[42px] h-[42px] ml-1 rounded-full bg-white flex items-center justify-center shadow-[0_0_15px_rgba(0,122,255,0.5)] border border-[#007AFF] shrink-0 overflow-hidden relative group">
         <div className="absolute inset-0 bg-[#007AFF] mix-blend-overlay opacity-0 group-hover:opacity-20 transition-opacity z-10" />
-        <Image src="/icon.png" alt="HalftoneMotion" fill className="object-cover p-1 rounded-full" />
+        <Image src="/icon.png" alt="HalftoneMotion" fill className="object-cover p-[3px] rounded-full" />
       </Link>
       
       {/* Desktop Nav */}
       <div className="hidden md:flex items-center justify-center space-x-10">
-        <Link href="/" className="text-white hover:text-white/80 transition-colors font-bold tracking-wider text-[13px] uppercase">Home</Link>
-        <Link href="/work" className="text-white hover:text-white/80 transition-colors font-bold tracking-wider text-[13px] uppercase">Our Work</Link>
-        <Link href="/contact" className="text-white hover:text-white/80 transition-colors font-bold tracking-wider text-[13px] uppercase">Contact</Link>
+        <Link href="/" className="text-white/70 hover:text-white transition-colors font-semibold tracking-[0.15em] text-[11px] uppercase">Home</Link>
+        <Link href="/work" className="text-white/70 hover:text-white transition-colors font-semibold tracking-[0.15em] text-[11px] uppercase">Our Work</Link>
+        <Link href="/contact" className="text-white/70 hover:text-white transition-colors font-semibold tracking-[0.15em] text-[11px] uppercase">Contact</Link>
       </div>
 
       <div className="flex items-center gap-4">
         {/* Theme Switcher as Cart Button */}
-        <ThemeToggle className="w-12 h-12 rounded-full bg-[#007AFF] flex items-center justify-center shadow-[0_0_15px_rgba(0,122,255,0.5)] shrink-0 hover:scale-105 transition-transform text-white group" />
+        <ThemeToggle className="w-[42px] h-[42px] mr-1 rounded-full bg-[#007AFF] flex items-center justify-center shadow-[0_0_15px_rgba(0,122,255,0.5)] shrink-0 hover:scale-105 transition-transform text-white group" />
         
         {/* Mobile Nav Toggle */}
         <div className="flex items-center md:hidden gap-1 pl-1">
