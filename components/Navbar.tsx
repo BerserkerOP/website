@@ -99,7 +99,7 @@ export default function Navbar() {
                 key={link.path}
                 href={link.path} 
                 onMouseEnter={() => setHoveredPath(link.path)}
-                className={`relative px-4 py-2 transition-all duration-300 font-bold tracking-[0.15em] text-[11px] uppercase ${isActive ? 'text-[#007AFF] drop-shadow-[0_0_8px_rgba(0,122,255,0.4)]' : 'text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white'}`}
+                className={`relative px-4 py-2 transition-all duration-300 inline-block font-bold tracking-[0.15em] text-[11px] uppercase hover:scale-110 ${isActive ? 'text-[#007AFF] drop-shadow-[0_0_8px_rgba(0,122,255,0.4)]' : 'text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white'}`}
               >
                 {link.name}
                 {isActive && (
