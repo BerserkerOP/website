@@ -19,6 +19,7 @@ export default function Hero() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const { scrollY } = useScroll();
   const opacity = useTransform(scrollY, [0, 600], [1, 0]);
 
@@ -28,6 +29,15 @@ export default function Hero() {
       setIndex((prev) => (prev + 1) % phrases.length);
     }, 3000);
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const heroReviews = [
@@ -149,10 +159,10 @@ export default function Hero() {
                   onMouseEnter={() => setHoveredCard(idx)}
                   onMouseLeave={() => setHoveredCard(null)}
                   animate={{
-                    rotate: isHovered ? 0 : rev.rotation,
-                    x: isHovered ? 0 : rev.x,
-                    y: isHovered ? 0 : rev.y,
-                    scale: isHovered ? 1.06 : isAnyHovered ? 0.94 : 1,
+                    rotate: isHovered ? 0 : (isMobile ? rev.rotation * 0.4 : rev.rotation),
+                    x: isHovered ? 0 : (isMobile ? rev.x * 0.25 : rev.x),
+                    y: isHovered ? 0 : (isMobile ? rev.y * 0.4 : rev.y),
+                    scale: isHovered ? 1.06 : isAnyHovered ? 0.94 : (isMobile ? 0.9 : 1),
                     opacity: isHovered ? 1 : isAnyHovered ? 0.45 : 1,
                     zIndex: isHovered ? 50 : cardZ,
                     filter: isHovered ? "blur(0px)" : isAnyHovered ? "blur(1px)" : "blur(0px)",

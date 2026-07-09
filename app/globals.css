@@ -39,11 +39,16 @@
   transition-timing-function: ease-in !important;
 }
 
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+  overscroll-behavior: none;
+}
+
 body {
   color: var(--apple-text);
   background: var(--apple-bg);
-  overflow-x: hidden;
-  overscroll-behavior: none;
 }
 
 html {

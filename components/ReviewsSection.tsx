@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const reviews = [
@@ -119,6 +119,16 @@ const chatsData: Chat[] = [
 
 function ScreenshotCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleNext = () => {
     setActiveIndex((prev) => (prev + 1) % chatsData.length);
@@ -159,9 +169,9 @@ function ScreenshotCarousel() {
               style={{ transformOrigin: "center bottom" }}
               animate={{
                 scale: isActive ? 1 : 0.82,
-                x: isActive ? 0 : isLeft ? -180 : 180,
+                x: isActive ? 0 : (isMobile ? (isLeft ? -40 : 40) : (isLeft ? -180 : 180)),
                 z: isActive ? 0 : -100,
-                opacity: isActive ? 1 : 0.35,
+                opacity: isActive ? 1 : (isMobile ? 0 : 0.35),
                 zIndex: isActive ? 20 : 10,
                 pointerEvents: isActive ? "auto" : "none",
                 filter: isActive ? "blur(0px)" : "blur(3px)",
