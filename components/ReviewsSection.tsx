@@ -46,30 +46,26 @@ interface Message {
 }
 
 interface Chat {
-  username: string;
-  avatarText: string;
+  profileImage: string;
   messages: Message[];
 }
 
 // Chat screenshots data from user uploads
 const chatsData: Chat[] = [
   {
-    username: "@ezequrvfx",
-    avatarText: "E",
+    profileImage: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80",
     messages: [
       { text: "Thanks for posting.", isMe: false, reaction: "❤️" }
     ]
   },
   {
-    username: "@julianjulian",
-    avatarText: "J",
+    profileImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80",
     messages: [
       { text: "No problem brother love the work you do. Just now seeing this sorry about the late reply for some reason it was in hidden messages.", isMe: false }
     ]
   },
   {
-    username: "@tuff_asl",
-    avatarText: "T",
+    profileImage: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80",
     messages: [
       { text: "Ayyy this ain't much bru the edit was tuff asl", isMe: false, reaction: "❤️" },
       { text: "Thankyou so much king 👑💖", isMe: true },
@@ -77,39 +73,34 @@ const chatsData: Chat[] = [
     ]
   },
   {
-    username: "@editor_style",
-    avatarText: "S",
+    profileImage: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80",
     messages: [
       { text: "Word", isMe: false, reaction: "❤️" },
       { text: "Btw I like your editing style", isMe: false, reaction: "❤️" }
     ]
   },
   {
-    username: "@fr_all_love",
-    avatarText: "L",
+    profileImage: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=100&q=80",
     messages: [
       { text: "Nah bro appreciate you your editing style is tuff keep up the good work fr all love bro", isMe: false, reaction: "❤️" }
     ]
   },
   {
-    username: "@best_edit",
-    avatarText: "B",
+    profileImage: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80",
     messages: [
       { text: "One of the best edit of all time of this song", isMe: false, reaction: "❤️" },
       { text: "God bless u", isMe: false, reaction: "❤️" }
     ]
   },
   {
-    username: "@good_edit",
-    avatarText: "G",
+    profileImage: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&q=80",
     messages: [
       { text: "ppreciate you", isMe: true },
       { text: "It was a good edit.", isMe: false, reaction: "❤️" }
     ]
   },
   {
-    username: "@wow_bhai_in",
-    avatarText: "W",
+    profileImage: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=100&q=80",
     messages: [
       { text: "", isMe: false, isVideo: true },
       { text: "Wow bhai just wow don't have words 🙏", isMe: false, reaction: "❤️" }
@@ -177,12 +168,11 @@ function ScreenshotCarousel() {
               <div className="flex items-center justify-between px-4 py-3 bg-zinc-900/50 border-b border-white/5 shrink-0">
                 <div className="flex items-center gap-3">
                   <svg className="w-4 h-4 text-white/50" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" /></svg>
-                  <div className="w-7 h-7 rounded-full bg-[#007AFF]/10 flex items-center justify-center font-bold text-xs text-[#007AFF] border border-[#007AFF]/20">
-                    {chat.avatarText}
+                  <div className="w-7 h-7 rounded-full overflow-hidden border border-white/10 shrink-0 relative bg-zinc-800">
+                    <img src={chat.profileImage} alt="Client Profile" className="w-full h-full object-cover" />
                   </div>
                   <div className="flex flex-col">
-                    <span className="font-bold text-xs tracking-tight">{chat.username}</span>
-                    <span className="text-[8px] text-white/40">Active now</span>
+                    <span className="text-[10px] font-bold text-white/80 tracking-tight">Active now</span>
                   </div>
                 </div>
                 <div className="flex items-center gap-3.5 text-white/60">
@@ -333,12 +323,9 @@ export default function ReviewsSection() {
 
       {/* Styled Chat Screenshots Carousel */}
       <div className="mt-16 w-full flex flex-col items-center">
-        <h3 className="text-xl sm:text-2xl font-extrabold text-apple-text mb-1 tracking-tight text-center">
+        <h3 className="text-xl sm:text-2xl font-extrabold text-apple-text mb-10 tracking-tight text-center">
           What they say in DMs
         </h3>
-        <p className="text-apple-subtext text-sm font-semibold uppercase tracking-widest mb-10 text-center">
-          Loved by editors worldwide
-        </p>
         
         <ScreenshotCarousel />
       </div>

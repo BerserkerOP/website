@@ -56,7 +56,7 @@ export default function Navbar() {
       animate={{ y: 0, x: "-50%" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       onMouseMove={handleMouseMove}
-      className={`group fixed top-4 md:top-6 left-1/2 z-50 flex items-center justify-between p-1.5 rounded-full bg-zinc-950/90 backdrop-blur-[24px] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.7),0_0_25px_rgba(0,122,255,0.2)] border border-white/10 gap-6 md:gap-16 w-auto max-w-4xl`}
+      className={`group fixed top-4 md:top-6 left-1/2 z-50 flex items-center justify-between p-1.5 rounded-full bg-zinc-950/95 backdrop-blur-[24px] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8),0_0_35px_rgba(0,122,255,0.3)] border-2 border-white/20 gap-6 md:gap-16 w-auto max-w-4xl`}
     >
       {/* Spotlight Overlay */}
       <motion.div
@@ -99,20 +99,23 @@ export default function Navbar() {
                 key={link.path}
                 href={link.path} 
                 onMouseEnter={() => setHoveredPath(link.path)}
-                className={`relative px-4 py-2 transition-all duration-300 inline-block font-bold tracking-[0.15em] text-[11px] uppercase hover:scale-110 ${isActive ? 'text-[#007AFF] drop-shadow-[0_0_8px_rgba(0,122,255,0.6)]' : 'text-white/60 hover:text-white'}`}
+                className={`relative px-4 py-2 transition-all duration-300 inline-block font-bold tracking-[0.15em] text-[11px] uppercase ${isActive ? 'text-[#007AFF] drop-shadow-[0_0_8px_rgba(0,122,255,0.6)]' : 'text-white/60 hover:text-white'}`}
               >
                 {link.name}
                 {isActive && (
                   <motion.div
                     layoutId="navbar-indicator"
-                    className="absolute -bottom-1 inset-x-0 mx-auto w-3 h-1 flex items-center justify-center pointer-events-none"
-                    transition={{ type: "tween", ease: [0.4, 0, 0.2, 1], duration: 0.4 }}
+                    className="absolute -bottom-1 inset-x-0 mx-auto w-1.5 h-1.5 flex items-center justify-center pointer-events-none"
+                    transition={{ type: "tween", ease: [0.76, 0, 0.24, 1], duration: 0.38 }}
                   >
                     <motion.div
-                      initial={{ width: "12px" }}
-                      animate={{ width: ["12px", "36px", "12px"] }}
-                      transition={{ type: "tween", ease: [0.4, 0, 0.2, 1], duration: 0.4 }}
-                      className="absolute h-1 rounded-full bg-[#007AFF] shadow-[0_0_10px_rgba(0,122,255,0.9)]"
+                      initial={{ scaleX: 1, filter: "blur(0px)" }}
+                      animate={{ 
+                        scaleX: [1, 4.5, 1],
+                        filter: ["blur(0px)", "blur(1.5px)", "blur(0px)"]
+                      }}
+                      transition={{ type: "tween", ease: [0.76, 0, 0.24, 1], duration: 0.38 }}
+                      className="absolute w-1.5 h-1.5 rounded-full bg-[#007AFF] shadow-[0_0_8px_rgba(0,122,255,0.9)]"
                     />
                   </motion.div>
                 )}
