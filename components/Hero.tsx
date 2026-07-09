@@ -103,7 +103,7 @@ export default function Hero() {
                       animate={{ y: 0, opacity: 1 }}
                       exit={{ y: 15, opacity: 0 }}
                       transition={{ duration: 0.35, ease: "easeInOut" }}
-                      className="absolute inset-0 flex items-center justify-center lg:justify-start text-center lg:text-left px-4 lg:px-0"
+                      className="absolute inset-x-0 top-0 bottom-0 flex items-start lg:items-center justify-center lg:justify-start text-center lg:text-left px-4 lg:px-0"
                     >
                       {phrases[index]}
                     </motion.span>
