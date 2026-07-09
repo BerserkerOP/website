@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const reviews = [
   {
@@ -37,6 +38,249 @@ function StarRating() {
   );
 }
 
+interface Message {
+  text: string;
+  isMe: boolean;
+  reaction?: string;
+  isVideo?: boolean;
+}
+
+interface Chat {
+  username: string;
+  avatarText: string;
+  messages: Message[];
+}
+
+// Chat screenshots data from user uploads
+const chatsData: Chat[] = [
+  {
+    username: "@ezequrvfx",
+    avatarText: "E",
+    messages: [
+      { text: "Thanks for posting.", isMe: false, reaction: "❤️" }
+    ]
+  },
+  {
+    username: "@julianjulian",
+    avatarText: "J",
+    messages: [
+      { text: "No problem brother love the work you do. Just now seeing this sorry about the late reply for some reason it was in hidden messages.", isMe: false }
+    ]
+  },
+  {
+    username: "@tuff_asl",
+    avatarText: "T",
+    messages: [
+      { text: "Ayyy this ain't much bru the edit was tuff asl", isMe: false, reaction: "❤️" },
+      { text: "Thankyou so much king 👑💖", isMe: true },
+      { text: "Keep dropping more of these twin", isMe: false, reaction: "❤️" }
+    ]
+  },
+  {
+    username: "@editor_style",
+    avatarText: "S",
+    messages: [
+      { text: "Word", isMe: false, reaction: "❤️" },
+      { text: "Btw I like your editing style", isMe: false, reaction: "❤️" }
+    ]
+  },
+  {
+    username: "@fr_all_love",
+    avatarText: "L",
+    messages: [
+      { text: "Nah bro appreciate you your editing style is tuff keep up the good work fr all love bro", isMe: false, reaction: "❤️" }
+    ]
+  },
+  {
+    username: "@best_edit",
+    avatarText: "B",
+    messages: [
+      { text: "One of the best edit of all time of this song", isMe: false, reaction: "❤️" },
+      { text: "God bless u", isMe: false, reaction: "❤️" }
+    ]
+  },
+  {
+    username: "@good_edit",
+    avatarText: "G",
+    messages: [
+      { text: "ppreciate you", isMe: true },
+      { text: "It was a good edit.", isMe: false, reaction: "❤️" }
+    ]
+  },
+  {
+    username: "@wow_bhai_in",
+    avatarText: "W",
+    messages: [
+      { text: "", isMe: false, isVideo: true },
+      { text: "Wow bhai just wow don't have words 🙏", isMe: false, reaction: "❤️" }
+    ]
+  }
+];
+
+function ScreenshotCarousel() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev + 1) % chatsData.length);
+  };
+
+  const handlePrev = () => {
+    setActiveIndex((prev) => (prev - 1 + chatsData.length) % chatsData.length);
+  };
+
+  return (
+    <div className="relative w-full max-w-4xl flex flex-col items-center justify-center min-h-[460px] select-none py-10 px-4">
+      {/* Cards stack container */}
+      <div className="relative w-full flex items-center justify-center h-[340px] md:h-[380px]">
+        {chatsData.map((chat, idx) => {
+          // Calculate distance from activeIndex
+          let distance = idx - activeIndex;
+          
+          // Handle wrap-around for slider display
+          const length = chatsData.length;
+          if (distance < -1) {
+            if (distance === -(length - 1)) distance = 1;
+          }
+          if (distance > 1) {
+            if (distance === length - 1) distance = -1;
+          }
+          
+          const isActive = distance === 0;
+          const isLeft = distance === -1;
+          const isRight = distance === 1;
+          
+          const isVisible = isActive || isLeft || isRight;
+
+          if (!isVisible) return null;
+
+          return (
+            <motion.div
+              key={idx}
+              style={{ transformOrigin: "center bottom" }}
+              animate={{
+                scale: isActive ? 1 : 0.82,
+                x: isActive ? 0 : isLeft ? -180 : 180,
+                z: isActive ? 0 : -100,
+                opacity: isActive ? 1 : 0.35,
+                zIndex: isActive ? 20 : 10,
+                pointerEvents: isActive ? "auto" : "none",
+                filter: isActive ? "blur(0px)" : "blur(3px)",
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 300,
+                damping: 28,
+              }}
+              className="absolute w-[290px] sm:w-[330px] h-[330px] md:h-[360px] bg-zinc-950 dark:bg-black rounded-3xl border border-black/10 dark:border-white/10 shadow-2xl flex flex-col overflow-hidden text-white font-sans"
+            >
+              {/* Instagram Style Header */}
+              <div className="flex items-center justify-between px-4 py-3 bg-zinc-900/50 border-b border-white/5 shrink-0">
+                <div className="flex items-center gap-3">
+                  <svg className="w-4 h-4 text-white/50" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" /></svg>
+                  <div className="w-7 h-7 rounded-full bg-[#007AFF]/10 flex items-center justify-center font-bold text-xs text-[#007AFF] border border-[#007AFF]/20">
+                    {chat.avatarText}
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="font-bold text-xs tracking-tight">{chat.username}</span>
+                    <span className="text-[8px] text-white/40">Active now</span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3.5 text-white/60">
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                </div>
+              </div>
+
+              {/* Chat Content Body */}
+              <div className="flex-1 p-4 overflow-y-auto flex flex-col gap-3.5 bg-zinc-950 dark:bg-black scrollbar-none justify-end">
+                {chat.messages.map((msg, mIdx) => (
+                  <div
+                    key={mIdx}
+                    className={`flex flex-col max-w-[85%] ${msg.isMe ? 'self-end items-end' : 'self-start items-start'} relative`}
+                  >
+                    {/* Message Bubble */}
+                    <div
+                      className={`px-3.5 py-2 rounded-2xl text-xs leading-relaxed font-medium ${
+                        msg.isMe
+                          ? 'bg-[#007AFF] text-white rounded-tr-sm'
+                          : 'bg-zinc-800 text-white rounded-tl-sm'
+                      } relative`}
+                    >
+                      {msg.isVideo ? (
+                        /* Video Post Sharing Mockup */
+                        <div className="w-[170px] h-[95px] bg-zinc-900 rounded-xl border border-white/10 flex flex-col overflow-hidden shadow-inner">
+                          <div className="flex-1 bg-gradient-to-br from-zinc-700 to-zinc-900 flex items-center justify-center relative">
+                            <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/10">
+                              <svg className="w-3.5 h-3.5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                            </div>
+                          </div>
+                          <div className="px-3 py-1 bg-zinc-900 flex items-center justify-between text-[8px] text-white/50 border-t border-white/5 font-semibold">
+                            <span>Watch Video</span>
+                            <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                          </div>
+                        </div>
+                      ) : (
+                        msg.text
+                      )}
+
+                      {/* Heart Reaction Badge */}
+                      {msg.reaction && (
+                        <div className="absolute -bottom-2 bg-zinc-900 border border-white/10 rounded-full px-1.5 py-0.5 text-[8px] flex items-center justify-center shadow-lg cursor-pointer transform hover:scale-110 transition-transform duration-200" style={{ [msg.isMe ? 'right' : 'left']: '8px' }}>
+                          {msg.reaction}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* Navigation Controls */}
+      <div className="flex flex-col items-center gap-5 mt-6">
+        {/* Pagination Dots */}
+        <div className="flex items-center gap-1.5">
+          {chatsData.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setActiveIndex(idx)}
+              className="w-6 h-3 flex items-center justify-center focus:outline-none"
+            >
+              <motion.div
+                animate={{
+                  width: idx === activeIndex ? 16 : 6,
+                  height: 6,
+                  backgroundColor: idx === activeIndex ? "#007AFF" : "rgba(255, 255, 255, 0.2)",
+                  borderRadius: 3,
+                }}
+                transition={{ duration: 0.3 }}
+              />
+            </button>
+          ))}
+        </div>
+
+        {/* Arrow Buttons */}
+        <div className="flex items-center gap-5">
+          <button
+            onClick={handlePrev}
+            className="w-9 h-9 rounded-full bg-white/5 border border-black/10 dark:border-white/10 flex items-center justify-center hover:bg-black/5 dark:hover:bg-white/10 hover:border-black/20 dark:hover:border-white/20 active:scale-95 transition-all text-apple-text dark:text-white/70 hover:text-apple-text dark:hover:text-white"
+          >
+            <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" /></svg>
+          </button>
+          <button
+            onClick={handleNext}
+            className="w-9 h-9 rounded-full bg-white/5 border border-black/10 dark:border-white/10 flex items-center justify-center hover:bg-black/5 dark:hover:bg-white/10 hover:border-black/20 dark:hover:border-white/20 active:scale-95 transition-all text-apple-text dark:text-white/70 hover:text-apple-text dark:hover:text-white"
+          >
+            <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function ReviewsSection() {
   return (
     <section className="py-16 sm:py-24 px-6 lg:px-16 max-w-7xl mx-auto border-t border-apple-border/50">
@@ -45,7 +289,7 @@ export default function ReviewsSection() {
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-apple-text leading-tight tracking-tight">Loved by creators and founders</h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
         {reviews.map((review, index) => (
           <motion.div 
             key={index}
@@ -85,6 +329,18 @@ export default function ReviewsSection() {
             </div>
           </motion.div>
         ))}
+      </div>
+
+      {/* Styled Chat Screenshots Carousel */}
+      <div className="mt-16 w-full flex flex-col items-center">
+        <h3 className="text-xl sm:text-2xl font-extrabold text-apple-text mb-1 tracking-tight text-center">
+          What they say in DMs
+        </h3>
+        <p className="text-apple-subtext text-sm font-semibold uppercase tracking-widest mb-10 text-center">
+          Loved by editors worldwide
+        </p>
+        
+        <ScreenshotCarousel />
       </div>
     </section>
   );
