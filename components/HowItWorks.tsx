@@ -130,7 +130,7 @@ const MeetCallMockup = () => {
   const [callEnded, setCallEnded] = useState(false);
   const [chatInput, setChatInput] = useState("");
   const [messages, setMessages] = useState([
-    { sender: "Udayjot", text: "Yo, are you guys joining the call?", time: "15:21" },
+    { sender: "Uday", text: "Yo, are you guys joining the call?", time: "15:21" },
     { sender: "Rhythm", text: "Yeah, already in. Just waiting on Atharv.", time: "15:22" },
     { sender: "Atharv", text: "Hey! Sorry, just finished exporting the storyboard.", time: "15:23" },
     { sender: "Rhythm", text: "Sweet. Let's look at the style frames.", time: "15:24" }
@@ -171,7 +171,7 @@ const MeetCallMockup = () => {
             setIsCameraOff(false);
             setShowChat(false);
             setMessages([
-              { sender: "Udayjot", text: "Yo, are you guys joining the call?", time: "15:21" },
+              { sender: "Uday", text: "Yo, are you guys joining the call?", time: "15:21" },
               { sender: "Rhythm", text: "Yeah, already in. Just waiting on Atharv.", time: "15:22" },
               { sender: "Atharv", text: "Hey! Sorry, just finished exporting the storyboard.", time: "15:23" },
               { sender: "Rhythm", text: "Sweet. Let's look at the style frames.", time: "15:24" }
@@ -222,7 +222,7 @@ const MeetCallMockup = () => {
               <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/><line x1="4" y1="4" x2="20" y2="20" stroke="white" strokeWidth="2.5" strokeLinecap="round"/></svg>
             </div>
             <div className="w-9 h-9 rounded-full bg-[#5F6368] flex items-center justify-center text-white text-sm font-bold mb-1 shadow-inner shrink-0">U</div>
-            <span className="text-white text-[8px] font-medium tracking-wide">Udayjot</span>
+            <span className="text-white text-[8px] font-medium tracking-wide">Uday</span>
           </div>
 
           <div className={`bg-[#3C4043]/90 rounded-xl relative flex flex-col items-center justify-center border border-white/5 py-3 ${showChat ? 'hidden' : 'flex'}`}>
