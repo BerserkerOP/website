@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ContactModal from '@/components/ContactModal'
+import FloatingContactButton from '@/components/FloatingContactButton'
 import { ThemeProvider } from '@/components/ThemeProvider'
 
 
@@ -66,6 +67,7 @@ export default function RootLayout({
           </main>
           <Footer />
           <ContactModal />
+          <FloatingContactButton />
         </ThemeProvider>
       </body>
     </html>
