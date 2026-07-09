@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface FAQItem {
@@ -42,8 +42,53 @@ export default function FAQSection() {
       number: "06",
       question: "Do you work with startups, or only large companies?",
       answer: "We work with brands at all stages. We help early-stage startups communicate their MVP clearly to investors and users, and we help enterprise teams explain complex product updates."
+    },
+    {
+      number: "07",
+      question: "How do I install plugins or presets?",
+      answer: "All our plugins and presets come with a detailed PDF installation guide. Generally, you just copy the plugin folder into your host application’s extensions folder (e.g., After Effects extensions). If you need direct assistance, contact support."
+    },
+    {
+      number: "08",
+      question: "What should I do if a product or preset isn't working as expected?",
+      answer: "Please ensure your host application is updated to the required version specified on the product page. If it still fails, email us at halftonemotion@gmail.com with your system specs and a screenshot or screen recording of the error."
+    },
+    {
+      number: "09",
+      question: "What is your refund policy?",
+      answer: "Due to the digital nature of our products (downloadable templates and presets), all sales are final and we generally do not offer refunds. However, if a product is corrupt or defective, please contact support and we will resolve it."
+    },
+    {
+      number: "10",
+      question: "What are the licensing terms for your presets and templates?",
+      answer: "Every purchase includes a single-user commercial license. You can use our templates and presets in unlimited personal and commercial client projects. Sharing, reselling, or redistributing the source assets is strictly prohibited."
+    },
+    {
+      number: "11",
+      question: "Do you offer custom motion design work or collaborations?",
+      answer: "Yes, we collaborate with creators, agencies, and brands for custom motion design assets, templates, and branding. Please fill out our contact form or email us directly at halftonemotion@gmail.com with details."
     }
   ];
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const q = params.get("q");
+      if (q) {
+        const index = faqs.findIndex(item => item.number === q);
+        if (index !== -1) {
+          setOpenIndex(index);
+          // Wait slightly for layout/render to complete before scrolling
+          setTimeout(() => {
+            const el = document.getElementById(`faq-item-${q}`);
+            if (el) {
+              el.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+          }, 250);
+        }
+      }
+    }
+  }, []);
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -66,7 +111,8 @@ export default function FAQSection() {
           return (
             <div 
               key={index} 
-              className="border-b border-black/10 dark:border-white/10"
+              id={`faq-item-${faq.number}`}
+              className="border-b border-black/10 dark:border-white/10 scroll-mt-24"
             >
               <button
                 onClick={() => toggleFAQ(index)}

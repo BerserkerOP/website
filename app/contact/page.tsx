@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import SpotlightButton from '@/components/SpotlightButton';
 
 export default function ContactPage() {
@@ -293,6 +294,66 @@ export default function ContactPage() {
                 <span className="text-sm font-bold text-apple-text dark:text-white tracking-wide">@atharvf.x</span>
               </div>
             </motion.a>
+
+            {/* Box 4: YouTube */}
+            <motion.a 
+              href="https://www.youtube.com/channel/UCh5P2qR4MUeahOXECT5pm-Q"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              whileHover={{ y: -3, x: 1, scale: 1.01, boxShadow: "0 12px 24px -10px rgba(0, 122, 255, 0.3)", borderColor: "rgba(0, 122, 255, 0.4)" }} 
+              whileTap={{ x: 6, y: -2, scale: 0.98 }}
+              transition={{ 
+                x: { duration: 0.8, delay: 0.55, ease: [0.16, 1, 0.3, 1] },
+                opacity: { duration: 0.8, delay: 0.55 },
+                type: 'spring', stiffness: 400, damping: 25 
+              }}
+              className="bg-white/50 dark:bg-white/5 border border-black/10 dark:border-white/10 backdrop-blur-2xl rounded-3xl p-6 flex items-center gap-5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgba(255,255,255,0.02)] cursor-pointer block"
+            >
+              <div className="w-14 h-14 rounded-2xl bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/10 flex items-center justify-center shrink-0">
+                <svg className="w-6 h-6 text-apple-text/70 dark:text-white/80" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.518 3.545 12 3.545 12 3.545s-7.518 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.87.508 9.388.508 9.388.508s7.518 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+              </div>
+              <div className="flex flex-col gap-1">
+                <span className="text-[11px] font-bold text-apple-blue uppercase tracking-[0.2em]">YouTube</span>
+                <span className="text-sm font-bold text-apple-text dark:text-white tracking-wide">@halftonemotion</span>
+              </div>
+            </motion.a>
+
+            {/* Box 5: Common Topics */}
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              whileHover={{ y: -3, x: 1, scale: 1.01, boxShadow: "0 12px 24px -10px rgba(48, 209, 88, 0.2)", borderColor: "rgba(48, 209, 88, 0.3)" }} 
+              transition={{ 
+                x: { duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] },
+                opacity: { duration: 0.8, delay: 0.6 },
+                type: 'spring', stiffness: 400, damping: 25 
+              }}
+              className="bg-white/50 dark:bg-white/5 border border-black/10 dark:border-white/10 backdrop-blur-2xl rounded-3xl p-6 flex flex-col shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgba(255,255,255,0.02)] cursor-default"
+            >
+              <div className="flex items-center gap-2 mb-4">
+                <span className="text-[11px] font-bold text-[#30D158] uppercase tracking-[0.2em]">Common Topics</span>
+              </div>
+              <ul className="flex flex-col gap-3">
+                {[
+                  { text: "Plugin installation help", link: "/faq?q=07" },
+                  { text: "Product not working as expected", link: "/faq?q=08" },
+                  { text: "Refund request", link: "/faq?q=09" },
+                  { text: "Licensing question", link: "/faq?q=10" },
+                  { text: "Collab or custom work", link: "/faq?q=11" }
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 py-1 border-b border-black/[0.05] dark:border-white/[0.05] last:border-0">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#30D158] shrink-0" />
+                    <Link href={item.link} className="text-sm font-semibold text-apple-text/80 dark:text-white/80 hover:text-[#30D158] dark:hover:text-[#30D158] transition-colors hover:underline">
+                      {item.text}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
           </div>
         </div>
       </div>
