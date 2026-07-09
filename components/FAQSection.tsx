@@ -21,7 +21,7 @@ export default function FAQSection() {
     {
       number: "02",
       question: "How long does a typical project take?",
-      answer: "A standard video takes 3 to 4 weeks. Our pipeline goes from briefing, scripting, and storyboarding, to custom style frames, animation, and sound design. We align on key milestones upfront so you know exactly what is happening."
+      answer: "A standard video takes 1 to 2 weeks at most. Our pipeline goes from briefing, scripting, and storyboarding, to custom style frames, animation, and sound design. We align on key milestones upfront so you know exactly what is happening."
     },
     {
       number: "03",
