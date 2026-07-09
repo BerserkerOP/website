@@ -4,6 +4,7 @@ import ReviewsSection from '@/components/ReviewsSection';
 import HowItWorks from '@/components/HowItWorks';
 import ContactSection from '@/components/ContactSection';
 import SpotlightButton from '@/components/SpotlightButton';
+import FAQSection from '@/components/FAQSection';
 
 export default function Home() {
   const projects = [
@@ -48,6 +49,7 @@ export default function Home() {
       <HowItWorks />
       <ReviewsSection />
       <ContactSection />
+      <FAQSection />
     </div>
   );
 }

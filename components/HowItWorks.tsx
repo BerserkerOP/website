@@ -136,6 +136,54 @@ const MeetCallMockup = () => {
     { sender: "Rhythm", text: "Sweet. Let's look at the style frames.", time: "15:24" }
   ]);
 
+  const [activeSpeaker, setActiveSpeaker] = useState<"Atharv" | "Uday" | "Rhythm" | null>(null);
+  const [isUdayMuted, setIsUdayMuted] = useState(true);
+
+  // Active speaker simulation loop
+  useEffect(() => {
+    if (callEnded) return;
+
+    const speakerInterval = setInterval(() => {
+      const rand = Math.random();
+      if (rand < 0.25) {
+        setActiveSpeaker(null); // Pause/silence
+      } else if (rand < 0.55) {
+        setActiveSpeaker("Rhythm");
+      } else if (rand < 0.8) {
+        if (!isUdayMuted) {
+          setActiveSpeaker("Uday");
+        } else {
+          setActiveSpeaker(null);
+        }
+      } else {
+        if (!isMicMuted) {
+          setActiveSpeaker("Atharv");
+        } else {
+          setActiveSpeaker(null);
+        }
+      }
+    }, 2500);
+
+    return () => clearInterval(speakerInterval);
+  }, [isMicMuted, isUdayMuted, callEnded]);
+
+  // Uday mute/unmute simulation loop
+  useEffect(() => {
+    if (callEnded) return;
+
+    const muteInterval = setInterval(() => {
+      setIsUdayMuted(prev => {
+        const nextMute = !prev;
+        if (nextMute) {
+          setActiveSpeaker(curr => curr === "Uday" ? null : curr);
+        }
+        return nextMute;
+      });
+    }, 6000);
+
+    return () => clearInterval(muteInterval);
+  }, [callEnded]);
+
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -170,6 +218,8 @@ const MeetCallMockup = () => {
             setIsMicMuted(false);
             setIsCameraOff(false);
             setShowChat(false);
+            setIsUdayMuted(true);
+            setActiveSpeaker(null);
             setMessages([
               { sender: "Uday", text: "Yo, are you guys joining the call?", time: "15:21" },
               { sender: "Rhythm", text: "Yeah, already in. Just waiting on Atharv.", time: "15:22" },
@@ -199,7 +249,7 @@ const MeetCallMockup = () => {
       
       <div className="flex-grow flex min-h-0 relative overflow-hidden bg-[#18191B]">
         <div className={`p-3 flex-grow grid gap-2.5 transition-all duration-300 ${showChat ? 'grid-cols-2' : 'grid-cols-3'}`}>
-          <div className={`bg-[#3C4043]/90 rounded-xl relative flex flex-col items-center justify-center transition-all duration-300 py-3 ${(!isMicMuted && !isCameraOff) ? 'border-2 border-[#8AB4F8] shadow-[0_0_12px_rgba(138,180,248,0.2)]' : 'border border-white/5'}`}>
+          <div className={`bg-[#3C4043]/90 rounded-xl relative flex flex-col items-center justify-center transition-all duration-300 py-3 ${(activeSpeaker === "Atharv" && !isMicMuted && !isCameraOff) ? 'border-2 border-[#8AB4F8] shadow-[0_0_12px_rgba(138,180,248,0.2)]' : 'border border-white/5'}`}>
             {isMicMuted && (
               <div className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-[#EA4335] flex items-center justify-center shadow-md border border-white/10">
                 <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/><line x1="4" y1="4" x2="20" y2="20" stroke="white" strokeWidth="2.5" strokeLinecap="round"/></svg>
@@ -210,23 +260,35 @@ const MeetCallMockup = () => {
                 <svg className="w-4 h-4 text-white/40" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/><line x1="3" y1="3" x2="21" y2="21" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
               ) : 'A'}
               
-              {!isMicMuted && !isCameraOff && (
+              {activeSpeaker === "Atharv" && !isMicMuted && !isCameraOff && (
                 <span className="absolute inset-0 rounded-full border border-[#8AB4F8] animate-ping opacity-20"></span>
               )}
             </div>
             <span className="text-white text-[8px] font-bold tracking-wide">Atharv (You)</span>
           </div>
           
-          <div className="bg-[#3C4043]/90 rounded-xl relative flex flex-col items-center justify-center border border-white/5 py-3">
-            <div className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-[#EA4335] flex items-center justify-center shadow-md border border-white/10">
-              <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/><line x1="4" y1="4" x2="20" y2="20" stroke="white" strokeWidth="2.5" strokeLinecap="round"/></svg>
+          <div className={`bg-[#3C4043]/90 rounded-xl relative flex flex-col items-center justify-center transition-all duration-300 py-3 ${(activeSpeaker === "Uday" && !isUdayMuted) ? 'border-2 border-[#8AB4F8] shadow-[0_0_12px_rgba(138,180,248,0.2)]' : 'border border-white/5'}`}>
+            {isUdayMuted && (
+              <div className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-[#EA4335] flex items-center justify-center shadow-md border border-white/10">
+                <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/><line x1="4" y1="4" x2="20" y2="20" stroke="white" strokeWidth="2.5" strokeLinecap="round"/></svg>
+              </div>
+            )}
+            <div className="w-9 h-9 rounded-full bg-[#5F6368] flex items-center justify-center text-white text-sm font-bold mb-1 shadow-inner shrink-0 relative">
+              U
+              {activeSpeaker === "Uday" && !isUdayMuted && (
+                <span className="absolute inset-0 rounded-full border border-[#8AB4F8] animate-ping opacity-20"></span>
+              )}
             </div>
-            <div className="w-9 h-9 rounded-full bg-[#5F6368] flex items-center justify-center text-white text-sm font-bold mb-1 shadow-inner shrink-0">U</div>
             <span className="text-white text-[8px] font-medium tracking-wide">Uday</span>
           </div>
 
-          <div className={`bg-[#3C4043]/90 rounded-xl relative flex flex-col items-center justify-center border border-white/5 py-3 ${showChat ? 'hidden' : 'flex'}`}>
-            <div className="w-9 h-9 rounded-full bg-[#5F6368] flex items-center justify-center text-white text-sm font-bold mb-1 shadow-inner shrink-0">R</div>
+          <div className={`bg-[#3C4043]/90 rounded-xl relative flex flex-col items-center justify-center transition-all duration-300 py-3 ${activeSpeaker === "Rhythm" ? 'border-2 border-[#8AB4F8] shadow-[0_0_12px_rgba(138,180,248,0.2)]' : 'border border-white/5'} ${showChat ? 'hidden' : 'flex'}`}>
+            <div className="w-9 h-9 rounded-full bg-[#5F6368] flex items-center justify-center text-white text-sm font-bold mb-1 shadow-inner shrink-0 relative">
+              R
+              {activeSpeaker === "Rhythm" && (
+                <span className="absolute inset-0 rounded-full border border-[#8AB4F8] animate-ping opacity-20"></span>
+              )}
+            </div>
             <span className="text-white text-[8px] font-medium tracking-wide">Rhythm</span>
           </div>
         </div>
@@ -396,6 +458,22 @@ const VideoPlayerMockup = () => {
   const [muWidth, setMuWidth] = useState(95);
   const [sfxWidth, setSfxWidth] = useState(45);
   const [playhead, setPlayhead] = useState(30);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const totalSeconds = 17; // Exact duration of J. Cole - 39 Intro YouTube Short
+
+  useEffect(() => {
+    let interval: any;
+    if (isPlaying) {
+      interval = setInterval(() => {
+        setPlayhead(prev => {
+          if (prev >= 100) return 0;
+          return prev + (100 / (totalSeconds * 10)); // advance playhead every 100ms
+        });
+      }, 100);
+    }
+    return () => clearInterval(interval);
+  }, [isPlaying]);
 
   const startDrag = (setFn: (val: number) => void) => (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
     const track = e.currentTarget;
@@ -435,7 +513,6 @@ const VideoPlayerMockup = () => {
     }
   };
 
-  const totalSeconds = 105;
   const currentSeconds = Math.round((playhead / 100) * totalSeconds);
   const formatTime = (secs: number) => {
     const m = Math.floor(secs / 60).toString().padStart(2, '0');
@@ -445,11 +522,31 @@ const VideoPlayerMockup = () => {
 
   return (
     <div className="w-full h-full bg-[#1C1C1E] rounded-xl overflow-hidden shadow-2xl border border-white/10 flex flex-col font-sans max-h-[350px]">
-      <div className="flex-grow bg-black relative flex flex-col justify-end min-h-[140px]">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/5 shadow-lg">
-          <svg className="w-5 h-5 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-        </div>
-        <div className="px-4 pb-2 flex flex-col gap-1.5 relative z-10 w-full">
+      <div className="flex-grow bg-black relative flex flex-col justify-end min-h-[140px] overflow-hidden">
+        {isPlaying ? (
+          <div className="absolute inset-0 w-full h-full z-0">
+            <iframe 
+              src="https://www.youtube.com/embed/_87r8kmzot8?autoplay=1&mute=1&loop=1&playlist=_87r8kmzot8&controls=0&modestbranding=1&rel=0&showinfo=0"
+              className="w-full h-full object-cover rounded-t-xl"
+              allow="autoplay; encrypted-media"
+              frameBorder="0"
+            />
+            <div 
+              onClick={() => setIsPlaying(false)} 
+              className="absolute inset-0 cursor-pointer bg-transparent z-10" 
+            />
+          </div>
+        ) : (
+          <div 
+            onClick={() => setIsPlaying(true)}
+            className="absolute inset-0 bg-black cursor-pointer flex items-center justify-center group z-10"
+          >
+            <div className="w-12 h-12 rounded-full bg-white/15 backdrop-blur-md flex items-center justify-center border border-white/10 shadow-xl group-hover:scale-110 transition-transform duration-200">
+              <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+          </div>
+        )}
+        <div className="px-4 pb-2 flex flex-col gap-1.5 relative z-20 w-full bg-gradient-to-t from-black/90 via-black/50 to-transparent pt-8">
           <div 
             onMouseDown={startDrag(setPlayhead)}
             onTouchStart={startDrag(setPlayhead)}
@@ -464,7 +561,17 @@ const VideoPlayerMockup = () => {
               </div>
             </div>
           </div>
-          <div className="flex justify-end w-full">
+          <div className="flex justify-between items-center w-full">
+            <button 
+              onClick={() => setIsPlaying(!isPlaying)}
+              className="text-white/60 hover:text-white transition-colors"
+            >
+              {isPlaying ? (
+                <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+              ) : (
+                <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              )}
+            </button>
             <span className="text-white/60 text-[9px] font-mono tracking-wider">
               {formatTime(currentSeconds)} / {formatTime(totalSeconds)}
             </span>

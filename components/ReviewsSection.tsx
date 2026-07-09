@@ -46,26 +46,30 @@ interface Message {
 }
 
 interface Chat {
-  profileImage: string;
+  avatarText: string;
+  avatarColor: string;
   messages: Message[];
 }
 
 // Chat screenshots data from user uploads
 const chatsData: Chat[] = [
   {
-    profileImage: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80",
+    avatarText: "E",
+    avatarColor: "#007AFF",
     messages: [
       { text: "Thanks for posting.", isMe: false, reaction: "❤️" }
     ]
   },
   {
-    profileImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80",
+    avatarText: "J",
+    avatarColor: "#34C759",
     messages: [
       { text: "No problem brother love the work you do. Just now seeing this sorry about the late reply for some reason it was in hidden messages.", isMe: false }
     ]
   },
   {
-    profileImage: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80",
+    avatarText: "T",
+    avatarColor: "#FF9500",
     messages: [
       { text: "Ayyy this ain't much bru the edit was tuff asl", isMe: false, reaction: "❤️" },
       { text: "Thankyou so much king 👑💖", isMe: true },
@@ -73,34 +77,39 @@ const chatsData: Chat[] = [
     ]
   },
   {
-    profileImage: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80",
+    avatarText: "S",
+    avatarColor: "#AF52DE",
     messages: [
       { text: "Word", isMe: false, reaction: "❤️" },
       { text: "Btw I like your editing style", isMe: false, reaction: "❤️" }
     ]
   },
   {
-    profileImage: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=100&q=80",
+    avatarText: "L",
+    avatarColor: "#FF2D55",
     messages: [
       { text: "Nah bro appreciate you your editing style is tuff keep up the good work fr all love bro", isMe: false, reaction: "❤️" }
     ]
   },
   {
-    profileImage: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80",
+    avatarText: "B",
+    avatarColor: "#5856D6",
     messages: [
       { text: "One of the best edit of all time of this song", isMe: false, reaction: "❤️" },
       { text: "God bless u", isMe: false, reaction: "❤️" }
     ]
   },
   {
-    profileImage: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&q=80",
+    avatarText: "G",
+    avatarColor: "#FF9500",
     messages: [
       { text: "ppreciate you", isMe: true },
       { text: "It was a good edit.", isMe: false, reaction: "❤️" }
     ]
   },
   {
-    profileImage: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=100&q=80",
+    avatarText: "W",
+    avatarColor: "#007AFF",
     messages: [
       { text: "", isMe: false, isVideo: true },
       { text: "Wow bhai just wow don't have words 🙏", isMe: false, reaction: "❤️" }
@@ -168,8 +177,15 @@ function ScreenshotCarousel() {
               <div className="flex items-center justify-between px-4 py-3 bg-zinc-900/50 border-b border-white/5 shrink-0">
                 <div className="flex items-center gap-3">
                   <svg className="w-4 h-4 text-white/50" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" /></svg>
-                  <div className="w-7 h-7 rounded-full overflow-hidden border border-white/10 shrink-0 relative bg-zinc-800">
-                    <img src={chat.profileImage} alt="Client Profile" className="w-full h-full object-cover" />
+                  <div 
+                    className="w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs border shrink-0"
+                    style={{
+                      backgroundColor: `${chat.avatarColor}20`,
+                      color: chat.avatarColor,
+                      borderColor: `${chat.avatarColor}35`
+                    }}
+                  >
+                    {chat.avatarText}
                   </div>
                   <div className="flex flex-col">
                     <span className="text-[10px] font-bold text-white/80 tracking-tight">Active now</span>
@@ -274,56 +290,9 @@ function ScreenshotCarousel() {
 export default function ReviewsSection() {
   return (
     <section className="py-16 sm:py-24 px-6 lg:px-16 max-w-7xl mx-auto border-t border-apple-border/50">
-      <div className="mb-14 text-center max-w-2xl mx-auto">
-        <p className="text-apple-blue text-sm font-semibold uppercase tracking-widest mb-3">Client Feedback</p>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-apple-text leading-tight tracking-tight">Loved by creators and founders</h2>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
-        {reviews.map((review, index) => (
-          <motion.div 
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay: index * 0.15 }}
-            className="bg-apple-card rounded-[24px] p-8 border border-black/5 dark:border-white/5 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col h-full relative overflow-hidden group"
-          >
-            {/* Subtle Gradient Glow inside the card */}
-            <div className="absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 rounded-full bg-apple-blue/10 blur-3xl group-hover:bg-apple-blue/20 transition-colors duration-500 pointer-events-none" />
-            
-            <div className="relative z-10 flex-1 flex flex-col">
-              <StarRating />
-              
-              <h3 className="text-lg font-bold text-apple-text mb-3 tracking-tight">"{review.headline}"</h3>
-              
-              <p className="text-[15px] leading-relaxed text-apple-subtext mb-8 flex-1">
-                {review.text}
-              </p>
-            </div>
-            
-            <div className="flex items-center gap-3 mt-auto relative z-10">
-              {review.image ? (
-                <div className="w-10 h-10 rounded-full shrink-0 overflow-hidden relative border border-black/10 dark:border-white/10">
-                  <img src={review.image} alt={review.name} className="w-full h-full object-cover" />
-                </div>
-              ) : (
-                <div className="w-10 h-10 rounded-full bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center text-zinc-500 font-bold text-sm shrink-0 border border-black/5 dark:border-white/5">
-                  {review.name.charAt(0)}
-                </div>
-              )}
-              <div className="flex flex-col">
-                <span className="text-sm font-bold text-apple-text">{review.name}</span>
-                <span className="text-xs text-apple-subtext font-medium">{review.role}</span>
-              </div>
-            </div>
-          </motion.div>
-        ))}
-      </div>
-
       {/* Styled Chat Screenshots Carousel */}
-      <div className="mt-16 w-full flex flex-col items-center">
-        <h3 className="text-xl sm:text-2xl font-extrabold text-apple-text mb-10 tracking-tight text-center">
+      <div className="w-full flex flex-col items-center">
+        <h3 className="text-xl sm:text-2xl font-extrabold text-apple-text dark:text-white mb-10 tracking-tight text-center">
           What they say in DMs
         </h3>
         

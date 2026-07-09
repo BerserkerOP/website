@@ -18,10 +18,12 @@ export default function Hero() {
   const [index, setIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [mounted, setMounted] = useState(false);
   const { scrollY } = useScroll();
   const opacity = useTransform(scrollY, [0, 600], [1, 0]);
 
   useEffect(() => {
+    setMounted(true);
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % phrases.length);
     }, 3000);
@@ -34,18 +36,20 @@ export default function Hero() {
       role: "Founder of WTM",
       headline: "Fast turnaround & quality",
       text: "Delivered it with great video quality in just a few days at a reasonable price.",
-      rotation: -6,
-      x: -40,
-      y: -75,
+      rotation: -7,
+      x: -65,
+      y: -65,
+      image: "/reviews/akil.jpg",
     },
     {
       name: "Rhythm Shandlya",
       role: "Founder of Vionna",
       headline: "Reliable & highly skilled",
       text: "Highly responsive, communicate well, and take genuine ownership of their work.",
-      rotation: 5,
-      x: 35,
-      y: 0,
+      rotation: 6,
+      x: 55,
+      y: 5,
+      image: "/reviews/rhythm.jpg",
     },
     {
       name: "Sarah Jenkins",
@@ -53,7 +57,7 @@ export default function Hero() {
       headline: "Attention to detail",
       text: "Their onboarding sequence increased our user retention by 30%. Absolute best.",
       rotation: -2,
-      x: -15,
+      x: -10,
       y: 75,
     }
   ];
@@ -84,18 +88,20 @@ export default function Hero() {
             >
               Professional Motion Design that <br/>
               <span className="text-apple-blue relative block h-[2.2em] sm:h-[1.2em] w-full overflow-hidden mt-1 lg:text-left text-center">
-                <AnimatePresence>
-                  <motion.span
-                    key={index}
-                    initial={{ y: "-100%", opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: "100%", opacity: 0 }}
-                    transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                    className="absolute inset-0 flex items-center justify-center lg:justify-start text-center lg:text-left px-4 lg:px-0"
-                  >
-                    {phrases[index]}
-                  </motion.span>
-                </AnimatePresence>
+                {mounted && (
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={index}
+                      initial={{ y: -15, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      exit={{ y: 15, opacity: 0 }}
+                      transition={{ duration: 0.35, ease: "easeInOut" }}
+                      className="absolute inset-0 flex items-center justify-center lg:justify-start text-center lg:text-left px-4 lg:px-0"
+                    >
+                      {phrases[index]}
+                    </motion.span>
+                  </AnimatePresence>
+                )}
               </span>
             </motion.h1>
 
@@ -183,9 +189,20 @@ export default function Hero() {
                     </p>
                   </div>
 
-                  <div className="flex flex-col mt-4 pt-3 border-t border-black/5 dark:border-white/5">
-                    <span className="text-[11px] font-bold text-apple-text dark:text-white">{rev.name}</span>
-                    <span className="text-[9px] text-apple-subtext dark:text-white/40 font-semibold">{rev.role}</span>
+                  <div className="flex items-center gap-2.5 mt-4 pt-3 border-t border-black/5 dark:border-white/5">
+                    {rev.image ? (
+                      <div className="w-8 h-8 rounded-full overflow-hidden border border-black/10 dark:border-white/10 shrink-0">
+                        <img src={rev.image} alt={rev.name} className="w-full h-full object-cover" />
+                      </div>
+                    ) : (
+                      <div className="w-8 h-8 rounded-full bg-apple-blue/10 dark:bg-apple-blue/20 flex items-center justify-center text-apple-blue font-bold text-xs shrink-0 border border-apple-blue/20">
+                        {rev.name.charAt(0)}
+                      </div>
+                    )}
+                    <div className="flex flex-col">
+                      <span className="text-[11px] font-bold text-apple-text dark:text-white leading-tight">{rev.name}</span>
+                      <span className="text-[9px] text-apple-subtext dark:text-white/40 font-semibold leading-tight">{rev.role}</span>
+                    </div>
                   </div>
                 </motion.div>
               );
