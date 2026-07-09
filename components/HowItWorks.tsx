@@ -457,23 +457,90 @@ const VideoPlayerMockup = () => {
   const [voWidth, setVoWidth] = useState(60);
   const [muWidth, setMuWidth] = useState(95);
   const [sfxWidth, setSfxWidth] = useState(45);
-  const [playhead, setPlayhead] = useState(30);
+  const [playhead, setPlayhead] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const playerRef = useRef<any>(null);
+  const [apiReady, setApiReady] = useState(false);
+  const containerId = "yt-player-step";
 
   const totalSeconds = 17; // Exact duration of J. Cole - 39 Intro YouTube Short
+
+  useEffect(() => {
+    // Load YouTube IFrame API script
+    if (typeof window !== 'undefined') {
+      if (!(window as any).YT) {
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
+
+        (window as any).onYouTubeIframeAPIReady = () => {
+          setApiReady(true);
+        };
+      } else {
+        setApiReady(true);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (apiReady && !playerRef.current) {
+      playerRef.current = new (window as any).YT.Player(containerId, {
+        height: '100%',
+        width: '100%',
+        videoId: '_87r8kmzot8',
+        playerVars: {
+          autoplay: 0,
+          mute: 1,
+          controls: 0,
+          modestbranding: 1,
+          rel: 0,
+          showinfo: 0,
+          loop: 1,
+          playlist: '_87r8kmzot8',
+          playsinline: 1
+        },
+        events: {
+          onStateChange: (event: any) => {
+            // event.data: 1 is playing, 2 is paused
+            if (event.data === 1) {
+              setIsPlaying(true);
+            } else {
+              setIsPlaying(false);
+            }
+          }
+        }
+      });
+    }
+  }, [apiReady]);
 
   useEffect(() => {
     let interval: any;
     if (isPlaying) {
       interval = setInterval(() => {
-        setPlayhead(prev => {
-          if (prev >= 100) return 0;
-          return prev + (100 / (totalSeconds * 10)); // advance playhead every 100ms
-        });
+        if (playerRef.current && playerRef.current.getCurrentTime && playerRef.current.getDuration) {
+          const current = playerRef.current.getCurrentTime();
+          const duration = playerRef.current.getDuration() || totalSeconds;
+          setPlayhead((current / duration) * 100);
+        }
       }, 100);
     }
     return () => clearInterval(interval);
   }, [isPlaying]);
+
+  const handlePlayClick = () => {
+    if (playerRef.current && playerRef.current.playVideo) {
+      playerRef.current.playVideo();
+      setIsPlaying(true);
+    }
+  };
+
+  const handlePauseClick = () => {
+    if (playerRef.current && playerRef.current.pauseVideo) {
+      playerRef.current.pauseVideo();
+      setIsPlaying(false);
+    }
+  };
 
   const startDrag = (setFn: (val: number) => void) => (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
     const track = e.currentTarget;
@@ -484,6 +551,11 @@ const VideoPlayerMockup = () => {
       const x = clientX - rect.left;
       const pct = Math.max(0, Math.min(100, Math.round((x / rect.width) * 100)));
       setFn(pct);
+
+      if (setFn === setPlayhead && playerRef.current && playerRef.current.seekTo) {
+        const duration = playerRef.current.getDuration() || totalSeconds;
+        playerRef.current.seekTo((pct / 100) * duration, true);
+      }
     };
 
     const initialClientX = isTouch ? e.touches[0].clientX : e.clientX;
@@ -523,29 +595,26 @@ const VideoPlayerMockup = () => {
   return (
     <div className="w-full h-full bg-[#1C1C1E] rounded-xl overflow-hidden shadow-2xl border border-white/10 flex flex-col font-sans max-h-[350px]">
       <div className="flex-grow bg-black relative flex flex-col justify-end min-h-[140px] overflow-hidden">
-        {isPlaying ? (
-          <div className="absolute inset-0 w-full h-full z-0">
-            <iframe 
-              src="https://www.youtube.com/embed/_87r8kmzot8?autoplay=1&mute=1&loop=1&playlist=_87r8kmzot8&controls=0&modestbranding=1&rel=0&showinfo=0"
-              className="w-full h-full object-cover rounded-t-xl"
-              allow="autoplay; encrypted-media"
-              frameBorder="0"
-            />
-            <div 
-              onClick={() => setIsPlaying(false)} 
-              className="absolute inset-0 cursor-pointer bg-transparent z-10" 
-            />
-          </div>
-        ) : (
-          <div 
-            onClick={() => setIsPlaying(true)}
-            className="absolute inset-0 bg-black cursor-pointer flex items-center justify-center group z-10"
-          >
-            <div className="w-12 h-12 rounded-full bg-white/15 backdrop-blur-md flex items-center justify-center border border-white/10 shadow-xl group-hover:scale-110 transition-transform duration-200">
+        {/* Video Player Container */}
+        <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
+          <div id={containerId} className="w-full h-full" />
+        </div>
+
+        {/* Play/Pause Click Handler Overlay */}
+        <div 
+          onClick={isPlaying ? handlePauseClick : handlePlayClick} 
+          className="absolute inset-0 cursor-pointer bg-transparent z-10" 
+        />
+
+        {/* Overlay Play Button when Paused */}
+        {!isPlaying && (
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+            <div className="w-12 h-12 rounded-full bg-white/15 backdrop-blur-md flex items-center justify-center border border-white/10 shadow-xl scale-100 hover:scale-110 transition-transform duration-200">
               <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
             </div>
           </div>
         )}
+
         <div className="px-4 pb-2 flex flex-col gap-1.5 relative z-20 w-full bg-gradient-to-t from-black/90 via-black/50 to-transparent pt-8">
           <div 
             onMouseDown={startDrag(setPlayhead)}
@@ -563,7 +632,7 @@ const VideoPlayerMockup = () => {
           </div>
           <div className="flex justify-between items-center w-full">
             <button 
-              onClick={() => setIsPlaying(!isPlaying)}
+              onClick={isPlaying ? handlePauseClick : handlePlayClick}
               className="text-white/60 hover:text-white transition-colors"
             >
               {isPlaying ? (
