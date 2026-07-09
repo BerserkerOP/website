@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const steps = [
@@ -123,54 +123,200 @@ const StoryboardMockup = () => (
   </div>
 );
 
-const MeetCallMockup = () => (
-  <div className="w-full h-full bg-[#202124] rounded-xl overflow-hidden shadow-2xl border border-white/10 flex flex-col font-sans max-h-[350px]">
-    <div className="p-4 flex justify-between items-center shrink-0">
-      <div className="flex items-center gap-3">
-        <div className="w-8 h-8 rounded-lg bg-[#34A853] flex items-center justify-center shadow-lg shadow-green-500/20">
-          <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
-        </div>
-        <span className="text-white font-medium text-sm tracking-tight">Finalization Call - HalftoneMotion</span>
-      </div>
-      <span className="text-white/70 text-xs font-medium">15:24</span>
-    </div>
+const MeetCallMockup = () => {
+  const [isMicMuted, setIsMicMuted] = useState(false);
+  const [isCameraOff, setIsCameraOff] = useState(false);
+  const [showChat, setShowChat] = useState(false);
+  const [callEnded, setCallEnded] = useState(false);
+  const [chatInput, setChatInput] = useState("");
+  const [messages, setMessages] = useState([
+    { sender: "Udayjot", text: "Yo, are you guys joining the call?", time: "15:21" },
+    { sender: "Rhythm", text: "Yeah, already in. Just waiting on Atharv.", time: "15:22" },
+    { sender: "Atharv", text: "Hey! Sorry, just finished exporting the storyboard.", time: "15:23" },
+    { sender: "Rhythm", text: "Sweet. Let's look at the style frames.", time: "15:24" }
+  ]);
+
+  const chatEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (chatEndRef.current) {
+      chatEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages, showChat]);
+
+  const handleSendMessage = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!chatInput.trim()) return;
     
-    <div className="px-4 pb-4 flex-grow grid grid-cols-3 gap-3 h-full">
-      <div className="bg-[#3C4043] rounded-xl relative flex flex-col items-center justify-center border-2 border-[#8AB4F8] shadow-[0_0_15px_rgba(138,180,248,0.2)] py-2">
-        <div className="w-10 h-10 rounded-full bg-[#5F6368] flex items-center justify-center text-white text-lg font-medium mb-1.5 shadow-inner shrink-0">A</div>
-        <span className="text-white text-[9px] font-medium tracking-wide">Atharv</span>
+    const now = new Date();
+    const timeStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+    
+    setMessages(prev => [...prev, {
+      sender: "Atharv",
+      text: chatInput,
+      time: timeStr
+    }]);
+    setChatInput("");
+  };
+
+  if (callEnded) {
+    return (
+      <div className="w-full h-full min-h-[280px] bg-[#202124] rounded-xl flex flex-col items-center justify-center gap-4 text-white font-sans max-h-[350px] p-6 border border-white/10 shadow-2xl">
+        <h3 className="text-sm font-bold tracking-tight">You left the meeting</h3>
+        <p className="text-[10px] text-white/50 -mt-2">Did you forget to say goodbye?</p>
+        <button 
+          onClick={() => {
+            setCallEnded(false);
+            setIsMicMuted(false);
+            setIsCameraOff(false);
+            setShowChat(false);
+            setMessages([
+              { sender: "Udayjot", text: "Yo, are you guys joining the call?", time: "15:21" },
+              { sender: "Rhythm", text: "Yeah, already in. Just waiting on Atharv.", time: "15:22" },
+              { sender: "Atharv", text: "Hey! Sorry, just finished exporting the storyboard.", time: "15:23" },
+              { sender: "Rhythm", text: "Sweet. Let's look at the style frames.", time: "15:24" }
+            ]);
+          }} 
+          className="px-5 py-2 rounded-full bg-[#8AB4F8] text-[#202124] font-bold text-[10px] hover:bg-[#8AB4F8]/90 transition-colors shadow-lg shadow-blue-500/20"
+        >
+          Rejoin Call
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-full h-full bg-[#202124] rounded-xl overflow-hidden shadow-2xl border border-white/10 flex flex-col font-sans max-h-[350px]">
+      <div className="p-3 flex justify-between items-center shrink-0 border-b border-white/5 bg-[#202124]">
+        <div className="flex items-center gap-2.5">
+          <div className="w-6 h-6 rounded-lg bg-[#34A853] flex items-center justify-center shadow-lg shadow-green-500/20">
+            <svg className="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+          </div>
+          <span className="text-white font-semibold text-xs tracking-tight">Finalization Call - HalftoneMotion</span>
+        </div>
+        <span className="text-white/60 text-[10px] font-medium font-mono">15:24</span>
       </div>
       
-      <div className="bg-[#3C4043] rounded-xl relative flex flex-col items-center justify-center border border-white/5 py-2">
-        <div className="absolute top-2 right-2 w-4 h-4 rounded-full bg-[#EA4335] flex items-center justify-center shadow-lg">
-          <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/><line x1="4" y1="4" x2="20" y2="20" stroke="white" strokeWidth="2.5" strokeLinecap="round"/></svg>
+      <div className="flex-grow flex min-h-0 relative overflow-hidden bg-[#18191B]">
+        <div className={`p-3 flex-grow grid gap-2.5 transition-all duration-300 ${showChat ? 'grid-cols-2' : 'grid-cols-3'}`}>
+          <div className={`bg-[#3C4043]/90 rounded-xl relative flex flex-col items-center justify-center transition-all duration-300 py-3 ${(!isMicMuted && !isCameraOff) ? 'border-2 border-[#8AB4F8] shadow-[0_0_12px_rgba(138,180,248,0.2)]' : 'border border-white/5'}`}>
+            {isMicMuted && (
+              <div className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-[#EA4335] flex items-center justify-center shadow-md border border-white/10">
+                <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/><line x1="4" y1="4" x2="20" y2="20" stroke="white" strokeWidth="2.5" strokeLinecap="round"/></svg>
+              </div>
+            )}
+            <div className={`w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-bold mb-1 shadow-inner shrink-0 relative transition-all duration-300 ${isCameraOff ? 'bg-black/50 border border-white/10 text-white/40 scale-90' : 'bg-[#5F6368]'}`}>
+              {isCameraOff ? (
+                <svg className="w-4 h-4 text-white/40" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/><line x1="3" y1="3" x2="21" y2="21" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
+              ) : 'A'}
+              
+              {!isMicMuted && !isCameraOff && (
+                <span className="absolute inset-0 rounded-full border border-[#8AB4F8] animate-ping opacity-20"></span>
+              )}
+            </div>
+            <span className="text-white text-[8px] font-bold tracking-wide">Atharv (You)</span>
+          </div>
+          
+          <div className="bg-[#3C4043]/90 rounded-xl relative flex flex-col items-center justify-center border border-white/5 py-3">
+            <div className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-[#EA4335] flex items-center justify-center shadow-md border border-white/10">
+              <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/><line x1="4" y1="4" x2="20" y2="20" stroke="white" strokeWidth="2.5" strokeLinecap="round"/></svg>
+            </div>
+            <div className="w-9 h-9 rounded-full bg-[#5F6368] flex items-center justify-center text-white text-sm font-bold mb-1 shadow-inner shrink-0">U</div>
+            <span className="text-white text-[8px] font-medium tracking-wide">Udayjot</span>
+          </div>
+
+          <div className={`bg-[#3C4043]/90 rounded-xl relative flex flex-col items-center justify-center border border-white/5 py-3 ${showChat ? 'hidden' : 'flex'}`}>
+            <div className="w-9 h-9 rounded-full bg-[#5F6368] flex items-center justify-center text-white text-sm font-bold mb-1 shadow-inner shrink-0">R</div>
+            <span className="text-white text-[8px] font-medium tracking-wide">Rhythm</span>
+          </div>
         </div>
-        <div className="w-10 h-10 rounded-full bg-[#5F6368] flex items-center justify-center text-white text-lg font-medium mb-1.5 shadow-inner shrink-0">U</div>
-        <span className="text-white text-[9px] font-medium tracking-wide">Udayjot</span>
+
+        <AnimatePresence>
+          {showChat && (
+            <motion.div 
+              initial={{ width: 0, opacity: 0 }}
+              animate={{ width: 170, opacity: 1 }}
+              exit={{ width: 0, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 350, damping: 28 }}
+              className="w-[170px] border-l border-white/10 bg-[#202124] flex flex-col h-full shrink-0 min-h-0"
+            >
+              <div className="p-2 border-b border-white/5 flex items-center justify-between shrink-0 bg-[#202124]">
+                <span className="text-white text-[8px] font-bold tracking-wider uppercase opacity-80">In-call Messages</span>
+                <button onClick={() => setShowChat(false)} className="p-1 rounded-full hover:bg-white/5 text-white/50 hover:text-white transition-colors">
+                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+              </div>
+
+              <div className="flex-1 p-2 overflow-y-auto flex flex-col gap-2 bg-[#1C1C1E]/50 scrollbar-none min-h-0">
+                {messages.map((msg, idx) => (
+                  <div key={idx} className="flex flex-col text-[9px]">
+                    <div className="flex justify-between items-baseline mb-0.5">
+                      <span className={`font-bold ${msg.sender === "Atharv" ? 'text-[#8AB4F8]' : 'text-white/80'}`}>{msg.sender}</span>
+                      <span className="text-[7px] text-white/40">{msg.time}</span>
+                    </div>
+                    <p className="text-white/70 leading-normal font-medium bg-white/5 px-2 py-1 rounded-md max-w-[95%] break-words">{msg.text}</p>
+                  </div>
+                ))}
+                <div ref={chatEndRef} />
+              </div>
+
+              <form onSubmit={handleSendMessage} className="p-1.5 border-t border-white/5 flex gap-1 shrink-0 bg-[#202124]">
+                <input 
+                  type="text" 
+                  value={chatInput} 
+                  onChange={(e) => setChatInput(e.target.value)} 
+                  placeholder="Message..."
+                  className="flex-grow bg-white/5 border border-white/10 rounded-full px-2.5 py-0.5 text-[9px] text-white placeholder-white/30 focus:outline-none focus:border-[#8AB4F8]/50"
+                />
+                <button type="submit" className="p-1 rounded-full bg-[#8AB4F8] text-[#202124] hover:bg-[#8AB4F8]/90 transition-colors shrink-0">
+                  <svg className="w-3 h-3 transform rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+                </button>
+              </form>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
-      <div className="bg-[#3C4043] rounded-xl relative flex flex-col items-center justify-center border border-white/5 py-2">
-        <div className="w-10 h-10 rounded-full bg-[#5F6368] flex items-center justify-center text-white text-lg font-medium mb-1.5 shadow-inner shrink-0">R</div>
-        <span className="text-white text-[9px] font-medium tracking-wide">Rhythm</span>
-      </div>
-    </div>
+      <div className="h-14 bg-[#202124] border-t border-white/5 flex items-center justify-center gap-2.5 shrink-0">
+        <button 
+          onClick={() => setIsMicMuted(!isMicMuted)} 
+          className={`w-9 h-9 rounded-full flex items-center justify-center shadow-md transition-colors duration-200 ${isMicMuted ? 'bg-[#EA4335] text-white hover:bg-[#EA4335]/90 shadow-red-500/10' : 'bg-[#3C4043] text-white hover:bg-white/5'}`}
+        >
+          {isMicMuted ? (
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/><line x1="3" y1="3" x2="21" y2="21" stroke="currentColor" strokeWidth="2"/></svg>
+          ) : (
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+          )}
+        </button>
 
-    <div className="h-16 bg-[#202124] border-t border-white/5 flex items-center justify-center gap-3 shrink-0">
-      <div className="w-10 h-10 rounded-full bg-[#3C4043] flex items-center justify-center shadow-md">
-         <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
-      </div>
-      <div className="w-10 h-10 rounded-full bg-[#3C4043] flex items-center justify-center shadow-md">
-        <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-      </div>
-      <div className="w-12 h-8 rounded-full bg-[#EA4335] flex items-center justify-center shadow-lg shadow-red-500/30">
-        <svg className="w-4 h-4 text-white transform rotate-[135deg]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-      </div>
-      <div className="w-10 h-10 rounded-full bg-[#3C4043] flex items-center justify-center shadow-md">
-        <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+        <button 
+          onClick={() => setIsCameraOff(!isCameraOff)} 
+          className={`w-9 h-9 rounded-full flex items-center justify-center shadow-md transition-colors duration-200 ${isCameraOff ? 'bg-[#EA4335] text-white hover:bg-[#EA4335]/90 shadow-red-500/10' : 'bg-[#3C4043] text-white hover:bg-white/5'}`}
+        >
+          {isCameraOff ? (
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/><line x1="3" y1="3" x2="21" y2="21" stroke="currentColor" strokeWidth="2"/></svg>
+          ) : (
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          )}
+        </button>
+
+        <button 
+          onClick={() => setCallEnded(true)} 
+          className="w-11 h-7 rounded-full bg-[#EA4335] flex items-center justify-center shadow-lg shadow-red-500/30 hover:bg-[#EA4335]/90 transition-colors"
+        >
+          <svg className="w-4 h-4 text-white transform rotate-[135deg]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        </button>
+
+        <button 
+          onClick={() => setShowChat(!showChat)} 
+          className={`w-9 h-9 rounded-full flex items-center justify-center shadow-md transition-colors duration-200 ${showChat ? 'bg-[#8AB4F8] text-[#202124] hover:bg-[#8AB4F8]/90 shadow-blue-500/10' : 'bg-[#3C4043] text-white hover:bg-white/5'}`}
+        >
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+        </button>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 const RevisionCommentsMockup = () => {
   const [showReply, setShowReply] = useState(false);
