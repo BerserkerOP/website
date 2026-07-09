@@ -105,6 +105,7 @@ export default function Navbar() {
                 {isActive && (
                   <motion.div
                     layoutId="navbar-indicator"
+                    layout
                     className="absolute -bottom-1 inset-x-0 mx-auto w-1.5 h-1.5 flex items-center justify-center pointer-events-none"
                     transition={{ type: "tween", ease: [0.76, 0, 0.24, 1], duration: 0.38 }}
                   >
