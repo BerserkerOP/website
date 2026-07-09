@@ -37,6 +37,11 @@ export default function FAQSection() {
       number: "05",
       question: "What does the production process look like?",
       answer: "We follow a strict pipeline: Discovery -> Scripting -> Storyboard & Style Frames -> Animation -> Sound Design -> Delivery. Animation only begins once the storyboard is locked, ensuring there are no surprises at final delivery."
+    },
+    {
+      number: "06",
+      question: "How many revisions are included?",
+      answer: "Two revision rounds are included on every project. You review the drafts via Frame.io, leave timestamped comments, and we apply your updates. Additional revision rounds are available for a flat fee."
     }
   ];
 

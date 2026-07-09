@@ -343,7 +343,8 @@ export default function ContactPage() {
                   { text: "Onboarding & process details", link: "/faq?q=02" },
                   { text: "Conversion rate benefits", link: "/faq?q=03" },
                   { text: "Agency white-label services", link: "/faq?q=04" },
-                  { text: "Production pipeline steps", link: "/faq?q=05" }
+                  { text: "Production pipeline steps", link: "/faq?q=05" },
+                  { text: "Revision rounds included", link: "/faq?q=06" }
                 ].map((item, i) => (
                   <li key={i} className="flex items-center gap-3 py-1 border-b border-black/[0.05] dark:border-white/[0.05] last:border-0">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#30D158] shrink-0" />
