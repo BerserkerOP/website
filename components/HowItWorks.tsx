@@ -136,11 +136,11 @@ const MeetCallMockup = () => {
     { sender: "Rhythm", text: "Sweet. Let's look at the style frames.", time: "15:24" }
   ]);
 
-  const chatEndRef = useRef<HTMLDivElement>(null);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (chatEndRef.current) {
-      chatEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
     }
   }, [messages, showChat]);
 
@@ -247,7 +247,10 @@ const MeetCallMockup = () => {
                 </button>
               </div>
 
-              <div className="flex-1 p-2 overflow-y-auto flex flex-col gap-2 bg-[#1C1C1E]/50 scrollbar-none min-h-0">
+              <div 
+                ref={chatContainerRef}
+                className="flex-1 p-2 overflow-y-auto flex flex-col gap-2 bg-[#1C1C1E]/50 scrollbar-none min-h-0"
+              >
                 {messages.map((msg, idx) => (
                   <div key={idx} className="flex flex-col text-[9px]">
                     <div className="flex justify-between items-baseline mb-0.5">
@@ -257,7 +260,6 @@ const MeetCallMockup = () => {
                     <p className="text-white/70 leading-normal font-medium bg-white/5 px-2 py-1 rounded-md max-w-[95%] break-words">{msg.text}</p>
                   </div>
                 ))}
-                <div ref={chatEndRef} />
               </div>
 
               <form onSubmit={handleSendMessage} className="p-1.5 border-t border-white/5 flex gap-1 shrink-0 bg-[#202124]">
