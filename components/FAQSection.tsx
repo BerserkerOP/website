@@ -15,28 +15,28 @@ export default function FAQSection() {
   const faqs: FAQItem[] = [
     {
       number: "01",
-      question: "How do I install plugins or presets?",
-      answer: "All our plugins and presets come with a detailed PDF installation guide. Generally, you just copy the plugin folder into your host application’s extensions folder (e.g., After Effects extensions). If you need direct assistance, contact support."
+      question: "How long does a typical project take?",
+      answer: "A standard 60-second animated video takes 3 to 5 weeks to produce. We map out all milestones upfront so you know exactly when to expect script drafts, storyboards, and animated previews."
     },
     {
       number: "02",
-      question: "What should I do if a product or preset isn't working as expected?",
-      answer: "Please ensure your host application is updated to the required version specified on the product page. If it still fails, email us at halftonemotion@gmail.com with your system specs and a screenshot or screen recording of the error."
+      question: "How does your onboarding and production process work?",
+      answer: "After a 50% deposit, you fill out a brief intake form sharing your brand assets, UI designs (Figma links), and reference videos. We design a full storyboard, write/refine the script with you, animate, produce custom soundscapes, and deliver the final 4K files with one included revision round."
     },
     {
       number: "03",
-      question: "What is your refund policy?",
-      answer: "Due to the digital nature of our products (downloadable templates and presets), all sales are final and we generally do not offer refunds. However, if a product is corrupt or defective, please contact support and we will resolve it."
+      question: "Can motion graphics actually improve our conversion rates?",
+      answer: "Yes. Viewers retain 95% of a message via video compared to just 10% in text. Over 93% of marketers report increased brand awareness, and adding custom product animations makes abstract MVPs tangible, directly driving higher signups."
     },
     {
       number: "04",
-      question: "What are the licensing terms for your presets and templates?",
-      answer: "Every purchase includes a single-user commercial license. You can use our templates and presets in unlimited personal and commercial client projects. Sharing, reselling, or redistributing the source assets is strictly prohibited."
+      question: "Do you offer white-label services for agencies?",
+      answer: "Yes. We partner with marketing, branding, and ad agencies as a silent production partner. All projects are protected by NDAs and ship under your brand name with zero attribution."
     },
     {
       number: "05",
-      question: "Do you offer custom motion design work or collaborations?",
-      answer: "Yes, we collaborate with creators, agencies, and brands for custom motion design assets, templates, and branding. Please fill out our contact form or email us directly at halftonemotion@gmail.com with details."
+      question: "What does the production process look like?",
+      answer: "We follow a strict pipeline: Discovery -> Scripting -> Storyboard & Style Frames -> Animation -> Sound Design -> Delivery. Animation only begins once the storyboard is locked, ensuring there are no surprises at final delivery."
     }
   ];
 

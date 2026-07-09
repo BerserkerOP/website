@@ -339,11 +339,11 @@ export default function ContactPage() {
               </div>
               <ul className="flex flex-col gap-3">
                 {[
-                  { text: "Plugin installation help", link: "/faq?q=01" },
-                  { text: "Product not working as expected", link: "/faq?q=02" },
-                  { text: "Refund request", link: "/faq?q=03" },
-                  { text: "Licensing question", link: "/faq?q=04" },
-                  { text: "Collab or custom work", link: "/faq?q=05" }
+                  { text: "Typical project timeline", link: "/faq?q=01" },
+                  { text: "Onboarding & process details", link: "/faq?q=02" },
+                  { text: "Conversion rate benefits", link: "/faq?q=03" },
+                  { text: "Agency white-label services", link: "/faq?q=04" },
+                  { text: "Production pipeline steps", link: "/faq?q=05" }
                 ].map((item, i) => (
                   <li key={i} className="flex items-center gap-3 py-1 border-b border-black/[0.05] dark:border-white/[0.05] last:border-0">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#30D158] shrink-0" />
