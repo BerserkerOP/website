@@ -32,30 +32,26 @@ export default function Hero() {
 
   const heroReviews = [
     {
-      name: "Akil Gurram",
-      role: "Founder of WTM",
-      headline: "Fast turnaround & quality",
-      text: "Delivered it with great video quality in just a few days at a reasonable price.",
+      name: "Andrew",
+      role: "@adlabs",
+      text: "Awesome. Thanks, love your work man, appreciate you getting things across the finish line for us.",
       rotation: -7,
       x: -65,
       y: -65,
-      image: "/reviews/akil.jpg",
+      image: "/reviews/andrew.jpg",
     },
     {
-      name: "Rhythm Shandlya",
-      role: "Founder of Vionna",
-      headline: "Reliable & highly skilled",
-      text: "Highly responsive, communicate well, and take genuine ownership of their work.",
+      name: "Matthias",
+      role: "@editwithava",
+      text: "really really happy with how the video turned out. high-quality work and quick turnaround 🙏",
       rotation: 6,
       x: 55,
       y: 5,
-      image: "/reviews/rhythm.jpg",
     },
     {
-      name: "Sarah Jenkins",
-      role: "Product Manager",
-      headline: "Attention to detail",
-      text: "Their onboarding sequence increased our user retention by 30%. Absolute best.",
+      name: "Mordehai",
+      role: "@tracebackusa",
+      text: "Done mate 🙏 amazing work man, really liked it, and appreciate you for letting Yochai watch you work and learn, great experience and amazing results 👑",
       rotation: -2,
       x: -10,
       y: 75,
@@ -169,23 +165,20 @@ export default function Hero() {
                     stiffness: 350,
                     damping: 25,
                   }}
-                  className="absolute w-[280px] sm:w-[320px] bg-white/95 dark:bg-[#1E1E24]/95 border backdrop-blur-xl rounded-[24px] p-6 flex flex-col justify-between cursor-pointer transition-colors duration-300 dark:border-white/5"
+                  className="absolute w-[280px] sm:w-[320px] bg-white dark:bg-[#1E1E24] border border-black/[0.06] dark:border-white/5 rounded-[20px] p-5 sm:p-6 flex flex-col justify-between cursor-pointer transition-colors duration-300"
                 >
                   <div className="flex flex-col gap-3">
                     {/* Star Rating */}
                     <div className="flex gap-0.5">
                       {[...Array(5)].map((_, i) => (
-                        <svg key={i} className="w-3.5 h-3.5 text-orange-400 fill-current" viewBox="0 0 20 20">
+                        <svg key={i} className="w-3.5 h-3.5 text-yellow-400 fill-current" viewBox="0 0 20 20">
                           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                         </svg>
                       ))}
                     </div>
 
-                    <h4 className="text-sm font-bold text-apple-text dark:text-white leading-tight">
-                      "{rev.headline}"
-                    </h4>
-                    <p className="text-xs leading-relaxed text-apple-subtext dark:text-white/70">
-                      {rev.text}
+                    <p className="text-xs sm:text-[13px] leading-relaxed text-zinc-700 dark:text-zinc-300 font-medium">
+                      “{rev.text}”
                     </p>
                   </div>
 
@@ -195,13 +188,13 @@ export default function Hero() {
                         <img src={rev.image} alt={rev.name} className="w-full h-full object-cover" />
                       </div>
                     ) : (
-                      <div className="w-8 h-8 rounded-full bg-apple-blue/10 dark:bg-apple-blue/20 flex items-center justify-center text-apple-blue font-bold text-xs shrink-0 border border-apple-blue/20">
+                      <div className="w-8 h-8 rounded-full bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-500 dark:text-zinc-400 font-extrabold text-xs shrink-0 border border-black/5 dark:border-white/5">
                         {rev.name.charAt(0)}
                       </div>
                     )}
                     <div className="flex flex-col">
-                      <span className="text-[11px] font-bold text-apple-text dark:text-white leading-tight">{rev.name}</span>
-                      <span className="text-[9px] text-apple-subtext dark:text-white/40 font-semibold leading-tight">{rev.role}</span>
+                      <span className="text-[11px] font-bold text-zinc-900 dark:text-white leading-tight">{rev.name}</span>
+                      <span className="text-[9px] text-zinc-400 dark:text-zinc-500 font-bold leading-tight">{rev.role}</span>
                     </div>
                   </div>
                 </motion.div>
