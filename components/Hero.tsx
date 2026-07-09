@@ -34,17 +34,17 @@ export default function Hero() {
       role: "Founder of WTM",
       headline: "Fast turnaround & quality",
       text: "Delivered it with great video quality in just a few days at a reasonable price.",
-      rotation: -4,
-      x: -25,
-      y: -40,
+      rotation: -6,
+      x: -40,
+      y: -75,
     },
     {
       name: "Rhythm Shandlya",
       role: "Founder of Vionna",
       headline: "Reliable & highly skilled",
       text: "Highly responsive, communicate well, and take genuine ownership of their work.",
-      rotation: 3,
-      x: 20,
+      rotation: 5,
+      x: 35,
       y: 0,
     },
     {
@@ -52,9 +52,9 @@ export default function Hero() {
       role: "Product Manager",
       headline: "Attention to detail",
       text: "Their onboarding sequence increased our user retention by 30%. Absolute best.",
-      rotation: -1,
-      x: -5,
-      y: 45,
+      rotation: -2,
+      x: -15,
+      y: 75,
     }
   ];
 
