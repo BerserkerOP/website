@@ -242,50 +242,153 @@ const RevisionCommentsMockup = () => {
   );
 };
 
-const VideoPlayerMockup = () => (
-  <div className="w-full h-full bg-[#1C1C1E] rounded-xl overflow-hidden shadow-2xl border border-white/10 flex flex-col font-sans max-h-[350px]">
-    <div className="flex-grow bg-black relative flex flex-col justify-end min-h-[140px]">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/5 shadow-lg">
-        <svg className="w-5 h-5 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-      </div>
-      <div className="px-4 pb-2 flex flex-col gap-1.5 relative z-10 w-full">
-        <div className="w-full h-1 bg-white/20 rounded-full overflow-hidden">
-          <div className="w-[30%] h-full bg-[#007AFF] shadow-[0_0_10px_rgba(0,122,255,0.8)]"></div>
-        </div>
-        <div className="flex justify-end w-full">
-          <span className="text-white/60 text-[9px] font-mono tracking-wider">00:34 / 01:45</span>
-        </div>
-      </div>
-    </div>
+const VideoPlayerMockup = () => {
+  const [mgWidth, setMgWidth] = useState(80);
+  const [voWidth, setVoWidth] = useState(60);
+  const [muWidth, setMuWidth] = useState(95);
+  const [sfxWidth, setSfxWidth] = useState(45);
+  const [playhead, setPlayhead] = useState(30);
+
+  const startDrag = (setFn: (val: number) => void) => (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
+    const track = e.currentTarget;
+    const isTouch = 'touches' in e;
     
-    <div className="bg-[#2A2A2C] p-4 flex flex-col gap-2 shrink-0">
-      <div className="flex items-center gap-3">
-        <span className="text-white/70 text-[9px] w-[70px] shrink-0 font-medium">Motion Graphics</span>
-        <div className="flex-grow h-4 bg-black/40 rounded flex items-center px-1">
-          <div className="w-[80%] h-2.5 bg-[#007AFF] rounded-sm shadow-[0_0_5px_rgba(0,122,255,0.4)]"></div>
+    const updateWidth = (clientX: number) => {
+      const rect = track.getBoundingClientRect();
+      const x = clientX - rect.left;
+      const pct = Math.max(0, Math.min(100, Math.round((x / rect.width) * 100)));
+      setFn(pct);
+    };
+
+    const initialClientX = isTouch ? e.touches[0].clientX : e.clientX;
+    updateWidth(initialClientX);
+
+    const handleMove = (moveEvent: MouseEvent | TouchEvent) => {
+      const clientX = 'touches' in moveEvent ? moveEvent.touches[0].clientX : moveEvent.clientX;
+      updateWidth(clientX);
+    };
+
+    const handleEnd = () => {
+      if (isTouch) {
+        window.removeEventListener('touchmove', handleMove);
+        window.removeEventListener('touchend', handleEnd);
+      } else {
+        window.removeEventListener('mousemove', handleMove);
+        window.removeEventListener('mouseup', handleEnd);
+      }
+    };
+
+    if (isTouch) {
+      window.addEventListener('touchmove', handleMove, { passive: true });
+      window.addEventListener('touchend', handleEnd);
+    } else {
+      window.addEventListener('mousemove', handleMove);
+      window.addEventListener('mouseup', handleEnd);
+    }
+  };
+
+  const totalSeconds = 105;
+  const currentSeconds = Math.round((playhead / 100) * totalSeconds);
+  const formatTime = (secs: number) => {
+    const m = Math.floor(secs / 60).toString().padStart(2, '0');
+    const s = (secs % 60).toString().padStart(2, '0');
+    return `${m}:${s}`;
+  };
+
+  return (
+    <div className="w-full h-full bg-[#1C1C1E] rounded-xl overflow-hidden shadow-2xl border border-white/10 flex flex-col font-sans max-h-[350px]">
+      <div className="flex-grow bg-black relative flex flex-col justify-end min-h-[140px]">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/5 shadow-lg">
+          <svg className="w-5 h-5 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <div className="px-4 pb-2 flex flex-col gap-1.5 relative z-10 w-full">
+          <div 
+            onMouseDown={startDrag(setPlayhead)}
+            onTouchStart={startDrag(setPlayhead)}
+            className="w-full h-3 flex items-center cursor-ew-resize group/playhead"
+          >
+            <div className="w-full h-1 bg-white/20 rounded-full relative">
+              <div 
+                style={{ width: `${playhead}%` }} 
+                className="h-full bg-[#007AFF] shadow-[0_0_10px_rgba(0,122,255,0.8)] rounded-full relative flex items-center justify-end"
+              >
+                <div className="absolute -right-1.5 w-3 h-3 rounded-full bg-white shadow-md border-2 border-[#007AFF] scale-0 group-hover/playhead:scale-100 transition-transform duration-150 shrink-0" />
+              </div>
+            </div>
+          </div>
+          <div className="flex justify-end w-full">
+            <span className="text-white/60 text-[9px] font-mono tracking-wider">
+              {formatTime(currentSeconds)} / {formatTime(totalSeconds)}
+            </span>
+          </div>
         </div>
       </div>
-      <div className="flex items-center gap-3">
-        <span className="text-white/70 text-[9px] w-[70px] shrink-0 font-medium">Voiceover</span>
-        <div className="flex-grow h-4 bg-black/40 rounded flex items-center px-1">
-          <div className="w-[60%] h-2.5 bg-[#34C759] rounded-sm shadow-[0_0_5px_rgba(52,199,89,0.4)]"></div>
+      
+      <div className="bg-[#2A2A2C] p-4 flex flex-col gap-2 shrink-0 select-none">
+        <div className="flex items-center gap-3">
+          <span className="text-white/70 text-[9px] w-[70px] shrink-0 font-medium">Motion Graphics</span>
+          <div 
+            onMouseDown={startDrag(setMgWidth)}
+            onTouchStart={startDrag(setMgWidth)}
+            className="flex-grow h-4 bg-black/40 rounded flex items-center px-1 cursor-ew-resize hover:bg-black/60 transition-colors duration-150 relative group/track"
+          >
+            <div 
+              style={{ width: `${mgWidth}%` }} 
+              className="h-2.5 bg-[#007AFF] rounded-sm shadow-[0_0_5px_rgba(0,122,255,0.4)] relative flex items-center justify-end min-w-[5%]"
+            >
+              <div className="w-0.5 h-2 bg-white/70 rounded-full mr-0.5 opacity-0 group-hover/track:opacity-100 transition-opacity duration-150" />
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="flex items-center gap-3">
-        <span className="text-white/70 text-[9px] w-[70px] shrink-0 font-medium">Music</span>
-        <div className="flex-grow h-4 bg-black/40 rounded flex items-center px-1">
-          <div className="w-[95%] h-2.5 bg-[#FF9500] rounded-sm shadow-[0_0_5px_rgba(255,149,0,0.4)]"></div>
+        <div className="flex items-center gap-3">
+          <span className="text-white/70 text-[9px] w-[70px] shrink-0 font-medium">Voiceover</span>
+          <div 
+            onMouseDown={startDrag(setVoWidth)}
+            onTouchStart={startDrag(setVoWidth)}
+            className="flex-grow h-4 bg-black/40 rounded flex items-center px-1 cursor-ew-resize hover:bg-black/60 transition-colors duration-150 relative group/track"
+          >
+            <div 
+              style={{ width: `${voWidth}%` }} 
+              className="h-2.5 bg-[#34C759] rounded-sm shadow-[0_0_5px_rgba(52,199,89,0.4)] relative flex items-center justify-end min-w-[5%]"
+            >
+              <div className="w-0.5 h-2 bg-white/70 rounded-full mr-0.5 opacity-0 group-hover/track:opacity-100 transition-opacity duration-150" />
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="flex items-center gap-3">
-        <span className="text-white/70 text-[9px] w-[70px] shrink-0 font-medium">SFX</span>
-        <div className="flex-grow h-4 bg-black/40 rounded flex items-center px-1">
-          <div className="w-[45%] h-2.5 bg-[#AF52DE] rounded-sm shadow-[0_0_5px_rgba(175,82,222,0.4)]"></div>
+        <div className="flex items-center gap-3">
+          <span className="text-white/70 text-[9px] w-[70px] shrink-0 font-medium">Music</span>
+          <div 
+            onMouseDown={startDrag(setMuWidth)}
+            onTouchStart={startDrag(setMuWidth)}
+            className="flex-grow h-4 bg-black/40 rounded flex items-center px-1 cursor-ew-resize hover:bg-black/60 transition-colors duration-150 relative group/track"
+          >
+            <div 
+              style={{ width: `${muWidth}%` }} 
+              className="h-2.5 bg-[#FF9500] rounded-sm shadow-[0_0_5px_rgba(255,149,0,0.4)] relative flex items-center justify-end min-w-[5%]"
+            >
+              <div className="w-0.5 h-2 bg-white/70 rounded-full mr-0.5 opacity-0 group-hover/track:opacity-100 transition-opacity duration-150" />
+            </div>
+          </div>
+        </div>
+        <div className="flex items-center gap-3">
+          <span className="text-white/70 text-[9px] w-[70px] shrink-0 font-medium">SFX</span>
+          <div 
+            onMouseDown={startDrag(setSfxWidth)}
+            onTouchStart={startDrag(setSfxWidth)}
+            className="flex-grow h-4 bg-black/40 rounded flex items-center px-1 cursor-ew-resize hover:bg-black/60 transition-colors duration-150 relative group/track"
+          >
+            <div 
+              style={{ width: `${sfxWidth}%` }} 
+              className="h-2.5 bg-[#AF52DE] rounded-sm shadow-[0_0_5px_rgba(175,82,222,0.4)] relative flex items-center justify-end min-w-[5%]"
+            >
+              <div className="w-0.5 h-2 bg-white/70 rounded-full mr-0.5 opacity-0 group-hover/track:opacity-100 transition-opacity duration-150" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 const mockups = [
   <IntakeFormMockup key="step0" />,
