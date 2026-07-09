@@ -56,16 +56,16 @@ export default function Navbar() {
       animate={{ y: 0, x: "-50%" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       onMouseMove={handleMouseMove}
-      className={`group fixed top-4 md:top-6 left-1/2 z-50 flex items-center justify-between p-1.5 rounded-[32px] bg-white/95 dark:bg-[#2A2A2A]/95 backdrop-blur-[32px] shadow-[0_20px_40px_rgba(0,0,0,0.1),inset_0_1px_1px_rgba(255,255,255,0.8)] border border-black/10 dark:border-white/10 gap-6 md:gap-16 w-auto max-w-4xl dark:shadow-[0_20px_40px_rgba(0,0,0,0.4),0_0_20px_rgba(0,122,255,0.15)]`}
+      className={`group fixed top-4 md:top-6 left-1/2 z-50 flex items-center justify-between p-1.5 rounded-full bg-zinc-950/90 backdrop-blur-[24px] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.7),0_0_25px_rgba(0,122,255,0.2)] border border-white/10 gap-6 md:gap-16 w-auto max-w-4xl`}
     >
       {/* Spotlight Overlay */}
       <motion.div
-        className="pointer-events-none absolute inset-0 rounded-[32px] opacity-0 transition-opacity duration-500 group-hover:opacity-100 z-0 overflow-hidden"
+        className="pointer-events-none absolute inset-0 rounded-full opacity-0 transition-opacity duration-500 group-hover:opacity-100 z-0 overflow-hidden"
         style={{
           background: useMotionTemplate`
             radial-gradient(
               150px circle at ${mouseX}px ${mouseY}px,
-              rgba(255, 255, 255, 0.2),
+              rgba(0, 122, 255, 0.15),
               transparent 80%
             )
           `,
@@ -74,11 +74,11 @@ export default function Navbar() {
 
       {/* Left Profile Picture */}
       <motion.div 
-        whileHover={{ scale: 1.15, rotateZ: -2 }} 
+        whileHover={{ scale: 1.1, rotateZ: -2 }} 
         transition={{ type: "spring", stiffness: 400, damping: 15 }} 
         className="z-10 ml-1"
       >
-        <Link href="/" className="block w-[42px] h-[42px] rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(0,122,255,0.7)] border border-[#007AFF]/40 shrink-0 relative overflow-hidden group/logo bg-black">
+        <Link href="/" className="block w-[42px] h-[42px] rounded-full flex items-center justify-center border-2 border-[#007AFF] shadow-[0_0_15px_rgba(0,122,255,0.8)] shrink-0 relative overflow-hidden group/logo bg-black">
           {/* Sphere reflection effects */}
           <div className="absolute inset-0 rounded-full shadow-[inset_0_-5px_15px_rgba(0,0,0,0.8),inset_0_4px_10px_rgba(255,255,255,0.5)] z-20 pointer-events-none transition-all duration-300 group-hover/logo:shadow-[inset_0_-3px_15px_rgba(0,122,255,0.7),inset_0_5px_12px_rgba(255,255,255,0.8)]" />
           <div className="absolute inset-0 bg-gradient-to-tr from-[#007AFF]/40 via-transparent to-white/20 z-10 pointer-events-none mix-blend-overlay rounded-full opacity-0 group-hover/logo:opacity-100 transition-opacity duration-300" />
@@ -99,20 +99,20 @@ export default function Navbar() {
                 key={link.path}
                 href={link.path} 
                 onMouseEnter={() => setHoveredPath(link.path)}
-                className={`relative px-4 py-2 transition-all duration-300 inline-block font-bold tracking-[0.15em] text-[11px] uppercase hover:scale-110 ${isActive ? 'text-[#007AFF] drop-shadow-[0_0_8px_rgba(0,122,255,0.4)]' : 'text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white'}`}
+                className={`relative px-4 py-2 transition-all duration-300 inline-block font-bold tracking-[0.15em] text-[11px] uppercase hover:scale-110 ${isActive ? 'text-[#007AFF] drop-shadow-[0_0_8px_rgba(0,122,255,0.6)]' : 'text-white/60 hover:text-white'}`}
               >
                 {link.name}
                 {isActive && (
                   <motion.div
                     layoutId="navbar-indicator"
-                    className="absolute -bottom-1 inset-x-0 mx-auto w-1.5 h-1.5 flex items-center justify-center pointer-events-none"
+                    className="absolute -bottom-1 inset-x-0 mx-auto w-3 h-1 flex items-center justify-center pointer-events-none"
                     transition={{ type: "tween", ease: [0.4, 0, 0.2, 1], duration: 0.4 }}
                   >
                     <motion.div
-                      initial={{ width: "6px" }}
-                      animate={{ width: ["6px", "32px", "6px"] }}
+                      initial={{ width: "12px" }}
+                      animate={{ width: ["12px", "36px", "12px"] }}
                       transition={{ type: "tween", ease: [0.4, 0, 0.2, 1], duration: 0.4 }}
-                      className="absolute h-1.5 rounded-full bg-[#007AFF] shadow-[0_0_8px_rgba(0,122,255,0.9)]"
+                      className="absolute h-1 rounded-full bg-[#007AFF] shadow-[0_0_10px_rgba(0,122,255,0.9)]"
                     />
                   </motion.div>
                 )}
@@ -124,7 +124,7 @@ export default function Navbar() {
 
       <div className="flex items-center gap-4 z-10">
         {/* Theme Switcher as Cart Button */}
-        <ThemeToggle className="w-[42px] h-[42px] mr-1 rounded-full bg-[#007AFF] flex items-center justify-center shadow-[0_0_15px_rgba(0,122,255,0.5)] shrink-0 hover:scale-105 transition-transform text-white group/theme" />
+        <ThemeToggle className="w-[42px] h-[42px] mr-1 rounded-full bg-[#007AFF] border border-white/10 flex items-center justify-center shadow-[0_0_15px_rgba(0,122,255,0.6)] hover:shadow-[0_0_25px_rgba(0,122,255,1)] hover:scale-110 shrink-0 transition-all text-white group/theme" />
         
         {/* Mobile Nav Toggle */}
         <div className="flex items-center md:hidden gap-1 pl-1">
@@ -154,7 +154,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95, transition: { duration: 0.2 } }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute top-[calc(100%+12px)] left-0 right-0 md:hidden bg-zinc-900/95 backdrop-blur-3xl border border-white/20 overflow-hidden rounded-[32px] shadow-[0_20px_60px_rgba(0,0,0,0.5)]"
+            className="absolute top-[calc(100%+12px)] left-0 right-0 md:hidden bg-zinc-950/95 backdrop-blur-3xl border border-white/20 overflow-hidden rounded-[28px] shadow-[0_20px_60px_rgba(0,0,0,0.5)]"
           >
             <div className="px-6 py-6 flex flex-col max-h-[80vh] overflow-y-auto">
               <div className="flex flex-col space-y-4">
