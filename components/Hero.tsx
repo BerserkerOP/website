@@ -153,17 +153,17 @@ export default function Hero() {
                     opacity: isHovered ? 1 : isAnyHovered ? 0.45 : 1,
                     zIndex: isHovered ? 50 : cardZ,
                     filter: isHovered ? "blur(0px)" : isAnyHovered ? "blur(1px)" : "blur(0px)",
-                    borderColor: isHovered ? "rgba(0, 122, 255, 0.4)" : "rgba(0,0,0,0.05)",
+                    borderColor: isHovered ? "rgba(0, 122, 255, 0.6)" : "rgba(128, 128, 128, 0.2)",
                     boxShadow: isHovered 
-                      ? "0 20px 40px -15px rgba(0, 122, 255, 0.25)" 
-                      : "0 10px 30px -15px rgba(0, 0, 0, 0.08)",
+                      ? "0 25px 50px -12px rgba(0, 122, 255, 0.4), 0 0 25px rgba(0, 122, 255, 0.2)" 
+                      : "0 15px 35px -10px rgba(0, 0, 0, 0.12), 0 0 2px rgba(0, 0, 0, 0.15)",
                   }}
                   transition={{
                     type: "spring",
                     stiffness: 350,
                     damping: 25,
                   }}
-                  className="absolute w-[280px] sm:w-[320px] bg-white/60 dark:bg-[#1E1E24]/60 border backdrop-blur-xl rounded-[24px] p-6 flex flex-col justify-between cursor-pointer transition-colors duration-300 dark:border-white/5"
+                  className="absolute w-[280px] sm:w-[320px] bg-white/95 dark:bg-[#1E1E24]/95 border backdrop-blur-xl rounded-[24px] p-6 flex flex-col justify-between cursor-pointer transition-colors duration-300 dark:border-white/5"
                 >
                   <div className="flex flex-col gap-3">
                     {/* Star Rating */}
