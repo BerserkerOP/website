@@ -15,56 +15,26 @@ export default function FAQSection() {
   const faqs: FAQItem[] = [
     {
       number: "01",
-      question: "What types of videos does HalftoneMotion produce?",
-      answer: "We specialize in premium SaaS walkthroughs, high-converting explainer videos, cinematic landing page animations, and micro-content for social channels. Every video is custom-crafted to elevate your visual identity."
-    },
-    {
-      number: "02",
-      question: "How long does a typical project take?",
-      answer: "A standard video takes 1 to 2 weeks at most. Our pipeline goes from briefing, scripting, and storyboarding, to custom style frames, animation, and sound design. We align on key milestones upfront so you know exactly what is happening."
-    },
-    {
-      number: "03",
-      question: "How does your onboarding and production process work?",
-      answer: "After your 50% deposit, we send a direct intake form where you share your brief, brand assets, and design references (like Figma links). We then construct a visual storyboard and custom style frames. Once approved, we animate, design the soundscape, and deliver the final files."
-    },
-    {
-      number: "04",
-      question: "How many revision rounds are included?",
-      answer: "We include one major, comprehensive revision round on the final animation. Because we lock in the script, storyboards, and style frames in the initial stages, major changes are rarely necessary at the end."
-    },
-    {
-      number: "05",
-      question: "Do you offer white-label services for agencies?",
-      answer: "Absolutely. We partner with ad agencies, marketing firms, and product studios as a white-label production engine. All work ships under your brand with complete NDA protection and zero attribution."
-    },
-    {
-      number: "06",
-      question: "Do you work with startups, or only large companies?",
-      answer: "We work with brands at all stages. We help early-stage startups communicate their MVP clearly to investors and users, and we help enterprise teams explain complex product updates."
-    },
-    {
-      number: "07",
       question: "How do I install plugins or presets?",
       answer: "All our plugins and presets come with a detailed PDF installation guide. Generally, you just copy the plugin folder into your host application’s extensions folder (e.g., After Effects extensions). If you need direct assistance, contact support."
     },
     {
-      number: "08",
+      number: "02",
       question: "What should I do if a product or preset isn't working as expected?",
       answer: "Please ensure your host application is updated to the required version specified on the product page. If it still fails, email us at halftonemotion@gmail.com with your system specs and a screenshot or screen recording of the error."
     },
     {
-      number: "09",
+      number: "03",
       question: "What is your refund policy?",
       answer: "Due to the digital nature of our products (downloadable templates and presets), all sales are final and we generally do not offer refunds. However, if a product is corrupt or defective, please contact support and we will resolve it."
     },
     {
-      number: "10",
+      number: "04",
       question: "What are the licensing terms for your presets and templates?",
       answer: "Every purchase includes a single-user commercial license. You can use our templates and presets in unlimited personal and commercial client projects. Sharing, reselling, or redistributing the source assets is strictly prohibited."
     },
     {
-      number: "11",
+      number: "05",
       question: "Do you offer custom motion design work or collaborations?",
       answer: "Yes, we collaborate with creators, agencies, and brands for custom motion design assets, templates, and branding. Please fill out our contact form or email us directly at halftonemotion@gmail.com with details."
     }
