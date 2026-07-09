@@ -91,25 +91,9 @@ export default function Hero() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-              className="text-4xl sm:text-5xl md:text-[56px] font-bold text-apple-text dark:text-white leading-[1.1] tracking-tight max-w-2xl flex flex-col items-center lg:items-start"
+              className="text-4xl sm:text-5xl md:text-[56px] font-bold text-apple-text dark:text-white leading-[1.1] tracking-tight max-w-2xl text-center lg:text-left"
             >
-              <span>Professional Motion Design that</span>
-              <span className="text-apple-blue relative block h-[2.4em] sm:h-[1.2em] w-full overflow-hidden mt-1 lg:text-left text-center">
-                {mounted && (
-                  <AnimatePresence mode="wait">
-                    <motion.span
-                      key={index}
-                      initial={{ y: -15, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      exit={{ y: 15, opacity: 0 }}
-                      transition={{ duration: 0.35, ease: "easeInOut" }}
-                      className="absolute inset-x-0 top-0 bottom-0 flex items-start lg:items-center justify-center lg:justify-start text-center lg:text-left px-4 lg:px-0"
-                    >
-                      {phrases[index]}
-                    </motion.span>
-                  </AnimatePresence>
-                )}
-              </span>
+              Professional Motion Design
             </motion.h1>
 
             <div className="max-w-xl">
