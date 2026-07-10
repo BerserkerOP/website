@@ -135,17 +135,41 @@ export default function InstagramMilestone() {
                   <stop offset="100%" stopColor="#6228d7" />
                 </linearGradient>
 
-                {/* Pulsating End Indicator Dot */}
+                {/* Drawing Tracing Dot (moves along line) */}
                 <motion.circle
-                  cx="100"
-                  cy="0"
-                  r="3"
+                  r="3.5"
                   fill="#6228d7"
                   stroke="#ffffff"
                   strokeWidth="1"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: [1, 1.5, 1] }}
-                  transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                  initial={{ cx: 0, cy: 25, opacity: 1 }}
+                  animate={{ 
+                    cx: [0, 15, 30, 60, 85, 100],
+                    cy: [25, 22, 18, 12, 5, 0],
+                  }}
+                  transition={{ 
+                    duration: 1.5, 
+                    ease: "easeOut", 
+                    delay: 0.1 
+                  }}
+                />
+
+                {/* Pulsating End Indicator Dot (fades in and pulses after line is drawn) */}
+                <motion.circle
+                  cx="100"
+                  cy="0"
+                  r="3.5"
+                  fill="#6228d7"
+                  stroke="#ffffff"
+                  strokeWidth="1"
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ 
+                    scale: [1, 1.5, 1],
+                    opacity: 1
+                  }}
+                  transition={{ 
+                    scale: { repeat: Infinity, duration: 2, ease: "easeInOut" },
+                    opacity: { delay: 1.6, duration: 0.2 }
+                  }}
                 />
               </svg>
             </div>

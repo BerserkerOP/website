@@ -106,15 +106,6 @@ export default function Hero() {
   const heroReviews = [
     {
       id: 0,
-      app: "Instagram",
-      sender: "Instagram Analytics",
-      role: "Trending Metric",
-      text: "Boom! Your account generated over 600K+ organic views in the last 2 weeks.",
-      time: "1m ago",
-      iconType: "instagram",
-    },
-    {
-      id: 1,
       app: "Slack",
       sender: "Akil Gurram",
       role: "Founder of WTM",
@@ -124,7 +115,7 @@ export default function Hero() {
       image: "/reviews/akil.jpg",
     },
     {
-      id: 2,
+      id: 1,
       app: "iMessage",
       sender: "Rhythm Shandlya",
       role: "Founder of Vionna",
@@ -134,7 +125,7 @@ export default function Hero() {
       image: "/reviews/rhythm.jpg",
     },
     {
-      id: 3,
+      id: 2,
       app: "Mail",
       sender: "Sarah Jenkins",
       role: "Product Manager",
@@ -151,7 +142,6 @@ export default function Hero() {
           
           {/* Left Column: Headline and CTAs */}
           <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left gap-6">
-            <InstagramMilestone />
 
             <motion.h1 
               initial={{ opacity: 0, y: 18 }}
@@ -192,7 +182,9 @@ export default function Hero() {
           </div>
 
           {/* Right Column: Clean App Store-style single card reviews carousel */}
-          <div className="lg:col-span-5 relative w-full flex flex-col items-center select-none mt-12 lg:mt-0">
+          <div className="lg:col-span-5 relative w-full flex flex-col items-center select-none mt-12 lg:mt-0 gap-6">
+            <InstagramMilestone />
+
             {/* Reviews Card Container */}
             <div className="relative w-full max-w-[340px] sm:max-w-[380px] min-h-[220px] flex flex-col justify-between">
               
@@ -210,18 +202,8 @@ export default function Hero() {
                   onMouseLeave={() => setHoveredCard(null)}
                   className="w-full bg-white/70 dark:bg-[#1C1C1E]/80 border border-black/[0.08] dark:border-white/10 rounded-2xl p-6 flex flex-col justify-between backdrop-blur-xl shadow-md hover:shadow-lg transition-all duration-300"
                 >
-                  {/* Top Row: App Logo / Name / Rating */}
+                  {/* Top Row: Rating */}
                   <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.05] pb-4 mb-4">
-                    <div className="flex items-center gap-2">
-                      {heroReviews[activeIndex].iconType === 'slack' && <SlackIcon />}
-                      {heroReviews[activeIndex].iconType === 'imessage' && <MessagesIcon />}
-                      {heroReviews[activeIndex].iconType === 'mail' && <MailIcon />}
-                      {heroReviews[activeIndex].iconType === 'instagram' && <InstagramNotificationIcon />}
-                      <span className="text-[11px] font-bold text-apple-subtext dark:text-zinc-400 tracking-[0.1em] uppercase">
-                        {heroReviews[activeIndex].app}
-                      </span>
-                    </div>
-                    
                     <div className="flex gap-0.5">
                       {[...Array(5)].map((_, i) => (
                         <svg key={i} className="w-3.5 h-3.5 text-yellow-400 fill-current" viewBox="0 0 20 20">
@@ -238,7 +220,7 @@ export default function Hero() {
                     </p>
                   </div>
 
-                  {/* Bottom Row: Profile info & Date */}
+                  {/* Bottom Row: Profile info */}
                   <div className="flex items-center justify-between border-t border-black/[0.05] dark:border-white/[0.05] pt-4 mt-4">
                     <div className="flex items-center gap-3">
                       {heroReviews[activeIndex].image ? (
@@ -259,10 +241,6 @@ export default function Hero() {
                         </span>
                       </div>
                     </div>
-                    
-                    <span className="text-[10px] font-bold text-apple-subtext/40 dark:text-zinc-500 uppercase tracking-wider">
-                      {heroReviews[activeIndex].time}
-                    </span>
                   </div>
                 </motion.div>
               </AnimatePresence>
