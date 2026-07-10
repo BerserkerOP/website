@@ -16,7 +16,7 @@ export default function FAQSection() {
     {
       number: "01",
       question: "How long does a typical project take?",
-      answer: "A standard 60-second animated video takes 3 to 5 weeks to produce. We map out all milestones upfront so you know exactly when to expect script drafts, storyboards, and animated previews."
+      answer: "A standard 60-second animated video takes 1 to 2 weeks to produce. We map out all milestones upfront so you know exactly when to expect script drafts, storyboards, and animated previews."
     },
     {
       number: "02",
