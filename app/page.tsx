@@ -8,6 +8,18 @@ import SpotlightButton from '@/components/SpotlightButton';
 export default function Home() {
   const projects = [
     {
+      title: "PayPal Ad",
+      category: (
+        <>
+          <strong>High-impact brand animation</strong> for commercial campaign releases.
+        </>
+      ),
+      videoUrl: "https://youtu.be/FMt2LcZDSnI",
+      themeColor: "#003087",
+      textColorTheme: "light" as const,
+      tag: "Promo"
+    },
+    {
       title: "SaaS Demo Videos",
       category: (
         <>
@@ -33,28 +45,16 @@ export default function Home() {
       tag: "Explainer"
     },
     {
-      title: "VSLs",
+      title: "ChatGPT Animation",
       category: (
         <>
-          <strong>High converting sales videos</strong> designed to turn cold traffic into paying customers.
+          <strong>High-energy kinetic typography</strong> visualizers designed for artists.
         </>
       ),
-      videoUrl: "https://youtu.be/FMt2LcZDSnI",
-      themeColor: "#003087",
-      textColorTheme: "light" as const,
-      tag: "VSL"
-    },
-    {
-      title: "Onboarding Sequences",
-      category: (
-        <>
-          <strong>Get users to their aha moment</strong> without a single support ticket.
-        </>
-      ),
-      videoUrl: "https://youtu.be/NhGNe4KJ1cU",
-      themeColor: "#0A0B10",
-      textColorTheme: "light" as const,
-      tag: "Onboarding"
+      videoUrl: "https://youtube.com/shorts/altZ7ZOHWNo?feature=share",
+      themeColor: "#EAEAEA",
+      textColorTheme: "dark" as const,
+      tag: "Typography"
     },
   ];
 
