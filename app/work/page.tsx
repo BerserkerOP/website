@@ -66,7 +66,7 @@ export default function WorkPage() {
       videoUrl: "https://youtube.com/shorts/altZ7ZOHWNo?feature=share",
       themeColor: "#EAEAEA",
       textColorTheme: "dark" as const,
-      tag: "Typography"
+      tag: "Brand Animation"
     },
     { 
       title: "Onboarding Sequences", 

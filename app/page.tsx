@@ -54,7 +54,7 @@ export default function Home() {
       videoUrl: "https://youtube.com/shorts/altZ7ZOHWNo?feature=share",
       themeColor: "#EAEAEA",
       textColorTheme: "dark" as const,
-      tag: "Typography"
+      tag: "Brand Animation"
     },
   ];
 
