@@ -174,6 +174,7 @@ export default function ContactPage() {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: -10, scale: 0.95 }}
                         transition={{ duration: 0.2 }}
+                        onMouseDown={(e) => e.preventDefault()}
                         className="absolute top-[calc(100%+8px)] left-0 right-0 z-50 bg-white/95 dark:bg-[#2A2A2E]/95 backdrop-blur-xl border border-black/10 dark:border-white/10 rounded-2xl py-2 shadow-2xl overflow-hidden"
                       >
                         {budgets.map(b => (

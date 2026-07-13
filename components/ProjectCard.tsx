@@ -11,6 +11,8 @@ interface ProjectCardProps {
   videoUrl?: string;
   hoverGradient?: boolean;
   thumbnailUrl?: string;
+  themeColor?: string;
+  textColorTheme?: 'light' | 'dark';
 }
 
 function getYouTubeEmbedUrl(url: string | undefined) {
@@ -22,7 +24,16 @@ function getYouTubeEmbedUrl(url: string | undefined) {
     : null;
 }
 
-export default function ProjectCard({ title, category, delay = 0, videoUrl, hoverGradient = false, thumbnailUrl }: ProjectCardProps) {
+export default function ProjectCard({ 
+  title, 
+  category, 
+  delay = 0, 
+  videoUrl, 
+  hoverGradient = false, 
+  thumbnailUrl,
+  themeColor,
+  textColorTheme
+}: ProjectCardProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoIdMatch = videoUrl?.match(/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|shorts\/)([^#&?]*).*/);
   const videoId = (videoIdMatch && videoIdMatch[2].length === 11) ? videoIdMatch[2] : null;
@@ -136,7 +147,10 @@ export default function ProjectCard({ title, category, delay = 0, videoUrl, hove
         <div className="absolute -inset-[2px] rounded-[26px] bg-gradient-to-br from-[#007AFF] via-[#5AC8FA] to-[#007AFF] opacity-0 group-hover:opacity-100 group-active:opacity-100 blur-[1px] transition-all duration-500 group-active:duration-100 group-active:scale-[0.98]" />
         <div className="absolute -inset-[2px] rounded-[26px] bg-gradient-to-br from-[#007AFF] via-[#5AC8FA] to-[#007AFF] opacity-0 group-hover:opacity-80 group-active:opacity-100 blur-2xl transition-all duration-500 group-active:duration-100 group-active:scale-[0.98]" />
 
-        <div className="relative flex flex-col h-full w-full rounded-[24px] overflow-hidden bg-apple-card z-10 transition-transform duration-200 group-active:scale-[0.98]">
+        <div 
+          className={`relative flex flex-col h-full w-full rounded-[24px] overflow-hidden z-10 transition-transform duration-200 group-active:scale-[0.98] ${themeColor ? '' : 'bg-apple-card'}`}
+          style={themeColor ? { backgroundColor: themeColor } : {}}
+        >
           {/* Spotlight Hover Glow (Behind Content) */}
           <motion.div
             className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 z-0"
@@ -197,8 +211,8 @@ export default function ProjectCard({ title, category, delay = 0, videoUrl, hove
 
           {/* Text Container */}
           <div className="relative z-10 px-6 py-6 flex flex-col gap-1.5 flex-1 bg-transparent">
-            <h3 className="text-lg font-bold text-apple-text tracking-tight">{title}</h3>
-            <p className="text-sm text-apple-subtext leading-relaxed">
+            <h3 className={`text-lg font-bold tracking-tight transition-colors ${textColorTheme === 'dark' ? 'text-black' : textColorTheme === 'light' ? 'text-white' : 'text-apple-text'}`}>{title}</h3>
+            <p className={`text-sm leading-relaxed transition-colors ${textColorTheme === 'dark' ? 'text-black/60' : textColorTheme === 'light' ? 'text-white/60' : 'text-apple-subtext'}`}>
               {category}
             </p>
           </div>

@@ -8,11 +8,27 @@ import SpotlightButton from '@/components/SpotlightButton';
 export default function Home() {
   const projects = [
     {
+      title: "PayPal Ad",
+      category: "High-impact brand animation",
+      videoUrl: "https://youtu.be/FMt2LcZDSnI",
+      themeColor: "#003087",
+      textColorTheme: "light" as const
+    },
+    {
       title: "SaaS Demo Videos",
       category: "Cinematic feature walkthroughs",
-      videoUrl: "https://youtu.be/ixG3a8z213k"
+      videoUrl: "https://youtu.be/ixG3a8z213k",
+      themeColor: "#0A0D14",
+      textColorTheme: "light" as const
     },
-    { title: "Explainer Videos", category: "Complex features made instantly clear", videoUrl: "https://youtu.be/L3MB9hYLbBI", thumbnailUrl: "https://img.youtube.com/vi/L3MB9hYLbBI/hqdefault.jpg" },
+    { 
+      title: "Explainer Videos", 
+      category: "Complex features made instantly clear", 
+      videoUrl: "https://youtu.be/L3MB9hYLbBI", 
+      thumbnailUrl: "https://img.youtube.com/vi/L3MB9hYLbBI/hqdefault.jpg",
+      themeColor: "#120E16",
+      textColorTheme: "light" as const
+    },
   ];
 
   return (
@@ -34,8 +50,10 @@ export default function Home() {
               title={project.title}
               category={project.category}
               delay={index * 0.1}
-              videoUrl={(project as any).videoUrl}
-              thumbnailUrl={(project as any).thumbnailUrl}
+              videoUrl={project.videoUrl}
+              thumbnailUrl={project.thumbnailUrl}
+              themeColor={project.themeColor}
+              textColorTheme={project.textColorTheme}
             />
           ))}
         </div>

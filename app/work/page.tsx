@@ -7,12 +7,56 @@ export const metadata = {
 
 export default function WorkPage() {
   const projects = [
-    { title: "SaaS Demo Videos", category: "Cinematic feature walkthroughs", videoUrl: "https://youtu.be/ixG3a8z213k" },
-    { title: "Discord Animation", category: "Community platform walkthroughs", videoUrl: "https://www.youtube.com/watch?v=diH5NhlPvGM" },
-    { title: "Explainer Videos", category: "Complex features made instantly clear", videoUrl: "https://youtu.be/L3MB9hYLbBI", thumbnailUrl: "https://img.youtube.com/vi/L3MB9hYLbBI/hqdefault.jpg" },
-    { title: "ChatGPT Animation", category: "High-energy kinetic typography for artists", videoUrl: "https://youtube.com/shorts/altZ7ZOHWNo?feature=share" },
-    { title: "Onboarding Sequences", category: "Get users to their aha moment", videoUrl: "https://youtu.be/NhGNe4KJ1cU" },
-    { title: "Promo Campaigns", category: "Social ready feature launches", videoUrl: "https://youtu.be/N45oL-Qm8AI" },
+    { 
+      title: "PayPal Ad", 
+      category: "High-impact brand animation", 
+      videoUrl: "https://youtu.be/FMt2LcZDSnI",
+      themeColor: "#003087",
+      textColorTheme: "light" as const
+    },
+    { 
+      title: "SaaS Demo Videos", 
+      category: "Cinematic feature walkthroughs", 
+      videoUrl: "https://youtu.be/ixG3a8z213k",
+      themeColor: "#0A0D14",
+      textColorTheme: "light" as const
+    },
+    { 
+      title: "Discord Animation", 
+      category: "Community platform walkthroughs", 
+      videoUrl: "https://www.youtube.com/watch?v=diH5NhlPvGM",
+      themeColor: "#0E0F13",
+      textColorTheme: "light" as const
+    },
+    { 
+      title: "Explainer Videos", 
+      category: "Complex features made instantly clear", 
+      videoUrl: "https://youtu.be/L3MB9hYLbBI", 
+      thumbnailUrl: "https://img.youtube.com/vi/L3MB9hYLbBI/hqdefault.jpg",
+      themeColor: "#120E16",
+      textColorTheme: "light" as const
+    },
+    { 
+      title: "ChatGPT Animation", 
+      category: "High-energy kinetic typography for artists", 
+      videoUrl: "https://youtube.com/shorts/altZ7ZOHWNo?feature=share",
+      themeColor: "#EAEAEA",
+      textColorTheme: "dark" as const
+    },
+    { 
+      title: "Onboarding Sequences", 
+      category: "Get users to their aha moment", 
+      videoUrl: "https://youtu.be/NhGNe4KJ1cU",
+      themeColor: "#0A0B10",
+      textColorTheme: "light" as const
+    },
+    { 
+      title: "Promo Campaigns", 
+      category: "Social ready feature launches", 
+      videoUrl: "https://youtu.be/N45oL-Qm8AI",
+      themeColor: "#E2E7ED",
+      textColorTheme: "dark" as const
+    },
   ];
 
   return (
@@ -35,8 +79,10 @@ export default function WorkPage() {
               title={project.title}
               category={project.category}
               delay={index * 0.1}
-              videoUrl={(project as any).videoUrl}
-              thumbnailUrl={(project as any).thumbnailUrl}
+              videoUrl={project.videoUrl}
+              thumbnailUrl={project.thumbnailUrl}
+              themeColor={project.themeColor}
+              textColorTheme={project.textColorTheme}
               hoverGradient={true}
             />
           ))}
