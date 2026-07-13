@@ -9,53 +9,88 @@ export default function WorkPage() {
   const projects = [
     { 
       title: "PayPal Ad", 
-      category: "High-impact brand animation", 
+      category: (
+        <>
+          <strong>High-impact brand animation</strong> for commercial campaign releases.
+        </>
+      ), 
       videoUrl: "https://youtu.be/FMt2LcZDSnI",
       themeColor: "#003087",
-      textColorTheme: "light" as const
+      textColorTheme: "light" as const,
+      tag: "Promo"
     },
     { 
       title: "SaaS Demo Videos", 
-      category: "Cinematic feature walkthroughs", 
+      category: (
+        <>
+          <strong>Cinematic feature walkthroughs</strong> that convert browsers into buyers.
+        </>
+      ), 
       videoUrl: "https://youtu.be/ixG3a8z213k",
       themeColor: "#0A0D14",
-      textColorTheme: "light" as const
+      textColorTheme: "light" as const,
+      tag: "SaaS Demo"
     },
     { 
       title: "Discord Animation", 
-      category: "Community platform walkthroughs", 
+      category: (
+        <>
+          <strong>Community platform walkthroughs</strong> highlighting custom brand visuals.
+        </>
+      ), 
       videoUrl: "https://www.youtube.com/watch?v=diH5NhlPvGM",
       themeColor: "#0E0F13",
-      textColorTheme: "light" as const
+      textColorTheme: "light" as const,
+      tag: "Walkthrough"
     },
     { 
       title: "Explainer Videos", 
-      category: "Complex features made instantly clear", 
+      category: (
+        <>
+          <strong>Complex features made instantly clear</strong> in 60 seconds or less.
+        </>
+      ), 
       videoUrl: "https://youtu.be/L3MB9hYLbBI", 
       thumbnailUrl: "https://img.youtube.com/vi/L3MB9hYLbBI/hqdefault.jpg",
       themeColor: "#120E16",
-      textColorTheme: "light" as const
+      textColorTheme: "light" as const,
+      tag: "Explainer"
     },
     { 
       title: "ChatGPT Animation", 
-      category: "High-energy kinetic typography for artists", 
+      category: (
+        <>
+          <strong>High-energy kinetic typography</strong> visualizers designed for artists.
+        </>
+      ), 
       videoUrl: "https://youtube.com/shorts/altZ7ZOHWNo?feature=share",
       themeColor: "#EAEAEA",
-      textColorTheme: "dark" as const
+      textColorTheme: "dark" as const,
+      tag: "Typography"
     },
     { 
       title: "Onboarding Sequences", 
-      category: "Get users to their aha moment", 
+      category: (
+        <>
+          <strong>Get users to their aha moment</strong> without a single support ticket.
+        </>
+      ), 
       videoUrl: "https://youtu.be/NhGNe4KJ1cU",
       themeColor: "#0A0B10",
-      textColorTheme: "light" as const
+      textColorTheme: "light" as const,
+      tag: "Onboarding"
     },
     { 
       title: "Promo Campaigns", 
-      category: "Social ready feature launches", 
+      category: (
+        <>
+          <strong>Social ready feature launches</strong> optimized to drive audience conversions.
+        </>
+      ), 
       videoUrl: "https://youtu.be/N45oL-Qm8AI",
       themeColor: "#E2E7ED",
-      textColorTheme: "dark" as const
+      textColorTheme: "dark" as const,
+      tag: "Campaign"
     },
   ];
 
@@ -84,6 +119,7 @@ export default function WorkPage() {
               themeColor={project.themeColor}
               textColorTheme={project.textColorTheme}
               hoverGradient={true}
+              tag={project.tag}
             />
           ))}
         </div>

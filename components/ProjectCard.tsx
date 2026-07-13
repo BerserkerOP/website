@@ -6,13 +6,14 @@ import GlareHover from './GlareHover';
 
 interface ProjectCardProps {
   title: string;
-  category: string;
+  category: React.ReactNode;
   delay?: number;
   videoUrl?: string;
   hoverGradient?: boolean;
   thumbnailUrl?: string;
   themeColor?: string;
   textColorTheme?: 'light' | 'dark';
+  tag?: string;
 }
 
 function getYouTubeEmbedUrl(url: string | undefined) {
@@ -32,7 +33,8 @@ export default function ProjectCard({
   hoverGradient = false, 
   thumbnailUrl,
   themeColor,
-  textColorTheme
+  textColorTheme,
+  tag
 }: ProjectCardProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoIdMatch = videoUrl?.match(/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|shorts\/)([^#&?]*).*/);
@@ -177,6 +179,11 @@ export default function ProjectCard({
               }
             }}
           >
+            {tag && (
+              <div className="absolute top-4 left-4 z-20 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-bold text-white uppercase tracking-wider select-none">
+                {tag}
+              </div>
+            )}
             {!isPlaying && imageUrl ? (
               <div className="relative w-full h-full">
                 <img 
