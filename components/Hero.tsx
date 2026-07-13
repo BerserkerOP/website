@@ -142,6 +142,18 @@ export default function Hero() {
           
           {/* Left Column: Headline and CTAs */}
           <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left gap-6">
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-apple-blue/[0.06] border border-apple-blue/15 shadow-sm text-[11px] font-semibold text-apple-blue tracking-wider uppercase dark:bg-apple-blue/10 dark:border-apple-blue/20"
+            >
+              <span className="flex h-2 w-2 relative">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-apple-blue opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-apple-blue"></span>
+              </span>
+              <span>Trusted by 30+ partners across 10+ global markets</span>
+            </motion.div>
 
             <motion.h1 
               initial={{ opacity: 0, y: 18 }}

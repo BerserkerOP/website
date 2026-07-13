@@ -11,7 +11,7 @@ export default function InstagramMilestone() {
   // Smooth count-up animation for the views metric
   useEffect(() => {
     let start = 0;
-    const end = 600;
+    const end = 720;
     const duration = 1500; // 1.5s
     const startTime = performance.now();
 
