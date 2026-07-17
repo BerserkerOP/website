@@ -6,6 +6,7 @@ import Footer from '@/components/Footer'
 import ContactModal from '@/components/ContactModal'
 import FloatingContactButton from '@/components/FloatingContactButton'
 import BackToTop from '@/components/BackToTop'
+import GetInTouchModal from '@/components/GetInTouchModal'
 import { ThemeProvider } from '@/components/ThemeProvider'
 
 
@@ -68,6 +69,7 @@ export default function RootLayout({
           </main>
           <Footer />
           <ContactModal />
+          <GetInTouchModal />
           <FloatingContactButton />
           <BackToTop />
         </ThemeProvider>

@@ -1,12 +1,43 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function GetInTouchModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+export default function GetInTouchModal({ isOpen, onClose }: { isOpen?: boolean; onClose?: () => void }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [isOpenState, setIsOpenState] = useState(false);
+
+  const isControlled = isOpen !== undefined;
+  const activeOpen = isControlled ? isOpen : isOpenState;
+
+  useEffect(() => {
+    if (isControlled) return;
+
+    const checkHash = () => {
+      if (window.location.hash === '#inquiry') {
+        setIsOpenState(true);
+      } else {
+        setIsOpenState(false);
+      }
+    };
+
+    checkHash();
+    window.addEventListener('hashchange', checkHash);
+    return () => window.removeEventListener('hashchange', checkHash);
+  }, [isControlled]);
+
+  const handleClose = () => {
+    if (onClose) {
+      onClose();
+    }
+    if (!isControlled) {
+      window.history.pushState(null, '', window.location.pathname + window.location.search);
+      setIsOpenState(false);
+      setTimeout(() => setIsSuccess(false), 500);
+    }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (errors[e.target.name]) {
@@ -63,7 +94,7 @@ export default function GetInTouchModal({ isOpen, onClose }: { isOpen: boolean; 
         setIsSuccess(true);
         setTimeout(() => {
           setIsSuccess(false);
-          onClose();
+          handleClose();
         }, 3000);
       }
     } catch (error) {
@@ -93,13 +124,13 @@ export default function GetInTouchModal({ isOpen, onClose }: { isOpen: boolean; 
 
   return (
     <AnimatePresence>
-      {isOpen && (
+      {activeOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={onClose}
+            onClick={handleClose}
             className="absolute inset-0 bg-black/40 backdrop-blur-sm"
           />
           
@@ -111,7 +142,7 @@ export default function GetInTouchModal({ isOpen, onClose }: { isOpen: boolean; 
           >
             {/* Close Button */}
             <button 
-              onClick={onClose}
+              onClick={handleClose}
               className="absolute top-4 right-4 p-2 rounded-full bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-apple-text transition-colors z-10"
             >
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">

@@ -196,7 +196,7 @@ export default function WorkPage() {
               >
                 {activeCategory === 'lyrical' ? (
                   <>
-                    A collection of our lyrical and typography projects. For custom lyrical videos, pricing is dynamically tailored based on video duration, design style, and text-tracking complexity—available upon <a href="#contact" className="text-[#007AFF] hover:underline font-semibold transition-colors">project inquiry</a>.
+                    A collection of our lyrical and typography projects. For custom lyrical videos, pricing is dynamically tailored based on video duration, design style, and text-tracking complexity—available upon <a href="#inquiry" className="text-[#007AFF] hover:underline font-semibold transition-colors">project inquiry</a>.
                   </>
                 ) : (
                   <>
