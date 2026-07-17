@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ContactModal from '@/components/ContactModal'
 import FloatingContactButton from '@/components/FloatingContactButton'
+import BackToTop from '@/components/BackToTop'
 import { ThemeProvider } from '@/components/ThemeProvider'
 
 
@@ -68,6 +69,7 @@ export default function RootLayout({
           <Footer />
           <ContactModal />
           <FloatingContactButton />
+          <BackToTop />
         </ThemeProvider>
       </body>
     </html>

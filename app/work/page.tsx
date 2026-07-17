@@ -93,19 +93,7 @@ export default function WorkPage() {
       tag: "Onboarding",
       type: "commercial" as const
     },
-    { 
-      title: "Promo Campaigns", 
-      category: (
-        <>
-          <strong>Social ready feature launches</strong> optimized to drive audience conversions.
-        </>
-      ), 
-      videoUrl: "https://youtu.be/N45oL-Qm8AI",
-      themeColor: "#E2E7ED",
-      textColorTheme: "dark" as const,
-      tag: "Campaign",
-      type: "commercial" as const
-    },
+
     { 
       title: "Hit The Gas", 
       category: (
