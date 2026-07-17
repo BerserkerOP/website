@@ -186,8 +186,24 @@ export default function WorkPage() {
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-apple-text tracking-tight mb-4">
               Selected Work
             </h1>
-            <p className="text-base sm:text-lg text-apple-subtext max-w-2xl">
-              A collection of our recent projects, from SaaS product tours to high-energy visualizers.
+            <p className="text-base sm:text-lg text-apple-subtext max-w-2xl min-h-[56px] sm:min-h-[48px]">
+              <motion.span
+                key={activeCategory}
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+                className="block"
+              >
+                {activeCategory === 'lyrical' ? (
+                  <>
+                    A collection of our lyrical and typography projects. For custom lyrical videos, pricing is dynamically tailored based on video duration, design style, and text-tracking complexity—available upon project inquiry.
+                  </>
+                ) : (
+                  <>
+                    A collection of our recent projects, from SaaS product tours to high-energy visualizers.
+                  </>
+                )}
+              </motion.span>
             </p>
           </div>
 
