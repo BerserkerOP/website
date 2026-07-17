@@ -34,7 +34,7 @@ export default function WorkPage() {
           <strong>Cinematic feature walkthroughs</strong> that convert browsers into buyers.
         </>
       ), 
-      videoUrl: "https://youtu.be/ixG3a8z213k",
+      videoUrl: "https://youtu.be/ZjsuD1AFPEw",
       themeColor: "#0A0D14",
       textColorTheme: "light" as const,
       tag: "SaaS Demo",
