@@ -6,7 +6,15 @@ import ContactSection from '@/components/ContactSection';
 import SpotlightButton from '@/components/SpotlightButton';
 
 export default function Home() {
-  const projects = [
+  const projects: Array<{
+    title: string;
+    category: React.ReactNode;
+    videoUrl: string;
+    thumbnailUrl?: string;
+    themeColor: string;
+    textColorTheme: 'light' | 'dark';
+    tag: string;
+  }> = [
     {
       title: "PayPal Ad",
       category: (
@@ -32,15 +40,14 @@ export default function Home() {
       tag: "SaaS Demo"
     },
     {
-      title: "Explainer Videos",
+      title: "Vercel Explainer Ad",
       category: (
         <>
-          <strong>Complex features made instantly clear</strong> in 60 seconds or less.
+          <strong>Sleek framework promo campaigns</strong> designed to engage modern developers.
         </>
       ),
-      videoUrl: "https://youtu.be/L3MB9hYLbBI",
-      thumbnailUrl: "https://img.youtube.com/vi/L3MB9hYLbBI/hqdefault.jpg",
-      themeColor: "#120E16",
+      videoUrl: "https://youtube.com/shorts/PtRm5WejE_g?feature=share",
+      themeColor: "#0A0A0A",
       textColorTheme: "light" as const,
       tag: "Explainer"
     },

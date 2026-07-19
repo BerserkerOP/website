@@ -15,16 +15,16 @@ export default function WorkPage() {
 
   const projects = [
     { 
-      title: "PayPal Ad", 
+      title: "Vercel Explainer Ad", 
       category: (
         <>
-          <strong>High-impact brand animation</strong> for commercial campaign releases.
+          <strong>Sleek framework promo campaigns</strong> designed to engage modern developers.
         </>
       ), 
-      videoUrl: "https://youtu.be/FMt2LcZDSnI",
-      themeColor: "#003087",
+      videoUrl: "https://youtube.com/shorts/PtRm5WejE_g?feature=share",
+      themeColor: "#0A0A0A",
       textColorTheme: "light" as const,
-      tag: "Promo",
+      tag: "Explainer",
       type: "commercial" as const
     },
     { 
@@ -38,6 +38,19 @@ export default function WorkPage() {
       themeColor: "#0A0D14",
       textColorTheme: "light" as const,
       tag: "SaaS Demo",
+      type: "commercial" as const
+    },
+    { 
+      title: "PayPal Ad", 
+      category: (
+        <>
+          <strong>High-impact brand animation</strong> for commercial campaign releases.
+        </>
+      ), 
+      videoUrl: "https://youtu.be/FMt2LcZDSnI",
+      themeColor: "#003087",
+      textColorTheme: "light" as const,
+      tag: "Promo",
       type: "commercial" as const
     },
     { 
@@ -78,19 +91,6 @@ export default function WorkPage() {
       themeColor: "#EAEAEA",
       textColorTheme: "dark" as const,
       tag: "Brand Animation",
-      type: "commercial" as const
-    },
-    { 
-      title: "Onboarding Sequences", 
-      category: (
-        <>
-          <strong>Get users to their aha moment</strong> without a single support ticket.
-        </>
-      ), 
-      videoUrl: "https://youtu.be/NhGNe4KJ1cU",
-      themeColor: "#0A0B10",
-      textColorTheme: "light" as const,
-      tag: "Onboarding",
       type: "commercial" as const
     },
 
