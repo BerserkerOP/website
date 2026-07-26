@@ -15,6 +15,19 @@ export default function WorkPage() {
 
   const projects = [
     { 
+      title: "Music Typography Ad", 
+      category: (
+        <>
+          <strong>High-fidelity rap visualizer</strong> featuring custom rapid text-tracking.
+        </>
+      ), 
+      videoUrl: "https://youtube.com/shorts/G3eaRQawEjs?si=8HubGyRk-OL0s1cw",
+      themeColor: "#0F172A",
+      textColorTheme: "light" as const,
+      tag: "Typography",
+      type: "commercial" as const
+    },
+    { 
       title: "Vercel Explainer Ad", 
       category: (
         <>

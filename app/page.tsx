@@ -16,6 +16,18 @@ export default function Home() {
     tag: string;
   }> = [
     {
+      title: "Music Typography Ad",
+      category: (
+        <>
+          <strong>High-fidelity rap visualizer</strong> featuring custom rapid text-tracking.
+        </>
+      ),
+      videoUrl: "https://youtube.com/shorts/G3eaRQawEjs?si=8HubGyRk-OL0s1cw",
+      themeColor: "#0F172A",
+      textColorTheme: "light" as const,
+      tag: "Typography"
+    },
+    {
       title: "PayPal Ad",
       category: (
         <>
@@ -50,18 +62,6 @@ export default function Home() {
       themeColor: "#0A0A0A",
       textColorTheme: "light" as const,
       tag: "Explainer"
-    },
-    {
-      title: "ChatGPT Animation",
-      category: (
-        <>
-          <strong>High-energy kinetic typography</strong> visualizers designed for artists.
-        </>
-      ),
-      videoUrl: "https://youtube.com/shorts/altZ7ZOHWNo?feature=share",
-      themeColor: "#EAEAEA",
-      textColorTheme: "dark" as const,
-      tag: "Brand Animation"
     },
   ];
 
