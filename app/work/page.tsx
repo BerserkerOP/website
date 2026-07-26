@@ -114,7 +114,7 @@ export default function WorkPage() {
           <strong>High-energy kinetic lyrics</strong> featuring custom fast-paced text tracking.
         </>
       ), 
-      videoUrl: "https://www.youtube.com/shorts/hnRYOCYitbA",
+      videoUrl: "https://youtube.com/shorts/gHSmRNakT24?si=6Z7ucGOdY5aIgGY8",
       themeColor: "#0F172A",
       textColorTheme: "light" as const,
       tag: "Lyrical",
