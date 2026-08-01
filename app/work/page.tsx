@@ -54,7 +54,7 @@ export default function WorkPage() {
       type: "commercial" as const
     },
     { 
-      title: "SaaS Demo Videos", 
+      title: "Tryclean AI Launch Video", 
       category: (
         <>
           <strong>Cinematic feature walkthroughs</strong> that convert browsers into buyers.
@@ -80,7 +80,7 @@ export default function WorkPage() {
       type: "commercial" as const
     },
     { 
-      title: "WTM Explainer Video", 
+      title: "Discord Explainer", 
       category: (
         <>
           <strong>Community platform walkthroughs</strong> highlighting custom brand visuals.
@@ -93,7 +93,7 @@ export default function WorkPage() {
       type: "commercial" as const
     },
     { 
-      title: "Explainer Videos", 
+      title: "WTM Explainer Video", 
       category: (
         <>
           <strong>Complex features made instantly clear</strong> in 60 seconds or less.
@@ -107,7 +107,7 @@ export default function WorkPage() {
       type: "commercial" as const
     },
     { 
-      title: "ChatGPT Animation", 
+      title: "ChatGPT Explainer", 
       category: (
         <>
           <strong>High-energy kinetic typography</strong> visualizers designed for artists.
