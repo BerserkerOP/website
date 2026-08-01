@@ -15,6 +15,19 @@ export default function WorkPage() {
 
   const projects = [
     { 
+      title: "Todoist Ad", 
+      category: (
+        <>
+          <strong>Task management workflow promo</strong> with fluid, satisfying product motions.
+        </>
+      ), 
+      videoUrl: "https://youtu.be/EzRyQUU5jTQ",
+      themeColor: "#E44332",
+      textColorTheme: "light" as const,
+      tag: "Product Promo",
+      type: "commercial" as const
+    },
+    { 
       title: "Music Typography Ad", 
       category: (
         <>

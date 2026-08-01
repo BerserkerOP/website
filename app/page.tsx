@@ -28,16 +28,16 @@ export default function Home() {
       tag: "Typography"
     },
     {
-      title: "PayPal Ad",
+      title: "Todoist Ad",
       category: (
         <>
-          <strong>High-impact brand animation</strong> for commercial campaign releases.
+          <strong>Task management workflow promo</strong> with fluid, satisfying product motions.
         </>
       ),
-      videoUrl: "https://youtu.be/FMt2LcZDSnI",
-      themeColor: "#003087",
+      videoUrl: "https://youtu.be/EzRyQUU5jTQ",
+      themeColor: "#E44332",
       textColorTheme: "light" as const,
-      tag: "Promo"
+      tag: "Product Promo"
     },
     {
       title: "SaaS Demo Videos",
