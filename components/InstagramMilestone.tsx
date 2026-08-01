@@ -11,7 +11,7 @@ export default function InstagramMilestone() {
   // Smooth count-up animation for the views metric
   useEffect(() => {
     let start = 0;
-    const end = 950;
+    const end = 1000;
     const duration = 1500; // 1.5s
     const startTime = performance.now();
 
@@ -58,7 +58,7 @@ export default function InstagramMilestone() {
           
           {/* Left Side: Stats and Info */}
           <div className="flex flex-col items-start gap-1 z-10">
-            
+             
             {/* Badge Label */}
             <div className="flex items-center gap-1.5 mb-1">
               <span className="p-1 rounded-md bg-[#ee2a7b]/10 text-[#ee2a7b] dark:bg-[#ee2a7b]/20 dark:text-[#ff599c] flex items-center justify-center">
@@ -76,7 +76,7 @@ export default function InstagramMilestone() {
             {/* Metric Value */}
             <div className="flex items-baseline gap-1">
               <span className="text-3xl sm:text-4xl font-bold text-apple-text dark:text-white tracking-tight flex items-center">
-                {viewsCount}K+
+                {viewsCount >= 1000 ? "1M+" : `${viewsCount}K+`}
               </span>
               <span className="text-xs font-bold text-[#ee2a7b] dark:text-[#ff599c] tracking-tight">
                 Views
@@ -85,7 +85,7 @@ export default function InstagramMilestone() {
 
             {/* Metric Description */}
             <span className="text-[11px] sm:text-xs font-semibold text-apple-subtext dark:text-zinc-400">
-              Generated organically in <strong className="text-apple-text dark:text-zinc-200 font-bold">2 weeks</strong>
+              Generated organically in <strong className="text-apple-text dark:text-zinc-200 font-bold">3 weeks</strong>
             </span>
           </div>
 
