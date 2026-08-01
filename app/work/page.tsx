@@ -15,7 +15,7 @@ export default function WorkPage() {
 
   const projects = [
     { 
-      title: "Todoist Ad", 
+      title: "Todoist Explainer", 
       category: (
         <>
           <strong>Task management workflow promo</strong> with fluid, satisfying product motions.
@@ -28,7 +28,7 @@ export default function WorkPage() {
       type: "commercial" as const
     },
     { 
-      title: "Music Typography Ad", 
+      title: "Music Typography Explainer", 
       category: (
         <>
           <strong>High-fidelity rap visualizer</strong> featuring custom rapid text-tracking.
@@ -41,7 +41,7 @@ export default function WorkPage() {
       type: "commercial" as const
     },
     { 
-      title: "Vercel Explainer Ad", 
+      title: "Vercel Explainer", 
       category: (
         <>
           <strong>Sleek framework promo campaigns</strong> designed to engage modern developers.
@@ -67,7 +67,7 @@ export default function WorkPage() {
       type: "commercial" as const
     },
     { 
-      title: "PayPal Ad", 
+      title: "PayPal Explainer", 
       category: (
         <>
           <strong>High-impact brand animation</strong> for commercial campaign releases.
@@ -80,7 +80,7 @@ export default function WorkPage() {
       type: "commercial" as const
     },
     { 
-      title: "Discord Animation", 
+      title: "WTM Explainer Video", 
       category: (
         <>
           <strong>Community platform walkthroughs</strong> highlighting custom brand visuals.

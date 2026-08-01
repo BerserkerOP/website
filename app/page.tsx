@@ -16,7 +16,7 @@ export default function Home() {
     tag: string;
   }> = [
     {
-      title: "Music Typography Ad",
+      title: "Music Typography Explainer",
       category: (
         <>
           <strong>High-fidelity rap visualizer</strong> featuring custom rapid text-tracking.
@@ -28,7 +28,7 @@ export default function Home() {
       tag: "Typography"
     },
     {
-      title: "Todoist Ad",
+      title: "Todoist Explainer",
       category: (
         <>
           <strong>Task management workflow promo</strong> with fluid, satisfying product motions.
@@ -52,7 +52,7 @@ export default function Home() {
       tag: "SaaS Demo"
     },
     {
-      title: "Vercel Explainer Ad",
+      title: "Vercel Explainer",
       category: (
         <>
           <strong>Sleek framework promo campaigns</strong> designed to engage modern developers.
