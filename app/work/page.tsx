@@ -28,7 +28,7 @@ export default function WorkPage() {
       type: "commercial" as const
     },
     { 
-      title: "Music Typography Explainer", 
+      title: "Instagram Explainer", 
       category: (
         <>
           <strong>High-fidelity rap visualizer</strong> featuring custom rapid text-tracking.

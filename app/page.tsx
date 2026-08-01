@@ -16,7 +16,7 @@ export default function Home() {
     tag: string;
   }> = [
     {
-      title: "Music Typography Explainer",
+      title: "Instagram Explainer",
       category: (
         <>
           <strong>High-fidelity rap visualizer</strong> featuring custom rapid text-tracking.
