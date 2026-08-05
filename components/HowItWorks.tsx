@@ -797,7 +797,19 @@ export default function HowItWorks() {
                       transition={{ duration: 0.3 }}
                       className="lg:hidden overflow-hidden"
                     >
-                      <div className="bg-apple-card/60 dark:bg-apple-card/40 backdrop-blur-xl rounded-[24px] p-5 border border-black/5 dark:border-white/5 shadow-sm mt-1 mb-2 flex flex-col gap-5">
+                      <div className="bg-apple-card/60 dark:bg-apple-card/40 backdrop-blur-xl rounded-[24px] p-5 border border-black/5 dark:border-white/5 shadow-sm mt-1 mb-2 flex flex-col gap-4">
+                        {/* macOS Window Title Bar (Mobile) */}
+                        <div className="flex items-center gap-3 pb-2.5 border-b border-black/[0.06] dark:border-white/[0.08] shrink-0">
+                          <div className="flex items-center gap-1.5">
+                            <div className="w-3 h-3 rounded-full bg-[#FF5F56] border border-black/10 dark:border-white/10" />
+                            <div className="w-3 h-3 rounded-full bg-[#FFBD2E] border border-black/10 dark:border-white/10" />
+                            <div className="w-3 h-3 rounded-full bg-[#27C93F] border border-black/10 dark:border-white/10" />
+                          </div>
+                          <span className="text-[11px] font-mono font-medium text-black/50 dark:text-white/50 tracking-wider">
+                            halftonemotion · step {step.num}
+                          </span>
+                        </div>
+
                         <p className="text-apple-text/80 text-sm leading-relaxed font-medium">
                           {step.desc}
                         </p>
@@ -828,8 +840,20 @@ export default function HowItWorks() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -20, scale: 0.95 }}
               transition={{ duration: 0.4, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="absolute inset-0 w-full h-fit bg-apple-card/60 dark:bg-apple-card/40 backdrop-blur-3xl rounded-[32px] p-6 lg:p-8 border border-black/5 dark:border-white/5 overflow-hidden shadow-[0_8px_40px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_40px_rgba(255,255,255,0.02)] flex flex-col gap-6"
+              className="absolute inset-0 w-full h-fit bg-apple-card/60 dark:bg-apple-card/40 backdrop-blur-3xl rounded-[32px] p-6 lg:p-8 border border-black/5 dark:border-white/5 overflow-hidden shadow-[0_8px_40px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_40px_rgba(255,255,255,0.02)] flex flex-col gap-5"
             >
+              {/* macOS Window Title Bar (Desktop) */}
+              <div className="flex items-center gap-3 pb-3 border-b border-black/[0.06] dark:border-white/[0.08] shrink-0">
+                <div className="flex items-center gap-1.5">
+                  <div className="w-3 h-3 rounded-full bg-[#FF5F56] border border-black/10 dark:border-white/10" />
+                  <div className="w-3 h-3 rounded-full bg-[#FFBD2E] border border-black/10 dark:border-white/10" />
+                  <div className="w-3 h-3 rounded-full bg-[#27C93F] border border-black/10 dark:border-white/10" />
+                </div>
+                <span className="text-[11px] font-mono font-medium text-black/50 dark:text-white/50 tracking-wider">
+                  halftonemotion · step {steps[activeStep].num}
+                </span>
+              </div>
+
               {/* Top Text Description */}
               <div className="relative z-10 flex flex-col shrink-0">
                 <div className="flex items-center gap-3 mb-3">
