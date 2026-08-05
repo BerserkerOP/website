@@ -57,7 +57,7 @@ export default function Navbar() {
       animate={{ y: 0, x: "-50%" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       onMouseMove={handleMouseMove}
-      className={`group fixed top-4 md:top-6 left-1/2 z-50 flex items-center justify-between p-1.5 rounded-full bg-zinc-950/95 backdrop-blur-[24px] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8),0_0_35px_rgba(0,122,255,0.3)] border-2 border-white/20 gap-6 md:gap-16 w-auto max-w-4xl`}
+      className={`group fixed top-4 md:top-6 left-1/2 z-50 flex items-center justify-between p-2 rounded-full bg-gradient-to-r from-white/90 via-white/80 to-white/90 dark:from-zinc-950/90 dark:via-zinc-900/85 dark:to-zinc-950/90 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.08),0_2px_10px_rgba(0,0,0,0.04)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.6)] border border-black/10 dark:border-white/15 gap-4 md:gap-10 w-auto max-w-4xl`}
     >
       {/* Spotlight Overlay */}
       <motion.div
@@ -66,30 +66,37 @@ export default function Navbar() {
           background: useMotionTemplate`
             radial-gradient(
               150px circle at ${mouseX}px ${mouseY}px,
-              rgba(0, 122, 255, 0.15),
+              rgba(0, 122, 255, 0.1),
               transparent 80%
             )
           `,
         }}
       />
 
-      {/* Left Profile Picture */}
+      {/* Left HalftoneMotion Brand Badge Logo */}
       <motion.div 
-        whileHover={{ scale: 1.1, rotateZ: -2 }} 
+        whileHover={{ scale: 1.04 }} 
         transition={{ type: "spring", stiffness: 400, damping: 15 }} 
         className="z-10 ml-1"
       >
-        <Link href="/" className="block w-[42px] h-[42px] rounded-full flex items-center justify-center border-2 border-[#007AFF] shadow-[0_0_15px_rgba(0,122,255,0.8)] shrink-0 relative overflow-hidden group/logo bg-black">
-          {/* Sphere reflection effects */}
-          <div className="absolute inset-0 rounded-full shadow-[inset_0_-5px_15px_rgba(0,0,0,0.8),inset_0_4px_10px_rgba(255,255,255,0.5)] z-20 pointer-events-none transition-all duration-300 group-hover/logo:shadow-[inset_0_-3px_15px_rgba(0,122,255,0.7),inset_0_5px_12px_rgba(255,255,255,0.8)]" />
-          <div className="absolute inset-0 bg-gradient-to-tr from-[#007AFF]/40 via-transparent to-white/20 z-10 pointer-events-none mix-blend-overlay rounded-full opacity-0 group-hover/logo:opacity-100 transition-opacity duration-300" />
-          <Image src="/profile.jpg" alt="HalftoneMotion" fill className="object-cover rounded-full" />
+        <Link 
+          href="/" 
+          className="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white dark:bg-zinc-900 border border-black/10 dark:border-white/15 shadow-sm group/logo transition-all"
+        >
+          {/* Logo Mark Icon */}
+          <div className="w-6 h-6 rounded-full bg-black text-white dark:bg-white dark:text-black flex items-center justify-center font-black text-[11px] tracking-tight shrink-0 shadow-inner">
+            H
+          </div>
+          {/* Brand Name Typography */}
+          <span className="font-sans font-extrabold text-xs sm:text-sm text-black dark:text-white tracking-tight">
+            HalftoneMotion
+          </span>
         </Link>
       </motion.div>
       
       {/* Desktop Nav */}
       <div 
-        className="hidden md:flex items-center justify-center space-x-2 relative z-10"
+        className="hidden md:flex items-center justify-center space-x-1 relative z-10"
         onMouseLeave={() => setHoveredPath(null)}
       >
         <LayoutGroup>
@@ -100,7 +107,11 @@ export default function Navbar() {
                 key={link.path}
                 href={link.path} 
                 onMouseEnter={() => setHoveredPath(link.path)}
-                className={`relative px-4 py-2 transition-all duration-300 inline-block font-bold tracking-[0.15em] text-[11px] uppercase ${isActive ? 'text-[#007AFF] drop-shadow-[0_0_8px_rgba(0,122,255,0.6)]' : 'text-white/60 hover:text-white'}`}
+                className={`relative px-4 py-2 transition-all duration-300 inline-block font-bold tracking-[0.12em] text-[11px] uppercase ${
+                  isActive 
+                    ? 'text-black dark:text-white font-extrabold' 
+                    : 'text-black/60 hover:text-black dark:text-white/60 dark:hover:text-white'
+                }`}
               >
                 {link.name}
                 {isActive && (
@@ -117,7 +128,7 @@ export default function Navbar() {
                         filter: ["blur(0px)", "blur(1.5px)", "blur(0px)"]
                       }}
                       transition={{ type: "tween", ease: [0.76, 0, 0.24, 1], duration: 0.38 }}
-                      className="absolute w-1.5 h-1.5 rounded-full bg-[#007AFF] shadow-[0_0_8px_rgba(0,122,255,0.9)]"
+                      className="absolute w-1.5 h-1.5 rounded-full bg-black dark:bg-white shadow-[0_0_8px_rgba(0,0,0,0.4)] dark:shadow-[0_0_8px_rgba(255,255,255,0.8)]"
                     />
                   </motion.div>
                 )}
@@ -127,23 +138,23 @@ export default function Navbar() {
         </LayoutGroup>
       </div>
 
-      <div className="flex items-center gap-4 z-10">
-        {/* Theme Switcher as Cart Button */}
-        <ThemeToggle className="w-[42px] h-[42px] mr-1 rounded-full bg-[#007AFF] border border-white/10 flex items-center justify-center shadow-[0_0_15px_rgba(0,122,255,0.6)] hover:shadow-[0_0_25px_rgba(0,122,255,1)] hover:scale-110 shrink-0 transition-all text-white group/theme" />
+      <div className="flex items-center gap-3 z-10 mr-1">
+        {/* Theme Switcher as Glass Pill Button */}
+        <ThemeToggle className="w-9 h-9 rounded-full bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/10 flex items-center justify-center shadow-sm hover:scale-105 shrink-0 transition-all text-black dark:text-white group/theme" />
         
         {/* Mobile Nav Toggle */}
-        <div className="flex items-center md:hidden gap-1 pl-1">
+        <div className="flex items-center md:hidden gap-1">
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="w-12 h-12 rounded-full flex items-center justify-center text-white bg-black/40 border border-white/10 hover:bg-black/60 transition-colors" 
+            className="w-9 h-9 rounded-full flex items-center justify-center text-black dark:text-white bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/10 hover:bg-black/10 dark:hover:bg-white/20 transition-colors" 
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? (
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
               </svg>
             )}
@@ -159,7 +170,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95, transition: { duration: 0.2 } }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute top-[calc(100%+12px)] left-0 right-0 md:hidden bg-zinc-950/95 backdrop-blur-3xl border border-white/20 overflow-hidden rounded-[28px] shadow-[0_20px_60px_rgba(0,0,0,0.5)]"
+            className="absolute top-[calc(100%+12px)] left-0 right-0 md:hidden bg-white/95 dark:bg-zinc-950/95 backdrop-blur-3xl border border-black/10 dark:border-white/20 overflow-hidden rounded-[28px] shadow-[0_20px_60px_rgba(0,0,0,0.2)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.8)]"
           >
             <div className="px-6 py-6 flex flex-col max-h-[80vh] overflow-y-auto">
               <div className="flex flex-col space-y-4">
@@ -174,7 +185,7 @@ export default function Navbar() {
                     <Link 
                       href={item.path} 
                       onClick={() => setMobileMenuOpen(false)} 
-                      className="text-2xl font-bold tracking-wide uppercase text-white block py-2"
+                      className="text-xl font-bold tracking-wide uppercase text-black dark:text-white block py-2"
                     >
                       {item.name}
                     </Link>
