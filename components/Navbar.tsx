@@ -81,14 +81,14 @@ export default function Navbar() {
       >
         <Link 
           href="/" 
-          className="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white dark:bg-zinc-900 border border-black/10 dark:border-white/15 shadow-sm group/logo transition-all"
+          className="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white text-black border border-black/10 shadow-sm group/logo transition-all"
         >
-          {/* Logo Mark Icon */}
-          <div className="w-6 h-6 rounded-full bg-black text-white dark:bg-white dark:text-black flex items-center justify-center font-black text-[11px] tracking-tight shrink-0 shadow-inner">
+          {/* Logo Mark Icon - Solid Black Circle with Bold White H */}
+          <div className="w-6 h-6 rounded-full bg-black text-white flex items-center justify-center font-black text-xs leading-none shrink-0 shadow-sm">
             H
           </div>
           {/* Brand Name Typography */}
-          <span className="font-sans font-extrabold text-xs sm:text-sm text-black dark:text-white tracking-tight">
+          <span className="font-sans font-extrabold text-xs sm:text-sm text-black tracking-tight">
             HalftoneMotion
           </span>
         </Link>
