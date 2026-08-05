@@ -3,6 +3,7 @@ import ProjectCard from '@/components/ProjectCard';
 import ReviewsSection from '@/components/ReviewsSection';
 import ContactSection from '@/components/ContactSection';
 import SpotlightButton from '@/components/SpotlightButton';
+import TrustMetrics from '@/components/TrustMetrics';
 
 export default function Home() {
   const projects: Array<{
@@ -95,6 +96,7 @@ export default function Home() {
         </div>
       </section>
 
+      <TrustMetrics />
       <ReviewsSection />
       <ContactSection />
     </div>
