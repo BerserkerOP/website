@@ -23,7 +23,7 @@ export default function TrustMetrics() {
     {
       id: "rating",
       icon: Star,
-      value: "5.0",
+      value: "4.7",
       title: "Loved by Founders",
       subtext: "avg client rating",
       iconBg: "bg-amber-500/10 dark:bg-amber-500/20",
@@ -40,7 +40,7 @@ export default function TrustMetrics() {
     {
       id: "demand",
       icon: Users,
-      value: "35+",
+      value: "20+",
       title: "Project Inquiries",
       subtext: "monthly client requests",
       iconBg: "bg-[#007AFF]/10 dark:bg-[#007AFF]/20",
@@ -50,7 +50,7 @@ export default function TrustMetrics() {
     {
       id: "turnaround",
       icon: Zap,
-      value: "48h",
+      value: "5 days",
       title: "Avg Delivery Speed",
       subtext: "rapid project turnarounds",
       iconBg: "bg-emerald-500/10 dark:bg-emerald-500/20",
@@ -70,7 +70,7 @@ export default function TrustMetrics() {
     {
       id: "satisfaction",
       icon: ShieldCheck,
-      value: "100%",
+      value: "96%",
       title: "Client Satisfaction",
       subtext: "guaranteed quality & precision",
       iconBg: "bg-pink-500/10 dark:bg-pink-500/20",
