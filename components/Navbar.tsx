@@ -11,8 +11,8 @@ const NAV_LINKS = [
   { name: 'Home', path: '/' },
   { name: 'Our Work', path: '/work' },
   { name: 'Process', path: '/process' },
-  { name: 'FAQ', path: '/faq' },
-  { name: 'Contact', path: '/contact' }
+  { name: 'Contact', path: '/contact' },
+  { name: 'FAQ', path: '/faq' }
 ];
 
 export default function Navbar() {

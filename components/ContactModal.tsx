@@ -55,14 +55,14 @@ export default function ContactModal() {
           />
 
           {/* Modal Container */}
-          <div className="fixed inset-0 z-[70] flex items-center justify-center pointer-events-none p-4">
+          <div className="fixed inset-0 z-[70] flex items-center justify-center pointer-events-none p-3 sm:p-4">
             <motion.div 
               layout
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: "spring", duration: 0.5, bounce: 0.1 }}
-              className={`shadow-2xl pointer-events-auto overflow-hidden flex flex-col ${isSuccess ? 'bg-[#34C759] rounded-3xl w-64 h-64 text-white items-center justify-center' : 'bg-white dark:bg-[#1C1C1E] rounded-2xl w-full max-w-md max-h-[85vh]'}`}
+              className={`shadow-2xl pointer-events-auto overflow-hidden flex flex-col ${isSuccess ? 'bg-[#34C759] rounded-3xl w-64 h-64 text-white items-center justify-center' : 'bg-white dark:bg-[#1C1C1E] rounded-3xl w-full max-w-md max-h-[70vh] border border-black/5 dark:border-white/10'}`}
             >
               <AnimatePresence mode="wait">
                 {isSuccess ? (
@@ -103,13 +103,13 @@ export default function ContactModal() {
                     <p className="text-sm text-white/90 font-medium">Your application has been received.</p>
                   </motion.div>
                 ) : (
-                  <motion.div key="form" exit={{ opacity: 0, transition: { duration: 0.1 } }} className="flex flex-col w-full">
-                    {/* Header */}
-                    <div className="flex items-center justify-between px-5 py-3 border-b border-apple-border dark:border-white/10 shrink-0">
-                      <h2 className="text-lg font-bold text-apple-text dark:text-white">Apply for a Project</h2>
+                  <motion.div key="form" exit={{ opacity: 0, transition: { duration: 0.1 } }} className="flex flex-col w-full h-full overflow-hidden">
+                    {/* Sticky Header */}
+                    <div className="flex items-center justify-between px-5 py-3 border-b border-black/5 dark:border-white/10 shrink-0 bg-white/90 dark:bg-[#1C1C1E]/90 backdrop-blur-md z-10">
+                      <h2 className="text-base font-bold text-apple-text dark:text-white">Apply for a Project</h2>
                       <button 
                         onClick={closeModal}
-                        className="p-1.5 -mr-1.5 text-apple-subtext hover:text-apple-text dark:hover:text-white transition-colors rounded-full hover:bg-apple-gray dark:hover:bg-white/10"
+                        className="p-1.5 -mr-1.5 text-apple-subtext hover:text-apple-text dark:hover:text-white transition-colors rounded-full hover:bg-black/5 dark:hover:bg-white/10"
                       >
                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -117,8 +117,10 @@ export default function ContactModal() {
                       </button>
                     </div>
 
-                    {/* Form Body */}
-                    <ContactForm onSuccess={() => setIsSuccess(true)} />
+                    {/* Scroll Pane Body */}
+                    <div className="overflow-y-auto flex-1 custom-scrollbar">
+                      <ContactForm onSuccess={() => setIsSuccess(true)} />
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>

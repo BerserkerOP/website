@@ -139,7 +139,7 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
 
   return (
     <form 
-      className="p-4 flex flex-col gap-4 overflow-y-auto"
+      className="p-4 sm:p-5 flex flex-col gap-3 overflow-y-auto"
       noValidate
       onSubmit={handleSubmit}
     >
@@ -149,8 +149,8 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
       <input type="hidden" name="_next" value="https://halftonemotion.vercel.app/" />
 
       {/* 1. Name Input */}
-      <div className="flex flex-col gap-1.5">
-        <label htmlFor="name" className="text-[13px] font-bold text-apple-text dark:text-white">
+      <div className="flex flex-col gap-1">
+        <label htmlFor="name" className="text-[12px] font-bold text-apple-text dark:text-white">
           Full Name <span className="text-apple-blue">*</span>
         </label>
         <input 
@@ -160,17 +160,17 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
           required
           placeholder="Your name"
           onChange={handleChange}
-          className={`w-full px-3.5 py-2.5 rounded-xl border ${errors.name ? 'border-[#FF3B30] focus:ring-[#FF3B30]/20 bg-white dark:bg-[#1C1C1E]' : 'border-black/10 dark:border-white/10 focus:border-apple-blue focus:ring-apple-blue bg-white/70 dark:bg-black/40'} focus:ring-1 outline-none transition-all placeholder:text-zinc-500 dark:placeholder:text-zinc-400 text-apple-text dark:text-white text-[13px] backdrop-blur-md`}
+          className={`w-full px-3 py-2 rounded-xl border ${errors.name ? 'border-[#FF3B30] focus:ring-[#FF3B30]/20 bg-white dark:bg-[#1C1C1E]' : 'border-black/10 dark:border-white/10 focus:border-apple-blue focus:ring-apple-blue bg-white/70 dark:bg-black/40'} focus:ring-1 outline-none transition-all placeholder:text-zinc-500 dark:placeholder:text-zinc-400 text-apple-text dark:text-white text-xs backdrop-blur-md`}
         />
         <ErrorMessage message={errors.name} />
       </div>
 
       {/* 2. Preferred Contact Method Selector */}
-      <div className="flex flex-col gap-2">
-        <label className="text-[13px] font-bold text-apple-text dark:text-white">
+      <div className="flex flex-col gap-1.5">
+        <label className="text-[12px] font-bold text-apple-text dark:text-white">
           Preferred Contact Method <span className="text-apple-blue">*</span>
         </label>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1.5">
           {contactMethods.map((method) => {
             const isSelected = preferredMethod === method.id;
             return (
@@ -181,9 +181,9 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
                   setPreferredMethod(method.id);
                   if (errors.contactDetail) setErrors(prev => ({ ...prev, contactDetail: '' }));
                 }}
-                className={`px-3 py-2 rounded-xl text-xs font-medium transition-all duration-200 flex items-center gap-1.5 ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 flex items-center gap-1.5 ${
                   isSelected 
-                    ? 'bg-apple-blue text-white shadow-[0_4px_14px_rgba(0,122,255,0.4)] border-transparent' 
+                    ? 'bg-apple-blue text-white shadow-[0_4px_12px_rgba(0,122,255,0.35)] border-transparent font-bold' 
                     : 'bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-apple-text dark:text-white/80 hover:bg-black/10 dark:hover:bg-white/10'
                 }`}
               >
@@ -196,8 +196,8 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
       </div>
 
       {/* 3. Dynamic Contact Detail Field */}
-      <div className="flex flex-col gap-1.5">
-        <label htmlFor="contactDetail" className="text-[13px] font-bold text-apple-text dark:text-white">
+      <div className="flex flex-col gap-1">
+        <label htmlFor="contactDetail" className="text-[12px] font-bold text-apple-text dark:text-white">
           {activeMethodConfig.fieldLabel} <span className="text-apple-blue">*</span>
         </label>
         <input 
@@ -207,17 +207,17 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
           required
           placeholder={activeMethodConfig.placeholder}
           onChange={handleChange}
-          className={`w-full px-3.5 py-2.5 rounded-xl border ${errors.contactDetail ? 'border-[#FF3B30] focus:ring-[#FF3B30]/20 bg-white dark:bg-[#1C1C1E]' : 'border-black/10 dark:border-white/10 focus:border-apple-blue focus:ring-apple-blue bg-white/70 dark:bg-black/40'} focus:ring-1 outline-none transition-all placeholder:text-zinc-500 dark:placeholder:text-zinc-400 text-apple-text dark:text-white text-[13px] backdrop-blur-md`}
+          className={`w-full px-3 py-2 rounded-xl border ${errors.contactDetail ? 'border-[#FF3B30] focus:ring-[#FF3B30]/20 bg-white dark:bg-[#1C1C1E]' : 'border-black/10 dark:border-white/10 focus:border-apple-blue focus:ring-apple-blue bg-white/70 dark:bg-black/40'} focus:ring-1 outline-none transition-all placeholder:text-zinc-500 dark:placeholder:text-zinc-400 text-apple-text dark:text-white text-xs backdrop-blur-md`}
         />
         <ErrorMessage message={errors.contactDetail} />
       </div>
 
       {/* 4. Project Deadline Selector */}
-      <div className="flex flex-col gap-2">
-        <label className="text-[13px] font-bold text-apple-text dark:text-white">
+      <div className="flex flex-col gap-1.5">
+        <label className="text-[12px] font-bold text-apple-text dark:text-white">
           Project Deadline <span className="text-apple-blue">*</span>
         </label>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1.5">
           {deadlines.map((dl) => {
             const isSelected = selectedDeadline === dl.label;
             return (
@@ -228,9 +228,9 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
                   setSelectedDeadline(dl.label);
                   if (errors.deadline) setErrors(prev => ({ ...prev, deadline: '' }));
                 }}
-                className={`px-3 py-2 rounded-xl text-xs font-medium transition-all duration-200 ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 ${
                   isSelected 
-                    ? 'bg-apple-blue text-white shadow-[0_4px_14px_rgba(0,122,255,0.4)] border-transparent' 
+                    ? 'bg-apple-blue text-white shadow-[0_4px_12px_rgba(0,122,255,0.35)] border-transparent font-bold' 
                     : 'bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-apple-text dark:text-white/80 hover:bg-black/10 dark:hover:bg-white/10'
                 }`}
               >
@@ -243,11 +243,11 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
       </div>
 
       {/* 5. Video Length Selector */}
-      <div className="flex flex-col gap-2">
-        <label className="text-[13px] font-bold text-apple-text dark:text-white">
+      <div className="flex flex-col gap-1.5">
+        <label className="text-[12px] font-bold text-apple-text dark:text-white">
           Estimated Video Length <span className="text-apple-blue">*</span>
         </label>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1.5">
           {videoLengths.map((vl) => {
             const isSelected = selectedVideoLength === vl.label;
             return (
@@ -258,9 +258,9 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
                   setSelectedVideoLength(vl.label);
                   if (errors.videoLength) setErrors(prev => ({ ...prev, videoLength: '' }));
                 }}
-                className={`px-3 py-2 rounded-xl text-xs font-medium transition-all duration-200 ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 ${
                   isSelected 
-                    ? 'bg-apple-blue text-white shadow-[0_4px_14px_rgba(0,122,255,0.4)] border-transparent' 
+                    ? 'bg-apple-blue text-white shadow-[0_4px_12px_rgba(0,122,255,0.35)] border-transparent font-bold' 
                     : 'bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-apple-text dark:text-white/80 hover:bg-black/10 dark:hover:bg-white/10'
                 }`}
               >
@@ -273,8 +273,8 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
       </div>
 
       {/* 6. Budget Dropdown */}
-      <div className="flex flex-col gap-1.5">
-        <label className="text-[13px] font-bold text-apple-text dark:text-white">
+      <div className="flex flex-col gap-1">
+        <label className="text-[12px] font-bold text-apple-text dark:text-white">
           Budget <span className="text-apple-blue">*</span>
         </label>
         
@@ -282,7 +282,7 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
           <input type="hidden" name="budget" value={selectedBudget} />
           <div 
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className={`w-full px-3.5 py-2.5 pr-10 rounded-xl border ${errors.budget ? 'border-[#FF3B30] bg-white dark:bg-[#1C1C1E]' : 'border-black/10 dark:border-white/10 bg-white/70 dark:bg-black/40'} ${isDropdownOpen ? 'border-apple-blue ring-1 ring-apple-blue' : 'focus:border-apple-blue focus:ring-apple-blue focus:ring-1'} outline-none transition-all text-[13px] backdrop-blur-md cursor-pointer flex items-center justify-between`}
+            className={`w-full px-3 py-2 pr-10 rounded-xl border ${errors.budget ? 'border-[#FF3B30] bg-white dark:bg-[#1C1C1E]' : 'border-black/10 dark:border-white/10 bg-white/70 dark:bg-black/40'} ${isDropdownOpen ? 'border-apple-blue ring-1 ring-apple-blue' : 'focus:border-apple-blue focus:ring-apple-blue focus:ring-1'} outline-none transition-all text-xs backdrop-blur-md cursor-pointer flex items-center justify-between`}
             tabIndex={0}
             onBlur={(e) => {
               if (!e.currentTarget.contains(e.relatedTarget)) {
@@ -306,7 +306,7 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
                 exit={{ opacity: 0, y: -10, scale: 0.95 }}
                 transition={{ duration: 0.2 }}
                 onMouseDown={(e) => e.preventDefault()}
-                className="absolute top-[calc(100%+8px)] left-0 right-0 z-50 bg-white/90 dark:bg-[#2A2A2E]/90 backdrop-blur-xl border border-black/10 dark:border-white/10 rounded-xl py-1.5 shadow-2xl overflow-hidden"
+                className="absolute top-[calc(100%+6px)] left-0 right-0 z-50 bg-white/95 dark:bg-[#2A2A2E]/95 backdrop-blur-xl border border-black/10 dark:border-white/10 rounded-xl py-1 shadow-2xl overflow-hidden"
               >
                 {budgets.map(b => (
                   <div 
@@ -316,11 +316,11 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
                       setIsDropdownOpen(false);
                       if (errors.budget) setErrors(prev => ({ ...prev, budget: '' }));
                     }}
-                    className={`px-4 py-2 text-[13px] cursor-pointer transition-colors ${selectedBudget === b ? 'bg-apple-blue/10 text-apple-blue font-bold' : 'text-apple-text dark:text-white hover:bg-black/5 dark:hover:bg-white/10'} mx-1.5 rounded-lg my-0.5 flex items-center justify-between`}
+                    className={`px-3 py-1.5 text-xs cursor-pointer transition-colors ${selectedBudget === b ? 'bg-apple-blue/10 text-apple-blue font-bold' : 'text-apple-text dark:text-white hover:bg-black/5 dark:hover:bg-white/10'} mx-1 rounded-lg my-0.5 flex items-center justify-between`}
                   >
                     {b}
                     {selectedBudget === b && (
-                      <motion.svg initial={{ scale: 0 }} animate={{ scale: 1 }} className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <motion.svg initial={{ scale: 0 }} animate={{ scale: 1 }} className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                       </motion.svg>
                     )}
@@ -334,23 +334,23 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
       </div>
 
       {/* 7. Description / Message */}
-      <div className="flex flex-col gap-1.5">
-        <label htmlFor="description" className="text-[13px] font-bold text-apple-text dark:text-white flex justify-between items-center">
+      <div className="flex flex-col gap-1">
+        <label htmlFor="description" className="text-[12px] font-bold text-apple-text dark:text-white flex justify-between items-center">
           <span>Project Details</span>
-          <span className="text-apple-subtext font-normal text-[11px] uppercase tracking-wider">Optional</span>
+          <span className="text-apple-subtext font-normal text-[10px] uppercase tracking-wider">Optional</span>
         </label>
         <textarea 
           id="description"
           name="description"
           placeholder="Topic name and what the project is about..."
-          rows={3}
+          rows={2}
           onChange={handleChange}
-          className={`w-full px-3.5 py-2.5 rounded-xl border border-black/10 dark:border-white/10 focus:border-apple-blue focus:ring-apple-blue focus:ring-1 outline-none transition-all placeholder:text-zinc-500 dark:placeholder:text-zinc-400 bg-white/70 dark:bg-black/40 text-apple-text dark:text-white text-[13px] resize-none backdrop-blur-md`}
+          className={`w-full px-3 py-2 rounded-xl border border-black/10 dark:border-white/10 focus:border-apple-blue focus:ring-apple-blue focus:ring-1 outline-none transition-all placeholder:text-zinc-500 dark:placeholder:text-zinc-400 bg-white/70 dark:bg-black/40 text-apple-text dark:text-white text-xs resize-none backdrop-blur-md`}
         />
       </div>
 
       {submitError && (
-        <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400 text-[13px] font-medium text-center">
+        <div className="p-2.5 rounded-xl bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400 text-xs font-medium text-center">
           Oops! Something went wrong submitting the form.
         </div>
       )}
@@ -359,7 +359,7 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
       <button 
         type="submit"
         disabled={isSubmitting}
-        className="mt-2 shrink-0 w-full bg-apple-blue text-white font-bold py-3 rounded-xl hover:bg-[#007AFF]/90 hover:shadow-[0_8px_25px_-5px_rgba(0,122,255,0.6)] hover:-translate-y-0.5 transition-all active:scale-[0.98] text-[13px] flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none disabled:hover:translate-y-0"
+        className="mt-1 shrink-0 w-full bg-apple-blue text-white font-bold py-2.5 rounded-xl hover:bg-[#007AFF]/90 hover:shadow-[0_8px_25px_-5px_rgba(0,122,255,0.6)] hover:-translate-y-0.5 transition-all active:scale-[0.98] text-xs flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none disabled:hover:translate-y-0"
       >
         {isSubmitting ? (
           <>
