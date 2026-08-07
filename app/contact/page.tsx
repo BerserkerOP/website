@@ -7,17 +7,47 @@ import SpotlightButton from '@/components/SpotlightButton';
 
 export default function ContactPage() {
   const [isSuccess, setIsSuccess] = useState(false);
-  const budgets = ["$350 - $500", "$500 - $800", "$800 - $1500", "$1500 - $3000", "$3000+"];
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
-  const [selectedBudget, setSelectedBudget] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [preferredMethod, setPreferredMethod] = useState<'email' | 'instagram' | 'whatsapp'>('email');
+  const [selectedDeadline, setSelectedDeadline] = useState('Standard (1-2 weeks)');
+  const [selectedVideoLength, setSelectedVideoLength] = useState('15-25 seconds');
+  const [selectedBudget, setSelectedBudget] = useState('');
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+  const budgets = ["$350 - $500", "$500 - $800", "$800 - $1,500", "$1,500 - $3,000", "$3,000+"];
+  
+  const contactMethods = [
+    { id: 'email', label: 'Email', icon: '✉️', fieldLabel: 'Email Address', placeholder: 'you@email.com', type: 'email' },
+    { id: 'instagram', label: 'Instagram DM', icon: '📸', fieldLabel: 'Instagram Username', placeholder: 'e.g. @atharvf.x', type: 'text' },
+    { id: 'whatsapp', label: 'WhatsApp', icon: '💬', fieldLabel: 'WhatsApp Number', placeholder: 'e.g. +1 (555) 000-0000', type: 'tel' }
+  ] as const;
+
+  const deadlines = [
+    { id: 'asap', label: '⚡ Quickest (ASAP)' },
+    { id: 'standard', label: '📅 Normal (1-2 weeks)' },
+    { id: 'norush', label: '☕ No Rush (Flexible)' }
+  ];
+
+  const videoLengths = [
+    { id: '5-15', label: '5 – 15 sec' },
+    { id: '15-25', label: '15 – 25 sec' },
+    { id: '25-40', label: '25 – 40 sec' },
+    { id: '40-60', label: '40 – 60 sec' },
+    { id: '60+', label: '60s+' }
+  ];
+
+  const activeMethodConfig = contactMethods.find(m => m.id === preferredMethod) || contactMethods[0];
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
     const formData = new FormData(e.currentTarget);
     const name = formData.get('name') as string;
-    const email = formData.get('email') as string;
+    const contactDetail = formData.get('contactDetail') as string;
     const budget = formData.get('budget') as string;
     const message = formData.get('message') as string;
 
@@ -26,16 +56,23 @@ export default function ContactPage() {
     if (!name || name.trim() === '') {
       newErrors.name = 'Please enter your name.';
     }
-    if (!email || email.trim() === '') {
-      newErrors.email = 'Please enter your email address.';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      newErrors.email = 'Please enter a valid email address.';
+
+    if (!contactDetail || contactDetail.trim() === '') {
+      newErrors.contactDetail = `Please enter your ${activeMethodConfig.fieldLabel.toLowerCase()}.`;
+    } else if (preferredMethod === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactDetail)) {
+      newErrors.contactDetail = 'Please enter a valid email address.';
     }
+
+    if (!selectedDeadline) {
+      newErrors.deadline = 'Please select a preferred deadline.';
+    }
+
+    if (!selectedVideoLength) {
+      newErrors.videoLength = 'Please select estimated video length.';
+    }
+
     if (!budget) {
       newErrors.budget = 'Please select a budget range.';
-    }
-    if (!message || message.trim() === '') {
-      newErrors.message = 'Please tell us what you need help with.';
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -44,17 +81,48 @@ export default function ContactPage() {
     }
 
     setErrors({});
-    setIsSuccess(true);
-    // Add real form submission logic here if needed
+    setIsSubmitting(true);
+    setSubmitError(false);
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/halftonemotion@gmail.com", {
+        method: "POST",
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            name,
+            preferredContactMethod: activeMethodConfig.label,
+            contactDetail,
+            deadline: selectedDeadline,
+            videoLength: selectedVideoLength,
+            budget,
+            message,
+            _subject: `New Project Inquiry from ${name} (${activeMethodConfig.label})`
+        })
+      });
+
+      if (response.ok) {
+        setIsSuccess(true);
+      } else {
+        setSubmitError(true);
+      }
+    } catch (err) {
+      setSubmitError(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (errors[e.target.name]) {
       setErrors(prev => ({ ...prev, [e.target.name]: '' }));
     }
+    setSubmitError(false);
   };
 
-  const ErrorMessage = ({ message }: { message: string }) => {
+  const ErrorMessage = ({ message }: { message?: string }) => {
     if (!message) return null;
     return (
       <motion.p 
@@ -110,41 +178,137 @@ export default function ContactPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <h3 className="font-bold text-3xl text-apple-text dark:text-white mb-3">Message Sent!</h3>
-                <p className="text-apple-subtext text-lg">We'll get back to you within 48 hours.</p>
+                <h3 className="font-bold text-3xl text-apple-text dark:text-white mb-3">Application Received!</h3>
+                <p className="text-apple-subtext text-lg">We'll review your project details and reach out via {activeMethodConfig.label} within 48 hours.</p>
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {/* Name */}
-                  <div className="flex flex-col gap-2">
-                    <label className="text-[11px] font-bold text-apple-text/60 dark:text-white/50 uppercase tracking-[0.15em]">Your Name</label>
-                    <input 
-                      type="text" 
-                      name="name"
-                      placeholder="e.g. Alex" 
-                      onChange={handleChange}
-                      className={`w-full bg-black/5 dark:bg-white/5 border ${errors.name ? 'border-[#FF3B30] focus:border-[#FF3B30]' : 'border-black/10 dark:border-white/10 focus:border-apple-blue'} rounded-2xl px-5 py-4 text-apple-text dark:text-white placeholder-black/30 dark:placeholder-white/30 focus:outline-none transition-all backdrop-blur-md shadow-inner`}
-                    />
-                    <ErrorMessage message={errors.name} />
-                  </div>
-                  {/* Email */}
-                  <div className="flex flex-col gap-2">
-                    <label className="text-[11px] font-bold text-apple-text/60 dark:text-white/50 uppercase tracking-[0.15em]">Email</label>
-                    <input 
-                      type="email" 
-                      name="email"
-                      placeholder="you@email.com" 
-                      onChange={handleChange}
-                      className={`w-full bg-black/5 dark:bg-white/5 border ${errors.email ? 'border-[#FF3B30] focus:border-[#FF3B30]' : 'border-black/10 dark:border-white/10 focus:border-apple-blue'} rounded-2xl px-5 py-4 text-apple-text dark:text-white placeholder-black/30 dark:placeholder-white/30 focus:outline-none transition-all backdrop-blur-md shadow-inner`}
-                    />
-                    <ErrorMessage message={errors.email} />
+                
+                {/* 1. Name Input */}
+                <div className="flex flex-col gap-2">
+                  <label className="text-[11px] font-bold text-apple-text/60 dark:text-white/50 uppercase tracking-[0.15em]">
+                    Your Name <span className="text-apple-blue">*</span>
+                  </label>
+                  <input 
+                    type="text" 
+                    name="name"
+                    placeholder="e.g. Alex" 
+                    onChange={handleChange}
+                    className={`w-full bg-black/5 dark:bg-white/5 border ${errors.name ? 'border-[#FF3B30] focus:border-[#FF3B30]' : 'border-black/10 dark:border-white/10 focus:border-apple-blue'} rounded-2xl px-5 py-4 text-apple-text dark:text-white placeholder-black/30 dark:placeholder-white/30 focus:outline-none transition-all backdrop-blur-md shadow-inner`}
+                  />
+                  <ErrorMessage message={errors.name} />
+                </div>
+
+                {/* 2. Preferred Contact Method Selector */}
+                <div className="flex flex-col gap-3">
+                  <label className="text-[11px] font-bold text-apple-text/60 dark:text-white/50 uppercase tracking-[0.15em]">
+                    Preferred Contact Method <span className="text-apple-blue">*</span>
+                  </label>
+                  <div className="flex flex-wrap gap-2.5">
+                    {contactMethods.map((method) => {
+                      const isSelected = preferredMethod === method.id;
+                      return (
+                        <button
+                          key={method.id}
+                          type="button"
+                          onClick={() => {
+                            setPreferredMethod(method.id);
+                            if (errors.contactDetail) setErrors(prev => ({ ...prev, contactDetail: '' }));
+                          }}
+                          className={`px-4 py-3 rounded-xl text-xs font-bold transition-all duration-200 flex items-center gap-2 ${
+                            isSelected 
+                              ? 'bg-apple-blue text-white shadow-[0_4px_16px_rgba(0,122,255,0.4)] border-transparent' 
+                              : 'bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-apple-text dark:text-white/80 hover:bg-black/10 dark:hover:bg-white/10'
+                          }`}
+                        >
+                          <span>{method.icon}</span>
+                          <span>{method.label}</span>
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
 
-                {/* Budget */}
+                {/* 3. Dynamic Contact Detail Field */}
                 <div className="flex flex-col gap-2">
-                  <label className="text-[11px] font-bold text-apple-text/60 dark:text-white/50 uppercase tracking-[0.15em]">Budget</label>
+                  <label className="text-[11px] font-bold text-apple-text/60 dark:text-white/50 uppercase tracking-[0.15em]">
+                    {activeMethodConfig.fieldLabel} <span className="text-apple-blue">*</span>
+                  </label>
+                  <input 
+                    type={activeMethodConfig.type} 
+                    name="contactDetail"
+                    placeholder={activeMethodConfig.placeholder} 
+                    onChange={handleChange}
+                    className={`w-full bg-black/5 dark:bg-white/5 border ${errors.contactDetail ? 'border-[#FF3B30] focus:border-[#FF3B30]' : 'border-black/10 dark:border-white/10 focus:border-apple-blue'} rounded-2xl px-5 py-4 text-apple-text dark:text-white placeholder-black/30 dark:placeholder-white/30 focus:outline-none transition-all backdrop-blur-md shadow-inner`}
+                  />
+                  <ErrorMessage message={errors.contactDetail} />
+                </div>
+
+                {/* 4. Project Deadline Selector */}
+                <div className="flex flex-col gap-3">
+                  <label className="text-[11px] font-bold text-apple-text/60 dark:text-white/50 uppercase tracking-[0.15em]">
+                    Project Deadline <span className="text-apple-blue">*</span>
+                  </label>
+                  <div className="flex flex-wrap gap-2.5">
+                    {deadlines.map((dl) => {
+                      const isSelected = selectedDeadline === dl.label;
+                      return (
+                        <button
+                          key={dl.id}
+                          type="button"
+                          onClick={() => {
+                            setSelectedDeadline(dl.label);
+                            if (errors.deadline) setErrors(prev => ({ ...prev, deadline: '' }));
+                          }}
+                          className={`px-4 py-3 rounded-xl text-xs font-bold transition-all duration-200 ${
+                            isSelected 
+                              ? 'bg-apple-blue text-white shadow-[0_4px_16px_rgba(0,122,255,0.4)] border-transparent' 
+                              : 'bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-apple-text dark:text-white/80 hover:bg-black/10 dark:hover:bg-white/10'
+                          }`}
+                        >
+                          {dl.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  <ErrorMessage message={errors.deadline} />
+                </div>
+
+                {/* 5. Video Length Selector */}
+                <div className="flex flex-col gap-3">
+                  <label className="text-[11px] font-bold text-apple-text/60 dark:text-white/50 uppercase tracking-[0.15em]">
+                    Estimated Video Length <span className="text-apple-blue">*</span>
+                  </label>
+                  <div className="flex flex-wrap gap-2">
+                    {videoLengths.map((vl) => {
+                      const isSelected = selectedVideoLength === vl.label;
+                      return (
+                        <button
+                          key={vl.id}
+                          type="button"
+                          onClick={() => {
+                            setSelectedVideoLength(vl.label);
+                            if (errors.videoLength) setErrors(prev => ({ ...prev, videoLength: '' }));
+                          }}
+                          className={`px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all duration-200 ${
+                            isSelected 
+                              ? 'bg-apple-blue text-white shadow-[0_4px_16px_rgba(0,122,255,0.4)] border-transparent' 
+                              : 'bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-apple-text dark:text-white/80 hover:bg-black/10 dark:hover:bg-white/10'
+                          }`}
+                        >
+                          {vl.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  <ErrorMessage message={errors.videoLength} />
+                </div>
+
+                {/* 6. Budget Selector */}
+                <div className="flex flex-col gap-2">
+                  <label className="text-[11px] font-bold text-apple-text/60 dark:text-white/50 uppercase tracking-[0.15em]">
+                    Budget <span className="text-apple-blue">*</span>
+                  </label>
                   <div className="relative">
                     <input type="hidden" name="budget" value={selectedBudget} />
                     <div 
@@ -201,23 +365,29 @@ export default function ContactPage() {
                   <ErrorMessage message={errors.budget} />
                 </div>
 
-                {/* Message */}
+                {/* 7. Project Details / Message */}
                 <div className="flex flex-col gap-2">
                   <label className="text-[11px] font-bold text-apple-text/60 dark:text-white/50 uppercase tracking-[0.15em]">Message</label>
                   <textarea 
                     name="message"
                     placeholder="Tell me what's up..." 
-                    rows={6}
+                    rows={5}
                     onChange={handleChange}
                     className={`w-full bg-black/5 dark:bg-white/5 border ${errors.message ? 'border-[#FF3B30] focus:border-[#FF3B30]' : 'border-black/10 dark:border-white/10 focus:border-apple-blue'} rounded-2xl px-5 py-4 text-apple-text dark:text-white placeholder-black/30 dark:placeholder-white/30 focus:outline-none transition-all backdrop-blur-md shadow-inner resize-none`}
                   ></textarea>
                   <ErrorMessage message={errors.message} />
                 </div>
 
-                {/* Submit */}
-                <div className="mt-6">
-                  <SpotlightButton type="submit" text="SEND MESSAGE" />
-                  <p className="text-xs text-apple-subtext mt-4 ml-2 font-medium">We'll reply to your email within 48 hours.</p>
+                {submitError && (
+                  <div className="p-4 rounded-2xl bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400 text-xs font-medium text-center">
+                    Oops! Something went wrong submitting the form. Please try again.
+                  </div>
+                )}
+
+                {/* 8. Submit */}
+                <div className="mt-4">
+                  <SpotlightButton type="submit" text={isSubmitting ? "SENDING..." : "SEND MESSAGE"} />
+                  <p className="text-xs text-apple-subtext mt-4 ml-2 font-medium">We'll reply via {activeMethodConfig.label} within 48 hours.</p>
                 </div>
               </form>
             )}
