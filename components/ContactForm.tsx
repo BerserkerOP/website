@@ -8,7 +8,7 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
   const [submitError, setSubmitError] = useState(false);
 
   const [preferredMethod, setPreferredMethod] = useState<'email' | 'instagram' | 'whatsapp'>('email');
-  const [selectedDeadline, setSelectedDeadline] = useState('Standard (1-2 weeks)');
+  const [selectedDeadline, setSelectedDeadline] = useState('Normal (1-2 weeks)');
   const [selectedVideoLength, setSelectedVideoLength] = useState('15-25 seconds');
   const [selectedBudget, setSelectedBudget] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -24,9 +24,9 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
   ] as const;
 
   const deadlines = [
-    { id: 'asap', label: '⚡ Quickest (ASAP)' },
-    { id: 'standard', label: '📅 Normal (1-2 weeks)' },
-    { id: 'norush', label: '☕ No Rush (Flexible)' }
+    { id: 'asap', label: 'Quickest (ASAP)' },
+    { id: 'standard', label: 'Normal (1-2 weeks)' },
+    { id: 'norush', label: 'No Rush (Flexible)' }
   ];
 
   const videoLengths = [
