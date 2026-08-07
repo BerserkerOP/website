@@ -81,16 +81,19 @@ export default function Navbar() {
       >
         <Link 
           href="/" 
-          className="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white text-black border border-black/10 shadow-sm group/logo transition-all"
+          className="flex items-center px-3.5 sm:px-4 py-1.5 rounded-full bg-white text-black border border-black/10 shadow-sm group/logo transition-all"
         >
-          {/* Logo Mark Icon - Official Image Logo */}
-          <div className="w-6 h-6 rounded-full bg-white border border-black/10 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0.5">
-            <Image src="/logo.png" alt="HalftoneMotion Logo" width={24} height={24} className="w-full h-full object-contain" />
+          {/* Official HalftoneMotion Image Logo */}
+          <div className="h-5 sm:h-6 w-auto flex items-center shrink-0">
+            <Image 
+              src="/logo.png" 
+              alt="HalftoneMotion" 
+              width={140} 
+              height={28} 
+              className="h-5 sm:h-6 w-auto object-contain scale-[1.15]" 
+              priority 
+            />
           </div>
-          {/* Brand Name Typography */}
-          <span className="font-sans font-extrabold text-xs sm:text-sm text-black tracking-tight">
-            HalftoneMotion
-          </span>
         </Link>
       </motion.div>
       
