@@ -83,9 +83,9 @@ export default function Navbar() {
           href="/" 
           className="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white text-black border border-black/10 shadow-sm group/logo transition-all"
         >
-          {/* Logo Mark Icon - Solid Black Circle with Bold White H */}
-          <div className="w-6 h-6 rounded-full bg-black text-white flex items-center justify-center font-black text-xs leading-none shrink-0 shadow-sm">
-            H
+          {/* Logo Mark Icon - Official Image Logo */}
+          <div className="w-6 h-6 rounded-full bg-white border border-black/10 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0.5">
+            <Image src="/logo.png" alt="HalftoneMotion Logo" width={24} height={24} className="w-full h-full object-contain" />
           </div>
           {/* Brand Name Typography */}
           <span className="font-sans font-extrabold text-xs sm:text-sm text-black tracking-tight">

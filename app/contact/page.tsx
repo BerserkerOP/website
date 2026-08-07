@@ -215,7 +215,7 @@ export default function ContactPage() {
                             setPreferredMethod(method.id);
                             if (errors.contactDetail) setErrors(prev => ({ ...prev, contactDetail: '' }));
                           }}
-                          className={`px-4 py-3 rounded-xl text-xs font-bold transition-all duration-200 flex items-center gap-2 ${
+                          className={`px-4 py-3 rounded-xl text-xs font-medium transition-all duration-200 flex items-center gap-2 ${
                             isSelected 
                               ? 'bg-apple-blue text-white shadow-[0_4px_16px_rgba(0,122,255,0.4)] border-transparent' 
                               : 'bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-apple-text dark:text-white/80 hover:bg-black/10 dark:hover:bg-white/10'
@@ -260,7 +260,7 @@ export default function ContactPage() {
                             setSelectedDeadline(dl.label);
                             if (errors.deadline) setErrors(prev => ({ ...prev, deadline: '' }));
                           }}
-                          className={`px-4 py-3 rounded-xl text-xs font-bold transition-all duration-200 ${
+                          className={`px-4 py-3 rounded-xl text-xs font-medium transition-all duration-200 ${
                             isSelected 
                               ? 'bg-apple-blue text-white shadow-[0_4px_16px_rgba(0,122,255,0.4)] border-transparent' 
                               : 'bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-apple-text dark:text-white/80 hover:bg-black/10 dark:hover:bg-white/10'
@@ -290,7 +290,7 @@ export default function ContactPage() {
                             setSelectedVideoLength(vl.label);
                             if (errors.videoLength) setErrors(prev => ({ ...prev, videoLength: '' }));
                           }}
-                          className={`px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all duration-200 ${
+                          className={`px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all duration-200 ${
                             isSelected 
                               ? 'bg-apple-blue text-white shadow-[0_4px_16px_rgba(0,122,255,0.4)] border-transparent' 
                               : 'bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-apple-text dark:text-white/80 hover:bg-black/10 dark:hover:bg-white/10'

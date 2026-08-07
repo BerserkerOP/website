@@ -181,7 +181,7 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
                   setPreferredMethod(method.id);
                   if (errors.contactDetail) setErrors(prev => ({ ...prev, contactDetail: '' }));
                 }}
-                className={`px-3 py-2 rounded-xl text-xs font-bold transition-all duration-200 flex items-center gap-1.5 ${
+                className={`px-3 py-2 rounded-xl text-xs font-medium transition-all duration-200 flex items-center gap-1.5 ${
                   isSelected 
                     ? 'bg-apple-blue text-white shadow-[0_4px_14px_rgba(0,122,255,0.4)] border-transparent' 
                     : 'bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-apple-text dark:text-white/80 hover:bg-black/10 dark:hover:bg-white/10'
@@ -228,7 +228,7 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
                   setSelectedDeadline(dl.label);
                   if (errors.deadline) setErrors(prev => ({ ...prev, deadline: '' }));
                 }}
-                className={`px-3 py-2 rounded-xl text-xs font-bold transition-all duration-200 ${
+                className={`px-3 py-2 rounded-xl text-xs font-medium transition-all duration-200 ${
                   isSelected 
                     ? 'bg-apple-blue text-white shadow-[0_4px_14px_rgba(0,122,255,0.4)] border-transparent' 
                     : 'bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-apple-text dark:text-white/80 hover:bg-black/10 dark:hover:bg-white/10'
@@ -258,7 +258,7 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
                   setSelectedVideoLength(vl.label);
                   if (errors.videoLength) setErrors(prev => ({ ...prev, videoLength: '' }));
                 }}
-                className={`px-3 py-2 rounded-xl text-xs font-bold transition-all duration-200 ${
+                className={`px-3 py-2 rounded-xl text-xs font-medium transition-all duration-200 ${
                   isSelected 
                     ? 'bg-apple-blue text-white shadow-[0_4px_14px_rgba(0,122,255,0.4)] border-transparent' 
                     : 'bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-apple-text dark:text-white/80 hover:bg-black/10 dark:hover:bg-white/10'
