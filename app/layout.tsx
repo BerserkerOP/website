@@ -44,6 +44,7 @@ export const metadata: Metadata = {
 }
 
 import SmoothScroll from '@/components/SmoothScroll'
+import GridBackground from '@/components/GridBackground'
 
 export default function RootLayout({
   children,
@@ -63,11 +64,14 @@ export default function RootLayout({
             transform: 'translateZ(0)'
           }}
         ></div>
+
+        {/* Global Architectural Grid Lines (matching Clip Masters) */}
+        <GridBackground />
         
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <SmoothScroll>
             <Navbar />
-            <main className="flex-1">
+            <main className="flex-1 relative z-10">
               {children}
             </main>
             <Footer />

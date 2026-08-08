@@ -1,7 +1,7 @@
 import Hero from '@/components/Hero';
 import ProjectCard from '@/components/ProjectCard';
 import ReviewsSection from '@/components/ReviewsSection';
-import ContactSection from '@/components/ContactSection';
+import HomeContactSection from '@/components/HomeContactSection';
 import HowItWorks from '@/components/HowItWorks';
 import FAQSection from '@/components/FAQSection';
 import TrustMetrics from '@/components/TrustMetrics';
@@ -182,21 +182,23 @@ export default function Home() {
       <TrustMetrics />
 
       {/* 2. Process Section */}
-      <section id="process" className="py-16 sm:py-24 px-6 lg:px-16 max-w-7xl mx-auto scroll-mt-24">
+      <section id="process" className="py-16 sm:py-24 px-6 lg:px-16 max-w-7xl mx-auto scroll-mt-24 border-t border-black/10 dark:border-white/10">
         <HowItWorks />
       </section>
 
       {/* 3. Client Reviews */}
-      <ReviewsSection />
+      <div className="border-t border-black/10 dark:border-white/10">
+        <ReviewsSection />
+      </div>
 
       {/* 4. FAQ Section */}
-      <section id="faq" className="py-16 sm:py-24 px-6 lg:px-16 max-w-7xl mx-auto scroll-mt-24">
+      <section id="faq" className="py-16 sm:py-24 px-6 lg:px-16 max-w-7xl mx-auto scroll-mt-24 border-t border-black/10 dark:border-white/10">
         <FAQSection />
       </section>
 
       {/* 5. Contact Section */}
-      <section id="contact" className="scroll-mt-24">
-        <ContactSection />
+      <section id="contact" className="scroll-mt-24 border-t border-black/10 dark:border-white/10">
+        <HomeContactSection />
       </section>
     </div>
   );
