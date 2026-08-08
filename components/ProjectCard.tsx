@@ -56,11 +56,11 @@ export default function ProjectCard({
         onClick={() => setIsModalOpen(true)}
         className="group relative flex flex-col rounded-3xl bg-zinc-50 dark:bg-zinc-900/90 border border-zinc-200/80 dark:border-zinc-800 p-2.5 sm:p-3 shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer overflow-hidden"
       >
-        {/* Hover Cursor Follower Badge ("View Project ↗") */}
+        {/* Hover Cursor Follower Badge ("View Project ↗") with Invert Color Blend */}
         {isHovered && (
           <motion.div
             style={{ x: smoothX, y: smoothY }}
-            className="pointer-events-none absolute -top-4 -left-16 z-30 hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-black/90 dark:bg-white/90 backdrop-blur-md text-white dark:text-black font-extrabold text-xs shadow-xl border border-white/20 dark:border-black/20"
+            className="pointer-events-none absolute -top-4 -left-16 z-30 hidden sm:flex items-center gap-1.5 px-4 py-2 rounded-full bg-white text-black font-extrabold text-xs shadow-2xl mix-blend-difference select-none"
           >
             <span>View Project</span>
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
