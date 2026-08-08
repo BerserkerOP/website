@@ -11,21 +11,11 @@ const steps = [
   },
   {
     num: "02",
-    title: "Storyboarding",
-    desc: "We sketch a frame-by-frame storyboard. This helps you visualize the flow, pacing, and visual direction, ensuring we're perfectly aligned before any design begins."
-  },
-  {
-    num: "03",
-    title: "Style Approval",
-    desc: "Our designers build custom illustrations and UI mockups. We then jump on a quick call where you approve the exact visual style and guarantee it matches your brand."
-  },
-  {
-    num: "04",
     title: "Animation & Sound",
     desc: "The magic happens here. We bring the approved assets to life with buttery-smooth motion design, perfectly timed voiceovers, and premium sound effects."
   },
   {
-    num: "05",
+    num: "03",
     title: "Revisions & Delivery",
     desc: "You review the video and leave consolidated feedback via timestamped comments. After final tweaks, your premium video is rendered and delivered in 4K."
   }
@@ -716,10 +706,8 @@ const VideoPlayerMockup = () => {
 
 const mockups = [
   <IntakeFormMockup key="step0" />,
-  <StoryboardMockup key="step1" />,
-  <MeetCallMockup key="step2" />,
-  <VideoPlayerMockup key="step3" />,
-  <RevisionCommentsMockup key="step4" />
+  <VideoPlayerMockup key="step1" />,
+  <RevisionCommentsMockup key="step2" />
 ];
 
 export default function HowItWorks() {
