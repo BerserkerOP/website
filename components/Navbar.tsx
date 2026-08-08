@@ -102,6 +102,12 @@ export default function Navbar() {
         }}
         transition={{ type: "spring", stiffness: 350, damping: 28 }}
         onMouseMove={handleMouseMove}
+        onMouseEnter={() => {
+          if (scrolled) setDotsMenuOpen(true);
+        }}
+        onMouseLeave={() => {
+          if (scrolled) setDotsMenuOpen(false);
+        }}
         className={`group relative flex items-center justify-between rounded-full backdrop-blur-3xl transition-all duration-500 overflow-hidden ${
           scrolled 
             ? 'bg-white/40 dark:bg-zinc-950/40 border border-white/60 dark:border-white/25 shadow-[0_20px_50px_rgba(0,0,0,0.18)] ring-1 ring-white/40 px-4 py-2 gap-4' 
@@ -125,7 +131,7 @@ export default function Navbar() {
           }}
         />
 
-        {/* Left Brand Mark & Name */}
+        {/* Left Brand Name */}
         <motion.div 
           whileHover={{ scale: 1.02 }} 
           transition={{ type: "spring", stiffness: 400, damping: 15 }} 
@@ -147,7 +153,7 @@ export default function Navbar() {
           </Link>
         </motion.div>
         
-        {/* Middle Desktop Nav Links (Shown when scrolled === false OR when dots menu is open) */}
+        {/* Middle Desktop Nav Links (Shown when scrolled === false OR on hover when scrolled === true) */}
         <AnimatePresence mode="wait">
           {(!scrolled || dotsMenuOpen) && (
             <motion.div 
@@ -214,17 +220,30 @@ export default function Navbar() {
             </Link>
           )}
 
-          {/* Scrolled down state: macOS 3-Dots Glass Trigger */}
+          {/* Scrolled down state: Dynamically Animated 3-Dots Trigger */}
           {scrolled && (
             <button
+              onMouseEnter={() => setDotsMenuOpen(true)}
               onClick={() => setDotsMenuOpen(!dotsMenuOpen)}
               className="w-8 h-8 rounded-full flex items-center justify-center text-zinc-700 dark:text-zinc-300 hover:bg-black/10 dark:hover:bg-white/20 transition-colors"
               aria-label="Toggle liquid menu"
             >
               <div className="flex items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-current" />
-                <span className="w-1.5 h-1.5 rounded-full bg-current" />
-                <span className="w-1.5 h-1.5 rounded-full bg-current" />
+                <motion.span 
+                  animate={{ y: [0, -3, 0] }} 
+                  transition={{ repeat: Infinity, duration: 1.2, delay: 0 }}
+                  className="w-1.5 h-1.5 rounded-full bg-current" 
+                />
+                <motion.span 
+                  animate={{ y: [0, -3, 0] }} 
+                  transition={{ repeat: Infinity, duration: 1.2, delay: 0.2 }}
+                  className="w-1.5 h-1.5 rounded-full bg-current" 
+                />
+                <motion.span 
+                  animate={{ y: [0, -3, 0] }} 
+                  transition={{ repeat: Infinity, duration: 1.2, delay: 0.4 }}
+                  className="w-1.5 h-1.5 rounded-full bg-current" 
+                />
               </div>
             </button>
           )}
@@ -286,17 +305,6 @@ export default function Navbar() {
           )}
         </AnimatePresence>
       </motion.nav>
-
-      {/* Liquid Glass Bottom Indicator Dot (matching Image 1) */}
-      {scrolled && (
-        <motion.div 
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="w-3.5 h-3.5 mt-1 rounded-full bg-white/60 dark:bg-white/30 backdrop-blur-md border border-white/80 shadow-md flex items-center justify-center"
-        >
-          <div className="w-1.5 h-1.5 rounded-full bg-apple-blue shadow-[0_0_6px_#007AFF]" />
-        </motion.div>
-      )}
     </div>
   );
 }
