@@ -110,14 +110,14 @@ export default function Navbar() {
         onMouseLeave={() => {
           if (scrolled) setDotsMenuOpen(false);
         }}
-        className={`group relative flex items-center justify-between rounded-full backdrop-blur-3xl transition-all duration-500 overflow-hidden ${
+        className={`group relative flex items-center justify-between rounded-full backdrop-blur-3xl saturate-180 transition-all duration-500 overflow-hidden ${
           scrolled 
-            ? 'bg-white/40 dark:bg-zinc-950/40 border border-white/60 dark:border-white/25 shadow-[0_20px_50px_rgba(0,0,0,0.18)] ring-1 ring-white/40 px-4 py-2 gap-4' 
-            : 'bg-white/90 dark:bg-zinc-950/90 border border-black/10 dark:border-white/15 shadow-[0_10px_35px_rgba(0,0,0,0.08)] px-5 py-2.5 gap-6 sm:gap-8 w-auto max-w-4xl'
+            ? 'bg-white/70 dark:bg-black/70 border border-white/80 dark:border-white/25 shadow-[0_20px_50px_rgba(0,0,0,0.15)] ring-1 ring-white/60 dark:ring-white/10 px-4 py-2 gap-4' 
+            : 'bg-white/80 dark:bg-black/80 border border-white/70 dark:border-white/20 shadow-[0_15px_40px_rgba(0,0,0,0.08)] ring-1 ring-white/50 dark:ring-white/10 px-5 py-2.5 gap-6 sm:gap-8 w-auto max-w-4xl'
         }`}
       >
-        {/* Liquid Glass Highlight Reflection Curve */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[50%] bg-gradient-to-b from-white/60 via-white/20 to-transparent dark:from-white/15 dark:via-white/5 dark:to-transparent rounded-t-full z-0" />
+        {/* Apple High-Gloss Liquid Glass Reflection Curve */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[55%] bg-gradient-to-b from-white/90 via-white/30 to-transparent dark:from-white/25 dark:via-white/5 dark:to-transparent rounded-t-full z-0" />
 
         {/* Spotlight Overlay */}
         <motion.div
@@ -126,7 +126,7 @@ export default function Navbar() {
             background: useMotionTemplate`
               radial-gradient(
                 150px circle at ${mouseX}px ${mouseY}px,
-                rgba(0, 122, 255, 0.12),
+                rgba(0, 122, 255, 0.15),
                 transparent 80%
               )
             `,
@@ -176,10 +176,10 @@ export default function Navbar() {
                       href={link.path} 
                       onClick={(e) => handleNavClick(e, link)}
                       onMouseEnter={() => setHoveredTab(link.name)}
-                      className={`relative px-4 py-1.5 transition-colors duration-200 inline-block font-bold text-xs sm:text-[13px] rounded-full z-10 ${
+                      className={`relative px-4 py-1.5 transition-colors duration-200 inline-block font-extrabold text-xs sm:text-[13px] rounded-full z-10 ${
                         isTabActive 
                           ? 'text-black dark:text-white' 
-                          : 'text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white'
+                          : 'text-zinc-700 hover:text-black dark:text-zinc-300 dark:hover:text-white'
                       }`}
                     >
                       <span className="relative z-10">{link.name}</span>
@@ -188,7 +188,7 @@ export default function Navbar() {
                       {isTabActive && (
                         <motion.div
                           layoutId="liquidActiveTab"
-                          className="absolute inset-0 bg-black/5 dark:bg-white/10 rounded-full border border-black/10 dark:border-white/15 shadow-2xs"
+                          className="absolute inset-0 bg-black/5 dark:bg-white/15 rounded-full border border-black/10 dark:border-white/20 shadow-2xs"
                           transition={{ type: "spring", stiffness: 450, damping: 30 }}
                         />
                       )}
@@ -202,12 +202,12 @@ export default function Navbar() {
 
         {/* Right Side Actions: 3-Dots + Theme Switcher */}
         <div className="flex items-center gap-2 sm:gap-3 z-10 shrink-0">
-          {/* Top of page: Dedicated Contact Button */}
+          {/* Top of page: Dedicated Apple Style Contact Capsule Button */}
           {!scrolled && (
             <Link
               href="/contact"
               onClick={(e) => handleNavClick(e, { name: 'Contact', path: '/contact', sectionId: 'contact' })}
-              className="px-4 py-1.5 rounded-full border border-black/15 dark:border-white/20 bg-white dark:bg-zinc-900 text-xs sm:text-[13px] font-bold text-black dark:text-white hover:bg-black/5 dark:hover:bg-white/10 transition-all shadow-xs hover:scale-105 active:scale-95"
+              className="px-4 py-1.5 rounded-full border border-black/10 dark:border-white/20 bg-white dark:bg-zinc-900 text-xs sm:text-[13px] font-extrabold text-black dark:text-white hover:bg-black/5 dark:hover:bg-white/10 transition-all shadow-xs hover:scale-105 active:scale-95"
             >
               Contact
             </Link>
