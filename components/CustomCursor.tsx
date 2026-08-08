@@ -5,7 +5,7 @@ import { motion, useSpring, useMotionValue } from "framer-motion";
 
 // Offset from the true cursor tip → places the dot near the arrow tail
 const TAIL_OFFSET_X = 12;
-const TAIL_OFFSET_Y = 18;
+const TAIL_OFFSET_Y = 28;
 
 export default function CustomCursor() {
   const [isVisible, setIsVisible] = useState(false);
