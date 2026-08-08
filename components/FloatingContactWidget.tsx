@@ -14,14 +14,30 @@ export default function FloatingContactWidget() {
 
   return (
     <>
-      {/* Seamless Bottom Blur Gradient (Theme-aware for Light & Dark mode) */}
-      <div
-        className="pointer-events-none fixed bottom-0 inset-x-0 z-40 h-[130px] bg-gradient-to-t from-apple-bg via-apple-bg/85 to-transparent backdrop-blur-[6px]"
-        style={{
-          WebkitMaskImage: 'linear-gradient(to top, black 30%, black 60%, transparent 100%)',
-          maskImage: 'linear-gradient(to top, black 30%, black 60%, transparent 100%)',
-        }}
-      />
+      {/* Progressive Feathered Bottom Blur (Pure Backdrop Blur with Mask — No Solid Color or Cheap Shadow) */}
+      <div className="pointer-events-none fixed bottom-0 inset-x-0 z-40 h-[100px] sm:h-[120px] overflow-hidden">
+        {/* Outer soft feather blur */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)',
+            WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)',
+            maskImage: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)',
+          }}
+        />
+        {/* Intense bottom edge blur feather */}
+        <div
+          className="absolute inset-x-0 bottom-0 h-3/4"
+          style={{
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
+            WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)',
+            maskImage: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)',
+          }}
+        />
+      </div>
+
 
       {/* Floating Widget Container */}
       <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50">
