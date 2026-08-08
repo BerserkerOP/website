@@ -12,6 +12,10 @@ export default function FloatingContactWidget() {
     window.location.hash = '#contact';
   };
 
+  const openApplyModal = () => {
+    window.location.hash = '#inquiry';
+  };
+
   return (
     <>
       {/* Bottom Feathered Blur Backdrop Gradient Overlay (matching Image 1) */}
@@ -71,7 +75,7 @@ export default function FloatingContactWidget() {
 
             {/* 2. Calendar / Apply Button */}
             <motion.button
-              onClick={openContactModal}
+              onClick={openApplyModal}
               onMouseEnter={() => setHoveredButton('apply')}
               onMouseLeave={() => setHoveredButton(null)}
               whileHover={{ scale: 1.05 }}
