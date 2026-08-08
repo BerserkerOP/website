@@ -7,10 +7,10 @@ import { useEffect, useState, MouseEvent } from 'react';
 import { ThemeToggle } from './ThemeToggle';
 
 const NAV_LINKS = [
-  { name: 'Work', path: '/work', sectionId: 'work' },
-  { name: 'Process', path: '/process', sectionId: 'process' },
-  { name: 'Contact', path: '/contact', sectionId: 'contact' },
-  { name: 'FAQ', path: '/faq', sectionId: 'faq' },
+  { name: 'Work',    path: '/#work',    sectionId: 'work',    scrollOnly: true  },
+  { name: 'Process', path: '/#process', sectionId: 'process', scrollOnly: true  },
+  { name: 'Contact', path: '/contact',  sectionId: 'contact', scrollOnly: false },
+  { name: 'FAQ',     path: '/faq',      sectionId: 'faq',     scrollOnly: false },
 ];
 
 export default function Navbar() {
@@ -80,8 +80,9 @@ export default function Navbar() {
     };
   }, [mobileMenuOpen]);
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, link: { name: string; path: string; sectionId: string }) => {
-    if (pathname === '/') {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, link: { name: string; path: string; sectionId: string; scrollOnly: boolean }) => {
+    // Only intercept scroll-only links when already on the homepage
+    if (link.scrollOnly && pathname === '/') {
       const elem = document.getElementById(link.sectionId);
       if (elem) {
         e.preventDefault();
@@ -90,6 +91,7 @@ export default function Navbar() {
         setDotsMenuOpen(false);
       }
     }
+    // Otherwise let Next.js handle the navigation normally (Contact → /contact, FAQ → /faq)
   };
 
   return (
