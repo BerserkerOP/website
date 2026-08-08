@@ -80,7 +80,7 @@ export default function Navbar() {
     };
   }, [mobileMenuOpen]);
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, link: { name: string; path: string; sectionId: string; scrollOnly: boolean }) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, link: { name: string; path: string; sectionId: string; scrollOnly?: boolean }) => {
     // Only intercept scroll-only links when already on the homepage
     if (link.scrollOnly && pathname === '/') {
       const elem = document.getElementById(link.sectionId);
