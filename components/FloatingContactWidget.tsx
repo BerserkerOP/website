@@ -14,29 +14,14 @@ export default function FloatingContactWidget() {
 
   return (
     <>
-      {/* Progressive Feathered Bottom Blur (Pure Backdrop Blur with Mask — No Solid Color or Cheap Shadow) */}
-      <div className="pointer-events-none fixed bottom-0 inset-x-0 z-40 h-[100px] sm:h-[120px] overflow-hidden">
-        {/* Outer soft feather blur */}
-        <div
-          className="absolute inset-0"
-          style={{
-            backdropFilter: 'blur(8px)',
-            WebkitBackdropFilter: 'blur(8px)',
-            WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)',
-            maskImage: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)',
-          }}
-        />
-        {/* Intense bottom edge blur feather */}
-        <div
-          className="absolute inset-x-0 bottom-0 h-3/4"
-          style={{
-            backdropFilter: 'blur(16px)',
-            WebkitBackdropFilter: 'blur(16px)',
-            WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)',
-            maskImage: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)',
-          }}
-        />
-      </div>
+      {/* Smooth Feathered Bottom Blur Overlay (Matches Clip Masters style in both Light & Dark themes) */}
+      <div
+        className="pointer-events-none fixed bottom-0 inset-x-0 z-40 h-[100px] sm:h-[130px] bg-gradient-to-t from-apple-bg via-apple-bg/75 to-transparent backdrop-blur-md"
+        style={{
+          WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 50%, rgba(0,0,0,0) 100%)',
+          maskImage: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 50%, rgba(0,0,0,0) 100%)',
+        }}
+      />
 
 
       {/* Floating Widget Container */}

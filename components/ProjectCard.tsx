@@ -58,7 +58,7 @@ export default function ProjectCard({
         data-hide-cursor
         className="group relative flex flex-col cursor-none"
       >
-        {/* View Project badge — follows cursor, mix-blend-difference for invert effect */}
+        {/* View Project badge — follows cursor */}
         {isHovered && (
           <motion.div
             initial={{ opacity: 0, scale: 0.85 }}
@@ -72,26 +72,9 @@ export default function ProjectCard({
               translateY: "10px",
             }}
           >
-            {/* Outer mix-blend-difference wrapper — inverts against video bg */}
-            <div
-              className="flex items-center gap-1.5 px-4 py-2 rounded-full font-extrabold text-xs whitespace-nowrap"
-              style={{
-                mixBlendMode: "difference",
-                backgroundColor: "white",
-                color: "white",
-              }}
-            >
-              {/* Inner text re-inverts so it's always readable */}
-              <span style={{ mixBlendMode: "difference", color: "white" }}>
-                View Project
-              </span>
-              <svg
-                className="w-3 h-3 shrink-0"
-                style={{ color: "white", mixBlendMode: "difference" }}
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
+            <div className="flex items-center gap-1.5 px-4 py-2 rounded-full font-extrabold text-xs whitespace-nowrap bg-black text-white dark:bg-white dark:text-black shadow-2xl border border-white/20 dark:border-black/20">
+              <span>View Project</span>
+              <svg className="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M7 17L17 7M17 7H7M17 7V17" />
               </svg>
             </div>
