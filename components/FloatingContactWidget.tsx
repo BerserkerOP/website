@@ -38,30 +38,40 @@ export default function FloatingContactWidget() {
           {/* Top Liquid Glass Highlight Reflection Curve */}
           <div className="pointer-events-none absolute inset-x-0 top-0 h-[50%] bg-gradient-to-b from-white/60 via-white/20 to-transparent dark:from-white/15 dark:via-white/5 dark:to-transparent rounded-t-full z-0" />
 
-          {/* Left Text Label */}
-          <div className="flex flex-col z-10">
-            <span className="text-xs sm:text-[13px] font-extrabold text-black dark:text-white tracking-tight leading-tight">
-              Start a project
-            </span>
-            <span className="text-[10px] sm:text-[11px] font-medium text-zinc-500 dark:text-zinc-400 leading-tight">
-              Email or apply
-            </span>
-          </div>
+          {/* Left Text Label (hidden when button expands) */}
+          <AnimatePresence>
+            {!hoveredButton && (
+              <motion.div 
+                initial={{ opacity: 0, width: 0 }}
+                animate={{ opacity: 1, width: "auto" }}
+                exit={{ opacity: 0, width: 0 }}
+                transition={{ duration: 0.2 }}
+                className="flex flex-col z-10 overflow-hidden"
+              >
+                <span className="text-xs sm:text-[13px] font-extrabold text-black dark:text-white tracking-tight leading-tight whitespace-nowrap">
+                  Get in touch
+                </span>
+                <span className="text-[10px] sm:text-[11px] font-medium text-zinc-500 dark:text-zinc-400 leading-tight whitespace-nowrap">
+                  Email or book a call
+                </span>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {/* Right Interactive Icon Action Buttons */}
           <div className="flex items-center gap-2 z-10">
             
-            {/* 1. Email / Contact Button */}
+            {/* 1. Email / Contact Button (Black Button) */}
             <motion.button
               onClick={openContactModal}
               onMouseEnter={() => setHoveredButton('contact')}
               onMouseLeave={() => setHoveredButton(null)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
               className={`relative flex items-center gap-2 rounded-full transition-all duration-300 shadow-md ${
                 hoveredButton === 'contact' 
-                  ? 'bg-apple-blue text-white px-4 py-2 text-xs font-bold' 
-                  : 'bg-black dark:bg-white text-white dark:text-black w-9 h-9 justify-center'
+                  ? 'bg-black text-white dark:bg-white dark:text-black px-4 py-2 text-xs font-extrabold' 
+                  : 'bg-black text-white dark:bg-white dark:text-black w-9 h-9 justify-center'
               }`}
             >
               {/* Email Icon */}
@@ -70,26 +80,26 @@ export default function FloatingContactWidget() {
               </svg>
               {hoveredButton === 'contact' && (
                 <motion.span 
-                  initial={{ opacity: 0, x: -5 }}
+                  initial={{ opacity: 0, x: -4 }}
                   animate={{ opacity: 1, x: 0 }}
-                  className="whitespace-nowrap font-bold text-xs"
+                  className="whitespace-nowrap font-extrabold text-xs tracking-tight"
                 >
-                  Start a project
+                  Contact
                 </motion.span>
               )}
             </motion.button>
 
-            {/* 2. Calendar / Apply Button */}
+            {/* 2. Calendar / Apply Button (White Button) */}
             <motion.button
               onClick={openApplyModal}
               onMouseEnter={() => setHoveredButton('apply')}
               onMouseLeave={() => setHoveredButton(null)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
               className={`relative flex items-center gap-2 rounded-full transition-all duration-300 border border-black/10 dark:border-white/10 ${
                 hoveredButton === 'apply' 
-                  ? 'bg-zinc-900 dark:bg-white text-white dark:text-black px-4 py-2 text-xs font-bold shadow-md' 
-                  : 'bg-white dark:bg-zinc-800 text-black dark:text-white w-9 h-9 justify-center shadow-sm'
+                  ? 'bg-white text-black dark:bg-zinc-800 dark:text-white px-4 py-2 text-xs font-extrabold shadow-md' 
+                  : 'bg-white text-black dark:bg-zinc-800 dark:text-white w-9 h-9 justify-center shadow-sm'
               }`}
             >
               {/* Calendar Icon */}
@@ -98,9 +108,9 @@ export default function FloatingContactWidget() {
               </svg>
               {hoveredButton === 'apply' && (
                 <motion.span 
-                  initial={{ opacity: 0, x: -5 }}
+                  initial={{ opacity: 0, x: -4 }}
                   animate={{ opacity: 1, x: 0 }}
-                  className="whitespace-nowrap font-bold text-xs"
+                  className="whitespace-nowrap font-extrabold text-xs tracking-tight"
                 >
                   Apply Now
                 </motion.span>
