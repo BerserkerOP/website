@@ -9,7 +9,8 @@ import { ThemeToggle } from './ThemeToggle';
 const NAV_LINKS = [
   { name: 'Work', path: '/work', sectionId: 'work' },
   { name: 'Process', path: '/process', sectionId: 'process' },
-  { name: 'FAQ', path: '/faq', sectionId: 'faq' }
+  { name: 'FAQ', path: '/faq', sectionId: 'faq' },
+  { name: 'Contact', path: '/contact', sectionId: 'contact' }
 ];
 
 export default function Navbar() {
@@ -47,6 +48,7 @@ export default function Navbar() {
               if (sec === 'work') setActiveTab('Work');
               if (sec === 'process') setActiveTab('Process');
               if (sec === 'faq') setActiveTab('FAQ');
+              if (sec === 'contact') setActiveTab('Contact');
               break;
             }
           }
@@ -198,16 +200,18 @@ export default function Navbar() {
           )}
         </AnimatePresence>
 
-        {/* Right Side Actions: Contact Pill Button + 3-Dots + Theme Switcher */}
+        {/* Right Side Actions: 3-Dots + Theme Switcher */}
         <div className="flex items-center gap-2 sm:gap-3 z-10 shrink-0">
-          {/* Always Visible Contact Button */}
-          <Link
-            href="/contact"
-            onClick={(e) => handleNavClick(e, { name: 'Contact', path: '/contact', sectionId: 'contact' })}
-            className="px-4 py-1.5 rounded-full border border-black/15 dark:border-white/20 bg-white dark:bg-zinc-900 text-xs sm:text-[13px] font-bold text-black dark:text-white hover:bg-black/5 dark:hover:bg-white/10 transition-all shadow-xs hover:scale-105 active:scale-95"
-          >
-            Contact
-          </Link>
+          {/* Top of page: Dedicated Contact Button */}
+          {!scrolled && (
+            <Link
+              href="/contact"
+              onClick={(e) => handleNavClick(e, { name: 'Contact', path: '/contact', sectionId: 'contact' })}
+              className="px-4 py-1.5 rounded-full border border-black/15 dark:border-white/20 bg-white dark:bg-zinc-900 text-xs sm:text-[13px] font-bold text-black dark:text-white hover:bg-black/5 dark:hover:bg-white/10 transition-all shadow-xs hover:scale-105 active:scale-95"
+            >
+              Contact
+            </Link>
+          )}
 
           {/* Scrolled down state: Dynamically Animated 3-Dots Trigger */}
           {scrolled && (

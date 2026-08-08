@@ -18,11 +18,17 @@ export default function FloatingContactWidget() {
 
   return (
     <>
-      {/* Bottom Feathered Blur Backdrop Gradient Overlay (matching Image 1) */}
-      <div className="pointer-events-none fixed bottom-0 inset-x-0 h-28 bg-gradient-to-t from-white/90 via-white/50 to-transparent dark:from-zinc-950/90 dark:via-zinc-950/50 backdrop-blur-[6px] z-40" />
+      {/* Feathered Progressive Bottom Blur Overlay */}
+      <div 
+        className="pointer-events-none fixed bottom-0 inset-x-0 h-16 bg-gradient-to-t from-white/80 via-white/30 to-transparent dark:from-zinc-950/80 dark:via-zinc-950/30 to-transparent backdrop-blur-[4px] z-40"
+        style={{
+          WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)',
+          maskImage: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)',
+        }}
+      />
 
       {/* Floating Bottom Action Widget (matching Image 1, 2 & 3) */}
-      <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 flex items-center justify-center">
+      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 flex items-center justify-center">
         <motion.div 
           initial={{ y: 80, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
