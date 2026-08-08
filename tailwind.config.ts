@@ -9,6 +9,12 @@ const config: Config = {
   darkMode: 'class',
   theme: {
     extend: {
+      fontFamily: {
+        sf: [
+          '-apple-system', 'BlinkMacSystemFont', 'SF Pro Text', 'SF Pro Display',
+          'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'
+        ],
+      },
       colors: {
         background: 'var(--apple-bg)',
         foreground: 'var(--apple-text)',
