@@ -15,6 +15,19 @@ export default function Home() {
       {/* Hero Section */}
       <Hero />
 
+      {/* View all work CTA */}
+      <div className="flex justify-center py-8 border-b border-black/10 dark:border-white/10">
+        <a
+          href="/work"
+          className="group inline-flex items-center gap-2 text-base sm:text-lg font-semibold text-apple-text dark:text-white hover:opacity-60 transition-opacity duration-300"
+        >
+          View all work
+          <span className="inline-block transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+            ↗
+          </span>
+        </a>
+      </div>
+
       {/* Trust & Proof Metrics */}
       <TrustMetrics />
 
