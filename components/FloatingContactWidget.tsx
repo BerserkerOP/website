@@ -16,13 +16,16 @@ export default function FloatingContactWidget() {
 
   return (
     <>
-      {/* Feathered Bottom Blur */}
+      {/* Feathered Bottom Blur — matches reference: tall, full white fade */}
       <div
-        className="pointer-events-none fixed bottom-0 inset-x-0 h-20 z-40"
+        className="pointer-events-none fixed bottom-0 inset-x-0 z-40"
         style={{
-          background: 'linear-gradient(to top, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 60%, transparent 100%)',
-          WebkitMaskImage: 'linear-gradient(to top, black 40%, transparent 100%)',
-          maskImage: 'linear-gradient(to top, black 40%, transparent 100%)',
+          height: '130px',
+          background: 'linear-gradient(to top, rgba(248,249,250,1) 0%, rgba(248,249,250,0.92) 35%, rgba(248,249,250,0.55) 65%, transparent 100%)',
+          backdropFilter: 'blur(6px)',
+          WebkitBackdropFilter: 'blur(6px)',
+          WebkitMaskImage: 'linear-gradient(to top, black 30%, black 50%, transparent 100%)',
+          maskImage: 'linear-gradient(to top, black 30%, black 50%, transparent 100%)',
         }}
       />
 
