@@ -43,6 +43,8 @@ export const metadata: Metadata = {
   },
 }
 
+import SmoothScroll from '@/components/SmoothScroll'
+
 export default function RootLayout({
   children,
 }: {
@@ -63,15 +65,17 @@ export default function RootLayout({
         ></div>
         
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          <Navbar />
-          <main className="flex-1">
-            {children}
-          </main>
-          <Footer />
-          <ContactModal />
-          <GetInTouchModal />
-          <FloatingContactWidget />
-          <BackToTop />
+          <SmoothScroll>
+            <Navbar />
+            <main className="flex-1">
+              {children}
+            </main>
+            <Footer />
+            <ContactModal />
+            <GetInTouchModal />
+            <FloatingContactWidget />
+            <BackToTop />
+          </SmoothScroll>
         </ThemeProvider>
       </body>
     </html>
