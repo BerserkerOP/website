@@ -8,17 +8,17 @@ import { ThemeToggle } from './ThemeToggle';
 import Image from 'next/image';
 
 const NAV_LINKS = [
-  { name: 'Home', path: '/' },
-  { name: 'Our Work', path: '/work' },
-  { name: 'Process', path: '/process' },
-  { name: 'Contact', path: '/contact' },
-  { name: 'FAQ', path: '/faq' }
+  { name: 'Work', path: '#work' },
+  { name: 'Process', path: '#process' },
+  { name: 'Contact', path: '#contact' },
+  { name: 'FAQ', path: '#faq' }
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const [activeSection, setActiveSection] = useState('work');
   const [hoveredPath, setHoveredPath] = useState<string | null>(null);
 
   const mouseX = useMotionValue(0);
@@ -32,7 +32,23 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 30);
+
+      // Section tracking for single page
+      const sections = ['work', 'process', 'contact', 'faq'];
+      const scrollPos = window.scrollY + 200;
+
+      for (const section of sections) {
+        const el = document.getElementById(section);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPos >= top && scrollPos < top + height) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -50,14 +66,33 @@ export default function Navbar() {
     };
   }, [mobileMenuOpen]);
 
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+    if (path.startsWith('#')) {
+      e.preventDefault();
+      const targetId = path.replace('#', '');
+      const elem = document.getElementById(targetId);
+      if (elem) {
+        elem.scrollIntoView({ behavior: 'smooth' });
+        setActiveSection(targetId);
+      }
+    }
+  };
+
   return (
     <motion.nav 
+      layout
       layoutRoot
       initial={{ y: -100, x: "-50%" }}
-      animate={{ y: 0, x: "-50%" }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      animate={{ 
+        y: 0, 
+        x: "-50%",
+        scale: scrolled ? 0.95 : 1,
+        paddingTop: scrolled ? "6px" : "10px",
+        paddingBottom: scrolled ? "6px" : "10px",
+      }}
+      transition={{ type: "spring", stiffness: 350, damping: 25 }}
       onMouseMove={handleMouseMove}
-      className={`group fixed top-4 md:top-6 left-1/2 z-50 flex items-center justify-between p-2 rounded-full bg-gradient-to-r from-white/90 via-white/80 to-white/90 dark:from-zinc-950/90 dark:via-zinc-900/85 dark:to-zinc-950/90 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.08),0_2px_10px_rgba(0,0,0,0.04)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.6)] border border-black/10 dark:border-white/15 gap-4 md:gap-10 w-auto max-w-4xl`}
+      className={`group fixed top-3 md:top-5 left-1/2 z-50 flex items-center justify-between rounded-full bg-white/85 dark:bg-zinc-950/85 backdrop-blur-2xl shadow-[0_15px_40px_rgba(0,0,0,0.1),0_2px_10px_rgba(0,0,0,0.05)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.7)] border border-black/10 dark:border-white/15 gap-3 md:gap-8 w-auto px-3 sm:px-5 transition-all duration-300`}
     >
       {/* Spotlight Overlay */}
       <motion.div
@@ -66,31 +101,36 @@ export default function Navbar() {
           background: useMotionTemplate`
             radial-gradient(
               150px circle at ${mouseX}px ${mouseY}px,
-              rgba(0, 122, 255, 0.1),
+              rgba(0, 122, 255, 0.12),
               transparent 80%
             )
           `,
         }}
       />
 
-      {/* Left HalftoneMotion Brand Badge Logo */}
+      {/* Left HalftoneMotion Brand Logo Image */}
       <motion.div 
-        whileHover={{ scale: 1.04 }} 
+        whileHover={{ scale: 1.03 }} 
         transition={{ type: "spring", stiffness: 400, damping: 15 }} 
-        className="z-10 ml-1"
+        className="z-10"
       >
         <Link 
           href="/" 
-          className="flex items-center px-3.5 sm:px-4 py-1.5 rounded-full bg-white text-black border border-black/10 shadow-sm group/logo transition-all"
+          onClick={(e) => {
+            if (pathname === '/') {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+          }}
+          className="flex items-center px-3 sm:px-4 py-1.5 rounded-full bg-white text-black border border-black/10 shadow-sm group/logo transition-all"
         >
-          {/* Official HalftoneMotion Image Logo */}
-          <div className="h-5 sm:h-6 w-auto flex items-center shrink-0">
+          <div className="h-5 sm:h-5.5 w-auto flex items-center shrink-0">
             <Image 
               src="/logo.png" 
               alt="HalftoneMotion" 
-              width={140} 
-              height={28} 
-              className="h-5 sm:h-6 w-auto object-contain scale-[1.15]" 
+              width={130} 
+              height={26} 
+              className="h-5 sm:h-5.5 w-auto object-contain scale-[1.1]" 
               priority 
             />
           </div>
@@ -102,62 +142,56 @@ export default function Navbar() {
         className="hidden md:flex items-center justify-center space-x-1 relative z-10"
         onMouseLeave={() => setHoveredPath(null)}
       >
-        <LayoutGroup>
+        <LayoutGroup id="navbar-pills">
           {NAV_LINKS.map((link) => {
-            const isActive = hoveredPath === link.path || (!hoveredPath && pathname === link.path);
+            const linkSection = link.path.replace('#', '');
+            const isActive = activeSection === linkSection || hoveredPath === link.path;
+            
             return (
-              <Link 
+              <a 
                 key={link.path}
                 href={link.path} 
+                onClick={(e) => scrollToSection(e, link.path)}
                 onMouseEnter={() => setHoveredPath(link.path)}
-                className={`relative px-4 py-2 transition-all duration-300 inline-block font-bold tracking-[0.12em] text-[11px] uppercase ${
+                className={`relative px-4 py-1.5 transition-colors duration-200 inline-block font-semibold text-xs sm:text-[13px] rounded-full z-10 ${
                   isActive 
-                    ? 'text-black dark:text-white font-extrabold' 
-                    : 'text-black/60 hover:text-black dark:text-white/60 dark:hover:text-white'
+                    ? 'text-black dark:text-white font-bold' 
+                    : 'text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white'
                 }`}
               >
-                {link.name}
+                <span className="relative z-10">{link.name}</span>
+
+                {/* Clip Masters Style Sliding Pill Indicator */}
                 {isActive && (
                   <motion.div
-                    layoutId="navbar-indicator"
-                    layout
-                    className="absolute -bottom-1 inset-x-0 mx-auto w-1.5 h-1.5 flex items-center justify-center pointer-events-none"
-                    transition={{ type: "tween", ease: [0.76, 0, 0.24, 1], duration: 0.38 }}
-                  >
-                    <motion.div
-                      initial={{ scaleX: 1, filter: "blur(0px)" }}
-                      animate={{ 
-                        scaleX: [1, 4.5, 1],
-                        filter: ["blur(0px)", "blur(1.5px)", "blur(0px)"]
-                      }}
-                      transition={{ type: "tween", ease: [0.76, 0, 0.24, 1], duration: 0.38 }}
-                      className="absolute w-1.5 h-1.5 rounded-full bg-black dark:bg-white shadow-[0_0_8px_rgba(0,0,0,0.4)] dark:shadow-[0_0_8px_rgba(255,255,255,0.8)]"
-                    />
-                  </motion.div>
+                    layoutId="activeNavPill"
+                    className="absolute inset-0 bg-black/5 dark:bg-white/10 rounded-full border border-black/10 dark:border-white/15 shadow-sm"
+                    transition={{ type: "spring", stiffness: 450, damping: 30 }}
+                  />
                 )}
-              </Link>
+              </a>
             );
           })}
         </LayoutGroup>
       </div>
 
-      <div className="flex items-center gap-3 z-10 mr-1">
+      <div className="flex items-center gap-2.5 z-10">
         {/* Theme Switcher as Glass Pill Button */}
-        <ThemeToggle className="w-9 h-9 rounded-full bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/10 flex items-center justify-center shadow-sm hover:scale-105 shrink-0 transition-all text-black dark:text-white group/theme" />
+        <ThemeToggle className="w-8.5 h-8.5 rounded-full bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/10 flex items-center justify-center shadow-sm hover:scale-105 shrink-0 transition-all text-black dark:text-white group/theme" />
         
         {/* Mobile Nav Toggle */}
-        <div className="flex items-center md:hidden gap-1">
+        <div className="flex items-center md:hidden">
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="w-9 h-9 rounded-full flex items-center justify-center text-black dark:text-white bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/10 hover:bg-black/10 dark:hover:bg-white/20 transition-colors" 
+            className="w-8.5 h-8.5 rounded-full flex items-center justify-center text-black dark:text-white bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/10 hover:bg-black/10 dark:hover:bg-white/20 transition-colors" 
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? (
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4.5 h-4.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4.5 h-4.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
               </svg>
             )}
@@ -172,29 +206,26 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95, transition: { duration: 0.2 } }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute top-[calc(100%+12px)] left-0 right-0 md:hidden bg-white/95 dark:bg-zinc-950/95 backdrop-blur-3xl border border-black/10 dark:border-white/20 overflow-hidden rounded-[28px] shadow-[0_20px_60px_rgba(0,0,0,0.2)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.8)]"
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute top-[calc(100%+10px)] left-0 right-0 md:hidden bg-white/95 dark:bg-zinc-950/95 backdrop-blur-3xl border border-black/10 dark:border-white/20 overflow-hidden rounded-[24px] shadow-2xl"
           >
-            <div className="px-6 py-6 flex flex-col max-h-[80vh] overflow-y-auto">
-              <div className="flex flex-col space-y-4">
-                {NAV_LINKS.map((item, i) => (
-                  <motion.div
-                    key={item.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -10 }}
-                    transition={{ delay: i * 0.05, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  >
-                    <Link 
-                      href={item.path} 
-                      onClick={() => setMobileMenuOpen(false)} 
-                      className="text-xl font-bold tracking-wide uppercase text-black dark:text-white block py-2"
-                    >
-                      {item.name}
-                    </Link>
-                  </motion.div>
-                ))}
-              </div>
+            <div className="px-5 py-5 flex flex-col space-y-3">
+              {NAV_LINKS.map((item, i) => (
+                <motion.a
+                  key={item.name}
+                  href={item.path}
+                  onClick={(e) => {
+                    setMobileMenuOpen(false);
+                    scrollToSection(e, item.path);
+                  }}
+                  initial={{ opacity: 0, x: -15 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.04, duration: 0.3 }}
+                  className="text-base font-bold text-black dark:text-white block py-1.5 px-3 rounded-xl hover:bg-black/5 dark:hover:bg-white/10"
+                >
+                  {item.name}
+                </motion.a>
+              ))}
             </div>
           </motion.div>
         )}

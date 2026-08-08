@@ -2,8 +2,11 @@ import Hero from '@/components/Hero';
 import ProjectCard from '@/components/ProjectCard';
 import ReviewsSection from '@/components/ReviewsSection';
 import ContactSection from '@/components/ContactSection';
-import SpotlightButton from '@/components/SpotlightButton';
+import HowItWorks from '@/components/HowItWorks';
+import FAQSection from '@/components/FAQSection';
 import TrustMetrics from '@/components/TrustMetrics';
+import CustomCursor from '@/components/CustomCursor';
+import AvatarButton from '@/components/AvatarButton';
 
 export default function Home() {
   const projects: Array<{
@@ -15,18 +18,6 @@ export default function Home() {
     textColorTheme: 'light' | 'dark';
     tag: string;
   }> = [
-    {
-      title: "Instagram Explainer",
-      category: (
-        <>
-          <strong>High-fidelity rap visualizer</strong> featuring custom rapid text-tracking.
-        </>
-      ),
-      videoUrl: "https://youtube.com/shorts/G3eaRQawEjs?si=8HubGyRk-OL0s1cw",
-      themeColor: "#0F172A",
-      textColorTheme: "light" as const,
-      tag: "Typography"
-    },
     {
       title: "Todoist Explainer",
       category: (
@@ -52,6 +43,18 @@ export default function Home() {
       tag: "SaaS Demo"
     },
     {
+      title: "Instagram Explainer",
+      category: (
+        <>
+          <strong>High-fidelity rap visualizer</strong> featuring custom rapid text-tracking.
+        </>
+      ),
+      videoUrl: "https://youtube.com/shorts/G3eaRQawEjs?si=8HubGyRk-OL0s1cw",
+      themeColor: "#0F172A",
+      textColorTheme: "light" as const,
+      tag: "Typography"
+    },
+    {
       title: "Vercel Explainer",
       category: (
         <>
@@ -61,20 +64,31 @@ export default function Home() {
       videoUrl: "https://youtube.com/shorts/PtRm5WejE_g?feature=share",
       themeColor: "#0A0A0A",
       textColorTheme: "light" as const,
-      tag: "Explainer"
+      tag: "Explainer Video"
     },
   ];
 
   return (
-    <div className="bg-apple-bg">
+    <div className="bg-apple-bg min-h-screen relative selection:bg-apple-blue selection:text-white">
+      {/* Smooth Mouse Follower Cursor */}
+      <CustomCursor />
+
+      {/* Hero Section */}
       <Hero />
       
-      <section id="store" className="py-20 sm:py-28 px-6 lg:px-16 max-w-7xl mx-auto">
-        <div className="mb-16 max-w-3xl lg:max-w-none text-left flex flex-col items-start">
-          <p className="text-apple-blue text-xs font-bold uppercase tracking-widest mb-2">What We Do</p>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-apple-text leading-[1.1] tracking-tight">Every video type your SaaS needs</h2>
+      {/* 1. Selected Work / Projects Section */}
+      <section id="work" className="py-20 sm:py-28 px-6 lg:px-16 max-w-7xl mx-auto scroll-mt-24">
+        <div className="mb-14 max-w-3xl lg:max-w-none text-left flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b border-black/10 dark:border-white/10 pb-8">
+          <div>
+            <p className="text-apple-blue text-xs font-bold uppercase tracking-widest mb-2">Our Portfolio</p>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-apple-text dark:text-white leading-[1.1] tracking-tight">Featured Projects</h2>
+          </div>
+          <p className="text-sm text-zinc-500 dark:text-zinc-400 max-w-md font-medium">
+            From SaaS product walkthroughs to viral launch videos, explore our latest motion design work built for tech leaders.
+          </p>
         </div>
 
+        {/* 2-Column Grid of 3D Monitor Video Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 mb-16">
           {projects.map((project, index) => (
             <ProjectCard 
@@ -90,15 +104,28 @@ export default function Home() {
             />
           ))}
         </div>
-
-        <div className="flex justify-center">
-          <SpotlightButton href="/work" text="EXPLORE ALL OUR WORK" />
-        </div>
       </section>
 
+      {/* Trust & Proof Metrics */}
       <TrustMetrics />
+
+      {/* 2. Process Section */}
+      <section id="process" className="py-16 sm:py-24 px-6 lg:px-16 max-w-7xl mx-auto scroll-mt-24">
+        <HowItWorks />
+      </section>
+
+      {/* 3. Client Reviews */}
       <ReviewsSection />
-      <ContactSection />
+
+      {/* 4. FAQ Section */}
+      <section id="faq" className="py-16 sm:py-24 px-6 lg:px-16 max-w-7xl mx-auto scroll-mt-24">
+        <FAQSection />
+      </section>
+
+      {/* 5. Contact Section */}
+      <section id="contact" className="scroll-mt-24">
+        <ContactSection />
+      </section>
     </div>
   );
 }

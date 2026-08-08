@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import TiltButton from './TiltButton';
 import ContactForm from './ContactForm';
 import InstagramMilestone from './InstagramMilestone';
+import AvatarButton from './AvatarButton';
 
 
 const phrases = [
@@ -176,15 +177,16 @@ export default function Hero() {
             </div>
 
             <motion.div
-              initial={{ opacity: 0, y: 18 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
               className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mt-2 w-full px-4 sm:px-0"
             >
-              <TiltButton onClick={() => setIsModalOpen(true)} className="w-full sm:w-auto font-bold bg-[#007AFF] text-white hover:bg-[#007AFF]/90 hover:shadow-[0_8px_25px_-5px_rgba(0,122,255,0.6)] hover:-translate-y-0.5 transition-all px-6 py-3.5 sm:px-8 sm:py-4 text-sm sm:text-base rounded-full">
-                Start Your Project
-              </TiltButton>
-              <TiltButton href="/work" glow={true} className="w-full sm:w-auto font-semibold text-apple-text rounded-full shadow-sm text-sm sm:text-base" innerClassName="px-6 py-3.5 sm:px-8 sm:py-4">
+              <AvatarButton 
+                text="Start Your Project" 
+                onClick={() => setIsModalOpen(true)} 
+              />
+              <TiltButton href="#work" glow={true} className="w-full sm:w-auto font-semibold text-apple-text rounded-full shadow-sm text-sm sm:text-base" innerClassName="px-6 py-3.5 sm:px-8 sm:py-4">
                 View Our Work
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 ml-1">
                   <path fillRule="evenodd" d="M12.97 3.97a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 1 1-1.06-1.06l6.22-6.22H3a.75.75 0 0 1 0-1.5h16.19l-6.22-6.22a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />

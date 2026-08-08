@@ -169,59 +169,79 @@ export default function ProjectCard({
           {/* Glare Layer (ReactBits) */}
           <GlareHover className="absolute inset-0 z-50 rounded-[24px] mix-blend-overlay" transitionDuration={600} glareOpacity={0.8} />
 
-          <div 
-            className="relative z-10 w-full aspect-video bg-zinc-900 overflow-hidden cursor-pointer group/video rounded-t-[24px] isolate"
-            onClick={() => {
-              if (!isPlaying) {
-                setIsPlaying(true);
-                xPct.set(0.5);
-                yPct.set(0.5);
-              }
-            }}
-          >
-            {tag && (
-              <div className="absolute top-4 left-4 z-20 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-bold text-white uppercase tracking-wider select-none">
-                {tag}
-              </div>
-            )}
-            {!isPlaying && imageUrl ? (
-              <div className="relative w-full h-full">
-                <img 
-                  src={imageUrl} 
-                  alt={title} 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover/video:scale-105" 
-                />
-                <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover/video:bg-black/10 transition-colors">
-                  <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.3)] transform transition-transform group-hover/video:scale-110">
-                    <svg className="w-10 h-10 text-white drop-shadow-md" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
+          {/* 3D Apple Studio Display / Monitor Frame Styling */}
+          <div className="relative z-10 w-full p-2.5 sm:p-3.5 bg-gradient-to-b from-[#1C1C1E] to-[#0D0D0E] dark:from-[#18181B] dark:to-[#09090B] border-b border-black/10 dark:border-white/10 flex flex-col items-center">
+            {/* Top Webcam Dot */}
+            <div className="w-2 h-2 rounded-full bg-black/80 dark:bg-white/20 border border-white/10 mb-2 shadow-inner" />
+            
+            {/* Screen Container */}
+            <div 
+              className="relative w-full aspect-video bg-zinc-950 overflow-hidden cursor-pointer group/video rounded-xl sm:rounded-2xl border border-white/10 shadow-2xl isolate"
+              onClick={() => {
+                if (!isPlaying) {
+                  setIsPlaying(true);
+                  xPct.set(0.5);
+                  yPct.set(0.5);
+                }
+              }}
+            >
+              {tag && (
+                <div className="absolute top-3 left-3 z-20 px-2.5 py-1 rounded-md bg-black/70 backdrop-blur-md border border-white/15 text-[10px] font-semibold text-white uppercase tracking-wider select-none">
+                  {tag}
+                </div>
+              )}
+              {!isPlaying && imageUrl ? (
+                <div className="relative w-full h-full">
+                  <img 
+                    src={imageUrl} 
+                    alt={title} 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover/video:scale-105" 
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover/video:bg-black/20 transition-colors">
+                    <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/40 shadow-[0_8px_32px_rgba(0,0,0,0.4)] transform transition-all duration-300 group-hover/video:scale-110 group-hover/video:bg-white/30">
+                      <svg className="w-7 h-7 sm:w-8 sm:h-8 text-white ml-0.5 drop-shadow-md" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ) : embedUrl ? (
-              <iframe 
-                ref={iframeRef}
-                className="w-full h-full"
-                src={embedUrl} 
-                title={title} 
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen
-              ></iframe>
-            ) : (
-              <div className="w-full h-full bg-zinc-800/50 flex items-center justify-center">
-                <span className="text-zinc-500 text-[10px] uppercase tracking-[0.2em]">[ VIDEO PLACEHOLDER ]</span>
-              </div>
-            )}
+              ) : embedUrl ? (
+                <iframe 
+                  ref={iframeRef}
+                  className="w-full h-full"
+                  src={embedUrl} 
+                  title={title} 
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen
+                ></iframe>
+              ) : (
+                <div className="w-full h-full bg-zinc-900 flex items-center justify-center">
+                  <span className="text-zinc-600 text-[10px] uppercase tracking-[0.2em]">[ VIDEO PREVIEW ]</span>
+                </div>
+              )}
+            </div>
+
+            {/* Monitor Stand Accent Bar */}
+            <div className="w-24 sm:w-32 h-1.5 mt-2 rounded-b-md bg-gradient-to-r from-zinc-700 via-zinc-400 to-zinc-700 opacity-60 shadow-sm" />
           </div>
 
-          {/* Text Container */}
-          <div className="relative z-10 px-6 py-6 flex flex-col gap-1.5 flex-1 bg-transparent">
-            <h3 className={`text-lg font-bold tracking-tight transition-colors ${textColorTheme === 'dark' ? 'text-black' : textColorTheme === 'light' ? 'text-white' : 'text-apple-text'}`}>{title}</h3>
-            <p className={`text-sm leading-relaxed transition-colors ${textColorTheme === 'dark' ? 'text-black/60' : textColorTheme === 'light' ? 'text-white/60' : 'text-apple-subtext'}`}>
-              {category}
-            </p>
+          {/* Title Row with Clip Masters Style View Project Link */}
+          <div className="relative z-10 px-5 py-4 sm:px-6 sm:py-5 flex items-center justify-between gap-4 flex-1 bg-white/50 dark:bg-zinc-900/50 backdrop-blur-md">
+            <div className="flex flex-col gap-0.5">
+              <h3 className={`text-base sm:text-lg font-bold tracking-tight transition-colors ${textColorTheme === 'dark' ? 'text-black' : textColorTheme === 'light' ? 'text-white' : 'text-apple-text dark:text-white'}`}>{title}</h3>
+              <p className={`text-xs sm:text-sm font-medium transition-colors ${textColorTheme === 'dark' ? 'text-black/60' : textColorTheme === 'light' ? 'text-white/60' : 'text-apple-subtext dark:text-zinc-400'}`}>
+                {category}
+              </p>
+            </div>
+
+            {/* View Project CTA Link */}
+            <div className="flex items-center gap-1 text-xs font-semibold text-apple-blue dark:text-blue-400 hover:underline shrink-0 cursor-pointer group/link">
+              <span>View Project</span>
+              <svg className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M7 17L17 7M17 7H7M17 7V17" />
+              </svg>
+            </div>
           </div>
         </div>
       </motion.div>
