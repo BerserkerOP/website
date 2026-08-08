@@ -168,30 +168,32 @@ export default function Navbar() {
               className="hidden md:flex items-center justify-center space-x-1 relative z-10 overflow-hidden"
               onMouseLeave={() => setHoveredTab(null)}
             >
-              <LayoutGroup id="liquid-glass-pills">
-                {NAV_LINKS.map((link) => {
-                  const isTabActive = activeTab === link.name || hoveredTab === link.name;
-                  
+              <LayoutGroup id="nav-active-pill">
+              {NAV_LINKS.map((link) => {
+                  // Only the truly active route gets the pill — hovering shows NO background
+                  const isSelected = activeTab === link.name;
+                  const isHov = hoveredTab === link.name;
+
                   return (
-                    <Link 
+                    <Link
                       key={link.name}
-                      href={link.path} 
+                      href={link.path}
                       onClick={(e) => handleNavClick(e, link)}
                       onMouseEnter={() => setHoveredTab(link.name)}
-                      className={`relative px-4 py-1.5 transition-colors duration-200 inline-block font-extrabold text-xs sm:text-[13px] rounded-full z-10 ${
-                        isTabActive 
-                          ? 'text-black dark:text-white' 
-                          : 'text-zinc-700 hover:text-black dark:text-zinc-300 dark:hover:text-white'
+                      className={`relative px-4 py-1.5 transition-colors duration-150 inline-block font-semibold text-xs sm:text-[13px] rounded-full z-10 ${
+                        isSelected || isHov
+                          ? 'text-black dark:text-white'
+                          : 'text-zinc-500 dark:text-zinc-400'
                       }`}
                     >
                       <span className="relative z-10">{link.name}</span>
 
-                      {/* Sliding Active Pill */}
-                      {isTabActive && (
+                      {/* Active-only pill — no pill on hover */}
+                      {isSelected && (
                         <motion.div
                           layoutId="liquidActiveTab"
-                          className="absolute inset-0 bg-black/5 dark:bg-white/15 rounded-full border border-black/10 dark:border-white/20 shadow-2xs"
-                          transition={{ type: "spring", stiffness: 450, damping: 30 }}
+                          className="absolute inset-0 rounded-full border border-black/15 dark:border-white/20 bg-white dark:bg-white/10 shadow-sm"
+                          transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                         />
                       )}
                     </Link>
