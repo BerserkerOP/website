@@ -27,11 +27,11 @@ export default function ProjectCard({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
-  const videoIdMatch = videoUrl?.match(/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|shorts\/)([^#&?]*).*/);
+  const videoIdMatch = videoUrl?.match(/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|shorts\/)([^#&?]*).*/)
   const videoId = (videoIdMatch && videoIdMatch[2].length === 11) ? videoIdMatch[2] : null;
   const imageUrl = thumbnailUrl || (videoId ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg` : null);
 
-  // Mouse Cursor Follower position relative to card
+  // Mouse position relative to card for the follower badge
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
   const smoothX = useSpring(mouseX, { stiffness: 400, damping: 28 });
@@ -45,7 +45,7 @@ export default function ProjectCard({
 
   return (
     <>
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
@@ -54,25 +54,51 @@ export default function ProjectCard({
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onClick={() => setIsModalOpen(true)}
-        className="group relative flex flex-col cursor-pointer"
+        // data-hide-cursor hides the trailing dot when hovering this card
+        data-hide-cursor
+        className="group relative flex flex-col cursor-none"
       >
-        {/* Hover Cursor Follower Badge ("View Project ↗") — solid white pill, crisp on any bg */}
+        {/* View Project badge — follows cursor, mix-blend-difference for invert effect */}
         {isHovered && (
           <motion.div
-            style={{ x: smoothX, y: smoothY }}
             initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.15 }}
-            className="pointer-events-none absolute top-4 left-3 z-30 hidden sm:flex items-center gap-1.5 px-4 py-2 rounded-full bg-white text-black font-extrabold text-xs shadow-[0_4px_24px_rgba(0,0,0,0.45)] border border-black/10 select-none whitespace-nowrap"
+            className="pointer-events-none absolute z-30 hidden sm:block select-none"
+            style={{
+              x: smoothX,
+              y: smoothY,
+              translateX: "10px",
+              translateY: "10px",
+            }}
           >
-            <span>View Project</span>
-            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M7 17L17 7M17 7H7M17 7V17" />
-            </svg>
+            {/* Outer mix-blend-difference wrapper — inverts against video bg */}
+            <div
+              className="flex items-center gap-1.5 px-4 py-2 rounded-full font-extrabold text-xs whitespace-nowrap"
+              style={{
+                mixBlendMode: "difference",
+                backgroundColor: "white",
+                color: "white",
+              }}
+            >
+              {/* Inner text re-inverts so it's always readable */}
+              <span style={{ mixBlendMode: "difference", color: "white" }}>
+                View Project
+              </span>
+              <svg
+                className="w-3 h-3 shrink-0"
+                style={{ color: "white", mixBlendMode: "difference" }}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M7 17L17 7M17 7H7M17 7V17" />
+              </svg>
+            </div>
           </motion.div>
         )}
 
-        {/* Standalone Video Thumbnail Container (matching Image 2) */}
+        {/* Standalone Video Thumbnail Container */}
         <div className="relative w-full aspect-[16/10] sm:aspect-video rounded-3xl overflow-hidden bg-zinc-950 shadow-sm group-hover:shadow-2xl transition-all duration-500 isolate">
           {tag && (
             <div className="absolute top-3.5 left-3.5 z-20 px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/15 text-[10px] font-bold text-white uppercase tracking-wider select-none">
@@ -82,10 +108,10 @@ export default function ProjectCard({
 
           {imageUrl ? (
             <div className="relative w-full h-full">
-              <img 
-                src={imageUrl} 
-                alt={title} 
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
+              <img
+                src={imageUrl}
+                alt={title}
+                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors flex items-center justify-center">
                 <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center border border-white/50 shadow-[0_10px_35px_rgba(0,0,0,0.3)] transform transition-all duration-300 group-hover:scale-110 group-hover:bg-white/40">
@@ -102,7 +128,7 @@ export default function ProjectCard({
           )}
         </div>
 
-        {/* Bottom Title Row (sitting directly on page background matching Image 2) */}
+        {/* Bottom Title Row */}
         <div className="pt-3.5 sm:pt-4 flex items-start justify-between gap-4">
           <div className="flex flex-col gap-0.5">
             <h3 className="text-lg sm:text-xl font-bold text-black dark:text-white tracking-tight group-hover:text-apple-blue transition-colors">
@@ -123,7 +149,7 @@ export default function ProjectCard({
         </div>
       </motion.div>
 
-      {/* Video Modal Popup (matching Image 2) */}
+      {/* Video Modal */}
       <VideoModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
