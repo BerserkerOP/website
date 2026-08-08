@@ -112,9 +112,15 @@ export default function Home() {
             className="group inline-flex items-center gap-2 text-base sm:text-lg font-semibold text-apple-text dark:text-white hover:opacity-60 transition-opacity duration-300"
           >
             View all work
-            <span className="inline-block transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-              ↗
-            </span>
+            <svg
+              className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M17 7H7M17 7V17" />
+            </svg>
           </Link>
         </div>
       </section>
