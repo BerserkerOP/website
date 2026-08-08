@@ -4,7 +4,7 @@ import { Inter } from 'next/font/google'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ContactModal from '@/components/ContactModal'
-import FloatingContactButton from '@/components/FloatingContactButton'
+import FloatingContactWidget from '@/components/FloatingContactWidget'
 import BackToTop from '@/components/BackToTop'
 import GetInTouchModal from '@/components/GetInTouchModal'
 import { ThemeProvider } from '@/components/ThemeProvider'
@@ -70,7 +70,7 @@ export default function RootLayout({
           <Footer />
           <ContactModal />
           <GetInTouchModal />
-          <FloatingContactButton />
+          <FloatingContactWidget />
           <BackToTop />
         </ThemeProvider>
       </body>

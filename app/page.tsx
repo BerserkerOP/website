@@ -66,6 +66,78 @@ export default function Home() {
       textColorTheme: "light" as const,
       tag: "Explainer Video"
     },
+    { 
+      title: "PayPal Explainer", 
+      category: (
+        <>
+          <strong>High-impact brand animation</strong> for commercial campaign releases.
+        </>
+      ), 
+      videoUrl: "https://youtu.be/FMt2LcZDSnI",
+      themeColor: "#003087",
+      textColorTheme: "light" as const,
+      tag: "Promo"
+    },
+    { 
+      title: "Discord Explainer", 
+      category: (
+        <>
+          <strong>Community platform walkthroughs</strong> highlighting custom brand visuals.
+        </>
+      ), 
+      videoUrl: "https://www.youtube.com/watch?v=diH5NhlPvGM",
+      themeColor: "#0E0F13",
+      textColorTheme: "light" as const,
+      tag: "Walkthrough"
+    },
+    { 
+      title: "WTM Explainer Video", 
+      category: (
+        <>
+          <strong>Complex features made instantly clear</strong> in 60 seconds or less.
+        </>
+      ), 
+      videoUrl: "https://youtube.com/shorts/i6vN0b-8E8M?si=GzKx1xWc6HUpXp7v",
+      themeColor: "#111827",
+      textColorTheme: "light" as const,
+      tag: "Explainer"
+    },
+    { 
+      title: "ChatGPT Explainer", 
+      category: (
+        <>
+          <strong>Interactive AI tool demonstrations</strong> showing key user benefit flows.
+        </>
+      ), 
+      videoUrl: "https://youtube.com/shorts/B8418Jj1iU0?si=pX4R53Bw6t4bSj1H",
+      themeColor: "#18181B",
+      textColorTheme: "light" as const,
+      tag: "Brand Animation"
+    },
+    { 
+      title: "Quik Stop", 
+      category: (
+        <>
+          <strong>Punchy typographic visualizer</strong> featuring quick cuts and transitions.
+        </>
+      ), 
+      videoUrl: "https://youtube.com/shorts/6-bF50i0FqM?si=0x4xS5GZ_B7B1_C-",
+      themeColor: "#181E29",
+      textColorTheme: "light" as const,
+      tag: "Lyrical"
+    },
+    { 
+      title: "Champion & Vacay", 
+      category: (
+        <>
+          <strong>Dynamic text animation transitions</strong> synced with high-bpm rhythms.
+        </>
+      ), 
+      videoUrl: "https://youtube.com/shorts/xQ-n9Q0S_4A?si=C8B-nJ_1yC0vYy5p",
+      themeColor: "#172554",
+      textColorTheme: "light" as const,
+      tag: "Lyrical"
+    }
   ];
 
   return (

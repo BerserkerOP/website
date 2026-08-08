@@ -25,17 +25,6 @@ export default function AvatarButton({
       {/* Subtle glossy sheen sweep */}
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
 
-      {/* Profile Avatar Badge on Left */}
-      <div className="relative w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-white/80 overflow-hidden shrink-0 shadow-sm group-hover:rotate-6 transition-transform duration-300">
-        <Image 
-          src="/profile.jpg" 
-          alt="Atharv" 
-          fill
-          sizes="32px"
-          className="object-cover"
-        />
-      </div>
-
       {/* Button Label Text */}
       <span className="tracking-tight text-white font-bold drop-shadow-sm">
         {text}

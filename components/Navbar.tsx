@@ -139,14 +139,8 @@ export default function Navbar() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }
             }}
-            className="flex items-center gap-2.5 group/logo"
+            className="flex items-center gap-2 group/logo"
           >
-            {/* Blue Clapper Icon */}
-            <div className="w-6 h-6 rounded-md bg-apple-blue flex items-center justify-center shrink-0 shadow-sm text-white p-1">
-              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                <path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4h-2l2 4H9L7 4H5c-1.1 0-1.99.9-1.99 2L3 18c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V4h-3z"/>
-              </svg>
-            </div>
             <span className="font-extrabold text-sm sm:text-base text-black dark:text-white tracking-tight font-sans">
               HalftoneMotion
             </span>
