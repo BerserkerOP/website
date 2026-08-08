@@ -56,15 +56,18 @@ export default function ProjectCard({
         onClick={() => setIsModalOpen(true)}
         className="group relative flex flex-col cursor-pointer"
       >
-        {/* Hover Cursor Follower Badge ("View Project ↗") positioned near mouse tail */}
+        {/* Hover Cursor Follower Badge ("View Project ↗") — solid white pill, crisp on any bg */}
         {isHovered && (
           <motion.div
             style={{ x: smoothX, y: smoothY }}
-            className="pointer-events-none absolute top-4 left-3 z-30 hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white text-black font-extrabold text-xs shadow-2xl mix-blend-difference select-none"
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.15 }}
+            className="pointer-events-none absolute top-4 left-3 z-30 hidden sm:flex items-center gap-1.5 px-4 py-2 rounded-full bg-white text-black font-extrabold text-xs shadow-[0_4px_24px_rgba(0,0,0,0.45)] border border-black/10 select-none whitespace-nowrap"
           >
             <span>View Project</span>
-            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M7 17L17 7M17 7H7M17 7V17" />
+            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M7 17L17 7M17 7H7M17 7V17" />
             </svg>
           </motion.div>
         )}
