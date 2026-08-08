@@ -9,8 +9,8 @@ import { ThemeToggle } from './ThemeToggle';
 const NAV_LINKS = [
   { name: 'Work', path: '/work', sectionId: 'work' },
   { name: 'Process', path: '/process', sectionId: 'process' },
+  { name: 'Contact', path: '/contact', sectionId: 'contact' },
   { name: 'FAQ', path: '/faq', sectionId: 'faq' },
-  { name: 'Contact', path: '/contact', sectionId: 'contact' }
 ];
 
 export default function Navbar() {

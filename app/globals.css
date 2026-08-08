@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* SF Pro System Font Stack — replicates Apple UI typography exactly */
+:root {
+  --font-sf: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display',
+    'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+
 :root {
   color-scheme: light;
   --apple-blue: #007AFF;
