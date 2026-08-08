@@ -50,18 +50,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="antialiased" suppressHydrationWarning>
       <body className="font-sf min-h-screen flex flex-col bg-apple-bg text-apple-text selection:bg-apple-blue/20 relative select-none">
-        {/* Global Dot Grid Background */}
-        <div 
-          className="fixed inset-0 pointer-events-none -z-10 transform-gpu" 
-          style={{ 
-            backgroundImage: 'radial-gradient(circle, var(--dot-color) 2px, transparent 2px)', 
-            backgroundSize: '24px 24px',
-            willChange: 'transform',
-            transform: 'translateZ(0)'
-          }}
-        ></div>
-
-        {/* Global Architectural Grid Lines (matching Clip Masters) */}
+        {/* Full-page architectural grid (vertical + horizontal lines) */}
         <GridBackground />
         
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
