@@ -151,7 +151,7 @@ export default function Navbar() {
             }}
             className="flex items-center gap-2 group/logo"
           >
-            <span className="font-extrabold text-sm sm:text-base text-black dark:text-white tracking-tight font-sans">
+            <span className="font-medium text-sm sm:text-base text-black dark:text-white tracking-tight font-sans">
               HalftoneMotion
             </span>
           </Link>
@@ -180,7 +180,7 @@ export default function Navbar() {
                       href={link.path}
                       onClick={(e) => handleNavClick(e, link)}
                       onMouseEnter={() => setHoveredTab(link.name)}
-                      className={`relative px-4 py-1.5 transition-colors duration-150 inline-block font-semibold text-xs sm:text-[13px] rounded-full z-10 ${
+                      className={`relative px-4 py-1.5 transition-colors duration-150 inline-block font-medium text-xs sm:text-[13px] rounded-full z-10 ${
                         isSelected || isHov
                           ? 'text-black dark:text-white'
                           : 'text-zinc-500 dark:text-zinc-400'
