@@ -47,11 +47,8 @@ export default function FloatingContactWidget() {
               transition: 'opacity 0.22s cubic-bezier(0.22,1,0.36,1), transform 0.22s cubic-bezier(0.22,1,0.36,1)',
             }}
           >
-            <span className="text-[13px] font-extrabold text-black dark:text-white tracking-tight leading-tight whitespace-nowrap">
+            <span className="text-[13px] font-medium text-black dark:text-white tracking-tight leading-tight whitespace-nowrap">
               Get in touch
-            </span>
-            <span className="text-[11px] font-medium text-zinc-500 dark:text-zinc-400 leading-tight whitespace-nowrap">
-              Email or book a call
             </span>
           </div>
 
