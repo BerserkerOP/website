@@ -112,10 +112,10 @@ export default function Navbar() {
         onMouseLeave={() => {
           if (scrolled) setDotsMenuOpen(false);
         }}
-        className={`group relative flex items-center justify-between rounded-full backdrop-blur-3xl saturate-180 transition-all duration-500 overflow-hidden ${
+        className={`group relative flex items-center justify-between rounded-full backdrop-blur-2xl saturate-150 transition-all duration-500 overflow-hidden ${
           scrolled 
-            ? 'bg-white/70 dark:bg-black/70 shadow-[inset_0_0_0_0.2px_rgba(0,0,0,0.25)] dark:shadow-[inset_0_0_0_0.2px_rgba(255,255,255,0.2)] px-4 py-2 gap-4' 
-            : 'bg-white/80 dark:bg-black/80 shadow-[inset_0_0_0_0.2px_rgba(0,0,0,0.25)] dark:shadow-[inset_0_0_0_0.2px_rgba(255,255,255,0.2)] px-5 py-2.5 gap-6 sm:gap-8 w-auto max-w-4xl'
+            ? 'bg-white/50 dark:bg-black/50 shadow-[inset_0_0_0_0.2px_rgba(0,0,0,0.25)] dark:shadow-[inset_0_0_0_0.2px_rgba(255,255,255,0.2)] px-4 py-2 gap-4' 
+            : 'bg-white/55 dark:bg-black/55 shadow-[inset_0_0_0_0.2px_rgba(0,0,0,0.25)] dark:shadow-[inset_0_0_0_0.2px_rgba(255,255,255,0.2)] px-5 py-2.5 gap-6 sm:gap-8 w-auto max-w-4xl'
         }`}
       >
         {/* Apple High-Gloss Liquid Glass Reflection Curve */}
