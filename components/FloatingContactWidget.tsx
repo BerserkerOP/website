@@ -60,23 +60,27 @@ export default function FloatingContactWidget() {
               transition: 'width 0.3s cubic-bezier(0.22, 1, 0.36, 1)',
             }}
           >
-            {/* Static specular highlight */}
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-1/2 rounded-t-full bg-gradient-to-b from-white/15 to-transparent" />
-
-            {/* Animated light sweep — triggers on hover only */}
-            <div
-              className="pointer-events-none absolute inset-0 rounded-full z-10 overflow-hidden"
-              style={{
-                WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
-                maskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
-              }}
-            >
-              <div
+            {/* Premium glass-edge glow — wide arc highlight that sweeps on hover */}
+            <div className="pointer-events-none absolute inset-0 rounded-full overflow-hidden z-10">
+              {/* Static subtle top specular */}
+              <div 
                 className="absolute inset-0"
                 style={{
-                  background: 'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.15) 45%, rgba(255,255,255,0.28) 50%, rgba(255,255,255,0.15) 55%, transparent 60%)',
-                  transform: hovered ? 'translateX(120%)' : 'translateX(-120%)',
-                  transition: hovered ? 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)' : 'none',
+                  background: 'radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255,255,255,0.12) 0%, transparent 70%)',
+                }}
+              />
+              {/* Hover sweep: wide soft arc glow that travels left→right */}
+              <div
+                className="absolute"
+                style={{
+                  width: '80%',
+                  height: '160%',
+                  top: '-40%',
+                  borderRadius: '50%',
+                  background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.08) 40%, transparent 70%)',
+                  boxShadow: '0 0 20px 4px rgba(255,255,255,0.06)',
+                  transform: hovered ? 'translateX(110%)' : 'translateX(-90%)',
+                  transition: hovered ? 'transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)' : 'none',
                 }}
               />
             </div>
