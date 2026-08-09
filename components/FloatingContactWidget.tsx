@@ -63,7 +63,7 @@ export default function FloatingContactWidget() {
             {/* Static specular highlight */}
             <div className="pointer-events-none absolute inset-x-0 top-0 h-1/2 rounded-t-full bg-gradient-to-b from-white/15 to-transparent" />
 
-            {/* Animated light sweep */}
+            {/* Animated light sweep — triggers on hover only */}
             <div
               className="pointer-events-none absolute inset-0 rounded-full z-10 overflow-hidden"
               style={{
@@ -74,20 +74,12 @@ export default function FloatingContactWidget() {
               <div
                 className="absolute inset-0"
                 style={{
-                  background: 'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.12) 45%, rgba(255,255,255,0.22) 50%, rgba(255,255,255,0.12) 55%, transparent 60%)',
-                  animation: 'btn-light-sweep 3s ease-in-out infinite',
+                  background: 'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.15) 45%, rgba(255,255,255,0.28) 50%, rgba(255,255,255,0.15) 55%, transparent 60%)',
+                  transform: hovered ? 'translateX(120%)' : 'translateX(-120%)',
+                  transition: hovered ? 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)' : 'none',
                 }}
               />
             </div>
-
-            {/* Keyframes injected via style tag */}
-            <style>{`
-              @keyframes btn-light-sweep {
-                0%   { transform: translateX(-120%); }
-                60%  { transform: translateX(120%); }
-                100% { transform: translateX(120%); }
-              }
-            `}</style>
             
             {/* Envelope Icon */}
             <svg className="w-4 h-4 shrink-0 relative z-10" viewBox="0 0 24 24" fill="white">
