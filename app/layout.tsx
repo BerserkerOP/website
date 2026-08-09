@@ -56,7 +56,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <SmoothScroll>
             <Navbar />
-            <main className="flex-1 relative z-10">
+            <main className="flex-1 relative z-10 pb-40">
               {children}
             </main>
             <Footer />
