@@ -206,16 +206,7 @@ export default function Navbar() {
 
         {/* Right Side Actions: 3-Dots + Theme Switcher */}
         <div className="flex items-center gap-2 sm:gap-3 z-10 shrink-0">
-          {/* Top of page: Dedicated Apple Style Contact Capsule Button */}
-          {!scrolled && (
-            <Link
-              href="/contact"
-              onClick={(e) => handleNavClick(e, { name: 'Contact', path: '/contact', sectionId: 'contact' })}
-              className="px-4 py-1.5 rounded-full border border-black/10 dark:border-white/20 bg-white dark:bg-zinc-900 text-xs sm:text-[13px] font-extrabold text-black dark:text-white hover:bg-black/5 dark:hover:bg-white/10 transition-all shadow-xs hover:scale-105 active:scale-95"
-            >
-              Contact
-            </Link>
-          )}
+
 
           {/* Scrolled down state: Dynamically Animated 3-Dots Trigger */}
           {scrolled && (
