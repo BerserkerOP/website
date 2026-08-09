@@ -114,8 +114,8 @@ export default function Navbar() {
         }}
         className={`group relative flex items-center justify-between rounded-full backdrop-blur-3xl saturate-180 transition-all duration-500 overflow-hidden ${
           scrolled 
-            ? 'bg-white/70 dark:bg-black/70 border border-white/80 dark:border-white/25 ring-1 ring-white/60 dark:ring-white/10 px-4 py-2 gap-4' 
-            : 'bg-white/80 dark:bg-black/80 border border-white/70 dark:border-white/20 ring-1 ring-white/50 dark:ring-white/10 px-5 py-2.5 gap-6 sm:gap-8 w-auto max-w-4xl'
+            ? 'bg-white/70 dark:bg-black/70 shadow-[inset_0_0_0_0.2px_rgba(0,0,0,0.25)] dark:shadow-[inset_0_0_0_0.2px_rgba(255,255,255,0.2)] px-4 py-2 gap-4' 
+            : 'bg-white/80 dark:bg-black/80 shadow-[inset_0_0_0_0.2px_rgba(0,0,0,0.25)] dark:shadow-[inset_0_0_0_0.2px_rgba(255,255,255,0.2)] px-5 py-2.5 gap-6 sm:gap-8 w-auto max-w-4xl'
         }`}
       >
         {/* Apple High-Gloss Liquid Glass Reflection Curve */}
