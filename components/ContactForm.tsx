@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const [preferredMethod, setPreferredMethod] = useState<'email' | 'instagram' | 'whatsapp'>('email');
   const [selectedDeadline, setSelectedDeadline] = useState('Normal (1-2 weeks)');
@@ -101,6 +102,7 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
       });
 
       if (response.ok) {
+        setSubmitted(true);
         if (onSuccess) onSuccess();
       } else {
         setSubmitError(true);
@@ -136,6 +138,89 @@ export default function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
       )}
     </AnimatePresence>
   );
+
+  if (submitted) {
+    return (
+      <div className="p-6 sm:p-8 flex flex-col items-center justify-center text-center gap-4 min-h-[300px]">
+        {/* Animated Checkmark Circle */}
+        <motion.div
+          initial={{ scale: 0, rotate: -180 }}
+          animate={{ scale: 1, rotate: 0 }}
+          transition={{ type: 'spring', stiffness: 200, damping: 15, delay: 0.1 }}
+          className="w-16 h-16 rounded-full bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center shadow-[0_8px_30px_rgba(16,185,129,0.35)]"
+        >
+          <motion.svg
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.4, ease: 'easeOut' }}
+            className="w-8 h-8 text-white"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={3}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <motion.path
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ duration: 0.5, delay: 0.4, ease: 'easeOut' }}
+              d="M5 13l4 4L19 7"
+            />
+          </motion.svg>
+        </motion.div>
+
+        {/* Title */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.4 }}
+        >
+          <h3 className="text-lg font-bold text-apple-text dark:text-white">
+            Application Received!
+          </h3>
+          <p className="text-sm text-apple-subtext dark:text-zinc-400 mt-1 max-w-xs">
+            Thank you for reaching out. We&apos;ve received your project details and will get back to you within <strong className="text-apple-text dark:text-white">24 hours</strong>.
+          </p>
+        </motion.div>
+
+        {/* What to expect */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.4 }}
+          className="w-full max-w-xs bg-black/[0.03] dark:bg-white/[0.05] rounded-xl p-3 mt-1"
+        >
+          <p className="text-[11px] font-medium text-apple-subtext dark:text-zinc-400 uppercase tracking-wider mb-2">What happens next</p>
+          <div className="flex flex-col gap-2">
+            <div className="flex items-start gap-2">
+              <span className="w-5 h-5 rounded-full bg-apple-blue/10 text-apple-blue text-[10px] font-bold flex items-center justify-center shrink-0 mt-0.5">1</span>
+              <span className="text-xs text-apple-text dark:text-zinc-300">We&apos;ll review your project details</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="w-5 h-5 rounded-full bg-apple-blue/10 text-apple-blue text-[10px] font-bold flex items-center justify-center shrink-0 mt-0.5">2</span>
+              <span className="text-xs text-apple-text dark:text-zinc-300">You&apos;ll receive a custom quote via your preferred contact method</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="w-5 h-5 rounded-full bg-apple-blue/10 text-apple-blue text-[10px] font-bold flex items-center justify-center shrink-0 mt-0.5">3</span>
+              <span className="text-xs text-apple-text dark:text-zinc-300">Once approved, we begin production</span>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Submit Another */}
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.7 }}
+          onClick={() => setSubmitted(false)}
+          className="text-xs text-apple-blue hover:underline mt-2 font-medium"
+        >
+          Submit another application
+        </motion.button>
+      </div>
+    );
+  }
 
   return (
     <form 
