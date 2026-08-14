@@ -15,6 +15,19 @@ export default function WorkPage() {
 
   const projects = [
     { 
+      title: "Framer SaaS", 
+      category: (
+        <>
+          <strong>Premium SaaS landing page promo</strong> with sleek motion and modern design language.
+        </>
+      ), 
+      videoUrl: "https://youtu.be/1t3an_iisDY",
+      themeColor: "#0A0A0A",
+      textColorTheme: "light" as const,
+      tag: "SaaS Promo",
+      type: "commercial" as const
+    },
+    { 
       title: "Todoist Explainer", 
       category: (
         <>
@@ -90,20 +103,6 @@ export default function WorkPage() {
       themeColor: "#0E0F13",
       textColorTheme: "light" as const,
       tag: "Walkthrough",
-      type: "commercial" as const
-    },
-    { 
-      title: "WTM Explainer Video", 
-      category: (
-        <>
-          <strong>Complex features made instantly clear</strong> in 60 seconds or less.
-        </>
-      ), 
-      videoUrl: "https://youtu.be/L3MB9hYLbBI", 
-      thumbnailUrl: "https://img.youtube.com/vi/L3MB9hYLbBI/hqdefault.jpg",
-      themeColor: "#120E16",
-      textColorTheme: "light" as const,
-      tag: "Explainer",
       type: "commercial" as const
     },
     { 

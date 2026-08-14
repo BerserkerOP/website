@@ -18,6 +18,18 @@ const projects: Array<{
   tag: string;
 }> = [
   {
+    title: "Framer SaaS",
+    category: (
+      <>
+        <strong>Premium SaaS landing page promo</strong> with sleek motion and modern design language.
+      </>
+    ),
+    videoUrl: "https://youtu.be/1t3an_iisDY",
+    themeColor: "#0A0A0A",
+    textColorTheme: "light" as const,
+    tag: "SaaS Promo"
+  },
+  {
     title: "Todoist Explainer",
     category: (
       <>
@@ -40,18 +52,6 @@ const projects: Array<{
     themeColor: "#0A0D14",
     textColorTheme: "light" as const,
     tag: "SaaS Demo"
-  },
-  {
-    title: "Instagram Explainer",
-    category: (
-      <>
-        <strong>High-fidelity rap visualizer</strong> featuring custom rapid text-tracking.
-      </>
-    ),
-    videoUrl: "https://youtube.com/shorts/G3eaRQawEjs?si=8HubGyRk-OL0s1cw",
-    themeColor: "#0F172A",
-    textColorTheme: "light" as const,
-    tag: "Typography"
   },
   {
     title: "Vercel Explainer",
