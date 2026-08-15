@@ -13,7 +13,16 @@ export default function WorkPage() {
     { id: 'lyrical' as const, label: "Lyrical & Kinetic" },
   ];
 
-  const projects = [
+  const projects: Array<{
+    title: string;
+    category: React.ReactNode;
+    videoUrl: string;
+    thumbnailUrl?: string;
+    themeColor: string;
+    textColorTheme: 'light' | 'dark';
+    tag: string;
+    type: 'commercial' | 'lyrical';
+  }> = [
     { 
       title: "Framer SaaS", 
       category: (
