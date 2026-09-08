@@ -83,3 +83,6 @@
 .is-expanded .featured-caption{padding:15px 20px}
 .is-expanded .close-film{z-index:4}
 @media(max-width:700px){.is-expanded .featured-caption .text-link{font-size:10px;gap:8px}.hero-feature.is-expanded{width:94vw}}
+@media(min-width:701px) and (max-width:900px){.navigation{padding-inline:24px}.nav-links{gap:13px;font-size:13px}.navigation .wordmark{font-size:18px}.navigation .brand-mark{margin-right:8px;width:30px;height:32px;line-height:30px;font-size:30px}.nav-contact{padding:10px 12px;gap:8px}}
+
+.about-grid .film{aspect-ratio:16/9}
