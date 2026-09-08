@@ -86,3 +86,25 @@
 @media(min-width:701px) and (max-width:900px){.navigation{padding-inline:24px}.nav-links{gap:13px;font-size:13px}.navigation .wordmark{font-size:18px}.navigation .brand-mark{margin-right:8px;width:30px;height:32px;line-height:30px;font-size:30px}.nav-contact{padding:10px 12px;gap:8px}}
 
 .about-grid .film{aspect-ratio:16/9}
+/* HalftoneMotion: the original Apple-inspired light palette. */
+:root{color-scheme:light;--bg:#f8f9fa;--paper:#191919;--lime:#007aff;--muted:#626267;--line:#e5e5e7;--apple-bg:#f8f9fa;--apple-card:#fff;--apple-text:#191919;--apple-subtext:#4c4c4d;--apple-border:#e5e5e7;--apple-blue:#007aff;--apple-blue-hover:#1e6ef4;--apple-gray:#f2f2f7}
+body{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Arial,sans-serif}
+::selection{background:#cde4ff;color:#191919}
+.navigation{background:rgba(248,249,250,.94);backdrop-filter:blur(20px)}
+.navigation .wordmark,.footer-bottom .wordmark{font-weight:400;font-size:24px;letter-spacing:-1.1px}
+.nav-contact{border-color:#d1d1d6}.nav-contact:hover{background:#edf5ff;border-color:#007aff}.nav-links>a:hover,.nav-links>a[aria-current]{color:#0066d6}
+.eyebrow,.second,.about em,.contact-page em,.plus{color:#0066d6}
+.button-lime{background:#007aff;color:#fff}.button-lime:hover{background:#0069db}
+.text-link{border-color:#c3c7ce}.discipline-strip{color:#626267}
+.film{background:#e5e5e7;border-color:#dedee3}.film .play-circle{color:#fff}
+.film:hover .play-circle{background:#007aff;color:#fff;border-color:#007aff}
+.hero-film,.featured-inline{border-color:#fff;box-shadow:0 12px 35px #18283b12}
+.featured-inline.has-started{box-shadow:0 8px 24px #18283b12}
+.timeline{color:#626267}.timeline-track{background:repeating-linear-gradient(90deg,transparent 0,transparent 29px,#d1d1d6 30px)}
+.timeline-clip{background:#e4e7ec;color:#45454a;border-color:#9298a2}.timeline-clip:nth-child(2){background:#dce8f7;color:#344b67;border-color:#7299c7}.timeline-clip.lime{background:#d3e8ff;color:#0058b7;border-color:#007aff}
+.process-section{background:#f0f1f5;color:#191919}.process-section .eyebrow{color:#0066d6}.process-section p{color:#626267}.process-tabs button,.process-tabs button:last-child{border-color:#d7d9df}.process-tabs .mono{border-color:#d7d9df}.process-tabs button[aria-selected=true] .mono{background:#007aff;color:#fff}.process-tabs button:focus-visible{outline-color:#007aff}.process-panel{background:#fff;border:1px solid #e5e5e7}.giant-number{color:#eef3fa}.step-progress span{background:#e4e8ef}.step-progress .filled{background:#007aff}
+footer{background:#edf2f8;color:#191919}.footer-top .eyebrow{color:#626267}.footer-cta svg{color:#007aff}.footer-bottom{border-color:#d8dfe8}
+.contact-form{background:#fff;border-color:#e5e5e7}.enquiry input:not([type=radio]),.enquiry select,.enquiry textarea{background:#f8f9fa;color:#191919;border-color:#d1d1d6}.enquiry input::placeholder,.enquiry textarea::placeholder{color:#77777d}.contact-options span{border-color:#d1d1d6}.contact-options input:checked+span{background:#007aff;border-color:#007aff;color:#fff}.contact-form button[type=submit]{color:#fff!important}.contact-form .form-error{color:#b42318}
+.film-dialog{background:#fff;border-color:#e5e5e7;color:#191919}.close-film{background:#fff;border-color:#d1d1d6;color:#191919}.player-message{background:#f2f2f7;color:#191919}.hero-feature.is-expanded{background:#fff}.is-expanded .featured-inline{box-shadow:none}.skip-link{background:#007aff;color:#fff}
+@media(max-width:700px){.nav-links{background:#f8f9fa}.navigation .wordmark{font-size:22px}}
+@media(min-width:701px) and (max-width:900px){.navigation .wordmark{font-size:20px}}
