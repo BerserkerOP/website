@@ -121,3 +121,10 @@ footer{background:#edf2f8;color:#191919}.footer-top .eyebrow{color:#626267}.foot
 .project-caption h3{font-size:18px}
 .about-grid .film{width:94%;justify-self:center}
 @media(max-width:700px){.hero-feature:not(.is-expanded){width:96%;justify-self:center}.work-grid{gap:32px}.film,.featured-inline{border-radius:10px}.about-grid .film{width:100%}}
+
+/* One shared column edge for portfolio headings, films and captions. */
+.portfolio-section{max-width:1120px}
+.portfolio-section .work-grid{max-width:none;width:100%;margin:0}
+.portfolio-section .project:nth-child(even){padding-top:0}
+.portfolio-section .project-caption{align-items:flex-start}
+.timeline-label{white-space:nowrap}
