@@ -108,3 +108,16 @@ footer{background:#edf2f8;color:#191919}.footer-top .eyebrow{color:#626267}.foot
 .film-dialog{background:#fff;border-color:#e5e5e7;color:#191919}.close-film{background:#fff;border-color:#d1d1d6;color:#191919}.player-message{background:#f2f2f7;color:#191919}.hero-feature.is-expanded{background:#fff}.is-expanded .featured-inline{box-shadow:none}.skip-link{background:#007aff;color:#fff}
 @media(max-width:700px){.nav-links{background:#f8f9fa}.navigation .wordmark{font-size:22px}}
 @media(min-width:701px) and (max-width:900px){.navigation .wordmark{font-size:20px}}
+/* Smaller, borderless film cards with quiet rounded edges. */
+.work-grid{max-width:1120px;margin-inline:auto;gap:50px 40px}
+.film,.featured-inline,.hero-film{border:0;border-radius:14px;box-shadow:none;aspect-ratio:16/9}
+.hero-feature:not(.is-expanded){width:90%;justify-self:end;padding:0}
+.featured-inline.has-started{box-shadow:none}
+.film img{filter:none;transform:scale(1)}
+.film:not(.featured-inline):hover img{transform:scale(1.025)}
+.film-shade{background:linear-gradient(180deg,rgba(0,0,0,.15),transparent 30%,transparent 65%,rgba(0,0,0,.3))}
+.film-bottom{display:none}
+.film-top{font-size:10px;text-shadow:0 1px 5px #0008}
+.project-caption h3{font-size:18px}
+.about-grid .film{width:94%;justify-self:center}
+@media(max-width:700px){.hero-feature:not(.is-expanded){width:96%;justify-self:center}.work-grid{gap:32px}.film,.featured-inline{border-radius:10px}.about-grid .film{width:100%}}

@@ -3,7 +3,7 @@
 export default function GridBackground() {
   return (
     <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-      {/* Full-page SVG grid — both vertical and horizontal lines, like Clip Masters */}
+      {/* Full-page SVG grid · both vertical and horizontal lines, like Clip Masters */}
       <svg
         className="absolute inset-0 w-full h-full"
         xmlns="http://www.w3.org/2000/svg"

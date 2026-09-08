@@ -170,7 +170,7 @@ export default function Navbar() {
             >
               <LayoutGroup id="nav-active-pill">
               {NAV_LINKS.map((link) => {
-                  // Only the truly active route gets the pill — hovering shows NO background
+                  // Only the truly active route gets the pill · hovering shows NO background
                   const isSelected = activeTab === link.name;
                   const isHov = hoveredTab === link.name;
 
@@ -188,7 +188,7 @@ export default function Navbar() {
                     >
                       <span className="relative z-10">{link.name}</span>
 
-                      {/* Active-only pill — no pill on hover */}
+                      {/* Active-only pill · no pill on hover */}
                       {isSelected && (
                         <motion.div
                           layoutId="liquidActiveTab"

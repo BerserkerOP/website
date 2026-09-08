@@ -58,7 +58,7 @@ export default function ProjectCard({
         data-hide-cursor
         className="group relative flex flex-col cursor-none"
       >
-        {/* View Project badge — follows cursor */}
+        {/* View Project badge · follows cursor */}
         {isHovered && (
           <motion.div
             initial={{ opacity: 0, scale: 0.85 }}
