@@ -39,3 +39,47 @@
 @keyframes dialog-arrive{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
 @keyframes backdrop-arrive{from{opacity:0}to{opacity:1}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+/* Playback drives the composition. Ambient movement yields to the films. */
+.kinetic{animation:none}
+.hero .title-line{animation:clean-title .85s .08s both cubic-bezier(.22,1,.36,1)}
+.hero .title-line.second{animation-delay:.17s}
+.hero-meta{animation-duration:.55s}
+.hero-intro{animation-duration:.65s;animation-delay:.3s}
+.hero-feature{animation:soft-arrive .8s .38s both cubic-bezier(.22,1,.36,1)}
+.hero .timeline{animation-delay:.5s;animation-duration:.65s}
+@keyframes clean-title{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.featured-inline{transform:none;aspect-ratio:16/9;min-height:200px;box-shadow:10px 10px 0 #1b1e17;border-width:3px}
+.featured-inline>img{position:absolute;inset:0}
+.featured-inline.has-started>img{visibility:hidden}
+.featured-inline.has-started{box-shadow:5px 5px 0 #1b1e17}
+.inline-mount,.youtube-host,.youtube-host iframe{width:100%;height:100%;border:0}
+.inline-mount{position:absolute;inset:0}
+.featured-inline:not(.has-started) .inline-mount{pointer-events:none}
+.youtube-host iframe{display:block;min-height:200px}
+.featured-caption{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:22px 0 0}
+.featured-caption>span{font-size:19px;letter-spacing:-.5px}
+.featured-caption button{background:none;border-top:0;border-left:0;border-right:0;border-radius:0;padding:8px 0;min-height:38px;font-size:11px}
+.synced-timeline{grid-column:1/-1;width:100%;margin-top:0}
+.synced-timeline .timeline-track i{animation:none;transition:none;pointer-events:none;z-index:2}
+.synced-timeline .timeline-track{gap:4px}
+.synced-timeline .timeline-clip{flex:1;width:auto;margin-top:0}
+.timeline-track input{position:absolute;inset:-12px 0;width:100%;height:50px;opacity:0;cursor:ew-resize;margin:0;z-index:3}
+.timeline-track:has(input:focus-visible){outline:2px solid var(--lime);outline-offset:8px}
+.timeline-toggle{display:grid;place-items:center;background:none;border:1px solid var(--line);width:34px;height:34px;flex-shrink:0;border-radius:50%}
+.timeline-toggle:disabled{opacity:.45}
+.playback-time{font-variant-numeric:tabular-nums;white-space:nowrap}
+.modal-mount{aspect-ratio:16/9;min-height:200px}
+.player-message{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:15px;background:#171a13;color:var(--paper);margin:0;padding:25px;font-size:15px;text-align:center}
+.player-message a{text-decoration:underline}
+.featured-dialog .player-message{position:relative}
+.hero-lower{row-gap:36px}
+.film:not(.featured-inline) img{transition:transform .65s cubic-bezier(.22,1,.36,1),filter .4s}
+.film:not(.featured-inline):hover img{transform:scale(1.045)}
+@media(max-width:700px){.hero-lower{row-gap:28px}.featured-caption{gap:10px}.featured-caption>span{font-size:17px}.featured-caption button{font-size:10px;gap:8px}.synced-timeline{gap:10px}.synced-timeline .playback-time{font-size:10px}.hero-feature{padding:0 7px 0 0}.synced-timeline .timeline-track{min-width:0}.timeline-toggle{width:30px;height:30px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+.featured-backdrop{position:fixed;inset:0;background:#000d;backdrop-filter:blur(10px);z-index:90;animation:backdrop-arrive .25s ease}
+.hero-feature.is-expanded{position:fixed;z-index:91;left:50%;top:50%;width:min(1100px,92vw);transform:translate(-50%,-50%);padding:0;background:#151712;animation:none;max-height:85dvh;overflow:visible}
+.is-expanded .featured-inline{box-shadow:none;max-height:72dvh}
+.is-expanded .featured-caption{padding:15px 20px}
+.is-expanded .close-film{z-index:4}
+@media(max-width:700px){.is-expanded .featured-caption .text-link{font-size:10px;gap:8px}.hero-feature.is-expanded{width:94vw}}
