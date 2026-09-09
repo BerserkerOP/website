@@ -15,7 +15,7 @@ export default function InteractiveTitle({ text }: { text: string }) {
           whileHover={
             reduceMotion
               ? undefined
-              : { color: 'var(--lime)', y: -7, rotate: index % 2 ? 2 : -2, scale: 1.04 }
+              : { y: -7, rotate: index % 2 ? 2 : -2, scale: 1.04 }
           }
           transition={{ type: 'spring', stiffness: 480, damping: 23 }}
         >

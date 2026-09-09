@@ -190,7 +190,7 @@ main{position:relative;background:none}
 .route-page{position:relative}.route-wipe{position:fixed;inset:0;z-index:80;background:var(--lime);transform-origin:top;pointer-events:none}
 
 /* Character-level hero motion */
-.interactive-title{display:inline-flex;white-space:nowrap}.title-character,.title-space{display:inline-block;will-change:transform,color}
+.interactive-title{display:inline-flex;white-space:nowrap}.title-character,.title-space{display:inline-block;color:inherit;will-change:transform}.title-character{transition:color .2s ease}.title-character:hover{color:var(--lime)}
 .hero-lower{grid-template-columns:1fr auto}.hero-scroll-cue{align-self:end;display:flex;align-items:center;gap:10px;color:var(--muted);padding-bottom:12px}
 
 /* Spotlight built directly into the editorial grid. */
