@@ -13,11 +13,9 @@ export function SmoothScroll() {
 
     const lenis = new Lenis({
       autoRaf: true,
-      duration: 1,
+      duration: 0.38,
       smoothWheel: true,
-      easing: (time) => time < 0.5
-        ? 4 * time * time * time
-        : 1 - Math.pow(-2 * time + 2, 3) / 2,
+      easing: (time) => 1 - Math.pow(1 - time, 3),
     });
 
     return () => lenis.destroy();
