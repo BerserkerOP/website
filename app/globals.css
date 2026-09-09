@@ -133,8 +133,6 @@ footer{background:#edf2f8;color:#191919}.footer-top .eyebrow{color:#626267}.foot
 .appearance-toggle span{display:flex;animation:theme-icon .4s ease}
 .navigation .nav-links{margin-left:auto}
 body,.navigation,footer,.process-section,.process-panel,.contact-form{transition:background-color .35s,color .35s,border-color .35s}
-/* A theme change must update foreground and background together; otherwise the navigation briefly loses contrast. */
-html.theme-changing,html.theme-changing *,html.theme-changing *:before,html.theme-changing *:after{transition:none!important}
 .dark{color-scheme:dark;--bg:#101113;--paper:#f5f5f7;--lime:#409cff;--muted:#a1a1a8;--line:#303238;--apple-bg:#101113;--apple-card:#1c1c1e;--apple-text:#f5f5f7;--apple-subtext:#a1a1a8;--apple-border:#38383a;--apple-blue:#409cff;--apple-blue-hover:#68b0ff;--apple-gray:#28292d}
 .dark .navigation,.dark .nav-links{background:rgba(16,17,19,.96)}
 .dark .nav-contact,.dark .text-link{border-color:#45474f}.dark .nav-contact:hover{background:#182536;border-color:#409cff}
@@ -160,3 +158,57 @@ html.theme-changing,html.theme-changing *,html.theme-changing *:before,html.them
 @media(max-width:700px){.appearance-toggle{order:0;margin-left:auto;margin-right:12px}.navigation .nav-links{margin-left:0}}
 @media(min-width:701px) and (max-width:1050px){.appearance-toggle{margin-left:14px;width:36px;height:36px}.navigation{padding-inline:24px}.navigation .wordmark{font-size:20px}.nav-links{gap:12px;font-size:13px}.nav-contact{padding:10px 12px;gap:8px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.project .film:hover{transform:none}}
+
+/* Editorial composition grid */
+:root{--grid-line:rgba(25,25,25,.055)}.dark{--grid-line:rgba(255,255,255,.055)}
+main{background-image:linear-gradient(to right,var(--grid-line) 1px,transparent 1px),linear-gradient(to bottom,var(--grid-line) 1px,transparent 1px);background-size:clamp(56px,7vw,108px) clamp(56px,7vw,108px);background-position:center top}
+.section-heading{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px 0}
+.portfolio-section .work-grid{gap:1px;background:var(--line);border:1px solid var(--line)}
+.portfolio-section .project{background:var(--bg);padding:20px}
+.process-layout,.quotes,.faq{border-inline:1px solid var(--line);padding-inline:clamp(20px,3vw,44px)}
+.discipline-strip{background:var(--bg)}
+
+/* Branded loading and route transitions */
+.first-visit-intro{position:fixed;inset:0;z-index:999;background:var(--bg);color:var(--paper);display:grid;place-items:center}
+.intro-lockup{display:flex;gap:.15em;font-size:clamp(38px,8vw,118px);font-weight:760;letter-spacing:-.075em}
+.intro-lockup span:last-child{color:var(--lime)}
+.intro-progress{position:absolute;left:8vw;right:8vw;bottom:8vh;height:1px;background:var(--line);overflow:hidden}
+.intro-progress i{display:block;width:100%;height:100%;background:var(--lime);transform-origin:left}
+.route-page{position:relative}.route-wipe{position:fixed;inset:0;z-index:80;background:var(--lime);transform-origin:top;pointer-events:none}
+
+/* Character-level hero motion */
+.interactive-title{display:inline-flex;white-space:nowrap}.title-character,.title-space{display:inline-block;will-change:transform,color}
+.hero-lower{grid-template-columns:1fr auto}.hero-scroll-cue{align-self:end;display:flex;align-items:center;gap:10px;color:var(--muted);padding-bottom:12px}
+
+/* Scroll-driven MacBook spotlight */
+.spotlight-scroll{height:185vh;position:relative;border-block:1px solid var(--line);background:var(--bg)}
+.spotlight-sticky{position:sticky;top:0;height:100vh;min-height:700px;padding-top:24px;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.spotlight-heading{position:absolute;top:28px;left:50%;transform:translateX(-50%);display:flex;justify-content:space-between;align-items:center}
+.spotlight-heading .eyebrow{margin:0}.spotlight-heading>.mono{color:var(--muted)}
+.device-scene{position:relative;width:min(850px,78vw);height:min(610px,68vh);margin:35px auto 0;perspective:1500px;transform-style:preserve-3d;z-index:2}
+.macbook-lid{position:absolute;left:8%;right:8%;bottom:17%;aspect-ratio:16/10;transform-origin:50% 100%;transform-style:preserve-3d;z-index:3}
+.macbook-screen{position:absolute;inset:0;background:linear-gradient(145deg,#989ba2,#e9e9ed 48%,#92959b);border-radius:18px 18px 8px 8px;padding:9px;box-shadow:0 20px 45px #0004}
+.macbook-screen:before{content:'';position:absolute;top:4px;left:50%;width:5px;height:5px;background:#444;border-radius:50%;z-index:4}
+.mac-desktop{position:relative;width:100%;height:100%;overflow:hidden;border-radius:11px;background:radial-gradient(circle at 65% 20%,#278cff 0,#143a77 33%,#07111f 78%);color:#fff}
+.mac-menu{height:22px;background:#ffffff20;backdrop-filter:blur(12px);display:flex;justify-content:space-between;align-items:center;padding:0 10px;font:8px -apple-system,BlinkMacSystemFont,sans-serif}
+.mac-app{position:absolute;left:12%;right:12%;top:12%;bottom:12%;transform-origin:50% 100%}
+.mac-app .hero-feature{width:100%;height:100%;padding:0;background:#f6f6f6;border:1px solid #ffffff70;border-radius:10px;box-shadow:0 20px 55px #0008;overflow:hidden;color:#171717}
+.mac-window-bar{height:25px;background:#e9e9ea;display:flex;align-items:center;justify-content:center;font:7px 'Courier New',monospace;letter-spacing:.08em;position:relative}
+.mac-window-bar>span{position:absolute;left:9px;display:flex;gap:4px}.mac-window-bar i{width:6px;height:6px;border-radius:50%;background:#ff5f57}.mac-window-bar i:nth-child(2){background:#febc2e}.mac-window-bar i:nth-child(3){background:#28c840}
+.mac-app .featured-inline{position:absolute;inset:25px 0 27px;width:100%;height:auto;min-height:0;border-radius:0;aspect-ratio:auto}
+.mac-app .featured-caption{position:absolute;bottom:0;left:0;right:0;height:27px;padding:0 10px;color:#171717;font-size:8px}
+.mac-app .featured-caption>span{font-size:8px}.mac-app .featured-caption .text-link{padding:0;border:0;font-size:6px;gap:4px;background:none;color:#171717}
+.mac-app .play-circle{width:48px;height:48px}.mac-app .play-circle:disabled{opacity:.4;cursor:default}
+.mac-dock{position:absolute;bottom:5px;left:50%;transform:translateX(-50%);height:27px;padding:4px 6px;display:flex;gap:5px;border:1px solid #ffffff45;border-radius:8px;background:#ffffff2f;backdrop-filter:blur(16px)}
+.mac-dock span{display:grid;place-items:center;width:18px;height:18px;border-radius:4px;background:linear-gradient(145deg,#fff,#aeb4bf)}.mac-dock span:first-child{background:linear-gradient(90deg,#8bd3ff 50%,#eaf7ff 50%)}.mac-dock span:nth-child(2){background:#171717;color:#fff;font:bold 10px Arial}.mac-dock span:nth-child(3){background:linear-gradient(145deg,#ffb050,#ff6248)}.mac-dock span:nth-child(4){background:linear-gradient(145deg,#72d587,#15994d)}
+.macbook-base{position:absolute;left:3%;right:3%;bottom:12%;height:7%;background:linear-gradient(#e8e9eb,#8c9097);clip-path:polygon(5% 0,95% 0,100% 70%,84% 100%,16% 100%,0 70%);border-radius:3px;z-index:4;box-shadow:0 13px 20px #0005}
+.macbook-base i{display:block;width:13%;height:28%;margin:auto;background:#93969d;border-radius:0 0 8px 8px}
+.stone-plinth{position:absolute;left:20%;right:20%;bottom:-8%;height:28%;background:radial-gradient(circle at 70% 10%,#555 0,#292a2c 35%,#111 100%);clip-path:polygon(8% 5%,85% 0,96% 22%,90% 100%,15% 94%,3% 60%);filter:drop-shadow(0 25px 24px #0005)}
+.spotlight-scroll .synced-timeline{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);z-index:6;background:var(--bg);padding-inline:0}
+.device-scene:has(.is-expanded),.macbook-lid:has(.is-expanded),.macbook-screen:has(.is-expanded),.mac-desktop:has(.is-expanded),.mac-app:has(.is-expanded){transform:none!important}
+.mac-app .hero-feature.is-expanded{position:fixed;inset:50% auto auto 50%;width:min(1100px,92vw);height:auto;aspect-ratio:16/10;transform:translate(-50%,-50%);z-index:101;overflow:visible;background:var(--apple-card);color:var(--paper)}
+.mac-app .hero-feature.is-expanded .featured-inline{bottom:35px}.mac-app .hero-feature.is-expanded .featured-caption{height:35px;font-size:14px;padding-inline:16px;color:var(--paper)}.mac-app .hero-feature.is-expanded .featured-caption>span{font-size:14px}.mac-app .hero-feature.is-expanded .featured-caption .text-link{font-size:10px;color:var(--paper)}
+.mac-app .hero-feature.is-expanded .close-film{top:-46px}
+
+@media(max-width:700px){main{background-size:52px 52px}.portfolio-section .project{padding:10px}.intro-lockup{flex-direction:column;gap:0}.hero-lower{grid-template-columns:1fr}.hero-scroll-cue{margin-left:auto}.spotlight-scroll{height:155vh}.spotlight-sticky{min-height:580px}.device-scene{width:96vw;height:56vh}.macbook-lid{left:3%;right:3%;bottom:22%}.macbook-base{left:0;right:0;bottom:18%}.stone-plinth{left:12%;right:12%;bottom:1%}.mac-app{left:5%;right:5%;top:10%;bottom:12%}.spotlight-scroll .synced-timeline{bottom:12px}.spotlight-heading{top:20px}.mac-app .featured-caption>span{display:none}.mac-app .featured-caption .text-link{margin-left:auto}.mac-menu{font-size:6px}}
+@media(prefers-reduced-motion:reduce){.spotlight-scroll{height:auto}.spotlight-sticky{position:relative;height:auto;min-height:650px}.device-scene,.macbook-lid,.mac-desktop,.mac-app{transform:none!important}.mac-desktop,.mac-app{opacity:1!important}}
