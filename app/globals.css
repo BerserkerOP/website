@@ -195,7 +195,7 @@ main{position:relative;background:none}
 .route-page{position:relative}.route-wipe{position:fixed;inset:0;z-index:80;background:var(--lime);transform-origin:top;pointer-events:none}
 
 /* Character-level hero motion */
-.interactive-title{display:inline-flex;white-space:nowrap}.title-character,.title-space{display:inline-block;color:inherit;will-change:transform}.title-character{transition:color .2s ease}.title-character:hover{color:var(--lime)}
+.interactive-title{display:inline-flex;white-space:nowrap;user-select:none;-webkit-user-select:none}.title-character,.title-space{display:inline-block;color:inherit;will-change:transform}.title-character{transition:color .2s ease}.title-character:hover{color:var(--lime)}
 .hero-lower{grid-template-columns:1fr auto}.hero-scroll-cue{align-self:end;display:flex;align-items:center;gap:10px;color:var(--muted);padding-bottom:12px}
 
 /* Spotlight built directly into the editorial grid. */
@@ -214,3 +214,7 @@ main{position:relative;background:none}
 
 @media(max-width:1000px){.wrap{width:calc(100% - 64px)}.navigation{padding-inline:32px}.section.wrap,.process-section>.wrap{padding-inline:18px}.spotlight-copy{padding:24px 18px}.spotlight-heading,.spotlight-grid .synced-timeline{padding-inline:18px}}
 @media(max-width:700px){.wrap{width:calc(100% - 40px);box-shadow:none}.navigation{padding-inline:20px}.hero,.section.wrap,.process-section>.wrap{padding-inline:0}.section,.faq{border:0}.inner-page,.section-heading,.section-heading>*,h1,h2,h3{text-align:left}.hero-meta span:last-child{text-align:left}.intro-lockup{flex-direction:column;gap:0}.hero-lower{grid-template-columns:1fr}.hero-scroll-cue{margin-left:0}.section-heading{display:flex;grid-template-columns:none;gap:20px;border:0;padding-bottom:0;margin-bottom:30px}.section-heading>:last-child{padding-left:0}.portfolio-section .work-grid{gap:32px}.portfolio-section .project{padding:0}.process-layout,.quotes,.faq{border:0}.spotlight-grid,.spotlight-frame{border:0}.spotlight-heading{min-height:62px;border:0;padding-inline:0;text-align:left}.spotlight-heading>.mono{font-size:9px}.spotlight-layout{grid-template-columns:1fr}.spotlight-copy{min-height:210px;border:0;padding-inline:0;text-align:left}.spotlight-copy h2{margin:34px 0 8px}.spotlight-copy p{margin:0;max-width:330px}.spotlight-layout>.hero-feature:not(.is-expanded){padding:12px 0}.spotlight-grid .synced-timeline{border:0;padding:18px 0}.spotlight-layout .featured-caption{padding-top:14px}.footer-nav{grid-template-columns:1fr 1fr;margin-bottom:24px}.footer-nav a{padding:18px 12px;border-bottom:1px solid #d8dfe8;font-size:16px}.footer-nav a:first-child{padding-left:12px}.footer-nav a:last-child{padding-right:12px;border-bottom:0}.footer-nav a:nth-child(even){border-right:0}.footer-nav a:nth-last-child(2){border-bottom:0}.dark .footer-nav a{border-bottom-color:#303947}}
+
+/* Keep the reel timeline and specialties inside one continuous grid frame. */
+.spotlight-grid{border-bottom:0}
+.discipline-strip{border-top:0;margin-top:0}

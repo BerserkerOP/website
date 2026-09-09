@@ -1,8 +1,30 @@
 'use client';
 
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import Lenis from 'lenis';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
+
+export function SmoothScroll() {
+  const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (reduceMotion) return;
+
+    const lenis = new Lenis({
+      autoRaf: true,
+      duration: 1,
+      smoothWheel: true,
+      easing: (time) => time < 0.5
+        ? 4 * time * time * time
+        : 1 - Math.pow(-2 * time + 2, 3) / 2,
+    });
+
+    return () => lenis.destroy();
+  }, [reduceMotion]);
+
+  return null;
+}
 
 export function FirstVisitIntro() {
   const reduceMotion = useReducedMotion();
