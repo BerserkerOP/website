@@ -58,7 +58,7 @@ export default function CustomCursor() {
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[9999] hidden md:block">
-      {/* Single solid dot at cursor tail — no ring */}
+      {/* Single solid dot at cursor tail · no ring */}
       <motion.div
         className="fixed top-0 left-0 rounded-full bg-black dark:bg-white"
         style={{

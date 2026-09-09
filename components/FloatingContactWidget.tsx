@@ -12,7 +12,7 @@ export default function FloatingContactWidget() {
 
   return (
     <>
-      {/* === HEAVY FROSTED BLUR ZONE — wide diffused backdrop behind widget === */}
+      {/* === HEAVY FROSTED BLUR ZONE · wide diffused backdrop behind widget === */}
       {/* Layer 1: tall color fade */}
       <div
         className="pointer-events-none fixed bottom-0 inset-x-0 z-40"
@@ -33,7 +33,7 @@ export default function FloatingContactWidget() {
         }}
       />
 
-      {/* Outer Floating Wrapper — hover anywhere on glass to trigger */}
+      {/* Outer Floating Wrapper · hover anywhere on glass to trigger */}
       <div 
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
@@ -70,7 +70,7 @@ export default function FloatingContactWidget() {
               }}
             />
 
-            {/* Left Text Label — slides out left & fades when hovered */}
+            {/* Left Text Label · slides out left & fades when hovered */}
             <div 
               className="absolute left-0 top-0 bottom-0 flex items-center pl-5 z-10 pointer-events-none"
               style={{
@@ -84,7 +84,7 @@ export default function FloatingContactWidget() {
               </span>
             </div>
 
-            {/* Black Contact Button — anchored right, smoothly expands left to fill */}
+            {/* Black Contact Button · anchored right, smoothly expands left to fill */}
             <div 
               className="absolute top-[3px] bottom-[3px] right-[3px] flex items-center justify-center gap-2 rounded-full z-20 overflow-hidden text-white"
               style={{
