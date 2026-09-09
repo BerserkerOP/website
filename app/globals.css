@@ -178,6 +178,7 @@ main{position:relative;background:none}
  .wrap:not(.hero){box-shadow:-1px 0 var(--grid-line),1px 0 var(--grid-line)}
  .section:before{content:'';position:absolute;z-index:0;top:0;left:50%;width:100vw;border-top:1px solid var(--grid-line);transform:translateX(-50%);pointer-events:none}
  footer{position:relative;border-top:1px solid var(--grid-line)}
+ footer>.wrap{padding-inline:24px}
 }
 
 /* Branded loading and route transitions */
