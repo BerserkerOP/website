@@ -180,13 +180,13 @@ main{position:relative;background:none}
 
 /* An open sky gives the motion-led hero its own visual world. */
 .hero{width:100%;min-height:calc(100svh - 100px);padding:35px 56px 30px;display:flex;flex-direction:column;overflow:visible;color:#111820;isolation:isolate;z-index:1}
-.hero:before{content:'';position:absolute;inset:-3%;z-index:-2;background-image:linear-gradient(180deg,rgba(255,255,255,.08),rgba(231,245,255,.18)),url('/hero-sky.webp');background-size:cover;background-position:center;transform:scale(1.03);animation:cloud-breathe 18s ease-in-out infinite alternate}
+.hero:before{content:'';position:absolute;inset:0;z-index:-2;background-image:linear-gradient(180deg,rgba(255,255,255,.08),rgba(231,245,255,.18)),url('/hero-sky.webp');background-size:106% 106%;background-position:50% 50%;animation:cloud-breathe 18s ease-in-out infinite alternate}
 .hero:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,var(--bg) 0,rgba(248,249,250,.54) 5%,transparent 18%,transparent 73%,rgba(248,249,250,.22) 86%,var(--bg) 100%);pointer-events:none}
 .hero .hero-meta,.hero .hero-scroll-cue,.hero .hero-intro .eyebrow{color:rgba(17,39,57,.68)}
 .hero .hero-intro p{color:#111820}.hero .second{color:#0066d6}.hero .hero-lower{margin-top:auto}
 .dark .hero{color:#f5f5f7}.dark .hero:after{background:linear-gradient(180deg,var(--bg) 0,rgba(16,17,19,.68) 6%,rgba(5,12,24,.26) 19%,rgba(8,18,32,.18) 68%,rgba(16,17,19,.5) 84%,var(--bg) 100%)}
 .dark .hero .hero-meta,.dark .hero .hero-scroll-cue,.dark .hero .hero-intro .eyebrow{color:rgba(245,245,247,.72)}.dark .hero .hero-intro p{color:#f5f5f7}.dark .hero .second{color:#75b7ff}
-@keyframes cloud-breathe{to{transform:scale(1.07) translate3d(-.4%,-.25%,0)}}
+@keyframes cloud-breathe{to{background-position:49.4% 49.65%}}
 .hero>*:not(.cloud-divider){position:relative;z-index:5}
 .cloud-divider{position:absolute;z-index:3;left:0;right:0;bottom:clamp(-190px,-10vw,-100px);width:100%;height:clamp(190px,27vw,420px);overflow:hidden;pointer-events:none}
 .cloud-divider img{position:absolute;width:108%;max-width:none;height:auto;left:-4%;bottom:0;filter:drop-shadow(0 -24px 34px rgba(98,137,168,.12));transform:translate3d(0,0,0) scale(1.015);animation:cloud-foreground 16s ease-in-out infinite alternate;will-change:transform;-webkit-mask-image:linear-gradient(to bottom,#000 0,#000 88%,transparent 100%);mask-image:linear-gradient(to bottom,#000 0,#000 88%,transparent 100%)}
@@ -229,3 +229,4 @@ main{position:relative;background:none}
 @media(max-width:1000px){.section.wrap,.process-section>.wrap{padding-inline:0}.hero{padding-inline:32px}}
 @media(max-width:700px){.hero{width:100%;min-height:calc(100svh - 78px);padding:25px 20px 30px}.hero:before{background-position:55% center}.cloud-divider{height:190px;bottom:-82px}.cloud-divider img{width:205%;left:-52%}}
 @media(prefers-reduced-motion:reduce){.hero:before,.cloud-divider img{animation:none}}
+html,body{overflow-x:hidden}
