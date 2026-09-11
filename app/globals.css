@@ -164,27 +164,29 @@ body,.navigation,footer,.process-section,.process-panel,.contact-form{transition
 @media(min-width:701px) and (max-width:1050px){.appearance-toggle{margin-left:14px;width:36px;height:36px}.navigation{padding-inline:24px}.navigation .wordmark{font-size:20px}.nav-links{gap:12px;font-size:13px}.nav-contact{padding:10px 12px;gap:8px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.project .film:hover{transform:none}}
 
-/* Sparse editorial rails: one central frame, with full-width section rules. */
-:root{--grid-line:rgba(25,25,25,.11);--site-width:1200px}.dark{--grid-line:rgba(255,255,255,.1)}
+/* Wide editorial canvas without the later grid rails. */
 main{position:relative;background:none}
-.wrap{width:min(var(--site-width),calc(100% - 112px));margin-inline:auto}
-.portfolio-section{max-width:var(--site-width)}
-.navigation{padding-inline:max(56px,calc((100vw - var(--site-width))/2))}
-.hero{box-shadow:none;border:0;padding-inline:0}
-.section.wrap,.process-section>.wrap{padding-inline:24px}
+.wrap{width:min(1440px,calc(100% - 112px));margin-inline:auto}
+.navigation{padding-inline:56px}
+.section.wrap,.process-section>.wrap{padding-inline:0}
 .section{position:relative;border-top:0}
-.section-heading{display:grid;grid-template-columns:minmax(0,2fr) minmax(240px,1fr);align-items:end;border-bottom:1px solid var(--grid-line);padding:0 0 28px;margin-bottom:46px}
-.section-heading>:last-child{padding-left:24px}
+.section-heading{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:0;padding:0;margin-bottom:46px}
+.section-heading>:last-child{padding-left:0}
+.portfolio-section{max-width:1120px}
 .portfolio-section .work-grid{background:transparent;border:0;gap:50px 40px}
 .portfolio-section .project{background:transparent;padding:0;border:0}
 .process-layout,.quotes,.faq{border-inline:0;padding-inline:0}
 .discipline-strip{background:var(--bg)}
-@media(min-width:701px){
- .wrap:not(.hero){box-shadow:-1px 0 var(--grid-line),1px 0 var(--grid-line)}
- .section:before{content:'';position:absolute;z-index:0;top:0;left:50%;width:100vw;border-top:1px solid var(--grid-line);transform:translateX(-50%);pointer-events:none}
- footer{position:relative;border-top:1px solid var(--grid-line)}
- footer>.wrap{padding-inline:24px}
-}
+
+/* An open sky gives the motion-led hero its own visual world. */
+.hero{width:100%;min-height:calc(100svh - 100px);padding:35px 56px 30px;display:flex;flex-direction:column;overflow:hidden;color:#111820;isolation:isolate}
+.hero:before{content:'';position:absolute;inset:-3%;z-index:-2;background-image:linear-gradient(180deg,rgba(255,255,255,.08),rgba(231,245,255,.18)),url('/hero-sky.webp');background-size:cover;background-position:center;transform:scale(1.03);animation:cloud-breathe 18s ease-in-out infinite alternate}
+.hero:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(255,255,255,.08),transparent 55%,rgba(235,247,255,.2));pointer-events:none}
+.hero .hero-meta,.hero .hero-scroll-cue,.hero .hero-intro .eyebrow{color:rgba(17,39,57,.68)}
+.hero .hero-intro p{color:#111820}.hero .second{color:#0066d6}.hero .hero-lower{margin-top:auto}
+.dark .hero{color:#f5f5f7}.dark .hero:after{background:linear-gradient(180deg,rgba(5,12,24,.48),rgba(8,18,32,.34) 58%,rgba(6,13,24,.58))}
+.dark .hero .hero-meta,.dark .hero .hero-scroll-cue,.dark .hero .hero-intro .eyebrow{color:rgba(245,245,247,.72)}.dark .hero .hero-intro p{color:#f5f5f7}.dark .hero .second{color:#75b7ff}
+@keyframes cloud-breathe{to{transform:scale(1.07) translate3d(-.4%,-.25%,0)}}
 
 /* Branded loading and route transitions */
 .first-visit-intro{position:fixed;inset:0;z-index:999;background:var(--bg);color:var(--paper);display:grid;place-items:center}
@@ -218,3 +220,7 @@ main{position:relative;background:none}
 /* Keep the reel timeline and specialties inside one continuous grid frame. */
 .spotlight-grid{border-bottom:0}
 .discipline-strip{border-top:0;margin-top:0}
+
+@media(max-width:1000px){.section.wrap,.process-section>.wrap{padding-inline:0}.hero{padding-inline:32px}}
+@media(max-width:700px){.hero{width:100%;min-height:calc(100svh - 78px);padding:25px 20px 30px}.hero:before{background-position:55% center}}
+@media(prefers-reduced-motion:reduce){.hero:before{animation:none}}
