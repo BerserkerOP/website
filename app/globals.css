@@ -188,7 +188,7 @@ main{position:relative;background:none}
 .dark .hero .hero-meta,.dark .hero .hero-scroll-cue,.dark .hero .hero-intro .eyebrow{color:rgba(245,245,247,.72)}.dark .hero .hero-intro p{color:#f5f5f7}.dark .hero .second{color:#75b7ff}
 @keyframes cloud-breathe{to{background-position:49.4% 49.65%}}
 .hero>*:not(.cloud-divider){position:relative;z-index:5}
-.cloud-divider{position:absolute;z-index:3;left:0;right:0;bottom:clamp(-190px,-10vw,-100px);width:100%;height:clamp(190px,27vw,420px);overflow:hidden;pointer-events:none}
+.cloud-divider{position:absolute;z-index:3;left:0;right:0;bottom:clamp(-190px,-10vw,-100px);width:100%;height:clamp(190px,27vw,420px);overflow:visible;pointer-events:none}
 .cloud-divider img{position:absolute;width:108%;max-width:none;height:auto;left:-4%;bottom:0;filter:drop-shadow(0 -24px 34px rgba(98,137,168,.12));transform:translate3d(0,0,0) scale(1.015);animation:cloud-foreground 16s ease-in-out infinite alternate;will-change:transform;-webkit-mask-image:linear-gradient(to bottom,#000 0,#000 88%,transparent 100%);mask-image:linear-gradient(to bottom,#000 0,#000 88%,transparent 100%)}
 .dark .cloud-divider img{filter:brightness(.58) saturate(.65) contrast(1.06) drop-shadow(0 -24px 38px rgba(42,69,98,.22))}
 @keyframes cloud-foreground{to{transform:translate3d(-.7%,-1.5%,0) scale(1.035)}}
