@@ -180,7 +180,7 @@ main{position:relative;background:none}
 
 /* An open sky gives the motion-led hero its own visual world. */
 .hero{width:100%;min-height:calc(100svh - 100px);padding:35px 56px 30px;display:flex;flex-direction:column;overflow:visible;color:#111820;isolation:isolate;z-index:1}
-.hero:before{content:'';position:absolute;inset:0;z-index:-2;background-image:linear-gradient(180deg,rgba(255,255,255,.08),rgba(231,245,255,.18)),url('/hero-sky.webp');background-size:106% 106%;background-position:50% 50%;animation:cloud-breathe 18s ease-in-out infinite alternate}
+.hero:before{content:'';position:absolute;inset:0;z-index:-2;background-image:linear-gradient(180deg,rgba(255,255,255,.08),rgba(231,245,255,.18)),url('/clear-sky.webp');background-size:106% 106%;background-position:50% 50%;animation:cloud-breathe 18s ease-in-out infinite alternate}
 .hero:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,var(--bg) 0,rgba(248,249,250,.54) 5%,transparent 18%,transparent 73%,rgba(248,249,250,.22) 86%,var(--bg) 100%);pointer-events:none}
 .hero .hero-meta,.hero .hero-scroll-cue,.hero .hero-intro .eyebrow{color:rgba(17,39,57,.68)}
 .hero .hero-intro p{color:#111820}.hero .second{color:#0066d6}.hero .hero-lower{margin-top:auto}
