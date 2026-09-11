@@ -184,13 +184,13 @@ main{position:relative;background:none}
 .hero:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,var(--bg) 0,rgba(248,249,250,.54) 5%,transparent 18%,transparent 73%,rgba(248,249,250,.22) 86%,var(--bg) 100%);pointer-events:none}
 .hero .hero-meta,.hero .hero-scroll-cue,.hero .hero-intro .eyebrow{color:rgba(17,39,57,.68)}
 .hero .hero-intro p{color:#111820}.hero .second{color:#0066d6}.hero .hero-lower{margin-top:auto}
-.dark .hero{color:#f5f5f7}.dark .hero:after{background:linear-gradient(180deg,var(--bg) 0,rgba(16,17,19,.68) 6%,rgba(5,12,24,.26) 19%,rgba(8,18,32,.18) 68%,rgba(16,17,19,.5) 84%,var(--bg) 100%)}
+.dark .hero{color:#f5f5f7}.dark .hero:after{background:linear-gradient(180deg,var(--bg) 0,rgba(10,17,29,.92) 6%,rgba(7,18,38,.88) 19%,rgba(8,20,39,.88) 68%,rgba(16,17,19,.94) 84%,var(--bg) 100%)}
 .dark .hero .hero-meta,.dark .hero .hero-scroll-cue,.dark .hero .hero-intro .eyebrow{color:rgba(245,245,247,.72)}.dark .hero .hero-intro p{color:#f5f5f7}.dark .hero .second{color:#75b7ff}
 @keyframes cloud-breathe{to{background-position:49.4% 49.65%}}
 .hero>*:not(.cloud-divider){position:relative;z-index:5}
 .cloud-divider{position:absolute;z-index:3;left:0;right:0;bottom:clamp(-190px,-10vw,-100px);width:100%;height:clamp(190px,27vw,420px);overflow:visible;pointer-events:none}
 .cloud-divider img{position:absolute;width:108%;max-width:none;height:auto;left:-4%;bottom:0;filter:drop-shadow(0 -24px 34px rgba(98,137,168,.12));transform:translate3d(0,0,0) scale(1.015);animation:cloud-foreground 16s ease-in-out infinite alternate;will-change:transform;-webkit-mask-image:linear-gradient(to bottom,#000 0,#000 88%,transparent 100%);mask-image:linear-gradient(to bottom,#000 0,#000 88%,transparent 100%)}
-.dark .cloud-divider img{filter:brightness(.58) saturate(.65) contrast(1.06) drop-shadow(0 -24px 38px rgba(42,69,98,.22))}
+.dark .cloud-divider img{filter:brightness(.27) saturate(.5) contrast(1.06) drop-shadow(0 -24px 38px rgba(12,24,42,.16))}
 @keyframes cloud-foreground{to{transform:translate3d(-.7%,-1.5%,0) scale(1.035)}}
 
 /* Branded loading and route transitions */
