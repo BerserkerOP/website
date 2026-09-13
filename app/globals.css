@@ -231,3 +231,11 @@ main{position:relative;background:none}
 @media(max-width:700px){.hero{width:100%;min-height:calc(100svh - 78px);padding:25px 20px 30px}.hero:before{background-position:55% center}.cloud-divider{height:190px;bottom:-82px}.cloud-divider img{width:205%;left:-52%}}
 @media(prefers-reduced-motion:reduce){.hero:before,.cloud-divider img{animation:none}}
 html,body{overflow-x:hidden}
+
+/* Let the home navigation share the hero's sky instead of adding a fade band. */
+body:has(.hero) .navigation{background:transparent;backdrop-filter:none;border-bottom-color:transparent}
+.hero:before,.hero:after{top:-100px}
+.hero:after{background:linear-gradient(180deg,transparent 0,transparent 73%,rgba(248,249,250,.22) 86%,var(--bg) 100%)}
+.dark .hero:after{background:linear-gradient(180deg,rgba(7,18,38,.88) 0,rgba(8,20,39,.88) 68%,rgba(16,17,19,.94) 84%,var(--bg) 100%)}
+@media(min-width:701px){body:has(.hero) .navigation .nav-links{background:transparent}}
+@media(max-width:700px){.hero:before,.hero:after{top:-78px}}
