@@ -3,7 +3,9 @@
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import Lenis from 'lenis';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import {useTheme} from 'next-themes';
+import {Sun, Moon, ArrowUpRight} from 'lucide-react';
 
 export function SmoothScroll() {
   const reduceMotion = useReducedMotion();
@@ -25,36 +27,42 @@ export function SmoothScroll() {
 }
 
 export function FirstVisitIntro() {
-  const reduceMotion = useReducedMotion();
-  const [visible, setVisible] = useState(true);
-
-  useEffect(() => {
-    if (reduceMotion || sessionStorage.getItem('halftone-intro-seen')) {
-      setVisible(false);
-      return;
-    }
-    sessionStorage.setItem('halftone-intro-seen', '1');
-    const thumbnail = new Image();
-    thumbnail.src = 'https://i.ytimg.com/vi/CKRGb22UZQA/maxresdefault.jpg';
-    const timer = window.setTimeout(() => setVisible(false), 1250);
-    return () => window.clearTimeout(timer);
-  }, [reduceMotion]);
-
-  return (
-    <AnimatePresence>
-      {visible ? (
-        <motion.div
-          className="first-visit-intro"
-          initial={{ opacity: 1 }}
-          exit={{ y: '-100%', transition: { duration: 0.72, ease: [0.76, 0, 0.24, 1] } }}
-          aria-hidden="true"
-        >
-          <div className="intro-lockup"><span>HALFTONE</span><span>MOTION</span></div>
-          <div className="intro-progress"><motion.i initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1.05, ease: [0.65, 0, 0.35, 1] }} /></div>
-        </motion.div>
-      ) : null}
-    </AnimatePresence>
-  );
+  const {setTheme, resolvedTheme}=useTheme();
+  const reduceMotion=useReducedMotion();
+  const dialog=useRef<HTMLDialogElement>(null);
+  const timer=useRef<ReturnType<typeof setTimeout>>();
+  const [visible,setVisible]=useState(false);
+  const [closing,setClosing]=useState(false);
+  const [preview,setPreview]=useState('light');
+  useEffect(()=>{
+    try { if(localStorage.getItem('halftone-atmosphere-chosen')) return; } catch {}
+    setVisible(true);
+    ['/clear-sky.webp','/cloud-original.webp'].forEach(src=>{const img=new Image();img.src=src});
+    return()=>clearTimeout(timer.current);
+  },[]);
+  useEffect(()=>{
+    if(!visible)return;
+    dialog.current?.showModal();
+    const previous=document.body.style.overflow;
+    document.body.style.overflow='hidden';
+    return()=>{document.body.style.overflow=previous};
+  },[visible]);
+  const choose=(theme:string)=>{
+    if(closing)return;
+    setTheme(theme);setPreview(theme);setClosing(true);
+    try{localStorage.setItem('halftone-atmosphere-chosen','1')}catch{}
+    timer.current=setTimeout(()=>{dialog.current?.close();setVisible(false);document.querySelector<HTMLAnchorElement>('.wordmark')?.focus({preventScroll:true})},reduceMotion?0:450);
+  };
+  if(!visible)return null;
+  return <dialog ref={dialog} className={`atmosphere-picker ${closing?'is-leaving':''}`} data-preview={preview} aria-labelledby="atmosphere-title" onCancel={e=>{e.preventDefault();choose(resolvedTheme==='dark'?'dark':'light')}} data-lenis-prevent>
+    <div className="picker-sky" aria-hidden="true"/><div className="picker-clouds" aria-hidden="true"/>
+    <div className="picker-content"><span className="mono picker-kicker">A DIFFERENT LIGHT. THE SAME MOTION.</span><h1 id="atmosphere-title">Choose your<br/><em>atmosphere.</em></h1><p>Step into your kind of sky.</p>
+      <div className="atmosphere-options">
+        <button type="button" autoFocus onPointerEnter={()=>setPreview('light')} onFocus={()=>setPreview('light')} onClick={()=>choose('light')} disabled={closing}><Sun size={27}/><span><strong>Daylight</strong><small>Clear skies. Fresh ideas.</small></span><ArrowUpRight size={21}/></button>
+        <button type="button" onPointerEnter={()=>setPreview('dark')} onFocus={()=>setPreview('dark')} onClick={()=>choose('dark')} disabled={closing}><Moon size={27}/><span><strong>After dark</strong><small>Quiet skies. Bright ideas.</small></span><ArrowUpRight size={21}/></button>
+      </div><span className="picker-note">You can switch anytime using the sun or moon in the header.</span>
+    </div>
+  </dialog>;
 }
 
 export function PageExperience({ children }: { children: React.ReactNode }) {
