@@ -35,7 +35,6 @@ export function FirstVisitIntro() {
   const [closing,setClosing]=useState(false);
   const [preview,setPreview]=useState('light');
   useEffect(()=>{
-    try { if(localStorage.getItem('halftone-atmosphere-chosen')) return; } catch {}
     setVisible(true);
     ['/clear-sky.webp','/cloud-original.webp'].forEach(src=>{const img=new Image();img.src=src});
     return()=>clearTimeout(timer.current);
@@ -50,7 +49,6 @@ export function FirstVisitIntro() {
   const choose=(theme:string)=>{
     if(closing)return;
     setTheme(theme);setPreview(theme);setClosing(true);
-    try{localStorage.setItem('halftone-atmosphere-chosen','1')}catch{}
     timer.current=setTimeout(()=>{dialog.current?.close();setVisible(false);document.querySelector<HTMLAnchorElement>('.wordmark')?.focus({preventScroll:true})},reduceMotion?0:450);
   };
   if(!visible)return null;
