@@ -34,10 +34,12 @@ export function FirstVisitIntro() {
   const [visible,setVisible]=useState(false);
   const [closing,setClosing]=useState(false);
   const [preview,setPreview]=useState('light');
+  const scrollToHero=()=>{window.scrollTo(0,0);document.documentElement.scrollTop=0;document.body.scrollTop=0;};
   useEffect(()=>{
     setVisible(true);
+    const firstFrame=requestAnimationFrame(()=>{scrollToHero();requestAnimationFrame(scrollToHero)});
     ['/clear-sky.webp','/cloud-original.webp'].forEach(src=>{const img=new Image();img.src=src});
-    return()=>clearTimeout(timer.current);
+    return()=>{cancelAnimationFrame(firstFrame);clearTimeout(timer.current)};
   },[]);
   useEffect(()=>{
     if(!visible)return;
@@ -49,7 +51,7 @@ export function FirstVisitIntro() {
   const choose=(theme:string)=>{
     if(closing)return;
     setTheme(theme);setPreview(theme);setClosing(true);
-    timer.current=setTimeout(()=>{dialog.current?.close();setVisible(false);document.querySelector<HTMLAnchorElement>('.wordmark')?.focus({preventScroll:true})},reduceMotion?0:450);
+    timer.current=setTimeout(()=>{dialog.current?.close();setVisible(false);scrollToHero();requestAnimationFrame(()=>requestAnimationFrame(()=>{scrollToHero();document.querySelector<HTMLAnchorElement>('.wordmark')?.focus({preventScroll:true})}))},reduceMotion?0:450);
   };
   if(!visible)return null;
   return <dialog ref={dialog} className={`atmosphere-picker ${closing?'is-leaving':''}`} data-preview={preview} aria-labelledby="atmosphere-title" onCancel={e=>{e.preventDefault();choose(resolvedTheme==='dark'?'dark':'light')}} data-lenis-prevent>
