@@ -286,3 +286,18 @@ body:has(dialog[open]) .edge-blur,body:has(.is-expanded) .edge-blur{opacity:0}
 .picker-note{display:block;font-size:12px;line-height:1.7;opacity:.75}
 @media(max-width:700px){.hero>.night-sky{top:-78px}.edge-blur{height:56px}.atmosphere-picker{padding:24px}.atmosphere-options{grid-template-columns:1fr;max-width:350px}.picker-content{padding:30px 0}.picker-content h1{text-align:center}.picker-clouds{background-size:220% auto}.atmosphere-options button{padding:22px}}
 @media(prefers-reduced-motion:reduce){.sky-star,.shooting-star{animation:none}.shooting-star{display:none}.cloud-divider img,.hero>.night-sky{translate:none}.atmosphere-picker,.picker-sky:after,.picker-clouds,.atmosphere-options button{transition:none}.atmosphere-options button:hover{transform:none}}
+
+/* Focus the dialog heading on entry; retain visible keyboard focus on choices. */
+#atmosphere-title:focus{outline:none}
+@media(max-width:700px){
+  .hero{min-height:0;padding:22px 20px 56px}
+  .hero .hero-meta{margin-bottom:32px;gap:16px;font-size:9px}
+  .hero h1{font-size:clamp(58px,20vw,132px);line-height:.94;letter-spacing:-.065em;margin-bottom:32px}
+  .hero .interactive-title{display:flex;flex-wrap:wrap;white-space:normal}
+  .hero .title-space{flex-basis:100%;height:0;overflow:hidden}
+  .hero .title-line.second{margin-top:12px}
+  .hero .hero-lower{margin-top:0;display:block}
+  .hero .hero-intro{max-width:400px;padding:0}
+  .hero .hero-intro p{font-size:19px;line-height:1.5;margin:12px 0 24px;max-width:350px}
+  .hero .hero-intro .button{min-height:54px}
+}

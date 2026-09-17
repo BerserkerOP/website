@@ -56,9 +56,9 @@ export function FirstVisitIntro() {
   if(!visible)return null;
   return <dialog ref={dialog} className={`atmosphere-picker ${closing?'is-leaving':''}`} data-preview={preview} aria-labelledby="atmosphere-title" onCancel={e=>{e.preventDefault();choose(resolvedTheme==='dark'?'dark':'light')}} data-lenis-prevent>
     <div className="picker-sky" aria-hidden="true"/><div className="picker-clouds" aria-hidden="true"/>
-    <div className="picker-content"><span className="mono picker-kicker">A DIFFERENT LIGHT. THE SAME MOTION.</span><h1 id="atmosphere-title">Choose your<br/><em>atmosphere.</em></h1><p>Step into your kind of sky.</p>
+    <div className="picker-content"><span className="mono picker-kicker">A DIFFERENT LIGHT. THE SAME MOTION.</span><h1 id="atmosphere-title" tabIndex={-1} autoFocus>Choose your<br/><em>atmosphere.</em></h1><p>Step into your kind of sky.</p>
       <div className="atmosphere-options">
-        <button type="button" autoFocus onPointerEnter={()=>setPreview('light')} onFocus={()=>setPreview('light')} onClick={()=>choose('light')} disabled={closing}><Sun size={27}/><span><strong>Daylight</strong><small>Clear skies. Fresh ideas.</small></span><ArrowUpRight size={21}/></button>
+        <button type="button" onPointerEnter={()=>setPreview('light')} onFocus={()=>setPreview('light')} onClick={()=>choose('light')} disabled={closing}><Sun size={27}/><span><strong>Daylight</strong><small>Clear skies. Fresh ideas.</small></span><ArrowUpRight size={21}/></button>
         <button type="button" onPointerEnter={()=>setPreview('dark')} onFocus={()=>setPreview('dark')} onClick={()=>choose('dark')} disabled={closing}><Moon size={27}/><span><strong>After dark</strong><small>Quiet skies. Bright ideas.</small></span><ArrowUpRight size={21}/></button>
       </div><span className="picker-note">You can switch anytime using the sun or moon in the header.</span>
     </div>
