@@ -315,3 +315,6 @@ body:has(dialog[open]) .edge-blur,body:has(.is-expanded) .edge-blur{opacity:0}
 .dark .client-logo-wtm{filter:brightness(0) invert(1)}
 @media(max-width:1000px) and (min-width:701px){.client-strip{width:300px}.client-logos{gap:18px}.client-logo-head{width:96px;height:96px}.client-logo-wtm{width:164px}}
 @media(max-width:700px){.client-strip{width:100%;max-width:370px;margin:36px auto 0;padding:0}.hero .client-strip-heading{font-size:12px}.client-logos{gap:28px;min-height:96px}.client-logo-head{width:96px;height:96px}.client-logo-wtm{width:168px}}
+
+.client-logo-head{background:#172c40;filter:none;mix-blend-mode:normal;-webkit-mask-image:url('/clients/client-head.jpg');mask-image:url('/clients/client-head.jpg');mask-mode:luminance;-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;mask-position:center}
+.dark .client-logo-head{background:#eef4ff;filter:none;mix-blend-mode:normal}
