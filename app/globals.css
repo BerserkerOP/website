@@ -318,3 +318,12 @@ body:has(dialog[open]) .edge-blur,body:has(.is-expanded) .edge-blur{opacity:0}
 
 .client-logo-head{background:#172c40;filter:none;mix-blend-mode:normal;-webkit-mask-image:url('/clients/client-head.jpg');mask-image:url('/clients/client-head.jpg');mask-mode:luminance;-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;mask-position:center}
 .dark .client-logo-head{background:#eef4ff;filter:none;mix-blend-mode:normal}
+
+/* Equal-weight client testimonials, with aligned attribution rows. */
+.quotes{grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;align-items:stretch}
+.quotes>div{display:flex;flex-direction:column;min-width:0;padding:28px 24px;border:1px solid var(--line);border-radius:16px}
+.quotes blockquote{font-size:clamp(20px,1.7vw,25px);line-height:1.45;letter-spacing:-.5px;margin:0 0 32px}
+.quotes .quote-person{margin-top:auto;min-height:46px}
+.quotes .quote-person img{flex-shrink:0}
+@media(max-width:900px){.quotes{gap:16px}.quotes>div{padding:22px 18px}.quotes blockquote{font-size:20px}}
+@media(max-width:700px){.quotes{grid-template-columns:1fr;gap:20px}.quotes>div{padding:26px 24px}.quotes blockquote{font-size:22px}}
